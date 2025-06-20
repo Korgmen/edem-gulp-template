@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+	@@include('chunks/head.html', {title: 'Список страниц'})
+
+	<body class="page">
+		<div class="wrapper">
+			@@include('chunks/header.html')
+			<main class="content">
+				<div class="content__block temp-main">
+					<div class="temp-main__container">
+						<div class="temp-main__title">Edem Template</div>
+						<div class="temp-main__info text-content">
+							<div>
+								<p>Привет! Добро пожаловать на стартовую страницу шаблона.</p>
+								<p>Сейчас введу Вас в курс дела, с чего тут лучше начать. Вся информация так же продублирована в <a class="link" href="//github.com/Korgmen/edemtmp#readme" target="_blank">документации</a>.</p>
+							</div>
+
+							<div>
+								<h2>Чек-лист дел</h2>
+								<p>Их нужно выполнить в шаблоне перед версткой проекта:</p>
+								<ul>
+									<li>Удалить файл `src/scss/themes/temp-theme.scss` и его вызов в файле `src/scss/main.scss`. Это стили шаблона, которые нужны для визуализации стартовой страницы;</li>
+									<li>Собрать шрифты проекта и подключить их по инструкции из раздела документации <a class="link" href="//github.com/Korgmen/edemtmp?tab=readme-ov-file#шрифты" target="_blank">Шрифты</a>;</li>
+									<li>Собрать цветовую палитру проекта и прописать их по инструкции из раздела документации <a class="link" href="//github.com/Korgmen/edemtmp?tab=readme-ov-file#вызов-цветов" target="_blank">Вызов цветов</a>;</li>
+									<li>Собрать эффекты и прописать их по инструкции из раздела документации <a class="link" href="//github.com/Korgmen/edemtmp?tab=readme-ov-file#вызов-эффектов" target="_blank">Вызов эффектов</a>;</li>
+									<li>Подготовить иконки и разместить их в папке спрайта по инструкции из раздела документации <a class="link" href="//github.com/Korgmen/edemtmp?tab=readme-ov-file#генерация-svg-спрайта-работа-с-иконками" target="_blank">Генерация SVG-спрайта</a>;</li>
+									<li>Собрать все изображения, либо взять какое-то одно как заглушку (для верстки ведь этого достаточно).</li>
+								</ul>
+							</div>
+
+							<div>
+								<h2>Как я начинаю верстку</h2>
+								<ul>
+									<li>Накидываю стили для стандартных компонентов сайта (кнопки, заголовки и прочее);</li>
+									<li>Далее перехожу к верстке страниц, начиная с главной (страницы лежат по пути `src/html/pages/`). Строю структуру поблочно;</li>
+									<li>После каждого блока перехожу к стилям для этого блока и его компонентам (заранее определяя, есть ли подобные компоненты на сайте);</li>
+									<li>Сразу делаю адаптив для блока;</li>
+									<li>Перехожу к следующим блокам и повторяю шаги.</li>
+								</ul>
+							</div>
+
+							<div>
+								<p>Файлы стилей уникальных блоков (которые встречаются один раз на всем сайте) помещаю в папку `src/scss/layout/`.</p>
+								<p>Файлы стилей компонентов помещаю в папку `src/scss/components/`.</p>
+								<p>Не забываем в начале каждого нового файла стилей подключать абстракции `@use 'abstracts' as *;` (быстро добавить эту строку можно сниппетом 'as').</p>
+								<p>Файлы стилей, которые вы помещаете в `src/scss/layout/` и `src/scss/components/` не нужно нигде прописывать, они генерируются автоматически силами сборки.</p>
+							</div>
+
+							<div>
+								<p>Для быстрого создания файлов использую VSCode-расширение File Utils (сочетание клавиш Ctrl+Alt+N|Option+Command+N).</p>
+								<p>Для навигации и поиска файлов использую встроенные функции VSCode (сочетание клавиш Ctrl+Shift+F|Command+Shift+F).</p>
+								<p>Подробнее о сочетаниях клавиш и возможностях шаблона с ними в разделе документации <a class="link" href="//github.com/Korgmen/edemtmp?tab=readme-ov-file#сочетания-клавиш" target="_blank">Сочетания клавиш</a>.</p>
+							</div>
+
+							<div>
+								<p>Если вам нужен пример компонента или модуля шаблона, то их можно найти на <a class="link" href="_example.html">странице с примерами</a>.</p>
+								<p>Мой телеграм для связи - <a class="link" href="//t.me/korgmen" target="_blank">@Korgmen</a>.</p>
+								<p><a class="link" href="//github.com/Korgmen/edem-gulp-template" target="_blank">Гитхаб шаблона.</a></p>
+								<p><a class="link" href="//boosty.to/korgmen/donate" target="_blank">Поблагодарить меня за труды можно тут.</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			@@include('chunks/footer.html')
+		</div>
+		@@include('chunks/modals.html')
+		@@include('chunks/scripts.html')
+	</body>
+
+</html>

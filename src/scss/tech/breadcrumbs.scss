@@ -1,0 +1,20 @@
+@use 'abstracts' as *;
+
+.breadcrumbs {
+	$p: &;
+
+	&__list {
+		overflow-x: auto;
+		overflow-y: hidden;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&__item {
+		white-space: nowrap;
+	}
+
+	&__link {}
+}

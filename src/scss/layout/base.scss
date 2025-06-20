@@ -1,0 +1,107 @@
+@use 'abstracts' as *;
+
+body.page {
+	position: relative;
+	background-color: $c-accent;
+	color: $c-main;
+
+	&:has(input[name="theme"]:checked) {
+		// тут будет смена темы
+	}
+
+	&::before {
+		content: '';
+		position: fixed;
+		left: -9999px;
+		top: 0;
+		bottom: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 6;
+		background-color: transparent;
+		transition: background-color $td $tf 0s, backdrop-filter $td $tf 0s, left 0s ease $td;
+	}
+
+	&.lock {
+		overflow: hidden;
+
+		&::before {
+			left: 0;
+			background-color: rgba($color: $c-main, $alpha: 0.2);
+			transition: background-color $td $tf 0s, backdrop-filter $td $tf 0s, left 0s ease 0s;
+			backdrop-filter: blur(rem(5));
+		}
+
+		&--clear {
+			&::before {
+				display: none;
+			}
+		}
+	}
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+.content {
+	flex: 1 1 auto;
+
+	&__block {
+		padding: lineScale(64, 32) 0 lineScale(96, 48) 0;
+
+		&--nop {
+			padding: 0;
+		}
+
+		&--nopt {
+			padding-top: 0;
+		}
+
+		&--nopb {
+			padding-bottom: 0;
+		}
+	}
+}
+
+[class*="__container"] {
+	max-width: $md1;
+	margin: 0 auto;
+	padding: 0 $containerMargin;
+	overflow-x: clip;
+	
+	animation: fade-in-bottom linear;
+	animation-timeline: view(block);
+	//ДОРАБОТКА: когда сафари и лиса дотянутся до scroll-timeline поменять 250px на 38dvh, удалить полифил и important ниже
+	animation-range: 0 250px;
+
+	&[class*="--noanim"] {
+		animation: none !important;
+		overflow: initial;
+	}
+
+	&[class*="--2560"] {
+		max-width: rem(2560);
+	}
+}
+
+.sem-hide {
+	visibility: hidden;
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
+
+picture {
+	position: relative;
+}
+
+img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}

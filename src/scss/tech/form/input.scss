@@ -1,0 +1,9 @@
+@use 'abstracts' as *;
+
+.input {
+	$p: &;
+
+	&--textarea {
+		resize: vertical;
+	}
+}

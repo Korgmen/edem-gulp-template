@@ -1,0 +1,16 @@
+@use 'abstracts' as *;
+
+.slider-scrollbar {
+	$p: &;
+	background-color: $c-main;
+	height: rem(3);
+	width: auto;
+	padding: rem(2) 0;
+	box-sizing: content-box;
+
+	&__drag {
+		background-color: $c-accent;
+		height: 100%;
+		border-radius: 0;
+	}
+}

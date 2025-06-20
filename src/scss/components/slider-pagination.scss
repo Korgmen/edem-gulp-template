@@ -1,0 +1,31 @@
+@use 'abstracts' as *;
+
+.slider-pagination {
+	$p: &;
+	display: flex;
+	gap: 0 rem(8);
+
+	&__bullet {
+		display: block;
+		width: rem(24);
+		height: rem(24);
+		color: $c-main;
+		border: rem(1.5) solid currentColor;
+		border-radius: 0;
+		background-color: transparent;
+		opacity: 1;
+		cursor: pointer;
+		transition: all $td $tf 0s;
+
+		@media (pointer: fine) {
+			#{$p}.clickable &:not(.active):hover {
+				color: $c-45c95a;
+			}
+		}
+
+		&.active {
+			color: $c-main;
+			background-color: $c-main;
+		}
+	}
+}

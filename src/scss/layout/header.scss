@@ -1,0 +1,17 @@
+@use 'abstracts' as *;
+
+.header {
+	--header-height: #{rem(100)};
+	--header-scroll-height: #{rem(80)};
+	--header-bgcolor: #{$c-accent};
+
+	&__scroll-fix {}
+
+	&__container {
+		&--noanim {}
+	}
+
+	&__row {
+		transition: all $td $tf 0s;
+	}
+}

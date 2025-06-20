@@ -1,0 +1,47 @@
+@use 'abstracts' as *;
+
+.slider-navigation {
+	$p: &;
+	display: flex;
+	gap: 0 rem(16);
+	pointer-events: none;
+
+	&__link {
+		width: rem(48);
+		height: rem(48);
+		color: $c-main;
+		border: rem(1.5) solid currentColor;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		pointer-events: initial;
+		transition: all $td $tf 0s;
+
+		@media (pointer: fine){
+			&:hover{
+				color: $c-45c95a;
+			}
+		}
+
+		&--prev {}
+
+		&--next {}
+
+		&.disable {
+			opacity: 0.3;
+			pointer-events: none;
+		}
+
+		&.hidden {
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+
+	&__icon {
+		#{$p}__link--prev & {
+			rotate: -180deg;
+		}
+	}
+}

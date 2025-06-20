@@ -1,0 +1,22 @@
+@use 'functions' as func;
+
+//Переменные - настройки==========
+$fontFamily: 'Manrope', sans-serif; // <----- Указываем имя шрифта
+$fontSize: 1rem; // <----- Указываем размер шрифта
+$minWidth: func.rem(375);
+$maxWidthContainer: func.rem(1440); // <----- Указываем размер контейнера
+$containerMargin: func.lineScale(32,16); // <----- Указываем отступ по краям контейнера
+$md1: calc($maxWidthContainer + $containerMargin * 2 - func.rem(0.02));
+$md2: func.rem(991.98);
+$md3: func.rem(767.98);
+$md4: func.rem(479.98);
+$td: 0.4s; // <----- Стандартное значение для transition-duration на всем сайте
+$tf: ease; // <----- Стандартное значение для transition-timing-function на всем сайте
+////Переменные - настройки==========
+
+// Настройка бургера
+$burgerWidth: func.rem(32); // <----- Ширина бургера
+$burgerHeight: func.rem(16); // <----- Высота бургера
+$burgerLineHeight: func.rem(2); // <----- Толщина линий бургера
+$burgerLineCount: 3; // <----- 2 или 3 линии в бургере
+//// Настройка бургера

@@ -1,0 +1,19 @@
+@use 'abstracts' as *;
+
+.file-input {
+	$p: &;
+
+	&:not(:placeholder-shown) {}
+
+	&::after {
+		@at-root #{$p}:not(:placeholder-shown)::after {}
+	}
+
+	.form {
+		&__field {}
+	}
+
+	&__label {}
+
+	&__input {}
+}

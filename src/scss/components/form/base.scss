@@ -1,0 +1,59 @@
+@use 'abstracts' as *;
+
+// Здесь записана заготовка под стандартную структуру форм в шаблоне.
+// Рекомендую использовать ее, удалив группы и лейблы при желании.
+// Так же есть файл base.scss с техническими стилями форм (в папке scss/tech/form/), там заданы постоянно необходимые стили для форм, но при желании вы можете их переопределить.
+.form {
+	$p: &;
+
+	&__group {}
+
+	&__group-title {}
+
+	&__line {
+
+		&--row {}
+	}
+
+	&__field-container {}
+
+	&__field {}
+
+	&__number {}
+
+	&__label-container {}
+
+	&__label {}
+
+	&__sublabel {}
+
+	&__error {}
+
+	&__button {
+
+		// псевдоэлемент процесса отправки формы "крутилка" (активируется, если на кнопку вешается disabled атрибут)
+		&::after {
+			height: 70%;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			border: rem(3) solid;
+			border-color: $c-main transparent;
+			animation: sending-form 1s infinite;
+			transition: all $td $tf 0s;
+
+			@keyframes sending-form {
+				to {
+					transform: rotate(.5turn)
+				}
+			}
+		}
+
+		&.send {
+			background-color: $c-45c95a;
+			border-color: $c-45c95a;
+			color: $c-accent;
+		}
+	}
+
+	&__policy {}
+}

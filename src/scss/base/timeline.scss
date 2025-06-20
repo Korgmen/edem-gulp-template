@@ -1,0 +1,13 @@
+@use 'abstracts/functions' as func;
+
+@keyframes fade-in-bottom {
+	from {
+		opacity: 0;
+		translate: 0 func.rem(100);
+	}
+
+	to {
+		opacity: 1;
+		translate: 0 0;
+	}
+}

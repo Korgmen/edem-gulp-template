@@ -1,0 +1,10 @@
+@use 'abstracts' as *;
+
+.button {
+	box-sizing: border-box;
+	cursor: pointer;
+
+	@at-root a#{&}:not([href]) {
+		cursor: default;
+	}
+}

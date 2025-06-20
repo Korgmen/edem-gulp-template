@@ -1,0 +1,56 @@
+@use 'sass:math';
+
+@use 'abstracts/variables' as *;
+
+.js_tab {
+	$p: &;
+
+	&-link {
+		cursor: pointer;
+
+		#{$p}:not(#{$p}--empty) &.active {
+			pointer-events: none;
+		}
+	}
+
+	&-content-container {
+		box-sizing: content-box;
+
+		#{$p}:not(:is(#{$p}--slide, #{$p}--noanim, #{$p}--empty)) & {
+			will-change: height;
+			height: var(--max-height);
+			transition: height $td ease math.div($td, 2);
+		}
+	}
+
+	&-content {
+		overflow: hidden;
+		will-change: max-height;
+		max-height: var(--max-height);
+		transition: opacity $td ease $td, max-height 0s ease $td;
+
+		#{$p}--slide &,
+		#{$p}--empty & {
+			transition: all $td ease 0s;
+		}
+
+		#{$p}--noanim & {
+			transition: initial;
+		}
+
+		&:not(.active) {
+			max-height: 0;
+			opacity: 0;
+			transition: opacity $td ease 0s, max-height 0s ease $td;
+
+			#{$p}--slide &,
+			#{$p}--empty & {
+				transition: all $td ease 0s;
+			}
+
+			#{$p}--noanim & {
+				transition: initial;
+			}
+		}
+	}
+}

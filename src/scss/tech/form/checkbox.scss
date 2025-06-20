@@ -1,0 +1,53 @@
+@use 'abstracts' as *;
+
+._checkbox {
+	$p: &;
+
+	&-input {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		#{$p}--toggler & {
+			justify-content: flex-start;
+		}
+
+		&::before {
+			content: '';
+			position: relative;
+			display: inline-block;
+			flex: 0 0 100%;
+			cursor: pointer;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			display: inline-block;
+			opacity: 0;
+			transition: all $td $tf 0s;
+			pointer-events: none;
+
+			@at-root #{$p}-input:checked:after {
+				opacity: 1;
+			}
+
+			@at-root #{$p}--toggler #{$p}-input:after {
+				left: 0;
+				opacity: 1;
+			}
+
+			@at-root #{$p}--toggler #{$p}-input:checked:after {
+				left: 50%;
+			}
+		}
+	}
+
+	& label {
+		-ms-user-select: none;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+	}
+}

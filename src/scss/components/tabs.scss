@@ -1,0 +1,35 @@
+@use 'abstracts' as *;
+
+.tabs {
+	display: flex;
+	flex-direction: column;
+	gap: rem(10) 0;
+	max-width: rem(500);
+	margin: 0 auto;
+
+	&__link-list {
+		display: flex;
+		gap: 0 rem(10);
+	}
+
+	&__link {
+		flex: 1 1;
+
+		&.active {
+			color: $c-accent;
+			background-color: $c-main;
+		}
+	}
+
+	&__content-list {
+		border: rem(1) solid $c-main;
+		padding: rem(15);
+		max-width: rem(500);
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: rem(5) 0;
+	}
+}

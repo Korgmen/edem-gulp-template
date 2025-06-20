@@ -1,0 +1,64 @@
+@use 'abstracts' as *;
+
+._burger-icon {
+	$p: &;
+	$td: 0.8s;
+	position: relative;
+	display: block;
+	width: $burgerWidth;
+	height: $burgerWidth;
+	margin: 0 auto;
+	color: currentColor;
+	cursor: pointer;
+	transition: height $td $tf 0s;
+
+	@if $burgerLineCount ==3 {
+		span {
+			position: absolute;
+			width: 100%;
+			height: $burgerLineHeight;
+			margin: auto 0;
+			background-color: currentColor;
+			translate: 0 -50%;
+			transition: all $td $tf 0s;
+
+			@at-root body.lock--hide-menu #{$p}._open span {
+				opacity: 0;
+				rotate: 135deg;
+				translate: 0 0;
+			}
+		}
+	}
+
+	&:before,
+	&:after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: $burgerLineHeight;
+		left: 0;
+		background-color: currentColor;
+		transition: all $td $tf 0s;
+	}
+
+	&::before {
+		top: calc(($burgerWidth - $burgerHeight) / 2);
+
+		@at-root body.lock--hide-menu #{$p}._open:before {
+			rotate: 135deg;
+			top: 50%;
+			translate: 0 -50%;
+		}
+	}
+
+	&::after {
+		content: '';
+		bottom: calc(($burgerWidth - $burgerHeight) / 2);
+
+		@at-root body.lock--hide-menu #{$p}._open:after {
+			rotate: -135deg;
+			bottom: 50%;
+			translate: 0 50%;
+		}
+	}
+}

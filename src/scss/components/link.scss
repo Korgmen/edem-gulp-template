@@ -1,0 +1,17 @@
+@use 'abstracts' as *;
+
+.link {
+	color: #000000;
+	text-decoration: underline rem(1) currentColor;
+	transition: text-decoration-color $td $tf 0s;
+
+	&[href] {
+		cursor: pointer;
+	}
+
+	@media (pointer: fine) {
+		&:hover {
+			text-decoration-color: transparent;
+		}
+	}
+}

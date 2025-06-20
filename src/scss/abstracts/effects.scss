@@ -1,0 +1,14 @@
+@use 'functions' as func;
+
+//? Тут представлены примеры подключения эффектов. Для их вызова, воспользуйтесь сниппетом ef
+@mixin ef-hard-shadow {
+	box-shadow: rem(8) rem(8) 0 rgba(0, 0, 0, 1)
+}
+
+@mixin ef-simple-shadow {
+	box-shadow: 0 rem(32) rem(50) rgba(0, 0, 0, 0.3)
+}
+
+@mixin ef-light-shadow {
+	box-shadow: 0 0 rem(25) rgba(168, 255, 233, 0.3)
+}

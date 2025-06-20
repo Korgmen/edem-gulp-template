@@ -1,0 +1,13 @@
+@use 'abstracts' as *;
+
+.select {
+	$p: &;
+
+	&.fill {}
+
+	&::placeholder {}
+
+	&__option {
+		&--title {}
+	}
+}

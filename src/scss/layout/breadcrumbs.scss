@@ -1,0 +1,13 @@
+@use 'abstracts' as *;
+
+.breadcrumbs {
+	$p: &;
+
+	&__list {}
+
+	&__item {
+		&:not(:last-child)::after {}
+	}
+
+	&__link {}
+}

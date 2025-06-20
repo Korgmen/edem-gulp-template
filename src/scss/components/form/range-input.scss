@@ -1,0 +1,33 @@
+@use 'abstracts' as *;
+
+.range-input {
+	$p: &;
+
+	&.fill {}
+
+	&__input {
+
+		@media (any-hover: hover) {
+			#{$p}:hover & {}
+		}
+
+		@mixin rangeThumb {}
+
+		&::-webkit-slider-thumb {
+			@include rangeThumb;
+		}
+
+		&::-moz-range-thumb {
+			@include rangeThumb;
+		}
+
+		&::before {}
+	}
+
+	&__text {
+
+		#{$p}.fill & {}
+	}
+
+	&__text-val {}
+}

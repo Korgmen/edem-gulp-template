@@ -1,0 +1,13 @@
+.title {
+	&--m32 {
+		margin-bottom: lineScale(32, 16);
+	}
+
+	&--m64 {
+		margin-bottom: lineScale(64, 32);
+	}
+
+	&--m96 {
+		margin-bottom: lineScale(96, 48);
+	}
+}

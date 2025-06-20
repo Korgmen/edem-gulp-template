@@ -1,0 +1,142 @@
+@use 'abstracts/variables' as var;
+
+* {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	-webkit-tap-highlight-color: transparent;
+}
+*,
+*:before,
+*:after {
+	-moz-box-sizing: inherit;
+	-webkit-box-sizing: inherit;
+	box-sizing: inherit;
+}
+:focus,
+:active {
+	outline: none;
+}
+a:focus,
+a:active {
+	outline: none;
+}
+aside,
+nav,
+footer,
+header,
+section {
+	display: block;
+}
+html {
+	font-size: var.$fontSize;
+	box-sizing: border-box;
+}
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+html,
+body {
+	height: 100%;
+	min-width: var.$minWidth;
+	scrollbar-gutter: stable;
+}
+body {
+	line-height: 1;
+	font-family: var.$fontFamily;
+	//text-rendering: optimizeLegibility;
+	-ms-text-size-adjust: 100%;
+	-moz-text-size-adjust: 100%;
+	-webkit-text-size-adjust: 100%;
+}
+@supports (font-variation-settings: normal) {
+	body {
+		font-family: var.$fontFamily;
+	}
+}
+input,
+button,
+textarea {
+	font-family: var.$fontFamily;
+	appearance: none;
+	-webkit-appearance: none;
+}
+input::-ms-clear {
+	display: none;
+}
+input[type=number] {
+	-moz-appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	appearance: none;
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type=range] {
+	outline: none;
+	appearance: none;
+	-webkit-appearance: none;
+}
+input[type=range]::-webkit-slider-thumb {
+	appearance: none;
+	-webkit-appearance: none;
+}
+input[type=range]::-moz-range-thumb {
+	appearance: none;
+	-webkit-appearance: none;
+}
+button {
+	cursor: pointer;
+	background-color: inherit;
+	all: unset;
+}
+button::-moz-focus-inner {
+	all: unset;
+}
+a {
+    color: inherit;
+}
+a[href^="http"]:empty::before {
+	content: attr(href);
+}
+a,
+a:visited {
+	text-decoration: none;
+}
+a:not(.link):hover {
+	text-decoration: none;
+}
+ul li {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+	pointer-events: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+}
+picture {
+	display: block;
+}
+dialog {
+	max-width: initial;
+	max-height: initial;
+}
+dialog::backdrop {
+	all: unset;
+	position: fixed;
+	inset: 0;
+	background: transparent;
+}
+//-webkit-overflow-scrolling: touch;
+//animation-play-state: paused !important;

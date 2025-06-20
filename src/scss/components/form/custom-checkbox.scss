@@ -1,0 +1,11 @@
+@use 'abstracts' as *;
+
+.custom-checkbox {
+	$p: &;
+
+	&__input {}
+
+	&__label {
+		@at-root #{$p}__input:checked+& {}
+	}
+}

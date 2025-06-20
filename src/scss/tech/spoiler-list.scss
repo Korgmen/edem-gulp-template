@@ -1,0 +1,25 @@
+@use 'abstracts' as *;
+
+.js_spoiler {
+	$p: &;
+
+	&-item {
+		overflow: hidden;
+		box-sizing: border-box;
+	}
+
+	&-title {
+		cursor: pointer;
+	}
+
+	&-content {
+		will-change: max-height;
+		max-height: 0;
+		box-sizing: border-box;
+		transition: max-height $td $tf 0s;
+
+		#{$p}-item.open & {
+			max-height: var(--max-height);
+		}
+	}
+}

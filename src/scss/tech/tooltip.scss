@@ -1,0 +1,23 @@
+@use 'abstracts' as *;
+
+.js_tooltip {
+	position: relative;
+	width: fit-content;
+	display: inline-flex;
+	flex-direction: column;
+
+	&-button {
+		cursor: pointer;
+	}
+
+	&-body {
+		position: absolute;
+		align-self: center;
+		pointer-events: none;
+
+		&:not(.show) {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+}

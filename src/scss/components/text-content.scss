@@ -1,0 +1,103 @@
+@use 'abstracts' as *;
+
+.text-content {
+	display: flex;
+	flex-direction: column;
+	gap: rem(32) 0;
+
+	&:not(:has(div)) {
+		gap: rem(16) 0;
+	}
+
+	div {
+		display: flex;
+		flex-direction: column;
+		gap: rem(16) 0;
+	}
+
+	h2 {}
+
+	p {}
+
+	ul,
+	ol {
+		display: flex;
+		flex-direction: column;
+		gap: rem(8) 0;
+		padding-left: rem(32);
+
+		li {
+			list-style-type: disc;
+			list-style-position: outside;
+		}
+	}
+
+	ol {
+		li {
+			list-style-type: decimal;
+		}
+	}
+
+	div:has(>table) {
+		width: 100%;
+		overflow-x: auto;
+	}
+
+	picture {
+		position: relative;
+		width: 100%;
+		height: rem(380);
+		overflow: hidden;
+
+		img {
+			position: absolute;
+			inset: 0;
+		}
+	}
+
+	table {
+		border-collapse: separate;
+		border-spacing: 0;
+
+		tr {
+			th {
+				background-color: rgba($color: $c-main, $alpha: 0.05);
+				text-align: left;
+			}
+
+			td {}
+
+			th,
+			td {
+				border: rem(1) solid $c-main;
+				border-style: none solid solid none;
+				padding: rem(8) rem(16);
+			}
+		}
+
+		tr:first-child th:first-child {
+			border-top-left-radius: rem(12);
+		}
+
+		tr:first-child th:last-child {
+			border-top-right-radius: rem(12);
+		}
+
+		tr:last-child td:first-child {
+			border-bottom-left-radius: rem(12);
+		}
+
+		tr:last-child td:last-child {
+			border-bottom-right-radius: rem(12);
+		}
+
+		tr:first-child th {
+			border-top-style: solid;
+		}
+
+		tr th:first-child,
+		tr td:first-child {
+			border-left-style: solid;
+		}
+	}
+}

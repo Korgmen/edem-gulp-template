@@ -1,0 +1,40 @@
+@use 'functions' as func;
+
+@function reductFont($font-size) {
+	@return $font-size * pow(0.95, $font-size / 10);
+}
+
+//? Тут представлены примеры подключения шрифтов. Для их вызова, воспользуйтесь сниппетом f
+//? Обратите внимание, что для правильной работы сниппета необходимо каждый миксин начинать с префикса f-
+
+@mixin f-inter-semi-42 {
+	font-size: func.lineScale(42, reductFont(42));
+	font-family: Inter;
+	font-weight: 600;
+	letter-spacing: 0;
+	line-height: 114%;
+}
+
+@mixin f-inter-semi-32 {
+	font-size: func.lineScale(32, reductFont(32));
+	font-family: Inter;
+	font-weight: 600;
+	letter-spacing: 0;
+	line-height: 120%;
+}
+
+@mixin f-inter-reg-22 {
+	font-size: func.rem(22);
+	font-family: Inter;
+	font-weight: 400;
+	letter-spacing: 0em;
+	line-height: 125%;
+}
+
+@mixin f-manrope-reg-16 {
+	font-size: func.lineScale(16, reductFont(16));
+	font-family: Manrope;
+	font-weight: 400;
+	letter-spacing: 0em;
+	line-height: 145%;
+}

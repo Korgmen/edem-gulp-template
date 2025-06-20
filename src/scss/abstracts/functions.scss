@@ -1,0 +1,54 @@
+@use 'sass:math';
+
+@function rem($px) {
+	@return math.div($px, 16) + rem;
+}
+@function em($px, $parentpx) {
+	@return math.div($px, $parentpx) + em;
+}
+//Подключение шрифта
+@mixin font($font_name, $file_name, $weight, $style, $ascent: 'normal') {
+	@font-face {
+		font-family: $font_name;
+		font-display: swap;
+		src: url("../fonts/#{$file_name}.woff2") format("woff2"), url("../fonts/#{$file_name}.ttf") format("ttf");
+		font-weight: #{$weight};
+		font-style: #{$style};
+		ascent-override: #{$ascent};
+	}
+}
+@function strip-units($number) {
+	@return math.div($number, $number * 0 + 1);
+}
+@function lineScale($max, $min, $minScreen: 480, $maxScreen: 1440) {
+	$max: math.div($max, 16);
+	$min: math.div($min, 16);
+	$maxScreen: math.div($maxScreen, 16);
+	$minScreen: math.div($minScreen, 16);
+	
+	$slope: math.div(($max - $min), ($maxScreen - $minScreen));
+	$yAxisIntersection: -$minScreen * $slope + $min;
+
+	@if $min > $max {
+		@return clamp(
+			#{$max * 1rem},
+			#{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+			#{$min * 1rem}
+		);
+	} @else {
+		@return clamp(
+			#{$min * 1rem},
+			#{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+			#{$max * 1rem}
+		);
+	}
+	
+}
+
+@mixin lineClamp($lines) {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $lines;
+	text-overflow: ellipsis;
+}

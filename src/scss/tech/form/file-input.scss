@@ -1,0 +1,31 @@
+@use 'abstracts' as *;
+
+.js_file {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+
+	&::after {
+		content: '';
+		display: block;
+		-webkit-mask-image: url(../img/sprite.svg#file);
+		-webkit-mask-size: cover;
+		-webkit-mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		flex-shrink: 0;
+		aspect-ratio: 1;
+	}
+
+	&-label {
+		cursor: pointer;
+
+		&::before{
+			content:'';
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+		}
+	}
+}

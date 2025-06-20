@@ -1,0 +1,33 @@
+@use 'abstracts' as *;
+
+.js_notify {
+	$p: &;
+	display: block;
+	inset: initial;
+	height: initial;
+	overflow: hidden !important;
+
+	position: fixed;
+	bottom: 0;
+	left: rem(16);
+	translate: 0 calc(100% + rem(16));
+	z-index: 4;
+	transition: translate $td $tf 0s;
+
+	&:popover-open {
+		transition: translate $td $tf 0s;
+		translate: 0 rem(-16);
+	}
+
+	&::backdrop {
+		display: none;
+	}
+
+	&.open {
+		transition: all 1s ease 0s;
+
+		@starting-style {
+			translate: 0 100%;
+		}
+	}
+}

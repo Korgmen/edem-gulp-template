@@ -1,0 +1,54 @@
+@use 'abstracts' as *;
+
+.notify {
+	$p: &;
+	background-color: $c-accent;
+	color: $c-main;
+	max-width: rem(400);
+	width: calc(100% - rem(32));
+	padding: rem(16) rem(48) rem(16) rem(16);
+	box-shadow: 0 0 rem(10) rgba($color: $c-main, $alpha: 0.15);
+
+	&__close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: rem(32);
+		height: rem(32);
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__close-icon {
+		fill: currentColor;
+
+		#{$p}__close:hover & {
+			animation: shake $td ease-in-out;
+		}
+
+		@keyframes shake {
+
+			0%,
+			100% {
+				transform: rotate(0deg);
+			}
+
+			25% {
+				transform: rotate(10deg);
+			}
+
+			75% {
+				transform: rotate(-10deg);
+			}
+		}
+	}
+
+	&__content {}
+
+	&__text {
+		font-size: rem(14);
+		line-height: 150%;
+	}
+}

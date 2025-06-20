@@ -1,0 +1,8 @@
+node_modules
+build
+.vscode/*sftp*.json
+pnpm-lock.yaml
+_todo.md
+.DS_Store
+src/scss/components/index.scss
+src/scss/layout/index.scss

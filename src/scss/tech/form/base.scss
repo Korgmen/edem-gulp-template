@@ -1,0 +1,71 @@
+@use 'abstracts' as *;
+
+.form {
+	$p: &;
+
+	&:has(#{$p}__button[disabled]) {
+		pointer-events: none;
+	}
+
+	&__line {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+
+		&--row {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+	}
+
+	&__field-container {
+		position: relative;
+		flex: 1 1;
+		display: flex;
+		flex-direction: column;
+		margin-top: auto;
+	}
+
+	&__field {}
+
+	&__label {
+		&:has(+ :not(#{$p}__sublabel)) {
+			padding: 0 0; // <----- Укажите свое значение
+		}
+	}
+
+	&__error {
+		position: absolute;
+		bottom: rem(3);
+		right: rem(3);
+		pointer-events: none;
+	}
+
+	&__button {
+		position: relative;
+		overflow: hidden;
+
+		&::after {
+			content: '';
+			position: absolute;
+			opacity: 0;
+		}
+
+		&[disabled] {
+			color: transparent;
+			transition: all $td $tf 0s;
+
+			& * {
+				opacity: 0;
+			}
+
+			&::after {
+				opacity: 1;
+			}
+		}
+
+		&.send {
+			pointer-events: none;
+		}
+	}
+}

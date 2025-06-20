@@ -1,0 +1,17 @@
+@use 'abstracts' as *;
+
+.toggler-checkbox {
+	$p: &;
+
+	& label[class*="label"] {}
+
+	&__input {
+		&::before {
+			@at-root #{$p}__input:checked:before {}
+		}
+
+		&::after {
+			@at-root #{$p}__input:checked:after {}
+		}
+	}
+}

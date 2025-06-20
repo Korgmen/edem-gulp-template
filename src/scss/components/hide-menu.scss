@@ -1,0 +1,28 @@
+@use 'abstracts' as *;
+
+.hide-menu {
+	background-color: $c-main;
+	color: $c-accent;
+	width: rem(375);
+
+	&__close {
+		position: absolute;
+		top: rem(16);
+		right: rem(16);
+		width: rem(36);
+		height: rem(36);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	&__close-icon {
+		fill: $c-accent;
+		pointer-events: none;
+	}
+
+	&__content {
+		padding: calc(rem(32) + rem(64)) rem(48) rem(32);
+	}
+}

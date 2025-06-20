@@ -1,0 +1,69 @@
+@use 'abstracts' as *;
+
+.navigation {
+	$p: &;
+
+	&__list {}
+
+	&__list-item {
+		position: relative;
+		cursor: pointer;
+	}
+
+	&__list-link {}
+
+	&__level-icon {
+		flex-shrink: 0;
+		aspect-ratio: 1;
+
+		#{$p}__list-item:hover>& {
+			rotate: -180deg;
+		}
+
+		#{$p}__level-list-item>& {
+			rotate: -90deg;
+		}
+	}
+
+	&__level-container {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		opacity: 0;
+		pointer-events: none;
+		z-index: 1;
+		transition: all $td $tf 0s;
+
+		#{$p}__list-item:not(._on-click):hover>& {
+			opacity: 1;
+			pointer-events: initial;
+		}
+
+		#{$p}__level-list-item:not(._on-click):hover>& {
+			opacity: 1;
+			pointer-events: initial;
+		}
+
+		&--inside {
+			top: 0;
+			left: 100%;
+
+			@media (max-width:$md4) {
+				left: 0;
+				bottom: 0;
+				translate: 0 100%;
+			}
+		}
+	}
+
+	&__level-list {}
+
+	&__level-list-item {
+		position: relative;
+		cursor: pointer;
+	}
+
+	&__level-list-link {
+		white-space: nowrap;
+	}
+}

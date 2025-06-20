@@ -1,0 +1,14 @@
+@use 'abstracts' as *;
+
+.checkbox {
+	$p: &;
+
+	&__input {
+
+		&::before {}
+
+		&::after {}
+	}
+
+	&__label {}
+}

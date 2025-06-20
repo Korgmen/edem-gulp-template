@@ -1,0 +1,27 @@
+@use 'abstracts' as *;
+
+.header {
+	position: sticky;
+	height: var(--header-height);
+	top: 0;
+	z-index: 4;
+	transition: translate $td $tf 0s;
+	pointer-events: none;
+
+	&__scroll-fix {
+		pointer-events: initial;
+		background: var(--header-bgcolor);
+	}
+
+	&__row {
+		height: var(--header-height);
+
+		@at-root body.scroll & {
+			height: var(--header-scroll-height);
+		}
+	}
+
+	@starting-style {
+		translate: 0 -100%;
+	}
+}

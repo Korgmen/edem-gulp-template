@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+	@@include('chunks/head.html', {title: 'Страница с примерами'})
+
+	<body class="page">
+		<div class="wrapper">
+			@@include('chunks/header.html')
+			<main class="content">
+				@@include('chunks/breadcrumbs.html')
+				<section class="content__block">
+					<div class="content__container">
+						<div class="example-section">
+							<h2 class="example-section__title title"><span>Пример тултипа</span></h2>
+							<div class="tooltip-parent">
+								<span>Наведи на иконку -></span>
+								<div class="tooltip js_tooltip">
+									<span class="tooltip__button js_tooltip-button">⚠️</span>
+									<div class="tooltip__body js_tooltip-body">
+										Обычный тултип
+									</div>
+								</div>
+							</div>
+							<div class="tooltip-parent">
+								<span>Наведи на иконку -></span>
+								<div class="tooltip js_tooltip">
+									<span class="tooltip__button js_tooltip-button">ℹ️</span>
+									<div class="tooltip__body js_tooltip-body">
+										Тултип где много текста. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad quo at facilis facere exercitationem accusamus quibusdam in minus modi perspiciatis.
+									</div>
+								</div>
+							</div>
+							<div class="tooltip-parent">
+								<span>Наведи на иконку -></span>
+								<div class="tooltip js_tooltip">
+									<span class="tooltip__button js_tooltip-button"><i>📫</i><i>📬</i></span>
+									<div class="tooltip__body js_tooltip-body">
+										<h2>Тултип с параграфами и форматированием</h2>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+										<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, amet!</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<div class="example-section">
+							<h2 class="example-section__title title"><span>Пример бургера</span></h2>
+							<script>
+								const toggleBurger = () => {
+									document.body.classList.toggle('lock--hide-menu');
+								}
+							</script>
+							<button class="example-section__button button" onclick="toggleBurger()">Переключить бургер</button>
+							<div class="example-section__row">
+								<button class="burger-icon _burger-icon _open"><span></span></button>
+								<button class="burger-icon _burger-icon _open"><span></span></button>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<h2 class="title"><span>Пример формы и ее компонентов</span></h2>
+						<form class="form" novalidate>
+							<div class="form__group">
+								<h3 class="form__group-title">Основная информация</h3>
+								<div class="form__line">
+									<label class="form__label" for="name">Ваше имя</label>
+									<input id="name" class="form__field input" type="text" placeholder="Имя">
+									<span class="form__error"></span>
+								</div>
+								<div class="form__line form__line--row">
+									<div class="form__field-container">
+										<label class="form__label" for="phone">Ваш телефон</label>
+										<input id="phone" class="form__field input js_tel-mask" type="tel" placeholder="+7 (___) ___-__-__">
+										<span class="form__error">Неправильно указан телефон</span>
+									</div>
+									<div class="form__field-container">
+										<label class="form__label-container" for="email">
+											<p class="form__label">Ваша почта</p>
+											<p class="form__sublabel">Укажите почту в домене .com</p>
+										</label>
+										<input id="email" class="form__field input" type="email" placeholder="Почта">
+										<span class="form__error"></span>
+									</div>
+									<div class="form__field-container">
+										<label class="form__label-container" for="range-input">
+											<p class="form__label">Бюджет проекта</p>
+										</label>
+										<div class="range-input js_range">
+											<p class="range-input__text js_range-text"><span class="range-input__text-val js_range-val"></span> ₽</p>
+											<input class="range-input__input js_range-input" id="range-input" type="range" min="10000" max="100000" step="2000" value="24000">
+										</div>
+									</div>
+								</div>
+								<div class="form__line form__line--row">
+									<div class="form__field-container" style="flex: 0 1 33.333%;">
+										<label class="form__label" for="gender">Ваш пол</label>
+										<select class="form__field input select js_select" id="gender" name="gender">
+											<option class="select__option select__option--title" value="" selected>Укажите ваш пол</option>
+											<option class="select__option" value="Мужской">Мужской</option>
+											<option class="select__option" value="Женский">Женский</option>
+										</select>
+									</div>
+									<div class="form__field-container" style="flex: 0 1;">
+										<label class="form__label-container" for="form-number">
+											<p class="form__label">Ваш возраст</p>
+										</label>
+										<div class="form__number number-input js_number">
+											<span class="number-input__button number-input__button--minus js_number-button-minus"></span>
+											<input class="number-input__input js_number-input" id="number-input" type="number" min="18" max="120" step="1" value="">
+											<span class="number-input__button number-input__button--plus js_number-button-plus"></span>
+										</div>
+									</div>
+									<div class="form__field-container">
+										<label class="form__label-container" for="range-input">
+											<p class="form__label">Бюджет проекта (v2)</p>
+										</label>
+										<div class="dual-range-input js_dual-range">
+											<p class="dual-range-input__text js_dual-range-text"><span class="dual-range-input__text-val js_dual-range-val" for="dual-range-1"></span> ₽</p>
+											<div class="dual-range-input__input-container js_dual-range-input-container">
+												<input class="dual-range-input__input js_dual-range-input" id="dual-range-1" type="range" min="10000" max="100000" step="2000" value="24000">
+												<input class="dual-range-input__input js_dual-range-input" id="dual-range-2" type="range">
+											</div>
+											<p class="dual-range-input__text js_dual-range-text"><span class="dual-range-input__text-val js_dual-range-val" for="dual-range-2"></span> ₽</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form__group">
+								<h3 class="form__group-title">Дополнительная информация</h3>
+								<div class="form__line">
+									<div class="form__field input file-input js_file">
+										<label class="file-input__label js_file-label" for="resume">Прикрепите резюме (pdf, jpg, png, docx)</label>
+										<input id="resume" class="file-input__input js_file-input sem-hide" type="file">
+									</div>
+									<span class="form__error"></span>
+								</div>
+								<div class="form__line">
+									<div class="toggler-checkbox _checkbox _checkbox--toggler">
+										<label class="form__label" for="toggler">Доставить заказ по адресу</label>
+										<input class="toggler-checkbox__input _checkbox-input" data-switch="address" type="checkbox" id="toggler">
+									</div>
+								</div>
+								<div id="address" class="form__line form__line--row">
+									<div class="form__field-container">
+										<input class="form__field input" type="text" placeholder="Адрес">
+										<span class="form__error">Неправильно указан адрес</span>
+									</div>
+									<div class="form__field-container">
+										<input class="form__field date-input" type="date" placeholder="Дата доставки" required>
+										<span class="form__error"></span>
+									</div>
+								</div>
+								<div class="form__line">
+									<textarea class="form__field input input--textarea" type="text" placeholder="О себе"></textarea>
+									<span class="form__error"></span>
+								</div>
+								<div class="form__line">
+									<button class="form__button button" type="submit">Отправить</button>
+									<p class="form__policy">Нажимая «Отправить» вы соглашаетесь с <a class="link" href="">Политикой конфиденциальности</a></p>
+									<div class="checkbox _checkbox">
+										<input class="checkbox__input _checkbox-input" type="checkbox" id="policy" checked>
+										<label class="form__policy checkbox__label" for="policy">Я соглашаюсь с <a class="link" href="">Политикой конфиденциальности</a></label>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<div class="custom-checkbox-section">
+							<h2 class="custom-checkbox-section__title title"><span>Пример кастомных чекбоксов</span></h2>
+							<form class="custom-checkbox-section__form">
+								<div class="custom-checkbox _checkbox">
+									<input class="custom-checkbox__input _checkbox-input" type="checkbox" name="custom-checkbox" id="custom-checkbox-1" checked>
+									<label class="custom-checkbox__label button" for="custom-checkbox-1">По убыванию</label>
+								</div>
+								<div class="custom-checkbox _checkbox">
+									<input class="custom-checkbox__input _checkbox-input" type="checkbox" name="custom-checkbox" id="custom-checkbox-2">
+									<label class="custom-checkbox__label button" for="custom-checkbox-2">По возрастанию</label>
+								</div>
+								<div class="custom-checkbox _checkbox">
+									<input class="custom-checkbox__input _checkbox-input" type="checkbox" name="custom-checkbox" id="custom-checkbox-3">
+									<label class="custom-checkbox__label button" for="custom-checkbox-3">По барабану</label>
+								</div>
+							</form>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<div class="custom-checkbox-section">
+							<h2 class="custom-checkbox-section__title title"><span>Пример кастомных радио</span></h2>
+							<form class="custom-checkbox-section__form">
+								<div class="custom-checkbox _checkbox">
+									<input class="custom-checkbox__input _checkbox-input" type="radio" name="custom-radio" id="custom-radio-1">
+									<label class="custom-checkbox__label button" for="custom-radio-1">По убыванию</label>
+								</div>
+								<div class="custom-checkbox _checkbox">
+									<input class="custom-checkbox__input _checkbox-input" type="radio" name="custom-radio" id="custom-radio-2" checked>
+									<label class="custom-checkbox__label button" for="custom-radio-2">По возрастанию</label>
+								</div>
+								<div class="custom-checkbox _checkbox">
+									<input class="custom-checkbox__input _checkbox-input" type="radio" name="custom-radio" id="custom-radio-3">
+									<label class="custom-checkbox__label button" for="custom-radio-3">По барабану</label>
+								</div>
+							</form>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<h2 class="title"><span>Пример спойлеров/аккордеонов</span></h2>
+						<div class="spoiler-list js_spoiler js_spoiler--single">
+							<div class="spoiler-list__item js_spoiler-item">
+								<h2 class="spoiler-list__title js_spoiler-title">Заголовок спойлера</h2>
+								<div class="spoiler-list__content js_spoiler-content">
+									<h1>Контент спойлера</h1>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, iste.</p>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consectetur temporibus non dolore delectus possimus!</p>
+									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit eveniet corrupti blanditiis voluptas quam optio consequatur laborum. Iste, exercitationem suscipit? Nobis non rem saepe voluptatibus cumque minima nemo odio porro.</p>
+								</div>
+							</div>
+							<div class="spoiler-list__item js_spoiler-item">
+								<h2 class="spoiler-list__title js_spoiler-title">Заголовок следующего спойлера</h2>
+								<div class="spoiler-list__content js_spoiler-content">
+									<h1>Контент следующего спойлера</h1>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia hic recusandae adipisci!</p>
+									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis commodi ullam fuga officiis, dicta odit minus!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<h2 class="title"><span>Пример табов</span></h2>
+						<div class="tabs js_tab">
+							<div class="tabs__link-list">
+								<button class="tabs__link button js_tab-link active">Ссылка таба 1</button>
+								<button class="tabs__link button js_tab-link">Ссылка таба 2</button>
+								<button class="tabs__link button js_tab-link">Ссылка таба 3</button>
+							</div>
+							<div class="tabs__content-list js_tab-content-container">
+								<div class="tabs__content js_tab-content active">
+									<h1>Контент таба 1</h1>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, iste.</p>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consectetur temporibus non dolore delectus possimus!</p>
+									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit eveniet corrupti blanditiis voluptas quam optio consequatur laborum. Iste, exercitationem suscipit? Nobis non rem saepe voluptatibus cumque minima nemo odio porro.</p>
+								</div>
+								<div class="tabs__content js_tab-content">
+									<h1>Контент таба 2</h1>
+									<p>Lorem ipsum dolor sit amet.</p>
+									<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam deleniti, velit ab nihil vel ipsam necessitatibus libero.</p>
+									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus.</p>
+								</div>
+								<div class="tabs__content js_tab-content">
+									<h1>Контент таба 3</h1>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia hic recusandae adipisci!</p>
+									<button class="modal-link button" data-modal="order">Вызвать модал order</button>
+									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis commodi ullam fuga officiis, dicta odit minus!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<h2 class="title"><span>Пример модалов</span></h2>
+						<div class="modal-list">
+							<button class="modal-link button" data-modal="callback">Вызвать модал callback</button>
+							<button class="modal-link button" data-modal="order">Вызвать модал order</button>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<h2 class="title"><span>Пример оповещений</span></h2>
+						<div class="modal-list">
+							<button class="button" popovertarget="addToCart" popovertargetaction="show">Добавить в корзину</button>
+							<button class="button" data-copy="F3l0C1G5r" popovertarget="copyText" popovertargetaction="show">Скопировать промокод</button>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<div class="article">
+							<div class="article__title title"><span>Пример статьи с генерацией оглавления</span></div>
+							<div class="article__row">
+								<ul class="article__list">
+									<li class="article__list-item article__list-item--title"><a class="article__list-link">Оглавление</a></li>
+									<li class="article__list-item js_article-link"><a class="article__list-link js_scroll-to">Ссылка-пример для оглавления</a></li>
+								</ul>
+								<div class="article__content text-content js_article-content">
+									<div>
+										<h2>Lorem ipsum dolor sit amet.</h2>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime accusantium dolores esse dolorem ipsum ut optio, repudiandae, recusandae sapiente, exercitationem laboriosam eaque! Quibusdam possimus dolorem, dicta quos quis natus voluptates neque placeat aspernatur! Vel, officiis expedita enim laboriosam et unde. Ipsa earum autem cum alias rerum, aperiam, consequuntur a dicta odio minus quasi doloribus? Ipsum fugit mollitia provident dolores deserunt iusto magnam error doloremque consectetur, laborum deleniti aperiam commodi nemo veritatis culpa. Est minus totam repellendus qui! Voluptates molestias labore voluptas dolorum adipisci commodi consectetur veritatis quasi cupiditate suscipit. Iste earum, voluptatibus cumque voluptas delectus perspiciatis ipsam accusantium ipsum officiis!</p>
+									</div>
+									<div>
+										<h2>Lorem, ipsum dolor.</h2>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ut, ipsa laborum quos, modi expedita soluta maiores in quasi sit aliquid. Veniam provident nam repellendus expedita porro distinctio accusamus soluta suscipit voluptatem doloremque? Quam corrupti tempore vel, a totam, suscipit minus est vero blanditiis, itaque ratione consequuntur error ducimus doloremque qui sequi omnis culpa sint in doloribus? Doloremque ipsum ullam deleniti, eaque, voluptatem illo hic id, repellat harum sequi aliquid cumque. Laudantium repudiandae facere pariatur ducimus earum fuga numquam ullam commodi sint optio quas sit ad error, expedita consequatur similique quos? Corporis rem qui ipsa praesentium a sapiente. Quia corrupti maiores recusandae voluptatum aspernatur necessitatibus eos aut repellat beatae nobis cupiditate ipsa porro accusamus distinctio, vitae doloremque totam mollitia sit.</p>
+									</div>
+									<div>
+										<h2>Lorem ipsum dolor sit amet consectetur adipisicing.</h2>
+										<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis facilis corporis, quia doloremque, optio pariatur aut architecto quo nostrum omnis nemo, laborum iusto consequatur mollitia eaque excepturi eum! Error eum ea rem earum atque totam in quidem explicabo! Eos dignissimos architecto ad natus quam eligendi repudiandae ut reiciendis nemo fugit fuga libero possimus assumenda accusantium tempore laborum a expedita culpa cumque illum, omnis labore porro enim? Repudiandae repellat sit, eum laborum harum dolorum doloribus at alias. Aliquid, ad nulla. Ipsa?</p>
+									</div>
+									<div>
+										<h2>Lorem, ipsum.</h2>
+										<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum sint iure, laudantium incidunt ab consectetur ad ipsa unde, doloribus praesentium, placeat optio. Debitis quas earum impedit, consequatur nobis illum recusandae pariatur, fugiat sit facere facilis fugit? Voluptatibus quo explicabo sapiente aliquam perspiciatis quia itaque accusamus provident, magnam reprehenderit error nesciunt modi facilis. Inventore provident, sint earum porro quaerat suscipit nulla excepturi eos, magni corporis culpa officia saepe non numquam veritatis quia vero facere nostrum, eaque quasi obcaecati amet. Neque dolore tempore molestiae, aliquam sunt velit! Totam at officiis consequuntur. Voluptatem aliquam dolorem velit magnam quasi blanditiis error, suscipit ipsa a est alias, tenetur voluptate deserunt, libero hic tempore amet doloremque!</p>
+									</div>
+									<div>
+										<h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+										<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente ex dignissimos ipsa voluptatibus adipisci reprehenderit numquam, ipsum perspiciatis et vero nesciunt fugiat veniam deleniti qui sit est debitis iste! Ut, quaerat? Voluptatibus quisquam, voluptate quia sint, est incidunt accusamus exercitationem quaerat recusandae itaque eaque voluptas nam nisi reiciendis eveniet quidem optio atque modi repudiandae soluta ea deleniti! Consectetur maxime, facere non aliquam perferendis deleniti minima minus adipisci eligendi consequatur. Accusamus voluptatem incidunt sequi eaque. Omnis cumque soluta labore veritatis corrupti repellat voluptatem at voluptatibus. Explicabo, eum tempore beatae totam nam inventore expedita minima ipsam adipisci rerum provident repellat excepturi doloremque iusto ut! Accusamus earum, ut dolor perferendis aliquid magnam distinctio vitae eveniet quidem nihil tenetur illo repellendus iure ducimus facere molestiae impedit laboriosam, itaque at eius doloremque! Officia, nobis nihil. Eveniet voluptas voluptates provident nemo eum recusandae ex! Minus reprehenderit fugit accusamus autem mollitia eius hic voluptatem maxime cumque adipisci.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<div class="slider-block">
+							<div class="title"><span>Пример слайдера с использованием Swiper.js</span></div>
+							<div class="slider-block__row">
+								<div class="slider-block__pagination slider-pagination"></div>
+								<div class="slider-block__control slider-navigation">
+									<button class="slider-navigation__link slider-navigation__link--prev">
+										<svg class="slider-navigation__icon icon" width="24" height="24">
+											<use href="img/sprite.svg#arrow"></use>
+										</svg>
+									</button>
+									<button class="slider-navigation__link slider-navigation__link--next">
+										<svg class="slider-navigation__icon icon" width="24" height="24">
+											<use href="img/sprite.svg#arrow"></use>
+										</svg>
+									</button>
+								</div>
+							</div>
+							<div class="slider-block__slider js_slider" data-swiper-id="example">
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 1</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet pariatur dolore necessitatibus, accusantium quasi neque praesentium quod consectetur atque dignissimos.</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 2</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 3</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, fuga voluptas. Ipsam harum voluptas amet at?</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 4</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, quod esse quas sint rerum suscipit assumenda voluptatem mollitia perferendis autem dolorem dignissimos facilis beatae illo iste.</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 5</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet pariatur dolore necessitatibus, accusantium quasi neque praesentium quod consectetur atque dignissimos.</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 6</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 7</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, fuga voluptas. Ipsam harum voluptas amet at?</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 8</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, quod esse quas sint rerum suscipit assumenda voluptatem mollitia perferendis autem dolorem dignissimos facilis beatae illo iste.</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+								<div class="slider-block__slide js_slide">
+									<div class="slider-block__slide-title">Слайд 9</div>
+									<div class="slider-block__slide-text">
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>
+									</div>
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+										<picture class="slider-block__image-container">
+											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
+										</picture>
+									</a>
+								</div>
+							</div>
+							<div class="slider-block__scrollbar slider-scrollbar"></div>
+						</div>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<video class="media-block__video" data-plyr playsinline controls>
+							<source src="ConfusedTravolta.mp4" type="video/mp4">
+						</video>
+					</div>
+				</section>
+				<section class="content__block">
+					<div class="content__container">
+						<div class="example-section">
+							<h2 class="title"><span>Пример текстового блока (text-content)</span></h2>
+							<div class="text-content">
+								<div>
+									<h2>Lorem ipsum dolor sit amet.</h2>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime accusantium dolores esse dolorem ipsum ut optio, repudiandae, recusandae sapiente, exercitationem laboriosam eaque! Quibusdam possimus dolorem, dicta quos quis natus voluptates neque placeat aspernatur! Vel, officiis expedita enim laboriosam et unde. Ipsa earum autem cum alias rerum, aperiam, consequuntur a dicta odio minus quasi doloribus? Ipsum fugit mollitia provident dolores deserunt iusto magnam error doloremque consectetur, laborum deleniti aperiam commodi nemo veritatis culpa. Est minus totam repellendus qui! Voluptates molestias labore voluptas dolorum adipisci commodi consectetur veritatis quasi cupiditate suscipit. Iste earum, voluptatibus cumque voluptas delectus perspiciatis ipsam accusantium ipsum officiis!</p>
+									<ul>
+										<li>Lorem ipsum dolor sit amet.</li>
+										<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+										<li>Lorem ipsum dolor sit.</li>
+										<li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque, quidem?</li>
+									</ul>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, nam dolor nobis reprehenderit unde quibusdam veritatis ex libero maxime recusandae!</p>
+								</div>
+								<div>
+									<h2>Lorem, ipsum dolor.</h2>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nostrum tenetur tempora dolorum sint ipsa.</p>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab ut, ipsa laborum quos, modi expedita soluta maiores in quasi sit aliquid. Veniam provident nam repellendus expedita porro distinctio accusamus soluta suscipit voluptatem doloremque? Quam corrupti tempore vel, a totam, suscipit minus est vero blanditiis, itaque ratione consequuntur error ducimus doloremque qui sequi omnis culpa sint in doloribus? Doloremque ipsum ullam deleniti, eaque, voluptatem illo hic id, repellat harum sequi aliquid cumque. Laudantium repudiandae facere pariatur ducimus earum fuga numquam ullam commodi sint optio quas sit ad error, expedita consequatur similique quos? Corporis rem qui ipsa praesentium a sapiente. Quia corrupti maiores recusandae voluptatum aspernatur necessitatibus eos aut repellat beatae nobis cupiditate ipsa porro accusamus distinctio, vitae doloremque totam mollitia sit.</p>
+								</div>
+								<div>
+									<h2>Lorem ipsum dolor sit amet consectetur adipisicing.</h2>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eligendi totam optio distinctio recusandae, ratione a nesciunt aut nostrum commodi labore porro iste dicta possimus tenetur id sapiente vitae. Quam.</p>
+									<ol>
+										<li>Lorem ipsum dolor sit amet.</li>
+										<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+										<li>Lorem ipsum dolor sit.</li>
+										<li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque, quidem?</li>
+									</ol>
+									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis facilis corporis, quia doloremque, optio pariatur aut architecto quo nostrum omnis nemo, laborum iusto consequatur mollitia eaque excepturi eum! Error eum ea rem earum atque totam in quidem explicabo! Eos dignissimos architecto ad natus quam eligendi repudiandae ut reiciendis nemo fugit fuga libero possimus assumenda accusantium tempore laborum a expedita culpa cumque illum, omnis labore porro enim? Repudiandae repellat sit, eum laborum harum dolorum doloribus at alias. Aliquid, ad nulla. Ipsa?</p>
+									<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta quis voluptatem repellendus provident iste minima consectetur alias dicta harum hic sed repudiandae est rerum dolorum mollitia perferendis, maiores in? Inventore!</p>
+								</div>
+								<div>
+									<h2>Lorem, ipsum.</h2>
+									<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum sint iure, laudantium incidunt ab consectetur ad ipsa unde, doloribus praesentium, placeat optio. Debitis quas earum impedit, consequatur nobis illum recusandae pariatur, fugiat sit facere facilis fugit? Voluptatibus quo explicabo sapiente aliquam perspiciatis quia itaque accusamus provident, magnam reprehenderit error nesciunt modi facilis. Inventore provident, sint earum porro quaerat suscipit nulla excepturi eos, magni corporis culpa officia saepe non numquam veritatis quia vero facere nostrum, eaque quasi obcaecati amet. Neque dolore tempore molestiae, aliquam sunt velit! Totam at officiis consequuntur. Voluptatem aliquam dolorem velit magnam quasi blanditiis error, suscipit ipsa a est alias, tenetur voluptate deserunt, libero hic tempore amet doloremque!</p>
+									<picture>
+										<img src="img/temp/temp-image.jpg" height="380">
+									</picture>
+								</div>
+								<div>
+									<h2>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+									<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente ex dignissimos ipsa voluptatibus adipisci reprehenderit numquam, ipsum perspiciatis et vero nesciunt fugiat veniam deleniti qui sit est debitis iste! Ut, quaerat? Voluptatibus quisquam, voluptate quia sint, est incidunt accusamus exercitationem quaerat recusandae itaque eaque voluptas nam nisi reiciendis eveniet quidem optio atque modi repudiandae soluta ea deleniti! Consectetur maxime, facere non aliquam perferendis deleniti minima minus adipisci eligendi consequatur. Accusamus voluptatem incidunt sequi eaque. Omnis cumque soluta labore veritatis corrupti repellat voluptatem at voluptatibus. Explicabo, eum tempore beatae totam nam inventore expedita minima ipsam adipisci rerum provident repellat excepturi doloremque iusto ut! Accusamus earum, ut dolor perferendis aliquid magnam distinctio vitae eveniet quidem nihil tenetur illo repellendus iure ducimus facere molestiae impedit laboriosam, itaque at eius doloremque! Officia, nobis nihil. Eveniet voluptas voluptates provident nemo eum recusandae ex! Minus reprehenderit fugit accusamus autem mollitia eius hic voluptatem maxime cumque adipisci.</p>
+									<div>
+										<table>
+											<tr>
+												<th>Lorem, ipsum.</th>
+												<th>Lorem ipsum dolor sit.</th>
+											</tr>
+											<tr>
+												<td>Lorem ipsum dolor sit.</td>
+												<td>Lorem, ipsum.</td>
+											</tr>
+											<tr>
+												<td>Lorem ipsum dolor sit.</td>
+												<td>Lorem, ipsum.</td>
+											</tr>
+											<tr>
+												<td>Lorem ipsum dolor sit.</td>
+												<td>Lorem, ipsum.</td>
+											</tr>
+											<tr>
+												<td>Lorem ipsum dolor sit.</td>
+												<td>Lorem, ipsum.</td>
+											</tr>
+											<tr>
+												<td>Lorem ipsum dolor sit.</td>
+												<td>Lorem, ipsum.</td>
+											</tr>
+											<tr>
+												<td>Lorem ipsum dolor sit.</td>
+												<td>Lorem, ipsum.</td>
+											</tr>
+											<tr>
+												<td>Lorem ipsum dolor sit.</td>
+												<td>Lorem, ipsum.</td>
+											</tr>
+										</table>
+									</div>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, nobis.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+			@@include('chunks/footer.html')
+		</div>
+		@@include('chunks/modals.html')
+		@@include('chunks/scripts.html')
+	</body>
+
+</html>

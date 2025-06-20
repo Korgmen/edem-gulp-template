@@ -1,0 +1,21 @@
+@use 'abstracts' as *;
+
+.navigation {
+	$p: &;
+
+	&__list {}
+
+	&__list-item {}
+
+	&__list-link {}
+
+	&__level-icon {}
+
+	&__level-container {}
+
+	&__level-list {}
+
+	&__level-list-item {}
+
+	&__level-list-link {}
+}

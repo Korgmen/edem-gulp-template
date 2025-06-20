@@ -1,0 +1,29 @@
+@use 'abstracts' as *;
+
+.number-input {
+	$p: &;
+
+	&.fill {}
+
+	&__input {
+
+		#{$p}.fill & {}
+	}
+
+	&__button {
+
+		@media (any-hover: hover) {
+			&:hover {}
+		}
+
+		&::before {}
+
+		&--minus {
+			&::before {}
+		}
+
+		&--plus {
+			&::before {}
+		}
+	}
+}

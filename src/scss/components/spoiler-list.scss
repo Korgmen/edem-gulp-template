@@ -1,0 +1,68 @@
+@use 'abstracts' as *;
+
+.spoiler-list {
+	$p: &;
+	$padding: rem(16);
+	display: flex;
+	flex-direction: column;
+	gap: rem(10) 0;
+
+	&__item {
+		max-width: rem(500);
+		margin: 0 auto;
+		padding: 0 $padding;
+		border: rem(1) solid $c-main;
+		transition: padding $td $tf 0s;
+
+		&.open {
+			padding-bottom: $padding;
+		}
+	}
+
+	&__title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: $padding 0;
+		cursor: pointer;
+		transition: padding $td $tf 0s;
+
+		#{$p}__item.open & {
+			padding: $padding 0 rem(30);
+		}
+
+		&::after {
+			content: '';
+			display: block;
+			-webkit-mask-image: url(../img/sprite.svg#chevron);
+			-webkit-mask-size: cover;
+			-webkit-mask-repeat: no-repeat;
+			-webkit-mask-position: center;
+			flex-shrink: 0;
+			width: rem(16);
+			aspect-ratio: 1;
+			background-color: $c-main;
+			transition: all $td $tf 0s;
+
+			#{$p}__item.open & {
+				rotate: -180deg;
+			}
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: rem(5) 0;
+
+		h1 {
+			font-size: rem(18);
+			font-weight: 600;
+			line-height: 120%;
+		}
+
+		p {
+			line-height: 150%;
+		}
+	}
+}
