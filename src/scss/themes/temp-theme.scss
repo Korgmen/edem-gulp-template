@@ -490,6 +490,12 @@ body {
 	height: rem(36);
 	border: rem(1) solid $c-main;
 	transition: all $td $tf 0s;
+
+	&--small {
+		height: rem(24);
+		padding: rem(3) rem(8);
+		font-size: rem(12);
+	}
 }
 
 .tooltip {
