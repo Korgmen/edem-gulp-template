@@ -5,9 +5,20 @@
 	background-color: $c-accent;
 	color: $c-main;
 	max-width: rem(400);
-	width: calc(100% - rem(32));
-	padding: rem(16) rem(48) rem(16) rem(16);
+	padding: lineScale(16,8) rem(32) lineScale(16,8) lineScale(16,8);
 	box-shadow: 0 0 rem(10) rgba($color: $c-main, $alpha: 0.15);
+
+	@media (max-width:$md4){
+		width: 100%;
+	}
+
+	&:not(:has(#{$p}__close)) {
+		padding: lineScale(16,8);
+	}
+
+	&--maxw800 {
+		max-width: rem(800);
+	}
 
 	&__close {
 		position: absolute;
@@ -45,10 +56,36 @@
 		}
 	}
 
-	&__content {}
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: lineScale(8,4);
+
+		&--line {
+			@media (min-width:$md3) {
+				flex-direction: row;
+			}
+		}
+
+		&--center {
+			@media (min-width:$md3) {
+				align-items: center;
+			}
+		}
+	}
 
 	&__text {
 		font-size: rem(14);
 		line-height: 150%;
+
+		@media (max-width:$md4){
+			text-align: justify;
+		}
+	}
+
+	&__button {
+		@media (max-width:$md4){
+			margin-left: auto;
+		}
 	}
 }

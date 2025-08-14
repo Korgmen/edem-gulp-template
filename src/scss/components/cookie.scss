@@ -2,5 +2,8 @@
 
 #cookie {
 	left: initial;
-	right: rem(16);
+
+	@media (min-width:$md4) {
+		right: rem(16);
+	}
 }

@@ -14,9 +14,18 @@
 	z-index: 4;
 	transition: translate $td $tf 0s;
 
+	@media (max-width:$md4) {
+		left: 0;
+		translate: 0 calc(100%);
+	}
+
 	&:popover-open {
 		transition: translate $td $tf 0s;
 		translate: 0 rem(-16);
+
+		@media (max-width:$md4) {
+			translate: 0;
+		}
 	}
 
 	&::backdrop {

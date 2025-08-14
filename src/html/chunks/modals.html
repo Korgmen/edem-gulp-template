@@ -15,12 +15,10 @@
 </dialog>
 
 <!-- Куки-оповещение -->
-<div id="cookie" class="notify js_notify open" popover="manual">
-	<button class="notify__close" popovertarget="cookie" popovertargetaction="hide">
-		<svg class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
-	</button>
-	<div class="notify__content">
-		<p class="notify__text">Мы&nbsp;сохраняем файлы 🍪 cookie для быстрой и&nbsp;удобной работы сайта. Используя сайт, вы&nbsp;принимаете <a class="link" href="">условия обработки персональных данных</a></p>
+<div id="cookie" class="notify notify--maxw800 js_notify open" popover="manual">
+	<div class="notify__content notify__content--line notify__content--center">
+		<p class="notify__text">Мы&nbsp;сохраняем файлы 🍪 cookie для быстрой и&nbsp;удобной работы сайта. Продолжая использовать сайт, вы&nbsp;предоставляете согласие на&nbsp;<a class="link" href="">обработку ваших персональных данных</a> с&nbsp;помощью сервисов веб-аналитики.</p>
+		<button class="notify__button button button--small" popovertarget="cookie" popovertargetaction="hide">Согласен</button>
 	</div>
 </div>
 
