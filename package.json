@@ -54,7 +54,6 @@
     "@caneara/iodine": "^8.5.0",
     "@fancyapps/ui": "^6.1.6",
     "imask": "^7.6.1",
-    "plyr": "^3.8.3",
     "swiper": "^12.0.3"
   }
 }
