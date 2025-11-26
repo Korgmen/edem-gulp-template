@@ -23,27 +23,27 @@
   "homepage": "https://github.com/korgmen/edem-gulp-template#readme",
   "packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247",
   "devDependencies": {
-    "browser-sync": "^3.0.3",
-    "del": "^7.1.0",
-    "gulp": "^5.0.0",
-    "gulp-autoprefixer": "^9.0.0",
+    "browser-sync": "^3.0.4",
+    "del": "^8.0.1",
+    "gulp": "^5.0.1",
+    "gulp-autoprefixer": "^10.0.0",
     "gulp-css-mqpacker": "^1.0.1",
     "gulp-file-include": "^2.3.0",
     "gulp-fonter": "^0.3.0",
     "gulp-html-minifier-terser": "^7.1.0",
     "gulp-if": "^3.0.0",
-    "gulp-imagemin": "^9.1.0",
+    "gulp-imagemin": "^9.2.0",
     "gulp-newer": "^1.4.0",
     "gulp-notify": "^5.0.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
+    "gulp-rename": "^2.1.0",
+    "gulp-sass": "^6.0.1",
     "gulp-svg-sprite": "^2.0.3",
     "gulp-svgmin": "^4.1.0",
     "gulp-ttf2woff2": "^5.0.0",
     "ordered-read-streams": "^2.0.0",
     "plugin-error": "^2.0.1",
-    "sass": "^1.85.0",
+    "sass": "^1.94.2",
     "through2": "^4.0.2",
     "webpack-stream": "^7.0.0"
   },
@@ -52,9 +52,9 @@
   },
   "dependencies": {
     "@caneara/iodine": "^8.5.0",
-    "@fancyapps/ui": "^5.0.36",
+    "@fancyapps/ui": "^6.1.6",
     "imask": "^7.6.1",
-    "plyr": "^3.7.8",
-    "swiper": "^11.2.4"
+    "plyr": "^3.8.3",
+    "swiper": "^12.0.3"
   }
 }
