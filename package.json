@@ -5,8 +5,8 @@
   "main": "gulpfile.js",
   "type": "module",
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp build --build"
+    "dev": "gulp --no-experimental-require-module",
+    "build": "gulp build --build --no-experimental-require-module"
   },
   "repository": "korgmen/edem-gulp-template",
   "keywords": [
