@@ -17,7 +17,7 @@ export default () => {
 
 				if (!spoilerTitle || !spoilerContent) throw new Error('Элементы js_spoiler-title или js_spoiler-content не найдены в спойлере:', spoilerItem);
 
-				spoilerContent.style.setProperty('--max-height', `${spoilerContent.scrollHeight}px`);
+				spoilerContent.style.setProperty('--max-height', `${spoilerContent.scrollHeight / 16}rem`);
 
 				spoilerTitle.addEventListener('click', () => {
 					if (spoilerBlock.classList.contains('js_spoiler--single')) {
