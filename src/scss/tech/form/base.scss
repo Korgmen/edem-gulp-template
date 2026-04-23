@@ -16,6 +16,24 @@
 			flex-direction: row;
 			flex-wrap: wrap;
 		}
+
+		&--nowrap {
+			flex-wrap: nowrap;
+		}
+
+		&--grid {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		&--gap32 {
+			gap: rem(32);
+		}
+
+		&:not(.form__line--row):has(#{$p}__policy) {
+			display: flex;
+			flex-direction: column;
+		}
 	}
 
 	&__field-container {
@@ -24,6 +42,11 @@
 		display: flex;
 		flex-direction: column;
 		margin-top: auto;
+
+		&:has(#{$p}__policy) {
+			display: flex;
+			flex-direction: column;
+		}
 	}
 
 	&__field {}

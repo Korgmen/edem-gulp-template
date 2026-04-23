@@ -6,6 +6,8 @@
 .form {
 	$p: &;
 
+	&:has(#{$p}__group) {}
+
 	&__group {}
 
 	&__group-title {}
@@ -13,9 +15,13 @@
 	&__line {
 
 		&--row {}
+
+		&:not(.form__line--row):has(#{$p}__policy) {}
 	}
 
-	&__field-container {}
+	&__field-container {
+		&:has(#{$p}__policy) {}
+	}
 
 	&__field {}
 
