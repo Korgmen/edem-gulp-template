@@ -8,6 +8,7 @@
     "dev": "gulp --no-experimental-require-module",
     "build": "gulp build --build --no-experimental-require-module",
     "build:stage": "gulp build --build --env=stage --no-experimental-require-module",
+    "font": "gulp font --no-experimental-require-module",
     "dev:deploy": "gulp --deploy --no-experimental-require-module",
     "deploy": "gulp deploy --build --no-experimental-require-module",
     "deploy:stage": "gulp deploy --build --env=stage --no-experimental-require-module"
