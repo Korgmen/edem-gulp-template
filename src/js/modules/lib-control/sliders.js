@@ -44,6 +44,9 @@ try {
 		// pagination: { // добавляет нумерованную пагинацию
 		// 	el: '.content__block:has([data-swiper-id="example"]) .slider-num', // класс нумерованной пагинации (нужно добавить блок с этим классом в слайдер)
 		// 	type: 'fraction',
+		// 	renderFraction: function (currentClass, totalClass) { // своя разметка нумерованной пагинации
+		// 		return `<span class="${currentClass}"></span>/<span class="${totalClass}"></span>`;
+		// 	},
 		// 	currentClass: 'slider-num__current',
 		// 	totalClass: 'slider-num__total',
 		//	lockClass: 'disable'
@@ -56,9 +59,6 @@ try {
 		// 	bulletClass: 'slider-pagination-custom__bullet',
 		// 	lockClass: 'disable'
 		// },
-		renderFraction: function (current, total) {
-			return current + '/' + total;
-		},
 		scrollbar: { // добавляет скроллбар
 			el: '.content__block:has([data-swiper-id="example"]) .slider-scrollbar', // класс скроллбара (нужно добавить блок с этим классом в слайдер)
 			dragClass: 'slider-scrollbar__drag',
@@ -68,13 +68,12 @@ try {
 	});
 
 	//Код для переключения активного пункта пагинации для кастомной пагинации==========
-	exampleSlider.on('slideChange', function () {
-		const activeIndex = exampleSlider.activeIndex;
-		const paginationEl = document.querySelectorAll('.content__block:has([data-swiper-id="example"]) .slider-pagination-custom__bullet');
-		paginationEl.forEach(function (el) {
-			el.classList.remove('active');
+	const customBullets = document.querySelectorAll('.content__block:has([data-swiper-id="example"]) .slider-pagination-custom__bullet');
+	if (customBullets.length) {
+		exampleSlider.on('slideChange', function () {
+			customBullets.forEach(el => el.classList.remove('active'));
+			customBullets[exampleSlider.realIndex]?.classList.add('active');
 		});
-		paginationEl[activeIndex].classList.add('active');
-	});
+	}
 	////Код для переключения активного пункта пагинации для кастомной пагинации==========
 } catch (err) { console.log(err) }

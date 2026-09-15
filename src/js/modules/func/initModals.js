@@ -18,10 +18,16 @@ export default () => {
 
 					pageLock('lock', true, modalID);
 					modal.showModal();
-					window.location.hash = `#${modalID}`; // Добавляем id модального окна в хэш
+					history.pushState({ modal: modalID }, '', `#${modalID}`);
 				} catch (err) {
 					console.error('Ошибка при открытии модального окна:', err.message, err.stack);
 				}
+			});
+		});
+
+		window.addEventListener('popstate', (e) => {
+			modals.forEach(modal => {
+				if (modal.open && e.state?.modal !== modal.id) modal.close();
 			});
 		});
 
@@ -32,29 +38,17 @@ export default () => {
 				if (e.target.nodeName === 'DIALOG') modal.close();
 			});
 
-			// Закрытие при изменении хэша (например, при нажатии кнопки "Назад")
-			window.addEventListener('hashchange', () => {
-				try {
-					if (window.location.hash !== `#${modal.id}` && modal.open) {
-						modal.close();
-					}
-				} catch (err) {
-					console.error('Ошибка при обработке изменения хэша:', err.message, err.stack);
-				}
-			});
-
-			// Сброс хэша при закрытии модального окна
 			modal.addEventListener('close', () => {
 				try {
-					pageLock('unlock');
-					history.replaceState(null, document.title, location.pathname + location.search);
+					if (!document.querySelector('dialog[open]')) pageLock('unlock');
+					if (history.state?.modal === modal.id) history.back();
 				} catch (err) {
-					console.error('Ошибка при сбросе хэша:', err.message, err.stack);
+					console.error('Ошибка при закрытии модального окна:', err.message, err.stack);
 				}
 			});
 
 			// Сброс хэша при перезагрузке страницы
-			if (window.location.hash.includes(modal.id)) {
+			if (window.location.hash === `#${modal.id}`) {
 				history.replaceState(null, document.title, location.pathname + location.search);
 			}
 		});
