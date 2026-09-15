@@ -6,3 +6,4 @@ _todo.md
 .DS_Store
 src/scss/components/index.scss
 src/scss/layout/index.scss
+.env

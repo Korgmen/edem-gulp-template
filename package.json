@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "gulp --no-experimental-require-module",
-    "build": "gulp build --build --no-experimental-require-module"
+    "build": "gulp build --build --no-experimental-require-module",
+    "dev:deploy": "gulp --deploy --no-experimental-require-module",
+    "deploy": "gulp deploy --build --no-experimental-require-module"
   },
   "repository": "korgmen/edem-gulp-template",
   "keywords": [
@@ -44,6 +46,7 @@
     "ordered-read-streams": "^2.0.0",
     "plugin-error": "^2.0.1",
     "sass": "^1.94.2",
+    "ssh2-sftp-client": "^12.1.1",
     "through2": "^4.0.2",
     "webpack-stream": "^7.0.0"
   },
