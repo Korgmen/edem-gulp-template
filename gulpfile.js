@@ -4,6 +4,7 @@ import { plugins } from './gulp/config/plugins.js';
 global.app = {
 	isDev: !process.argv.includes('--build'),
 	isBuild: process.argv.includes('--build'),
+	isDeploy: process.argv.includes('--deploy'),
 	gulp: gulp,
 	plugins: plugins
 };
@@ -18,11 +19,11 @@ import { js } from './gulp/tasks/js.js';
 import { font } from './gulp/tasks/font.js';
 import { img } from './gulp/tasks/img.js';
 import { root } from './gulp/tasks/root.js';
+import { deployCheck, deployWatch, deployAll } from './gulp/tasks/deploy.js';
 
 function watcher() {
 	gulp.watch('./src/html/**/*.html', html);
-	gulp.watch(['./src/scss/**/*.scss', '!./src/scss/**/index.scss'], generateIndexSCSS);
-	gulp.watch(['./src/scss/**/*.scss', '!./src/scss/**/index.scss'], scss);
+	gulp.watch(['./src/scss/**/*.scss', '!./src/scss/**/index.scss'], styles);
 	gulp.watch('./src/js/**/*.js', js);
 	gulp.watch('./src/img/icons/**/*.svg', svg);
 	gulp.watch(['src/img/**/*.{png,jpg,jpeg,gif,svg}', '!src/img/icons/**/*.svg'], img);
@@ -30,16 +31,24 @@ function watcher() {
 	gulp.watch('./src/font/**/*.*', font);
 }
 
-const mainTasks = gulp.parallel(html, generateIndexSCSS, scss, js, svg, img, root, font);
+// Индексы components/layout должны быть записаны до компиляции SCSS, иначе в CSS попадёт устаревший набор компонентов
+const styles = gulp.series(generateIndexSCSS, scss);
+const mainTasks = gulp.parallel(html, styles, js, svg, img, root, font);
 
-export default gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
+const devTasks = app.isDeploy
+	? gulp.series(deployCheck, reset, mainTasks, gulp.parallel(watcher, server, deployWatch))
+	: gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
+
+export default devTasks;
 const build = gulp.series(reset, mainTasks);
+const deploy = gulp.series(deployCheck, reset, mainTasks, deployAll);
 
 export { build }
+export { deploy }
 export { generateIndexSCSS }
 export { svg }
 export { html }
-export { scss }
+export { styles as scss }
 export { js }
 export { font }
 export { img }

@@ -6,3 +6,8 @@ _todo.md
 .DS_Store
 src/scss/components/index.scss
 src/scss/layout/index.scss
+.env
+
+# Локальные инструкции для Claude Code — репозиторий публичный, не публикуем
+CLAUDE.md
+.claudeignore

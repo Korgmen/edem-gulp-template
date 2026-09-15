@@ -1,50 +1,27 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 
-export const generateIndexSCSS = () => {
-	return new Promise((resolve, reject) => {
-		const scssFolders = ['src/scss/components', 'src/scss/layout'];
+const scssFolders = ['src/scss/components', 'src/scss/layout'];
 
-		scssFolders.forEach(scssFolder => {
-			const outputFile = `${scssFolder}/index.scss`;
-			fs.readdir(scssFolder, (err, items) => {
-				if (err) {
-					console.error('Ошибка чтения директории:', err);
-					reject(err);
-					return;
-				}
+const generateFolderIndex = async (folder) => {
+	const entries = await fs.readdir(folder, { withFileTypes: true });
 
-				let result = '';
+	// Сортировка — чтобы порядок @forward (а значит и порядок правил в CSS) не менялся от запуска к запуску
+	const modules = entries
+		.filter((entry) => !entry.name.startsWith('.'))
+		.filter((entry) => entry.isDirectory() || (entry.isFile() && path.extname(entry.name) === '.scss' && entry.name !== 'index.scss'))
+		.map((entry) => (entry.isDirectory() ? entry.name : path.basename(entry.name, '.scss')))
+		.sort((a, b) => a.localeCompare(b));
 
-				items.forEach(item => {
-					const itemPath = path.join(scssFolder, item);
+	const content = modules.map((name) => `@forward '${name}';\n`).join('');
+	const outputFile = path.join(folder, 'index.scss');
+	const currentContent = await fs.readFile(outputFile, 'utf8').catch(() => null);
 
-					fs.stat(itemPath, (statErr, stats) => {
-						if (statErr) {
-							console.error(`Ошибка при проверке элемента ${item}:`, statErr);
-							return;
-						}
+	if (currentContent === content) return;
 
-						if (stats.isFile() && path.extname(item) === '.scss' && item !== 'index.scss') {
-							result += `@forward '${path.basename(item, '.scss')}';\n`;
-						} else if (stats.isDirectory()) {
-							result += `@forward '${item}';\n`;
-						}
-					});
-				});
+	await fs.writeFile(outputFile, content);
+	console.log(`Файл ${outputFile} успешно создан.`);
+};
 
-				setTimeout(() => {
-					fs.writeFile(outputFile, result, (writeErr) => {
-						if (writeErr) {
-							console.error('Ошибка записи в файл:', writeErr);
-							reject(writeErr);
-							return;
-						}
-						console.log(`Файл ${outputFile} успешно создан.`);
-						resolve();
-					});
-				}, 100);
-			});
-		});
-	});
-}
+// Задача должна завершаться только после записи индексов во всех папках — scss запускается строго после неё
+export const generateIndexSCSS = () => Promise.all(scssFolders.map(generateFolderIndex));
