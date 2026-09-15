@@ -19,7 +19,7 @@ export const paths = {
 	},
 	img: {
 		base: 'src/img',
-		src: 'src/img/**/*.{png,jpg,jpeg,gif,svg}',
+		src: 'src/img/**/*.*',
 		icons: 'src/img/icons/**/*.svg',
 		dest: 'build/img',
 	},
