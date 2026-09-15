@@ -1,11 +1,12 @@
 import { app } from '../config/app.js';
 import { paths } from '../config/paths.js';
+import { handleErrors } from '../utils/handleErrors.js';
 import svgRemoveFill from '../plugins/svg-remove-fill/index.js';
 import svgSprite from 'gulp-svg-sprite';
 
 export const svg = () => {
 	return app.gulp.src(paths.svg.src)
-		.pipe(app.plugins.plumber(app.plugins.notify.onError({title: 'SVG', message: 'Error: <%= error.message %>'})))
+		.pipe(handleErrors('SVG'))
 		.pipe(svgRemoveFill())
 		.pipe(svgSprite({
 			shape: {
