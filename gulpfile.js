@@ -33,14 +33,15 @@ function watcher(done) {
 // Индексы components/layout должны быть записаны до компиляции SCSS, иначе в CSS попадёт устаревший набор компонентов
 const styles = gulp.series(generateIndexSCSS, scss);
 const mainTasks = gulp.parallel(html, styles, js, svg, img, root, font);
+const buildTasks = gulp.series(gulp.parallel(styles, js, svg, img, root, font), html);
 
 const devTasks = app.isDeploy
 	? gulp.series(deployCheck, reset, mainTasks, gulp.parallel(watcher, server, deployWatch))
 	: gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
 
 export default devTasks;
-const build = gulp.series(reset, mainTasks);
-const deploy = gulp.series(deployCheck, reset, mainTasks, deployAll);
+const build = gulp.series(reset, buildTasks);
+const deploy = gulp.series(deployCheck, reset, buildTasks, deployAll);
 
 export { build }
 export { deploy }

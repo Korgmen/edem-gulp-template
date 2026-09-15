@@ -1,4 +1,6 @@
+import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import through from 'through2';
 import PluginError from 'plugin-error';
 import fileInclude from 'gulp-file-include';
@@ -22,11 +24,24 @@ const checkNameCollisions = () => {
 	});
 };
 
+// В build ссылки на CSS и JS получают ?v=<хэш содержимого>, поэтому html собирается после них (см. gulpfile.js)
+const assetVersion = (file) => {
+	if (!app.isBuild) return '';
+	if (!fs.existsSync(file)) throw new Error(`Не найден ${file}: html в build собирается после стилей и скриптов`);
+	return `?v=${crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex').slice(0, 8)}`;
+};
+
 export const html = () => {
+	const context = {
+		env: app.env,
+		cssVersion: assetVersion(path.join(paths.scss.dest, 'style.css')),
+		jsVersion: assetVersion(path.join(paths.js.dest, 'main.js')),
+	};
+
 	return app.gulp.src([paths.html.src, `!${paths.html.chunks}`, ...(app.isBuild ? [`!${paths.html.drafts}`] : [])])
 		.pipe(handleErrors('HTML'))
 		.pipe(checkNameCollisions())
-		.pipe(fileInclude({ context: { env: app.env } }))
+		.pipe(fileInclude({ context }))
 		.pipe(app.plugins.rename(path => { path.dirname = "" }))
 		.pipe(app.plugins.if(app.isBuild, htmlMin({ collapseWhitespace: true, conservativeCollapse: true })))
 		.pipe(app.gulp.dest(paths.html.dest))
