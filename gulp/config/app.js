@@ -21,6 +21,12 @@ export const app = {
 	env: env,
 	isProd: env === 'prod',
 	port: Number(process.env.SERVER_PORT) || 3000,
+	deployFlags: {
+		dryRun: argv.includes('--dry-run'),
+		force: argv.includes('--force'),
+		remove: argv.includes('--delete'),
+		yes: argv.includes('--yes'),
+	},
 	gulp: gulp,
 	plugins: plugins
 };

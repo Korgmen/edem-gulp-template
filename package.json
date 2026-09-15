@@ -54,6 +54,7 @@
     "gulp-ttf2woff2": "^5.0.0",
     "lightningcss": "^1.33.0",
     "ordered-read-streams": "^2.0.0",
+    "picomatch": "^4.0.7",
     "plugin-error": "^2.0.1",
     "sass": "^1.94.2",
     "ssh2-sftp-client": "^12.1.1",
