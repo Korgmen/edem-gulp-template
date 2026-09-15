@@ -2,6 +2,8 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import crypto from 'crypto';
+import readline from 'readline/promises';
+import picomatch from 'picomatch';
 import SftpClient from 'ssh2-sftp-client';
 import deployConfig from '../../deploy.config.js';
 import { app } from '../config/app.js';
@@ -9,6 +11,8 @@ import { app } from '../config/app.js';
 const RETRY_DELAYS = [1000, 2000, 5000, 10000, 20000];
 const DEBOUNCE_MS = 300;
 const CONCURRENCY = 4;
+const CACHE_FILE = '.deploy-cache.json';
+const TEMP_SUFFIX = '.uploading';
 
 const time = () => new Date().toLocaleTimeString('ru-RU');
 const log = (message) => console.log(`[${time()}] [deploy] ${message}`);
@@ -16,6 +20,7 @@ const logError = (message) => console.error(`\x1b[31m[${time()}] [deploy] ${mess
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const expandHome = (filePath) => filePath.replace(/^~(?=$|[\\/])/, os.homedir());
 const normalizeFingerprint = (value) => value.trim().replace(/^SHA256:/, '').replace(/=+$/, '');
+const hash = (content) => crypto.createHash('sha1').update(content).digest('hex');
 
 class FatalError extends Error { }
 
@@ -39,14 +44,40 @@ const readSettings = () => {
 		privateKey = fs.readFileSync(keyPath);
 	}
 
+	const port = Number(env.DEPLOY_PORT) || 22;
+
 	return {
 		host: env.DEPLOY_HOST,
-		port: Number(env.DEPLOY_PORT) || 22,
+		port,
 		username: env.DEPLOY_USERNAME,
 		password: env.DEPLOY_PASSWORD || undefined,
 		passphrase: env.DEPLOY_PASSPHRASE || undefined,
 		privateKey,
 		fingerprint: normalizeFingerprint(env.DEPLOY_HOST_FINGERPRINT || ''),
+		cacheKey: `${env.DEPLOY_USERNAME}@${env.DEPLOY_HOST}:${port}`,
+	};
+};
+
+const createCache = (key, { reset = false } = {}) => {
+	const readAll = () => {
+		try {
+			return JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'));
+		} catch {
+			return {};
+		}
+	};
+	const entries = reset ? {} : (readAll()[key] ?? {});
+
+	return {
+		isUploaded: (remote, contentHash) => entries[remote] === contentHash,
+		set: (remote, contentHash) => { entries[remote] = contentHash; },
+		remove: (remote) => { delete entries[remote]; },
+		save: () => {
+			const all = readAll();
+			all[key] = entries;
+			fs.writeFileSync(`${CACHE_FILE}.tmp`, JSON.stringify(all, null, '\t'));
+			fs.renameSync(`${CACHE_FILE}.tmp`, CACHE_FILE);
+		},
 	};
 };
 
@@ -55,6 +86,7 @@ const createConnection = (settings) => {
 	let connecting = null;
 	let homeDir = '';
 	let fatal = null;
+	let atomicRename = true;
 	const dirs = new Map();
 
 	const connect = () => {
@@ -111,6 +143,11 @@ const createConnection = (settings) => {
 		return connecting;
 	};
 
+	const resolveRemote = (remote) => {
+		if (!homeDir) throw new Error('путь на сервере нельзя вычислить до подключения');
+		return path.posix.isAbsolute(remote) ? path.posix.normalize(remote) : path.posix.join(homeDir, remote);
+	};
+
 	// Параллельные загрузки создают папки по уровням через общий промис на каждую папку,
 	// иначе одновременный mkdir одной и той же папки падает с ошибкой «уже существует»
 	const ensureDir = (sftp, dir) => {
@@ -131,12 +168,57 @@ const createConnection = (settings) => {
 		return dirs.get(dir);
 	};
 
-	const upload = async (localFile, remoteFile) => {
+	// Файл пишется во временный и заменяет старый одной операцией — посетитель не получит наполовину залитый файл
+	const replaceFile = async (sftp, tempPath, remotePath) => {
+		if (atomicRename) {
+			try {
+				await sftp.posixRename(tempPath, remotePath);
+				return;
+			} catch (err) {
+				if (!/does not support/i.test(err.message)) throw err;
+				if (atomicRename) log('сервер не поддерживает posix-rename — файлы заменяются удалением и переименованием (не атомарно)');
+				atomicRename = false;
+			}
+		}
+		await sftp.delete(remotePath, true);
+		await sftp.rename(tempPath, remotePath);
+	};
+
+	const upload = async (content, remoteFile) => {
 		const sftp = await connect();
-		const remotePath = path.posix.isAbsolute(remoteFile) ? remoteFile : path.posix.join(homeDir, remoteFile);
+		const remotePath = resolveRemote(remoteFile);
+		const tempPath = `${remotePath}${TEMP_SUFFIX}`;
 
 		await ensureDir(sftp, path.posix.dirname(remotePath));
-		await sftp.put(localFile, remotePath);
+		try {
+			await sftp.put(content, tempPath);
+			await replaceFile(sftp, tempPath, remotePath);
+		} catch (err) {
+			await sftp.delete(tempPath, true).catch(() => { });
+			throw err;
+		}
+	};
+
+	const listFiles = async (remoteDir) => {
+		const sftp = await connect();
+		const root = resolveRemote(remoteDir);
+		if ((await sftp.exists(root)) !== 'd') return { root, files: [] };
+
+		const files = [];
+		const walk = async (dir) => {
+			for (const entry of await sftp.list(dir)) {
+				const entryPath = path.posix.join(dir, entry.name);
+				if (entry.type === 'd') await walk(entryPath);
+				else if (entry.type === '-') files.push(entryPath);
+			}
+		};
+		await walk(root);
+		return { root, files };
+	};
+
+	const remove = async (remoteFile) => {
+		const sftp = await connect();
+		await sftp.delete(resolveRemote(remoteFile), true);
 	};
 
 	const reset = async () => {
@@ -147,37 +229,52 @@ const createConnection = (settings) => {
 		} catch { }
 	};
 
-	return { upload, reset, close: reset, isFatal: () => Boolean(fatal) };
+	return { connect, upload, listFiles, remove, resolveRemote, getHomeDir: () => homeDir, reset, close: reset, isFatal: () => Boolean(fatal) };
 };
 
 const isRetryable = (err) => !(err instanceof FatalError) && !/permission denied|bad path/i.test(err.message);
 
-const createUploader = (connection) => {
+const withRetry = (connection) => {
 	let fatalReported = false;
 
-	return async (job) => {
+	return async (label, action) => {
 		for (let attempt = 0; ; attempt++) {
-			const startedAt = Date.now();
 			try {
-				await connection.upload(job.local, job.remote);
-				log(`↑ ${job.label} (${Date.now() - startedAt} мс)`);
-				return true;
+				return { ok: true, value: await action() };
 			} catch (err) {
 				if (err instanceof FatalError) {
 					if (!fatalReported) logError(`${err.message}\nВыгрузка остановлена — исправьте .env и перезапустите задачу`);
 					fatalReported = true;
-					return false;
+					return { ok: false };
 				}
 				if (!isRetryable(err) || attempt >= RETRY_DELAYS.length) {
-					logError(`не удалось выгрузить ${job.label}: ${err.message}`);
-					return false;
+					logError(`не удалось ${label}: ${err.message}`);
+					return { ok: false };
 				}
 				const delay = RETRY_DELAYS[attempt];
-				log(`ошибка при выгрузке ${job.label}: ${err.message} — переподключение через ${delay / 1000} с`);
+				log(`ошибка при попытке ${label}: ${err.message} — переподключение через ${delay / 1000} с`);
 				await connection.reset();
 				await wait(delay);
 			}
 		}
+	};
+};
+
+const createUploader = (connection, cache) => {
+	const retry = withRetry(connection);
+
+	return async (job) => {
+		if (!fs.existsSync(job.local)) return true;
+		const content = fs.readFileSync(job.local);
+		const contentHash = hash(content);
+		if (cache.isUploaded(job.remote, contentHash)) return true;
+
+		const startedAt = Date.now();
+		const { ok } = await retry(`выгрузить ${job.label}`, () => connection.upload(content, job.remote));
+		if (!ok) return false;
+		cache.set(job.remote, contentHash);
+		log(`↑ ${job.label} (${Date.now() - startedAt} мс)`);
+		return true;
 	};
 };
 
@@ -193,6 +290,7 @@ const getTargets = () => deployConfig.targets.map((target) => ({
 	...target,
 	localPath: path.resolve(target.local),
 	globs: [...target.files, ...(target.ignore ?? []).map((glob) => `!${glob}`)],
+	isDeployable: picomatch(target.files, { ignore: target.ignore ?? [] }),
 }));
 
 const createJob = (target, filePath) => {
@@ -212,6 +310,57 @@ const listFiles = (target) => new Promise((resolve, reject) => {
 		.on('error', reject);
 });
 
+const collectJobs = async (targets) => {
+	const jobs = [];
+	for (const target of targets) {
+		(await listFiles(target)).forEach((filePath) => {
+			const job = createJob(target, filePath);
+			if (job) jobs.push(job);
+		});
+	}
+	return jobs;
+};
+
+// Файлы на сервере, которые подходят под files/ignore какой-либо цели, но которых больше нет локально
+const findOrphans = async (connection, targets, jobs) => {
+	await connection.connect();
+	const expected = new Set(jobs.map((job) => connection.resolveRemote(job.remote)));
+	const orphans = new Map();
+
+	for (const target of targets) {
+		const { root, files } = await connection.listFiles(target.remote);
+		if (root === '/' || root === connection.getHomeDir()) {
+			throw new FatalError(`--delete не выполняется для корня сервера или домашней папки (${target.local} → ${target.remote}) — укажите в deploy.config.js папку сайта`);
+		}
+		files.forEach((remotePath) => {
+			const relative = path.posix.relative(root, remotePath);
+			if (expected.has(remotePath) || orphans.has(remotePath)) return;
+			if (remotePath.endsWith(TEMP_SUFFIX) || target.isDeployable(relative)) {
+				orphans.set(remotePath, { remote: remotePath, label: `${target.remote}/${relative}` });
+			}
+		});
+	}
+	return [...orphans.values()];
+};
+
+const confirm = async (question) => {
+	if (app.deployFlags.yes) return true;
+	if (!process.stdin.isTTY) {
+		logError('удаление файлов на сервере требует подтверждения — запустите в терминале или добавьте флаг --yes');
+		return false;
+	}
+	const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+	const answer = await rl.question(`${question} (y/N) `);
+	rl.close();
+	return /^(y|yes|д|да)$/i.test(answer.trim());
+};
+
+const printList = (title, items) => {
+	if (!items.length) return;
+	log(`${title}:`);
+	items.forEach((item) => console.log(`    ${item.label}`));
+};
+
 const start = async (task) => {
 	try {
 		return await task();
@@ -227,9 +376,11 @@ export const deployCheck = () => start(() => {
 });
 
 // Выгрузка изменённых файлов при каждом изменении (pnpm dev:deploy)
-export const deployWatch = () => start(() => {
-	const connection = createConnection(readSettings());
-	const uploadJob = createUploader(connection);
+export const deployWatch = () => start(async () => {
+	const settings = readSettings();
+	const connection = createConnection(settings);
+	const cache = createCache(settings.cacheKey, { reset: app.deployFlags.force });
+	const uploadJob = createUploader(connection, cache);
 	const targets = getTargets();
 	const pending = new Map();
 	let timer = null;
@@ -242,6 +393,7 @@ export const deployWatch = () => start(() => {
 			const jobs = [...pending.values()];
 			pending.clear();
 			await runPool(jobs, CONCURRENCY, uploadJob);
+			cache.save();
 		}
 		running = false;
 	};
@@ -255,33 +407,70 @@ export const deployWatch = () => start(() => {
 			clearTimeout(timer);
 			timer = setTimeout(flush, DEBOUNCE_MS);
 		};
-		app.gulp.watch(target.globs, { cwd: target.localPath }).on('change', onChange).on('add', onChange);
+		app.gulp.watch(target.globs, { cwd: target.localPath, awaitWriteFinish: { stabilityThreshold: 150, pollInterval: 50 } }).on('change', onChange).on('add', onChange);
 	});
 
 	log(`автовыгрузка включена: ${targets.map((target) => `${target.local} → ${target.remote}`).join(', ')}`);
+
+	const changed = (await collectJobs(targets)).filter((job) => !cache.isUploaded(job.remote, hash(fs.readFileSync(job.local))));
+	if (changed.length) {
+		log(`выгрузка файлов, изменённых с прошлой выгрузки: ${changed.length}`);
+		changed.forEach((job) => pending.set(job.remote, job));
+		await flush();
+	}
 });
 
-// Полная выгрузка всех файлов из deploy.config.js (pnpm run deploy)
+// Выгрузка всех изменённых файлов из deploy.config.js (pnpm run deploy)
 export const deployAll = () => start(async () => {
-	const connection = createConnection(readSettings());
-	const uploadJob = createUploader(connection);
-	const jobs = [];
+	const { dryRun, force, remove } = app.deployFlags;
+	const settings = readSettings();
+	const connection = createConnection(settings);
+	const cache = createCache(settings.cacheKey, { reset: force });
+	const targets = getTargets();
+	const jobs = await collectJobs(targets);
+	const uploads = jobs.filter((job) => !cache.isUploaded(job.remote, hash(fs.readFileSync(job.local))));
 
-	for (const target of getTargets()) {
-		const files = await listFiles(target);
-		files.forEach((filePath) => {
-			const job = createJob(target, filePath);
-			if (job) jobs.push(job);
+	try {
+		const orphans = remove ? await findOrphans(connection, targets, jobs) : [];
+
+		log(`файлов: ${jobs.length}, к выгрузке: ${uploads.length}${force ? ' (--force)' : ''}${remove ? `, к удалению на сервере: ${orphans.length}` : ''}`);
+
+		if (dryRun) {
+			printList('будут выгружены', uploads);
+			printList('будут удалены на сервере', orphans);
+			log('--dry-run: на сервере ничего не изменено');
+			return;
+		}
+
+		if (orphans.length) {
+			printList('будут удалены на сервере', orphans);
+			if (!(await confirm(`Удалить на сервере файлов: ${orphans.length}?`))) {
+				throw new Error('выгрузка отменена — ничего не изменено');
+			}
+		}
+
+		let failed = 0;
+		const uploadJob = createUploader(connection, cache);
+		await runPool(uploads, CONCURRENCY, async (job) => {
+			if (!(await uploadJob(job))) failed++;
 		});
+
+		const retry = withRetry(connection);
+		for (const orphan of orphans) {
+			const { ok } = await retry(`удалить ${orphan.label}`, () => connection.remove(orphan.remote));
+			if (!ok) {
+				failed++;
+				continue;
+			}
+			cache.remove(path.posix.relative(connection.getHomeDir(), orphan.remote));
+			cache.remove(orphan.remote);
+			log(`✕ ${orphan.label}`);
+		}
+
+		cache.save();
+		if (failed) throw new Error(`не выполнено операций: ${failed}`);
+		log('выгрузка завершена');
+	} finally {
+		await connection.close();
 	}
-
-	log(`выгрузка файлов: ${jobs.length}`);
-	let failed = 0;
-	await runPool(jobs, CONCURRENCY, async (job) => {
-		if (!(await uploadJob(job))) failed++;
-	});
-	await connection.close();
-
-	if (failed) throw new Error(`не выгружено файлов: ${failed} из ${jobs.length}`);
-	log('выгрузка завершена');
 });

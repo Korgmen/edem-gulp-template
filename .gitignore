@@ -7,3 +7,5 @@ _todo.md
 src/scss/components/index.scss
 src/scss/layout/index.scss
 .env
+.deploy-cache.json.tmp
+.deploy-cache.json
