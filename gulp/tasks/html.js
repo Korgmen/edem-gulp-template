@@ -2,8 +2,7 @@ import fileInclude from 'gulp-file-include';
 import htmlMin from 'gulp-html-minifier-terser';
 
 export const html = () => {
-	return app.gulp.src(['src/html/**/*.html', '!./src/html/chunks/**/*.html', '!./src/html/**/_*.html'])
-		.pipe(app.plugins.if(app.isDev, app.gulp.src(['./src/html/**/_*.html'])))
+	return app.gulp.src(['src/html/**/*.html', '!src/html/chunks/**/*.html', ...(app.isBuild ? ['!src/html/**/_*.html'] : [])])
 		.pipe(app.plugins.plumber(app.plugins.notify.onError({ title: 'HTML', message: 'Error: <%= error.message %>' })))
 		.pipe(fileInclude({ context: { env: app.env } }))
 		.pipe(app.plugins.rename(path => { path.dirname = "" }))

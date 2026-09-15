@@ -32,12 +32,13 @@ import { deployCheck, deployWatch, deployAll } from './gulp/tasks/deploy.js';
 
 function watcher() {
 	gulp.watch('./src/html/**/*.html', html);
-	gulp.watch(['./src/scss/**/*.scss', '!./src/scss/**/index.scss'], styles);
+	// Исключаются только автогенерируемые индексы: их перезапись в generateIndexSCSS не должна повторно запускать компиляцию
+	gulp.watch(['./src/scss/**/*.scss', '!./src/scss/components/index.scss', '!./src/scss/layout/index.scss'], styles);
 	gulp.watch('./src/js/**/*.js', js);
 	gulp.watch('./src/img/icons/**/*.svg', svg);
 	gulp.watch(['src/img/**/*.{png,jpg,jpeg,gif,svg}', '!src/img/icons/**/*.svg'], img);
 	gulp.watch('./src/root/**/*.*', root);
-	gulp.watch('./src/font/**/*.*', font);
+	gulp.watch('./src/fonts/**/*.*', font);
 }
 
 // Индексы components/layout должны быть записаны до компиляции SCSS, иначе в CSS попадёт устаревший набор компонентов
