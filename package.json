@@ -36,6 +36,7 @@
     "browser-sync": "^3.0.4",
     "browserslist": "^4.28.9",
     "del": "^8.0.1",
+    "esbuild": "^0.28.2",
     "gulp": "^5.0.1",
     "gulp-file-include": "^2.3.0",
     "gulp-fonter": "^0.3.0",
@@ -55,8 +56,7 @@
     "plugin-error": "^2.0.1",
     "sass": "^1.94.2",
     "ssh2-sftp-client": "^12.1.1",
-    "through2": "^4.0.2",
-    "webpack-stream": "^7.0.0"
+    "through2": "^4.0.2"
   },
   "peerDependencies": {
     "ordered-read-streams": "^2.0.0"
