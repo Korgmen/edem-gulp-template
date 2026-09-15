@@ -60,6 +60,6 @@ export const showCustomNotify = (content, timeout = 3000) => {
 			}
 		}, timeout);
 	} catch (err) {
-		console.custom('Ошибка при вызове popover с id "custom":', err.message, err.stack);
+		console.error('Ошибка при вызове popover с id "custom":', err.message, err.stack);
 	}
 };

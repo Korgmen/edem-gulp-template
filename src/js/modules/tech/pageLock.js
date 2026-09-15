@@ -6,9 +6,8 @@ export default (condition, base, object) => {
 		if (object) body.classList.add(`lock--${object}`);
 		if (base == false) body.classList.add('lock--clear');
 	} else if (condition == 'unlock') {
-		const noLockList = [...body.classList].filter(word => !word.includes('lock'));
-		body.classList = '';
-		body.classList.add(...noLockList);
+		const lockClasses = [...body.classList].filter(name => name === 'lock' || name.startsWith('lock--'));
+		body.classList.remove(...lockClasses);
 	}
 }
 ////Блокировка страницы [readme 1.1]==========

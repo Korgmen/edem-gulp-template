@@ -1,4 +1,3 @@
-import getElementOrThrow from '../utils/getElementOrThrow.js'
 import toggleClass from '../utils/toggleClass.js'
 
 import './telInput.js'
@@ -12,10 +11,13 @@ import './fileInput.js'
 try {
 	const forms = document.querySelectorAll('form.form');
 	forms.forEach(form => {
-		const formButton = getElementOrThrow('.form__button', form);
+		const formButton = form.querySelector('.form__button');
+		if (!formButton) return;
 		const formButtonContent = formButton.innerHTML;
 
-		const handleSuccess = () => {
+		const handleSuccess = (e) => {
+			if (e.detail?.form !== form) return; // событие приходит на document от любой формы
+
 			form.querySelectorAll('.fill').forEach(el => toggleClass(el, 'fill', false));
 			toggleClass(formButton, 'send', true);
 			formButton.innerHTML = 'Отправлено';
