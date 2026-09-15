@@ -1,22 +1,8 @@
+import path from 'path';
 import gulp from 'gulp';
-import { plugins } from './gulp/config/plugins.js';
-
-const isBuild = process.argv.includes('--build');
-
-// Окружение сборки: stage — тестовый сайт (noindex, dev-фреймы), prod — боевой. По умолчанию dev = stage, build = prod
-const ENVS = ['stage', 'prod'];
-const env = process.argv.find(arg => arg.startsWith('--env='))?.split('=')[1] ?? (isBuild ? 'prod' : 'stage');
-if (!ENVS.includes(env)) throw new Error(`Неизвестное окружение --env=${env}, допустимо: ${ENVS.join(', ')}`);
-
-global.app = {
-	isDev: !isBuild,
-	isBuild: isBuild,
-	env: env,
-	isProd: env === 'prod',
-	isDeploy: process.argv.includes('--deploy'),
-	gulp: gulp,
-	plugins: plugins
-};
+import { deleteAsync } from 'del';
+import { app } from './gulp/config/app.js';
+import { paths } from './gulp/config/paths.js';
 
 import { server } from './gulp/tasks/server.js';
 import { reset } from './gulp/tasks/reset.js';
@@ -30,15 +16,18 @@ import { img } from './gulp/tasks/img.js';
 import { root } from './gulp/tasks/root.js';
 import { deployCheck, deployWatch, deployAll } from './gulp/tasks/deploy.js';
 
-function watcher() {
-	gulp.watch('./src/html/**/*.html', html);
+const removeFromBuild = (srcBase, destBase) => (filePath) => deleteAsync(path.join(destBase, path.relative(srcBase, filePath)));
+
+function watcher(done) {
+	gulp.watch(paths.html.src, html);
 	// Исключаются только автогенерируемые индексы: их перезапись в generateIndexSCSS не должна повторно запускать компиляцию
-	gulp.watch(['./src/scss/**/*.scss', '!./src/scss/components/index.scss', '!./src/scss/layout/index.scss'], styles);
-	gulp.watch('./src/js/**/*.js', js);
-	gulp.watch('./src/img/icons/**/*.svg', svg);
-	gulp.watch(['src/img/**/*.{png,jpg,jpeg,gif,svg}', '!src/img/icons/**/*.svg'], img);
-	gulp.watch('./src/root/**/*.*', root);
-	gulp.watch('./src/fonts/**/*.*', font);
+	gulp.watch([paths.scss.watch, ...paths.scss.generatedIndexDirs.map(dir => `!${dir}/index.scss`)], styles);
+	gulp.watch(paths.js.watch, js);
+	gulp.watch(paths.svg.src, svg);
+	gulp.watch([paths.img.src, `!${paths.img.icons}`], img).on('unlink', removeFromBuild(paths.img.base, paths.img.dest));
+	gulp.watch(paths.root.src, root).on('unlink', removeFromBuild(paths.root.base, paths.root.dest));
+	gulp.watch(paths.fonts.watch, font);
+	done();
 }
 
 // Индексы components/layout должны быть записаны до компиляции SCSS, иначе в CSS попадёт устаревший набор компонентов

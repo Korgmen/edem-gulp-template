@@ -1,7 +1,10 @@
+import { app } from '../config/app.js';
+import { paths } from '../config/paths.js';
+
 export const server = (done) => {
 	app.plugins.browserSync.init({
-		server: {baseDir: './build'},
+		server: { baseDir: paths.build },
 		notify: false,
-		port: 3000
-	});
+		port: app.port
+	}, () => done());
 };

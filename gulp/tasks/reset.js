@@ -1,5 +1,6 @@
-import {deleteAsync} from 'del';
+import { deleteAsync } from 'del';
+import { paths } from '../config/paths.js';
 
 export const reset = () => {
-	return deleteAsync('./build');
+	return deleteAsync(paths.build);
 }

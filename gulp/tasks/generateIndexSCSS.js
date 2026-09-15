@@ -1,7 +1,8 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { paths } from '../config/paths.js';
 
-const scssFolders = ['src/scss/components', 'src/scss/layout'];
+const scssFolders = paths.scss.generatedIndexDirs;
 
 const generateFolderIndex = async (folder) => {
 	const entries = await fs.readdir(folder, { withFileTypes: true });
