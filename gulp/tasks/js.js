@@ -1,15 +1,43 @@
+import * as esbuild from 'esbuild';
+import browserslist from 'browserslist';
 import { app } from '../config/app.js';
 import { paths } from '../config/paths.js';
-import { handleErrors } from '../utils/handleErrors.js';
-import webpack from 'webpack-stream';
 
-export const js = () => {
-	return app.gulp.src(paths.js.entry, { sourcemaps: app.isDev })
-	.pipe(handleErrors('JS'))
-		.pipe(webpack({
-			mode: app.isBuild ? 'production' : 'development',
-			output: { filename: 'main.js' }
-		}))
-		.pipe(app.gulp.dest(paths.js.dest))
-		.pipe(app.plugins.browserSync.stream())
-}
+const ENGINES = { chrome: 'chrome', edge: 'edge', firefox: 'firefox', safari: 'safari', ios_saf: 'ios', opera: 'opera' };
+
+// esbuild не читает browserslist сам: берём минимальную версию каждого поддерживаемого им движка
+const getTargets = () => {
+	const versions = {};
+	for (const query of browserslist()) {
+		const [name, range] = query.split(' ');
+		const engine = ENGINES[name];
+		const version = parseFloat(range);
+		if (!engine || Number.isNaN(version)) continue;
+		if (!versions[engine] || version < versions[engine]) versions[engine] = version;
+	}
+	return Object.entries(versions).map(([engine, version]) => `${engine}${version}`);
+};
+
+const options = {
+	entryPoints: [paths.js.entry],
+	outdir: paths.js.dest,
+	bundle: true,
+	format: 'esm',
+	splitting: true,
+	chunkNames: 'chunks/[name]-[hash]',
+	target: getTargets(),
+	minify: app.isBuild,
+	sourcemap: app.isDev ? 'linked' : false,
+	logLevel: 'warning',
+	logOverride: { 'equals-negative-zero': 'silent' },
+};
+
+export const js = async () => {
+	try {
+		await esbuild.build(options);
+		app.plugins.browserSync.reload();
+	} catch (err) {
+		if (app.isBuild) throw err;
+		app.plugins.notify.onError({ title: 'JS', message: 'Error: <%= error.message %>' })(err);
+	}
+};
