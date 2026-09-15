@@ -13,13 +13,9 @@
 	-webkit-box-sizing: inherit;
 	box-sizing: inherit;
 }
-:focus,
-:active {
-	outline: none;
-}
-a:focus,
-a:active {
-	outline: none;
+:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
 }
 aside,
 nav,
@@ -76,7 +72,6 @@ input[type=number]::-webkit-outer-spin-button {
 	margin: 0;
 }
 input[type=range] {
-	outline: none;
 	appearance: none;
 	-webkit-appearance: none;
 }
@@ -89,9 +84,9 @@ input[type=range]::-moz-range-thumb {
 	-webkit-appearance: none;
 }
 button {
+	all: unset;
 	cursor: pointer;
 	background-color: inherit;
-	all: unset;
 }
 button::-moz-focus-inner {
 	all: unset;
@@ -114,7 +109,6 @@ ul li {
 }
 img {
 	vertical-align: top;
-	pointer-events: none;
 }
 h1,
 h2,

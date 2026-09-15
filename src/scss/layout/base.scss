@@ -97,7 +97,7 @@ picture {
 	position: relative;
 }
 
-img {
+picture > img {
 	position: absolute;
 	inset: 0;
 	width: 100%;
