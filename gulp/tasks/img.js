@@ -1,10 +1,11 @@
 import { app } from '../config/app.js';
 import { paths } from '../config/paths.js';
+import { handleErrors } from '../utils/handleErrors.js';
 import imagemin from 'gulp-imagemin';
 
 export const img = () => {
 	return app.gulp.src([paths.img.src, `!${paths.img.icons}`], { encoding: false })
-		.pipe(app.plugins.plumber(app.plugins.notify.onError({title: 'IMAGE', message: 'Error: <%= error.message %>'})))
+		.pipe(handleErrors('IMAGE'))
 		.pipe(app.plugins.newer(paths.img.dest))
 		.pipe(app.plugins.if(app.isDev, app.gulp.dest(paths.img.dest)))
 		.pipe(app.plugins.if(app.isBuild, app.gulp.src([paths.img.src, `!${paths.img.icons}`], { encoding: false })))
