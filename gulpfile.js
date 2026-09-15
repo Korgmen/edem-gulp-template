@@ -1,9 +1,18 @@
 import gulp from 'gulp';
 import { plugins } from './gulp/config/plugins.js';
 
+const isBuild = process.argv.includes('--build');
+
+// Окружение сборки: stage — тестовый сайт (noindex, dev-фреймы), prod — боевой. По умолчанию dev = stage, build = prod
+const ENVS = ['stage', 'prod'];
+const env = process.argv.find(arg => arg.startsWith('--env='))?.split('=')[1] ?? (isBuild ? 'prod' : 'stage');
+if (!ENVS.includes(env)) throw new Error(`Неизвестное окружение --env=${env}, допустимо: ${ENVS.join(', ')}`);
+
 global.app = {
-	isDev: !process.argv.includes('--build'),
-	isBuild: process.argv.includes('--build'),
+	isDev: !isBuild,
+	isBuild: isBuild,
+	env: env,
+	isProd: env === 'prod',
 	isDeploy: process.argv.includes('--deploy'),
 	gulp: gulp,
 	plugins: plugins
