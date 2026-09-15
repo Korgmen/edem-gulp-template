@@ -28,8 +28,11 @@ export const paths = {
 		dest: 'build',
 	},
 	fonts: {
-		src: 'src/fonts/*.ttf',
+		base: 'src/fonts',
+		ttf: 'src/fonts/*.ttf',
+		woff2: 'src/fonts/*.woff2',
 		watch: 'src/fonts/**/*.*',
+		cache: '.cache/fonts',
 		dest: 'build/fonts',
 	},
 	root: {

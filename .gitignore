@@ -1,5 +1,6 @@
 node_modules
 build
+.cache
 .vscode/*sftp*.json
 _todo.md
 .DS_Store
