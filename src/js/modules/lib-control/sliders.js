@@ -61,7 +61,8 @@ try {
 		},
 		scrollbar: { // добавляет скроллбар
 			el: '.content__block:has([data-swiper-id="example"]) .slider-scrollbar', // класс скроллбара (нужно добавить блок с этим классом в слайдер)
-			dragClass: 'slider-scrollbar__drag'
+			dragClass: 'slider-scrollbar__drag',
+			draggable: true
 		},
 		slideActiveClass: 'current-slide' // класс активного слайда
 	});
