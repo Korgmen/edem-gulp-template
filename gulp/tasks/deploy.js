@@ -4,6 +4,7 @@ import path from 'path';
 import crypto from 'crypto';
 import SftpClient from 'ssh2-sftp-client';
 import deployConfig from '../../deploy.config.js';
+import { app } from '../config/app.js';
 
 const RETRY_DELAYS = [1000, 2000, 5000, 10000, 20000];
 const DEBOUNCE_MS = 300;
