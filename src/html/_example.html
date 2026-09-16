@@ -15,7 +15,7 @@
 							<div class="tooltip-parent">
 								<span>Наведи на иконку -></span>
 								<div class="tooltip js_tooltip">
-									<span class="tooltip__button js_tooltip-button">⚠️</span>
+									<button type="button" class="tooltip__button js_tooltip-button">⚠️</button>
 									<div class="tooltip__body js_tooltip-body">
 										Обычный тултип
 									</div>
@@ -24,7 +24,7 @@
 							<div class="tooltip-parent">
 								<span>Наведи на иконку -></span>
 								<div class="tooltip js_tooltip">
-									<span class="tooltip__button js_tooltip-button">ℹ️</span>
+									<button type="button" class="tooltip__button js_tooltip-button">ℹ️</button>
 									<div class="tooltip__body js_tooltip-body">
 										Тултип где много текста. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad quo at facilis facere exercitationem accusamus quibusdam in minus modi perspiciatis.
 									</div>
@@ -33,7 +33,7 @@
 							<div class="tooltip-parent">
 								<span>Наведи на иконку -></span>
 								<div class="tooltip js_tooltip">
-									<span class="tooltip__button js_tooltip-button"><i>📫</i><i>📬</i></span>
+									<button type="button" class="tooltip__button js_tooltip-button"><i>📫</i><i>📬</i></button>
 									<div class="tooltip__body js_tooltip-body">
 										<h2>Тултип с параграфами и форматированием</h2>
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -120,12 +120,12 @@
 											<p class="form__label">Бюджет проекта (v2)</p>
 										</label>
 										<div class="dual-range-input js_dual-range">
-											<p class="dual-range-input__text js_dual-range-text"><span class="dual-range-input__text-val js_dual-range-val" for="dual-range-1"></span> ₽</p>
+											<p class="dual-range-input__text js_dual-range-text"><span class="dual-range-input__text-val js_dual-range-val"></span> ₽</p>
 											<div class="dual-range-input__input-container js_dual-range-input-container">
-												<input class="dual-range-input__input js_dual-range-input" id="dual-range-1" type="range" min="10000" max="100000" step="2000" value="24000">
-												<input class="dual-range-input__input js_dual-range-input" id="dual-range-2" type="range">
+												<input class="dual-range-input__input js_dual-range-input" type="range" min="10000" max="100000" step="2000" value="24000">
+												<input class="dual-range-input__input js_dual-range-input" type="range">
 											</div>
-											<p class="dual-range-input__text js_dual-range-text"><span class="dual-range-input__text-val js_dual-range-val" for="dual-range-2"></span> ₽</p>
+											<p class="dual-range-input__text js_dual-range-text"><span class="dual-range-input__text-val js_dual-range-val"></span> ₽</p>
 										</div>
 									</div>
 								</div>
@@ -216,24 +216,24 @@
 				<section class="content__block">
 					<div class="content__container">
 						<h2 class="title"><span>Пример спойлеров/аккордеонов</span></h2>
-						<div class="spoiler-list js_spoiler js_spoiler--single">
-							<div class="spoiler-list__item js_spoiler-item">
-								<h2 class="spoiler-list__title js_spoiler-title">Заголовок спойлера</h2>
+						<div class="spoiler-list">
+							<details class="spoiler-list__item js_spoiler-item" name="spoiler-example">
+								<summary class="spoiler-list__title js_spoiler-title">Заголовок спойлера</summary>
 								<div class="spoiler-list__content js_spoiler-content">
 									<h1>Контент спойлера</h1>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, iste.</p>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consectetur temporibus non dolore delectus possimus!</p>
 									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit eveniet corrupti blanditiis voluptas quam optio consequatur laborum. Iste, exercitationem suscipit? Nobis non rem saepe voluptatibus cumque minima nemo odio porro.</p>
 								</div>
-							</div>
-							<div class="spoiler-list__item js_spoiler-item">
-								<h2 class="spoiler-list__title js_spoiler-title">Заголовок следующего спойлера</h2>
+							</details>
+							<details class="spoiler-list__item js_spoiler-item" name="spoiler-example">
+								<summary class="spoiler-list__title js_spoiler-title">Заголовок следующего спойлера</summary>
 								<div class="spoiler-list__content js_spoiler-content">
 									<h1>Контент следующего спойлера</h1>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia hic recusandae adipisci!</p>
 									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis commodi ullam fuga officiis, dicta odit minus!</p>
 								</div>
-							</div>
+							</details>
 						</div>
 					</div>
 				</section>
@@ -294,7 +294,7 @@
 							<div class="article__row">
 								<ul class="article__list">
 									<li class="article__list-item article__list-item--title"><a class="article__list-link">Оглавление</a></li>
-									<li class="article__list-item js_article-link"><a class="article__list-link js_scroll-to">Ссылка-пример для оглавления</a></li>
+									<li class="article__list-item js_article-link"><a class="article__list-link">Ссылка-пример для оглавления</a></li>
 								</ul>
 								<div class="article__content text-content js_article-content">
 									<div>
@@ -341,13 +341,13 @@
 									</button>
 								</div>
 							</div>
-							<div class="slider-block__slider js_slider" data-swiper-id="example">
+							<div class="slider-block__slider js_slider js_gallery" data-swiper-id="example">
 								<div class="slider-block__slide js_slide">
 									<div class="slider-block__slide-title">Слайд 1</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet pariatur dolore necessitatibus, accusantium quasi neque praesentium quod consectetur atque dignissimos.</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>
@@ -358,7 +358,7 @@
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>
@@ -369,7 +369,7 @@
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, fuga voluptas. Ipsam harum voluptas amet at?</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>
@@ -380,7 +380,7 @@
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, quod esse quas sint rerum suscipit assumenda voluptatem mollitia perferendis autem dolorem dignissimos facilis beatae illo iste.</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>
@@ -391,7 +391,7 @@
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet pariatur dolore necessitatibus, accusantium quasi neque praesentium quod consectetur atque dignissimos.</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>
@@ -402,7 +402,7 @@
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>
@@ -413,7 +413,7 @@
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, fuga voluptas. Ipsam harum voluptas amet at?</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>
@@ -424,7 +424,7 @@
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, quod esse quas sint rerum suscipit assumenda voluptatem mollitia perferendis autem dolorem dignissimos facilis beatae illo iste.</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>
@@ -435,7 +435,7 @@
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>
 									</div>
-									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-fancybox="slider">
+									<a class="slider-block__image-link" href="img/temp/temp-image.jpg" data-pswp-width="1921" data-pswp-height="1081">
 										<picture class="slider-block__image-container">
 											<img class="slider-block__image" src="img/temp/temp-image.jpg" height="250" alt="">
 										</picture>

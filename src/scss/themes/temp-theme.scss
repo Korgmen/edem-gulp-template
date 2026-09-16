@@ -140,7 +140,7 @@ body {
 	&__list {
 		flex: 0 1 rem(320);
 		position: sticky;
-		top: calc(var(--headerHeight, rem(100)) + rem(64));
+		top: calc(var(--header-height, rem(100)) + rem(64));
 		display: flex;
 		flex-direction: column;
 		gap: rem(16) 0;

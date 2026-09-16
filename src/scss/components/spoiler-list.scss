@@ -8,13 +8,15 @@
 	gap: rem(10) 0;
 
 	&__item {
+		// content-visibility убирает содержимое закрытого details из раскладки, ширина считается по summary
+		width: 100%;
 		max-width: rem(500);
 		margin: 0 auto;
 		padding: 0 $padding;
 		border: rem(1) solid $c-main;
 		transition: padding $td $tf 0s;
 
-		&.open {
+		&[open] {
 			padding-bottom: $padding;
 		}
 	}
@@ -23,11 +25,12 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: 0 $padding;
 		padding: $padding 0;
 		cursor: pointer;
 		transition: padding $td $tf 0s;
 
-		#{$p}__item.open & {
+		#{$p}__item[open] & {
 			padding: $padding 0 rem(30);
 		}
 
@@ -44,7 +47,7 @@
 			background-color: $c-main;
 			transition: all $td $tf 0s;
 
-			#{$p}__item.open & {
+			#{$p}__item[open] & {
 				rotate: -180deg;
 			}
 		}

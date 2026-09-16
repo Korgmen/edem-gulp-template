@@ -1,25 +1,38 @@
 @use 'abstracts' as *;
 
 .js_spoiler {
-	$p: &;
-
 	&-item {
-		overflow: hidden;
 		box-sizing: border-box;
+
+		// Высота анимируется строкой грида 0fr → 1fr: height: auto требует interpolate-size, а он пока только в Chromium
+		&::details-content {
+			display: grid;
+			grid-template-rows: 0fr;
+			content-visibility: hidden;
+			transition:
+				grid-template-rows $td $tf,
+				content-visibility $td allow-discrete;
+		}
+
+		&[open]::details-content {
+			grid-template-rows: 1fr;
+			content-visibility: visible;
+		}
 	}
 
 	&-title {
 		cursor: pointer;
+		list-style: none;
+
+		// Стрелку рисует оформление компонента
+		&::-webkit-details-marker {
+			display: none;
+		}
 	}
 
 	&-content {
-		will-change: max-height;
-		max-height: 0;
 		box-sizing: border-box;
-		transition: max-height $td $tf 0s;
-
-		#{$p}-item.open & {
-			max-height: var(--max-height);
-		}
+		overflow: hidden;
+		min-height: 0;
 	}
 }

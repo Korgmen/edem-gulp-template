@@ -27,6 +27,7 @@ section {
 html {
 	font-size: var.$fontSize;
 	box-sizing: border-box;
+	scroll-padding-top: var(--header-height, 0px);
 }
 @media (prefers-reduced-motion: no-preference) {
 	html {
