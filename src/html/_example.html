@@ -162,7 +162,7 @@
 									<span class="form__error"></span>
 								</div>
 								<div class="form__line">
-									<button class="form__button button" type="submit">Отправить</button>
+									<button type="button" class="form__button button" type="submit">Отправить</button>
 									<p class="form__policy">Нажимая «Отправить» вы соглашаетесь с <a class="link" href="">Политикой обработки персональных данных</a></p>
 									<div class="checkbox" data-checkbox>
 										<input class="checkbox__input" data-checkbox-input type="checkbox" id="policy" checked>
@@ -264,7 +264,7 @@
 								<div class="tabs__content" data-tab-panel>
 									<h1>Контент таба 3</h1>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia hic recusandae adipisci!</p>
-									<button class="modal-link button" data-modal-open="order">Вызвать модал order</button>
+									<button type="button" class="modal-link button" data-modal-open="order">Вызвать модал order</button>
 									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis commodi ullam fuga officiis, dicta odit minus!</p>
 								</div>
 							</div>
@@ -275,8 +275,8 @@
 					<div class="container appear">
 						<h2 class="title"><span>Пример модалов</span></h2>
 						<div class="modal-list">
-							<button class="modal-link button" data-modal-open="callback">Вызвать модал callback</button>
-							<button class="modal-link button" data-modal-open="order">Вызвать модал order</button>
+							<button type="button" class="modal-link button" data-modal-open="callback">Вызвать модал callback</button>
+							<button type="button" class="modal-link button" data-modal-open="order">Вызвать модал order</button>
 						</div>
 					</div>
 				</section>
@@ -284,8 +284,8 @@
 					<div class="container appear">
 						<h2 class="title"><span>Пример оповещений</span></h2>
 						<div class="modal-list">
-							<button class="button" popovertarget="addToCart" popovertargetaction="show">Добавить в корзину</button>
-							<button class="button" data-copy="F3l0C1G5r" popovertarget="copyText" popovertargetaction="show">Скопировать промокод</button>
+							<button type="button" class="button" popovertarget="addToCart" popovertargetaction="show">Добавить в корзину</button>
+							<button type="button" class="button" data-copy="F3l0C1G5r" popovertarget="copyText" popovertargetaction="show">Скопировать промокод</button>
 						</div>
 					</div>
 				</section>
@@ -331,13 +331,13 @@
 							<div class="slider-block__row">
 								<div class="slider-block__pagination slider-pagination"></div>
 								<div class="slider-block__control slider-navigation">
-									<button class="slider-navigation__link slider-navigation__link--prev">
-										<svg class="slider-navigation__icon icon" width="24" height="24">
+									<button type="button" class="slider-navigation__link slider-navigation__link--prev" aria-label="Предыдущий слайд">
+										<svg aria-hidden="true" focusable="false" class="slider-navigation__icon icon" width="24" height="24">
 											<use href="img/sprite.svg#arrow"></use>
 										</svg>
 									</button>
-									<button class="slider-navigation__link slider-navigation__link--next">
-										<svg class="slider-navigation__icon icon" width="24" height="24">
+									<button type="button" class="slider-navigation__link slider-navigation__link--next" aria-label="Следующий слайд">
+										<svg aria-hidden="true" focusable="false" class="slider-navigation__icon icon" width="24" height="24">
 											<use href="img/sprite.svg#arrow"></use>
 										</svg>
 									</button>

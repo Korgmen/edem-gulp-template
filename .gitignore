@@ -4,8 +4,8 @@ build
 .vscode/*sftp*.json
 _todo.md
 .DS_Store
-src/scss/components/index.scss
-src/scss/layout/index.scss
+src/scss/components/**/index.scss
+src/scss/layout/**/index.scss
 .env
 .deploy-cache.json.tmp
 .deploy-cache.json
