@@ -2,6 +2,10 @@
 
 @use 'abstracts/variables' as *;
 
+[data-tabs] {
+	--tabs-duration: #{$td};
+}
+
 [data-tab-link] {
 	cursor: pointer;
 
@@ -15,18 +19,18 @@
 
 	[data-tabs]:not([data-tabs~="slide"]):not([data-tabs~="noanim"]):not([data-tabs~="empty"]) & {
 		height: var(--max-height);
-		transition: height $td ease math.div($td, 2);
+		transition: height var(--tabs-duration) ease math.div($td, 2);
 	}
 }
 
 [data-tab-panel] {
 	overflow: hidden;
 	max-height: var(--max-height);
-	transition: opacity $td ease $td, max-height 0s ease $td;
+	transition: opacity var(--tabs-duration) ease $td, max-height 0s ease $td;
 
 	[data-tabs~="slide"] &,
 	[data-tabs~="empty"] & {
-		transition: all $td ease 0s;
+		transition: all var(--tabs-duration) ease 0s;
 	}
 
 	[data-tabs~="noanim"] & {
@@ -36,11 +40,11 @@
 	&:not([data-state~="active"]) {
 		max-height: 0;
 		opacity: 0;
-		transition: opacity $td ease 0s, max-height 0s ease $td;
+		transition: opacity var(--tabs-duration) ease 0s, max-height 0s ease $td;
 
 		[data-tabs~="slide"] &,
 		[data-tabs~="empty"] & {
-			transition: all $td ease 0s;
+			transition: all var(--tabs-duration) ease 0s;
 		}
 
 		[data-tabs~="noanim"] & {

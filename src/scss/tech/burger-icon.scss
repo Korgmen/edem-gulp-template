@@ -1,7 +1,7 @@
 @use 'abstracts' as *;
 
 [data-burger] {
-	$td: 0.8s;
+	--burger-duration: 0.8s;
 	position: relative;
 	display: block;
 	width: $burgerWidth;
@@ -9,7 +9,7 @@
 	margin: 0 auto;
 	color: currentColor;
 	cursor: pointer;
-	transition: height $td $tf 0s;
+	transition: height var(--burger-duration) $tf 0s;
 
 	@if $burgerLineCount ==3 {
 		span {
@@ -19,7 +19,7 @@
 			margin: auto 0;
 			background-color: currentColor;
 			translate: 0 -50%;
-			transition: all $td $tf 0s;
+			transition: all var(--burger-duration) $tf 0s;
 		}
 
 		&[aria-expanded="true"] span {
@@ -37,7 +37,7 @@
 		height: $burgerLineHeight;
 		left: 0;
 		background-color: currentColor;
-		transition: all $td $tf 0s;
+		transition: all var(--burger-duration) $tf 0s;
 	}
 
 	&::before {

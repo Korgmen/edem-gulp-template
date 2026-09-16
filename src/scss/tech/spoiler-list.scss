@@ -1,6 +1,7 @@
 @use 'abstracts' as *;
 
 [data-spoiler] {
+	--spoiler-duration: #{$td};
 	box-sizing: border-box;
 
 	// Высота анимируется строкой грида 0fr → 1fr: height: auto требует interpolate-size, а он пока только в Chromium
@@ -9,8 +10,8 @@
 		grid-template-rows: 0fr;
 		content-visibility: hidden;
 		transition:
-			grid-template-rows $td $tf,
-			content-visibility $td allow-discrete;
+			grid-template-rows var(--spoiler-duration) $tf,
+			content-visibility var(--spoiler-duration) allow-discrete;
 	}
 
 	&[open]::details-content {
