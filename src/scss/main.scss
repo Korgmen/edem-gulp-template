@@ -1,21 +1,40 @@
-//Подключение стартовых стилей шаблона==========
-@use 'base';
+@use 'sass:meta';
+
+/*
+? Порядок каскадных слоёв: чем правее слой в списке, тем он сильнее.
+? Специфичность селекторов и порядок файлов сравниваются только внутри одного слоя.
+? Стиль вне слоя сильнее любого слоя, поэтому весь CSS шаблона подключается ниже через слои.
+*/
+@layer base, vendors, tech, components, layout, theme;
+
+//Сброс, шрифты и общие анимации==========
+@layer base {
+	@include meta.load-css('base');
+}
 
 //Подключение библиотек==========
-@use 'swiper/swiper-bundle.min';
-@use "photoswipe/dist/photoswipe";
+@layer vendors {
+	@include meta.load-css('swiper/swiper-bundle.min');
+	@include meta.load-css('photoswipe/dist/photoswipe');
+}
 
-//Технические стили для работы модулей==========
-@use 'tech';
-
-//Технические стили для работы форм==========
-@use 'tech/form';
+//Технические стили для работы модулей и форм==========
+@layer tech {
+	@include meta.load-css('tech');
+	@include meta.load-css('tech/form');
+}
 
 //Компоненты==========
-@use 'components';
+@layer components {
+	@include meta.load-css('components');
+}
 
 //Подключение базовых стилей шаблона==========
-@use 'layout';
+@layer layout {
+	@include meta.load-css('layout');
+}
 
 //? Подключение стилей стартовой страницы шаблона (удалить перед использованием шаблона)
-@use 'themes/temp-theme';
+@layer theme {
+	@include meta.load-css('themes/temp-theme');
+}
