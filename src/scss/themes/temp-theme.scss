@@ -792,9 +792,9 @@ body {
 		&::before {
 			content: '';
 			display: block;
-			-webkit-mask-size: cover;
-			-webkit-mask-repeat: no-repeat;
-			-webkit-mask-position: center;
+			mask-size: cover;
+			mask-repeat: no-repeat;
+			mask-position: center;
 			flex-shrink: 0;
 			width: rem(32);
 			aspect-ratio: 1;
@@ -803,13 +803,13 @@ body {
 
 		&--minus {
 			&::before {
-				-webkit-mask-image: url(../img/sprite.svg#minus);
+				mask-image: url(../img/sprite.svg#minus);
 			}
 		}
 
 		&--plus {
 			&::before {
-				-webkit-mask-image: url(../img/sprite.svg#plus);
+				mask-image: url(../img/sprite.svg#plus);
 			}
 		}
 	}

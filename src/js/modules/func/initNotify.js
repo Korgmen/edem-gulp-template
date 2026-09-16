@@ -3,7 +3,7 @@ import { devWarn } from '../utils/devLog.js';
 
 // Оповещения [readme 2.10]
 export const init = (root = document) => {
-	initOnce(root, '.js_notify:not(.open)', 'initNotify', el => {
+	initOnce(root, '[data-notify]:not(.open)', 'initNotify', el => {
 		if (!el.hasAttribute('data-popover-time')) return;
 
 		const notifyCall = document.querySelector(`[popovertarget="${el.id}"]`);
@@ -23,7 +23,7 @@ export const init = (root = document) => {
 		});
 	});
 
-	initOnce(root, '.js_notify.open', 'initNotify', el => el.showPopover());
+	initOnce(root, '[data-notify].open', 'initNotify', el => el.showPopover());
 };
 
 // Функция для показа уведомления [readme 2.10]
@@ -35,9 +35,9 @@ export const showCustomNotify = (content, timeout = 3000) => {
 		return;
 	}
 
-	const notifyContent = customNotify.querySelector('.js_notify-content');
+	const notifyContent = customNotify.querySelector('[data-notify-content]');
 	if (!notifyContent) {
-		devWarn('showCustomNotify', 'в #custom-notify нет .js_notify-content', customNotify);
+		devWarn('showCustomNotify', 'в #custom-notify нет [data-notify-content]', customNotify);
 		return;
 	}
 

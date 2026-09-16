@@ -1,50 +1,46 @@
 @use 'abstracts' as *;
 
-._checkbox {
-	$p: &;
+[data-checkbox] label {
+	user-select: none;
+}
 
-	&-input {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+[data-checkbox-input] {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-		#{$p}--toggler & {
-			justify-content: flex-start;
-		}
-
-		&::before {
-			content: '';
-			position: relative;
-			display: inline-block;
-			flex: 0 0 100%;
-			cursor: pointer;
-		}
-
-		&::after {
-			content: '';
-			position: absolute;
-			display: inline-block;
-			opacity: 0;
-			transition: all $td $tf 0s;
-			pointer-events: none;
-
-			@at-root #{$p}-input:checked:after {
-				opacity: 1;
-			}
-
-			@at-root #{$p}--toggler #{$p}-input:after {
-				left: 0;
-				opacity: 1;
-			}
-
-			@at-root #{$p}--toggler #{$p}-input:checked:after {
-				left: 50%;
-			}
-		}
+	[data-checkbox~="toggler"] & {
+		justify-content: flex-start;
 	}
 
-	& label {
-		user-select: none;
+	&::before {
+		content: '';
+		position: relative;
+		display: inline-block;
+		flex: 0 0 100%;
+		cursor: pointer;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		display: inline-block;
+		opacity: 0;
+		transition: all $td $tf 0s;
+		pointer-events: none;
+	}
+
+	&:checked::after {
+		opacity: 1;
+	}
+
+	[data-checkbox~="toggler"] &::after {
+		left: 0;
+		opacity: 1;
+	}
+
+	[data-checkbox~="toggler"] &:checked::after {
+		left: 50%;
 	}
 }

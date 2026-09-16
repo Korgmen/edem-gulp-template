@@ -4,8 +4,8 @@ import { devWarn } from '../utils/devLog.js';
 
 // Логика файлового поля ввода [readme 3.6]
 export const init = (root = document) => {
-	initOnce(root, '.js_file-input', 'fileInput', file => {
-		const fileParent = file.closest('.js_file');
+	initOnce(root, '[data-file-input]', 'fileInput', file => {
+		const fileParent = file.closest('[data-file]');
 		const fileLabel = file.id && document.querySelector(`[for="${file.id}"]`);
 
 		if (!fileLabel) {

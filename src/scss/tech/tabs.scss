@@ -2,53 +2,49 @@
 
 @use 'abstracts/variables' as *;
 
-.js_tab {
-	$p: &;
+[data-tab-link] {
+	cursor: pointer;
 
-	&-link {
-		cursor: pointer;
+	[data-tabs]:not([data-tabs~="empty"]) &.active {
+		pointer-events: none;
+	}
+}
 
-		#{$p}:not(#{$p}--empty) &.active {
-			pointer-events: none;
-		}
+[data-tab-panels] {
+	box-sizing: content-box;
+
+	[data-tabs]:not([data-tabs~="slide"]):not([data-tabs~="noanim"]):not([data-tabs~="empty"]) & {
+		height: var(--max-height);
+		transition: height $td ease math.div($td, 2);
+	}
+}
+
+[data-tab-panel] {
+	overflow: hidden;
+	max-height: var(--max-height);
+	transition: opacity $td ease $td, max-height 0s ease $td;
+
+	[data-tabs~="slide"] &,
+	[data-tabs~="empty"] & {
+		transition: all $td ease 0s;
 	}
 
-	&-content-container {
-		box-sizing: content-box;
-
-		#{$p}:not(:is(#{$p}--slide, #{$p}--noanim, #{$p}--empty)) & {
-			height: var(--max-height);
-			transition: height $td ease math.div($td, 2);
-		}
+	[data-tabs~="noanim"] & {
+		transition: initial;
 	}
 
-	&-content {
-		overflow: hidden;
-		max-height: var(--max-height);
-		transition: opacity $td ease $td, max-height 0s ease $td;
+	&:not(.active) {
+		max-height: 0;
+		opacity: 0;
+		transition: opacity $td ease 0s, max-height 0s ease $td;
 
-		#{$p}--slide &,
-		#{$p}--empty & {
+		[data-tabs~="slide"] &,
+		[data-tabs~="empty"] & {
 			transition: all $td ease 0s;
 		}
 
-		#{$p}--noanim & {
+		[data-tabs~="noanim"] & {
 			transition: initial;
-		}
-
-		&:not(.active) {
-			max-height: 0;
-			opacity: 0;
-			transition: opacity $td ease 0s, max-height 0s ease $td;
-
-			#{$p}--slide &,
-			#{$p}--empty & {
-				transition: all $td ease 0s;
-			}
-
-			#{$p}--noanim & {
-				transition: initial;
-			}
 		}
 	}
 }

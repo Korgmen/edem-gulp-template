@@ -1,35 +1,32 @@
 @use 'abstracts' as *;
 
-.js_dual-range {
+[data-dual-range-track] {
+	position: relative;
+}
 
-	&-input-container {
-		position: relative;
+[data-dual-range-input] {
+	position: absolute;
+	width: auto;
+	pointer-events: none;
+
+	&::-webkit-slider-thumb {
+		pointer-events: initial;
+		width: rem(20);
+		height: rem(20);
+		background-color: #000000;
 	}
 
-	&-input {
-		position: absolute;
-		width: auto;
-		pointer-events: none;
+	&::-moz-range-thumb {
+		pointer-events: initial;
+		width: rem(20);
+		height: rem(20);
+		background-color: #000000;
+	}
 
-		&::-webkit-slider-thumb {
-			pointer-events: initial;
-			width: rem(20);
-			height: rem(20);
-			background-color: #000000;
-		}
+	&:first-of-type {
+		z-index: 1;
 
-		&::-moz-range-thumb {
-			pointer-events: initial;
-			width: rem(20);
-			height: rem(20);
-			background-color: #000000;
-		}
-
-		&[id="dual-range-1"] {
-			z-index: 1;
-		}
-
-		&[id="dual-range-1"]::before {
+		&::before {
 			content: '';
 			position: absolute;
 			left: var(--cur-perc-first);
@@ -38,10 +35,8 @@
 			z-index: 1;
 		}
 	}
-
-	&-track {}
-
-	&-text {}
-
-	&-val {}
 }
+
+[data-dual-range-text] {}
+
+[data-dual-range-val] {}

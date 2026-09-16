@@ -5,7 +5,7 @@ import { devWarn } from '../utils/devLog.js';
 // Галереи изображений [readme 4.2]
 // Ядро PhotoSwipe (около 50 КБ) подгружается только при первом открытии галереи
 export const init = (root = document) => {
-	initOnce(root, '.js_gallery', 'galleries', gallery => {
+	initOnce(root, '[data-gallery]', 'galleries', gallery => {
 		const links = gallery.querySelectorAll('a[href]');
 		if (!links.length) return;
 

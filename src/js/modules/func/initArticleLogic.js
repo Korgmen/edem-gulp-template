@@ -18,7 +18,7 @@ const slugify = (text) => text
 // Заготовка ссылки лежит рядом с контентом статьи, а не внутри него
 const findLinkTemplate = (content) => {
 	for (let parent = content.parentElement; parent; parent = parent.parentElement) {
-		const template = parent.querySelector('.js_article-link');
+		const template = parent.querySelector('[data-article-link]');
 		if (template) return template;
 	}
 	return null;
@@ -26,10 +26,10 @@ const findLinkTemplate = (content) => {
 
 // Генерация оглавления [readme 2.8]
 export const buildArticleList = (root = document) => {
-	initOnce(root, '.js_article-content', 'initArticleLogic', content => {
+	initOnce(root, '[data-article]', 'initArticleLogic', content => {
 		const linkTemplate = findLinkTemplate(content);
 		if (!linkTemplate) {
-			devWarn('initArticleLogic', 'не найдена заготовка ссылки .js_article-link — оглавление не собрано', content);
+			devWarn('initArticleLogic', 'не найдена заготовка ссылки [data-article-link] — оглавление не собрано', content);
 			return;
 		}
 
@@ -46,7 +46,7 @@ export const buildArticleList = (root = document) => {
 				title.id = used.has(slug) || document.getElementById(slug) ? `${slug}-${i}` : slug;
 			}
 			used.add(title.id);
-			toggleClass(title, 'js_article-target', true);
+			title.toggleAttribute('data-article-target', true);
 
 			const linkClone = linkTemplate.cloneNode(true);
 			const linkElement = linkClone.firstElementChild;
@@ -63,13 +63,13 @@ export const buildArticleList = (root = document) => {
 
 // Отслеживание активного пункта оглавления [readme 2.9]
 export const trackArticleHeader = (root = document) => {
-	initOnce(root, '.js_article-content', 'trackArticleHeader', content => {
-		const targets = content.querySelectorAll('.js_article-target');
+	initOnce(root, '[data-article]', 'trackArticleHeader', content => {
+		const targets = content.querySelectorAll('[data-article-target]');
 		if (!targets.length) return;
 
 		const list = findLinkTemplate(content)?.parentElement
-			?? content.parentElement?.querySelector('.js_article-link')?.parentElement;
-		const links = list?.querySelectorAll('.js_article-link');
+			?? content.parentElement?.querySelector('[data-article-link]')?.parentElement;
+		const links = list?.querySelectorAll('[data-article-link]');
 		if (!links?.length) return;
 
 		const linkByTarget = new Map();

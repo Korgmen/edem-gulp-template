@@ -6,18 +6,18 @@ let tabsGroup = 0;
 
 // Табы [readme 2.2]
 export const init = (root = document) => {
-	initOnce(root, '.js_tab', 'initTabs', tab => {
-		const tabLinks = [...tab.querySelectorAll('.js_tab-link')];
-		const tabContents = [...tab.querySelectorAll('.js_tab-content')];
-		const tabContentContainer = tab.querySelector('.js_tab-content-container');
+	initOnce(root, '[data-tabs]', 'initTabs', tab => {
+		const tabLinks = [...tab.querySelectorAll('[data-tab-link]')];
+		const tabContents = [...tab.querySelectorAll('[data-tab-panel]')];
+		const tabContentContainer = tab.querySelector('[data-tab-panels]');
 
 		if (!tabLinks.length || !tabContents.length) {
-			devWarn('initTabs', 'нужны .js_tab-link и .js_tab-content — блок пропущен', tab);
+			devWarn('initTabs', 'нужны [data-tab-link] и [data-tab-panel] — блок пропущен', tab);
 			return;
 		}
 
 		// В "пустом режиме" активный таб можно свернуть повторным кликом
-		const isEmptyMode = tab.classList.contains('js_tab--empty');
+		const isEmptyMode = tab.matches('[data-tabs~="empty"]');
 		const group = ++tabsGroup;
 
 		tabLinks[0].parentElement?.setAttribute('role', 'tablist');

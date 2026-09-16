@@ -8,12 +8,12 @@ const calculatePercentage = (value, min, max) =>
 // Логика двойного ползунка [readme 3.5]
 // Ползунков на странице может быть сколько угодно, поэтому в селекторах только классы блока
 export const init = (root = document) => {
-	initOnce(root, '.js_dual-range', 'dualRangeInput', dualRange => {
-		const [inputFirst, inputLast] = dualRange.querySelectorAll('.js_dual-range-input');
-		const [rangeValFirst, rangeValLast] = dualRange.querySelectorAll('.js_dual-range-val');
+	initOnce(root, '[data-dual-range]', 'dualRangeInput', dualRange => {
+		const [inputFirst, inputLast] = dualRange.querySelectorAll('[data-dual-range-input]');
+		const [rangeValFirst, rangeValLast] = dualRange.querySelectorAll('[data-dual-range-val]');
 
 		if (!inputFirst || !inputLast || !rangeValFirst || !rangeValLast) {
-			devWarn('dualRangeInput', 'нужны два .js_dual-range-input и два .js_dual-range-val — блок пропущен', dualRange);
+			devWarn('dualRangeInput', 'нужны два [data-dual-range-input] и два [data-dual-range-val] — блок пропущен', dualRange);
 			return;
 		}
 

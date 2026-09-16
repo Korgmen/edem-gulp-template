@@ -1,22 +1,16 @@
-@use 'abstracts' as *;
+[data-range-text] {
+	flex: 0 0 var(--maxval-width);
+	white-space: nowrap;
+	user-select: none;
+}
 
-.js_range {
-	&-text {
-		flex: 0 0 var(--maxval-width);
-		white-space: nowrap;
-		user-select: none;
-	}
+[data-range-val] {}
 
-	&-val {}
-
-	&-input {
-		&::before {
-			content: '';
-			position: absolute;
-			left: 0;
-			width: var(--cur-perc);
-			height: 100%;
-			z-index: 1;
-		}
-	}
+[data-range-input]::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	width: var(--cur-perc);
+	height: 100%;
+	z-index: 1;
 }
