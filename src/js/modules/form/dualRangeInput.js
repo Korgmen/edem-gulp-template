@@ -1,5 +1,5 @@
 import initOnce from '../utils/initOnce.js';
-import toggleClass from '../utils/toggleClass.js';
+import setState from '../utils/setState.js';
 import { devWarn } from '../utils/devLog.js';
 
 const calculatePercentage = (value, min, max) =>
@@ -35,13 +35,13 @@ export const init = (root = document) => {
 
 		[inputFirst, inputLast].forEach(inputRange => {
 			inputRange.addEventListener('input', () => {
-				toggleClass(dualRange, 'fill', false);
-				toggleClass(rangeParent, 'fill', false);
+				setState(dualRange, 'fill', false);
+				setState(rangeParent, 'fill', false);
 			});
 
 			inputRange.addEventListener('change', () => {
-				toggleClass(dualRange, 'fill', true);
-				toggleClass(rangeParent, 'fill', true);
+				setState(dualRange, 'fill', true);
+				setState(rangeParent, 'fill', true);
 			});
 		});
 

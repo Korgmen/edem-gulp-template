@@ -1,5 +1,4 @@
 import initOnce from '../utils/initOnce.js';
-import toggleClass from '../utils/toggleClass.js';
 import { devWarn } from '../utils/devLog.js';
 
 const TRANSLIT = {
@@ -87,8 +86,8 @@ export const trackArticleHeader = (root = document) => {
 			const current = [...targets].find(target => visible.has(target));
 			if (!current) return;
 
-			links.forEach(link => toggleClass(link, 'active', false));
-			toggleClass(linkByTarget.get(current), 'active', true);
+			links.forEach(link => link.removeAttribute('aria-current'));
+			linkByTarget.get(current)?.setAttribute('aria-current', 'location');
 		}, { rootMargin: '0px 0px -80% 0px' });
 
 		targets.forEach(target => observer.observe(target));

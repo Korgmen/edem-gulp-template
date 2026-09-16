@@ -1,5 +1,5 @@
 import initOnce from '../utils/initOnce.js';
-import toggleClass from '../utils/toggleClass.js';
+import setState from '../utils/setState.js';
 import { requireChild } from '../utils/devLog.js';
 
 const calculatePercentage = (value, min, max) =>
@@ -17,13 +17,13 @@ export const init = (root = document) => {
 		const rangeInputMax = rangeInput.getAttribute('max') ?? 100;
 
 		rangeInput.addEventListener('input', () => {
-			toggleClass(rangeBlock, 'fill', false);
-			toggleClass(rangeParent, 'fill', false);
+			setState(rangeBlock, 'fill', false);
+			setState(rangeParent, 'fill', false);
 		});
 
 		rangeInput.addEventListener('change', () => {
-			toggleClass(rangeBlock, 'fill', true);
-			toggleClass(rangeParent, 'fill', true);
+			setState(rangeBlock, 'fill', true);
+			setState(rangeParent, 'fill', true);
 		});
 
 		// Ширина поля фиксируется по самому длинному значению, чтобы разметка не прыгала при перетаскивании

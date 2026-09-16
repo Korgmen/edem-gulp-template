@@ -1,5 +1,5 @@
 import initOnce from '../utils/initOnce.js';
-import toggleClass from '../utils/toggleClass.js';
+import setState from '../utils/setState.js';
 import { requireChild } from '../utils/devLog.js';
 
 // Логика числового поля ввода инпута [readme 3.3]
@@ -16,8 +16,8 @@ export const init = (root = document) => {
 		if (!numberInput.value) numberInput.value = numberInputMin;
 
 		const updateInputState = () => {
-			toggleClass(numberInput, 'fill', true);
-			toggleClass(numberInput.parentElement, 'fill', true);
+			setState(numberInput, 'fill', true);
+			setState(numberInput.parentElement, 'fill', true);
 		};
 
 		const validateInputValue = () => {

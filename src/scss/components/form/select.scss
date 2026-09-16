@@ -3,7 +3,7 @@
 .select {
 	$p: &;
 
-	&.fill {}
+	&[data-state~="fill"] {}
 
 	&::placeholder {}
 

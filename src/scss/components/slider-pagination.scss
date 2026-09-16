@@ -18,12 +18,12 @@
 		transition: all $td $tf 0s;
 
 		@media (pointer: fine) {
-			#{$p}.clickable &:not(.active):hover {
+			#{$p}--clickable &:not(#{$p}__bullet--active):hover {
 				color: var(--c-brand);
 			}
 		}
 
-		&.active {
+		&--active {
 			color: var(--c-main);
 			background-color: var(--c-main);
 		}

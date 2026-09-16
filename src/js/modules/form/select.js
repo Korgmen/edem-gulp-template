@@ -1,5 +1,5 @@
 import initOnce from '../utils/initOnce.js';
-import toggleClass from '../utils/toggleClass.js';
+import setState from '../utils/setState.js';
 
 // Логика выпадающего списка [readme 3.2]
 export const init = (root = document) => {
@@ -8,10 +8,10 @@ export const init = (root = document) => {
 			const parent = select.parentElement;
 			const filled = select.value !== '';
 
-			toggleClass(select, 'fill', filled);
-			toggleClass(parent, 'fill', filled);
-			toggleClass(select, 'focus', false);
-			toggleClass(parent, 'focus', false);
+			setState(select, 'fill', filled);
+			setState(parent, 'fill', filled);
+			setState(select, 'focus', false);
+			setState(parent, 'focus', false);
 		});
 	});
 };

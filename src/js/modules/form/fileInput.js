@@ -1,5 +1,5 @@
 import initOnce from '../utils/initOnce.js';
-import toggleClass from '../utils/toggleClass.js';
+import setState from '../utils/setState.js';
 import { devWarn } from '../utils/devLog.js';
 
 // Логика файлового поля ввода [readme 3.6]
@@ -18,7 +18,7 @@ export const init = (root = document) => {
 		file.addEventListener('change', () => {
 			const fileValue = file.value;
 			fileLabel.textContent = fileValue ? fileValue.split(/(\\|\/)/g).pop() : fileLabelText;
-			toggleClass(fileParent, 'fill', Boolean(fileValue));
+			setState(fileParent, 'fill', Boolean(fileValue));
 		});
 	});
 };

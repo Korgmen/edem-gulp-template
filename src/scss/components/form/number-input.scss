@@ -3,11 +3,11 @@
 .number-input {
 	$p: &;
 
-	&.fill {}
+	&[data-state~="fill"] {}
 
 	&__input {
 
-		#{$p}.fill & {}
+		#{$p}[data-state~="fill"] & {}
 	}
 
 	&__button {
