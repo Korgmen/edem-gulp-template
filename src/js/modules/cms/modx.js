@@ -63,7 +63,7 @@ const initValidation = () => {
 		};
 
 		const form = e.detail.form;
-		if (form.classList.contains('js_request-form') || form.classList.contains('js_next-form')) {
+		if (form.matches('[data-modx-form]')) {
 			validateForm(e, rules);
 		}
 	});

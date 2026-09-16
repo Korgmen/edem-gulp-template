@@ -1,6 +1,6 @@
 @use 'abstracts' as *;
 
-._hide-menu {
+[data-hide-menu] {
 	$td: 0.8s;
 	position: fixed;
 	inset: 0 0 auto auto;
@@ -25,14 +25,14 @@
 			translate: 100% 0;
 		}
 	}
+}
 
-	&-content {
-		width: 100%;
-		height: 100%;
-		overflow-y: auto;
+[data-hide-menu-content] {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
 
-		&::-webkit-scrollbar {
-			display: none;
-		}
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }

@@ -1,6 +1,6 @@
 @use 'abstracts' as *;
 
-.js_select {
+[data-select] {
 	appearance: none;
 	cursor: pointer;
 }

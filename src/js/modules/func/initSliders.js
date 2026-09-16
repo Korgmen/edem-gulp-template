@@ -5,13 +5,13 @@ import { devWarn } from '../utils/devLog.js';
 // Слайдер [readme 2.3]
 // Готовит разметку под Swiper: сама библиотека подключается в modules/lib-control/sliders.js
 export const init = (root = document) => {
-	initOnce(root, '.js_slider', 'initSliders', slider => {
+	initOnce(root, '[data-slider]', 'initSliders', slider => {
 		toggleClass(slider, 'swiper', true);
 
 		// Слайды берутся только ближайшего уровня, чтобы не задеть вложенные слайдеры
-		const slides = slider.querySelectorAll(':scope > .js_slide');
+		const slides = slider.querySelectorAll(':scope > [data-slide]');
 		if (!slides.length) {
-			devWarn('initSliders', 'в слайдере нет слайдов .js_slide', slider);
+			devWarn('initSliders', 'в слайдере нет слайдов [data-slide]', slider);
 			return;
 		}
 

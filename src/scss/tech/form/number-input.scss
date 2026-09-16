@@ -1,14 +1,8 @@
-.js_number {
-	&-input {}
+[data-number-input] {}
 
-	&-button-minus,
-	&-button-plus {
-		user-select: none;
-		cursor: pointer;
-		display: block;
-	}
-
-	&-button-minus {}
-
-	&-button-plus {}
+[data-number-minus],
+[data-number-plus] {
+	user-select: none;
+	cursor: pointer;
+	display: block;
 }

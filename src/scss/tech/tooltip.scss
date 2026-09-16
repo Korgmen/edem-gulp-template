@@ -1,45 +1,44 @@
 @use 'abstracts' as *;
 
-.js_tooltip {
-	$p: &;
+[data-tooltip] {
 	position: relative;
 	width: fit-content;
 	display: inline-flex;
 	flex-direction: column;
+}
 
-	&-button {
-		cursor: pointer;
+[data-tooltip-button] {
+	cursor: pointer;
+}
+
+[data-tooltip-body] {
+	position: absolute;
+	align-self: center;
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity $td $tf,
+		visibility $td $tf;
+
+	// :focus-visible браузер ставит при вводе с клавиатуры, но не по клику мышью
+	[data-tooltip]:has([data-tooltip-button]:focus-visible) & {
+		opacity: 1;
+		visibility: visible;
 	}
 
-	&-body {
-		position: absolute;
-		align-self: center;
-		pointer-events: none;
-		opacity: 0;
-		visibility: hidden;
-		transition:
-			opacity $td $tf,
-			visibility $td $tf;
-
-		// :focus-visible браузер ставит при вводе с клавиатуры, но не по клику мышью
-		#{$p}:has(#{$p}-button:focus-visible) & {
+	@media (hover: hover) {
+		[data-tooltip]:hover & {
 			opacity: 1;
 			visibility: visible;
 		}
+	}
 
-		@media (hover: hover) {
-			#{$p}:hover & {
-				opacity: 1;
-				visibility: visible;
-			}
-		}
-
-		// На сенсорном экране наведения нет, подсказку открывает тап
-		@media (hover: none) {
-			#{$p}:focus-within & {
-				opacity: 1;
-				visibility: visible;
-			}
+	// На сенсорном экране наведения нет, подсказку открывает тап
+	@media (hover: none) {
+		[data-tooltip]:focus-within & {
+			opacity: 1;
+			visibility: visible;
 		}
 	}
 }

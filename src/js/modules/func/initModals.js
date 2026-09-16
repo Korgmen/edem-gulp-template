@@ -4,9 +4,9 @@ import { devWarn } from '../utils/devLog.js';
 
 // Модальные окна [readme 2.7]
 export const init = (root = document) => {
-	initOnce(root, '[data-modal]', 'initModals', link => {
+	initOnce(root, '[data-modal-open]', 'initModals', link => {
 		link.addEventListener('click', () => {
-			const modalID = link.dataset.modal;
+			const modalID = link.dataset.modalOpen;
 			const modal = document.getElementById(modalID);
 
 			if (!modal) {

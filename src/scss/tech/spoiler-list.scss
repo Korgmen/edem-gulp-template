@@ -1,38 +1,36 @@
 @use 'abstracts' as *;
 
-.js_spoiler {
-	&-item {
-		box-sizing: border-box;
+[data-spoiler] {
+	box-sizing: border-box;
 
-		// Высота анимируется строкой грида 0fr → 1fr: height: auto требует interpolate-size, а он пока только в Chromium
-		&::details-content {
-			display: grid;
-			grid-template-rows: 0fr;
-			content-visibility: hidden;
-			transition:
-				grid-template-rows $td $tf,
-				content-visibility $td allow-discrete;
-		}
-
-		&[open]::details-content {
-			grid-template-rows: 1fr;
-			content-visibility: visible;
-		}
+	// Высота анимируется строкой грида 0fr → 1fr: height: auto требует interpolate-size, а он пока только в Chromium
+	&::details-content {
+		display: grid;
+		grid-template-rows: 0fr;
+		content-visibility: hidden;
+		transition:
+			grid-template-rows $td $tf,
+			content-visibility $td allow-discrete;
 	}
 
-	&-title {
-		cursor: pointer;
-		list-style: none;
-
-		// Стрелку рисует оформление компонента
-		&::-webkit-details-marker {
-			display: none;
-		}
+	&[open]::details-content {
+		grid-template-rows: 1fr;
+		content-visibility: visible;
 	}
+}
 
-	&-content {
-		box-sizing: border-box;
-		overflow: hidden;
-		min-height: 0;
+[data-spoiler-title] {
+	cursor: pointer;
+	list-style: none;
+
+	// Стрелку рисует оформление компонента
+	&::-webkit-details-marker {
+		display: none;
 	}
+}
+
+[data-spoiler-content] {
+	box-sizing: border-box;
+	overflow: hidden;
+	min-height: 0;
 }

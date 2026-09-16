@@ -7,7 +7,7 @@ export const init = (root = document) => {
 	// Swiper падает без готовой обёртки .swiper-wrapper, поэтому разметка строится до его вызова
 	prepareSliders(root);
 
-	const exampleSlider = new Swiper('[data-swiper-id="example"]', {
+	const exampleSlider = new Swiper('[data-slider="example"]', {
 		modules: [Navigation, Pagination, Autoplay, Scrollbar, Mousewheel, EffectFade],
 		slidesPerView: 3, // сколько слайдов будет показано за раз (можно использовать настройку 'auto')
 		//loop: true, // "залупливание" слайдера (зацикливание)
@@ -33,13 +33,13 @@ export const init = (root = document) => {
 			delay: 3000 // задержка перед перемоткой в мс
 		},
 		navigation: { // добавляет навигацию
-			prevEl: '.content__block:has([data-swiper-id="example"]) .slider-navigation__link--prev', // класс ссылки на предыдущий слайд (нужно добавить блок с этим классом в слайдер)
-			nextEl: '.content__block:has([data-swiper-id="example"]) .slider-navigation__link--next', // класс ссылки на следующий слайд (нужно добавить блок с этим классом в слайдер)
+			prevEl: '.content__block:has([data-slider="example"]) .slider-navigation__link--prev', // класс ссылки на предыдущий слайд (нужно добавить блок с этим классом в слайдер)
+			nextEl: '.content__block:has([data-slider="example"]) .slider-navigation__link--next', // класс ссылки на следующий слайд (нужно добавить блок с этим классом в слайдер)
 			disabledClass: 'disable',
 			hiddenClass: 'hidden'
 		},
 		pagination: { // добавляет пагинацию
-			el: '.content__block:has([data-swiper-id="example"]) .slider-pagination', // класс пагинации (нужно добавить блок с этим классом в слайдер)
+			el: '.content__block:has([data-slider="example"]) .slider-pagination', // класс пагинации (нужно добавить блок с этим классом в слайдер)
 			clickable: true,
 			clickableClass: 'clickable',
 			bulletClass: 'slider-pagination__bullet',
@@ -47,7 +47,7 @@ export const init = (root = document) => {
 			lockClass: 'disable'
 		},
 		// pagination: { // добавляет нумерованную пагинацию
-		// 	el: '.content__block:has([data-swiper-id="example"]) .slider-num', // класс нумерованной пагинации (нужно добавить блок с этим классом в слайдер)
+		// 	el: '.content__block:has([data-slider="example"]) .slider-num', // класс нумерованной пагинации (нужно добавить блок с этим классом в слайдер)
 		// 	type: 'fraction',
 		// 	renderFraction: function (currentClass, totalClass) { // своя разметка нумерованной пагинации
 		// 		return `<span class="${currentClass}"></span>/<span class="${totalClass}"></span>`;
@@ -57,7 +57,7 @@ export const init = (root = document) => {
 		//	lockClass: 'disable'
 		// },
 		// pagination: { // добавляет кастомную пагинацию (свои блоки в качестве пунктов пагинации)
-		// 	el: '.content__block:has([data-swiper-id="example"]) .slider-pagination-custom',
+		// 	el: '.content__block:has([data-slider="example"]) .slider-pagination-custom',
 		// 	clickable: true,
 		// 	type: 'custom',
 		// 	clickableClass: 'clickable',
@@ -65,7 +65,7 @@ export const init = (root = document) => {
 		// 	lockClass: 'disable'
 		// },
 		scrollbar: { // добавляет скроллбар
-			el: '.content__block:has([data-swiper-id="example"]) .slider-scrollbar', // класс скроллбара (нужно добавить блок с этим классом в слайдер)
+			el: '.content__block:has([data-slider="example"]) .slider-scrollbar', // класс скроллбара (нужно добавить блок с этим классом в слайдер)
 			dragClass: 'slider-scrollbar__drag',
 			draggable: true
 		},
@@ -73,7 +73,7 @@ export const init = (root = document) => {
 	});
 
 	//Код для переключения активного пункта пагинации для кастомной пагинации==========
-	const customBullets = document.querySelectorAll('.content__block:has([data-swiper-id="example"]) .slider-pagination-custom__bullet');
+	const customBullets = document.querySelectorAll('.content__block:has([data-slider="example"]) .slider-pagination-custom__bullet');
 	if (customBullets.length) {
 		exampleSlider.on('slideChange', function () {
 			customBullets.forEach(el => el.classList.remove('active'));

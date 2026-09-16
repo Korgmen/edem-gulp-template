@@ -1,6 +1,6 @@
 @use 'abstracts' as *;
 
-.js_notify {
+[data-notify] {
 	position: fixed;
 	inset: auto auto 0 rem(16);
 	margin: 0;

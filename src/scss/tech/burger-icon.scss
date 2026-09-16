@@ -1,6 +1,6 @@
 @use 'abstracts' as *;
 
-._burger-icon {
+[data-burger] {
 	$p: &;
 	$td: 0.8s;
 	position: relative;

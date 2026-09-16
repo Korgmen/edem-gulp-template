@@ -28,24 +28,24 @@ const ALWAYS = [
 
 const LAZY_MODULES = [
 	['br', () => import('./func/brSpace.js')],                          // Пробелы после тега <br> [readme 2.4]
-	['.js_get-height', () => import('./func/getBlockHeight.js')],       // Получение высоты блоков [readme 2.1]
-	['.js_tab', () => import('./func/initTabs.js')],                    // Табы [readme 2.2]
-	['[data-modal]', () => import('./func/initModals.js')],             // Модальные окна [readme 2.7]
+	['[data-get-height]', () => import('./func/getBlockHeight.js')],       // Получение высоты блоков [readme 2.1]
+	['[data-tabs]', () => import('./func/initTabs.js')],                    // Табы [readme 2.2]
+	['[data-modal-open]', () => import('./func/initModals.js')],        // Модальные окна [readme 2.7]
 	['[data-navigation]', () => import('./func/initNavigation.js')],    // Закрытие выпадающего меню [readme 2.18]
-	['.js_article-content', () => import('./func/initArticleLogic.js')],// Оглавление статьи [readme 2.8, 2.9]
-	['.js_notify', () => import('./func/initNotify.js')],               // Оповещения [readme 2.10]
+	['[data-article]', () => import('./func/initArticleLogic.js')],// Оглавление статьи [readme 2.8, 2.9]
+	['[data-notify]', () => import('./func/initNotify.js')],               // Оповещения [readme 2.10]
 	['#cookie', () => import('./func/initCookie.js')],                  // Куки-оповещалка [readme 2.11]
 	['[data-copy]', () => import('./func/copyWithClick.js')],           // Копирование текста в буфер [readme 2.12]
 
-	['.js_slider', () => import('./lib-control/sliders.js')],           // Слайдеры: разметка и Swiper [readme 2.3, 4.1]
-	['.js_gallery', () => import('./lib-control/galleries.js')],        // Галереи, PhotoSwipe [readme 4.2]
+	['[data-slider]', () => import('./lib-control/sliders.js')],           // Слайдеры: разметка и Swiper [readme 2.3, 4.1]
+	['[data-gallery]', () => import('./lib-control/galleries.js')],        // Галереи, PhotoSwipe [readme 4.2]
 
-	['.js_tel-mask', () => import('./form/telInput.js')],               // Поле ввода телефона, IMask [readme 3.1]
-	['.js_select', () => import('./form/select.js')],                   // Выпадающий список [readme 3.2]
-	['.js_number', () => import('./form/numberInput.js')],              // Числовое поле [readme 3.3]
-	['.js_range', () => import('./form/rangeInput.js')],                // Ползунок [readme 3.4]
-	['.js_dual-range', () => import('./form/dualRangeInput.js')],       // Двойной ползунок [readme 3.5]
-	['.js_file-input', () => import('./form/fileInput.js')],            // Файловое поле [readme 3.6]
+	['[data-tel-mask]', () => import('./form/telInput.js')],               // Поле ввода телефона, IMask [readme 3.1]
+	['[data-select]', () => import('./form/select.js')],                   // Выпадающий список [readme 3.2]
+	['[data-number]', () => import('./form/numberInput.js')],              // Числовое поле [readme 3.3]
+	['[data-range]', () => import('./form/rangeInput.js')],                // Ползунок [readme 3.4]
+	['[data-dual-range]', () => import('./form/dualRangeInput.js')],       // Двойной ползунок [readme 3.5]
+	['[data-file-input]', () => import('./form/fileInput.js')],            // Файловое поле [readme 3.6]
 
 	// ['form.form', () => import('./cms/modx.js')],                    // Интеграция с MODX FetchIt [readme 3.7]
 ];

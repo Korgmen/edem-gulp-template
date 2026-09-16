@@ -14,27 +14,27 @@
 							<h2 class="example-section__title title"><span>Пример тултипа</span></h2>
 							<div class="tooltip-parent">
 								<span>Наведи на иконку -></span>
-								<div class="tooltip js_tooltip">
-									<button type="button" class="tooltip__button js_tooltip-button">⚠️</button>
-									<div class="tooltip__body js_tooltip-body">
+								<div class="tooltip" data-tooltip>
+									<button type="button" class="tooltip__button" data-tooltip-button>⚠️</button>
+									<div class="tooltip__body" data-tooltip-body>
 										Обычный тултип
 									</div>
 								</div>
 							</div>
 							<div class="tooltip-parent">
 								<span>Наведи на иконку -></span>
-								<div class="tooltip js_tooltip">
-									<button type="button" class="tooltip__button js_tooltip-button">ℹ️</button>
-									<div class="tooltip__body js_tooltip-body">
+								<div class="tooltip" data-tooltip>
+									<button type="button" class="tooltip__button" data-tooltip-button>ℹ️</button>
+									<div class="tooltip__body" data-tooltip-body>
 										Тултип где много текста. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad quo at facilis facere exercitationem accusamus quibusdam in minus modi perspiciatis.
 									</div>
 								</div>
 							</div>
 							<div class="tooltip-parent">
 								<span>Наведи на иконку -></span>
-								<div class="tooltip js_tooltip">
-									<button type="button" class="tooltip__button js_tooltip-button"><i>📫</i><i>📬</i></button>
-									<div class="tooltip__body js_tooltip-body">
+								<div class="tooltip" data-tooltip>
+									<button type="button" class="tooltip__button" data-tooltip-button><i>📫</i><i>📬</i></button>
+									<div class="tooltip__body" data-tooltip-body>
 										<h2>Тултип с параграфами и форматированием</h2>
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 										<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, amet!</p>
@@ -55,8 +55,8 @@
 							</script>
 							<button class="example-section__button button" onclick="toggleBurger()">Переключить бургер</button>
 							<div class="example-section__row">
-								<button class="burger-icon _burger-icon _open"><span></span></button>
-								<button class="burger-icon _burger-icon _open"><span></span></button>
+								<button class="burger-icon _open" data-burger><span></span></button>
+								<button class="burger-icon _open" data-burger><span></span></button>
 							</div>
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 								<div class="form__line form__line--row">
 									<div class="form__field-container">
 										<label class="form__label" for="phone">Ваш телефон</label>
-										<input id="phone" class="form__field input js_tel-mask" type="tel" placeholder="+7 (___) ___-__-__">
+										<input id="phone" class="form__field input" data-tel-mask type="tel" placeholder="+7 (___) ___-__-__">
 										<span class="form__error">Неправильно указан телефон</span>
 									</div>
 									<div class="form__field-container">
@@ -90,16 +90,16 @@
 										<label class="form__label-container" for="range-input">
 											<p class="form__label">Бюджет проекта</p>
 										</label>
-										<div class="range-input js_range">
-											<p class="range-input__text js_range-text"><span class="range-input__text-val js_range-val"></span> ₽</p>
-											<input class="range-input__input js_range-input" id="range-input" type="range" min="10000" max="100000" step="2000" value="24000">
+										<div class="range-input" data-range>
+											<p class="range-input__text" data-range-text><span class="range-input__text-val" data-range-val></span> ₽</p>
+											<input class="range-input__input" data-range-input id="range-input" type="range" min="10000" max="100000" step="2000" value="24000">
 										</div>
 									</div>
 								</div>
 								<div class="form__line form__line--row">
 									<div class="form__field-container" style="flex: 0 1 33.333%;">
 										<label class="form__label" for="gender">Ваш пол</label>
-										<select class="form__field input select js_select" id="gender" name="gender">
+										<select class="form__field input select" data-select id="gender" name="gender">
 											<option class="select__option select__option--title" value="" selected>Укажите ваш пол</option>
 											<option class="select__option" value="Мужской">Мужской</option>
 											<option class="select__option" value="Женский">Женский</option>
@@ -109,23 +109,23 @@
 										<label class="form__label-container" for="form-number">
 											<p class="form__label">Ваш возраст</p>
 										</label>
-										<div class="form__number number-input js_number">
-											<span class="number-input__button number-input__button--minus js_number-button-minus"></span>
-											<input class="number-input__input js_number-input" id="number-input" type="number" min="18" max="120" step="1" value="">
-											<span class="number-input__button number-input__button--plus js_number-button-plus"></span>
+										<div class="form__number number-input" data-number>
+											<span class="number-input__button number-input__button--minus" data-number-minus></span>
+											<input class="number-input__input" data-number-input id="number-input" type="number" min="18" max="120" step="1" value="">
+											<span class="number-input__button number-input__button--plus" data-number-plus></span>
 										</div>
 									</div>
 									<div class="form__field-container">
 										<label class="form__label-container" for="range-input">
 											<p class="form__label">Бюджет проекта (v2)</p>
 										</label>
-										<div class="dual-range-input js_dual-range">
-											<p class="dual-range-input__text js_dual-range-text"><span class="dual-range-input__text-val js_dual-range-val"></span> ₽</p>
-											<div class="dual-range-input__input-container js_dual-range-input-container">
-												<input class="dual-range-input__input js_dual-range-input" type="range" min="10000" max="100000" step="2000" value="24000">
-												<input class="dual-range-input__input js_dual-range-input" type="range">
+										<div class="dual-range-input" data-dual-range>
+											<p class="dual-range-input__text" data-dual-range-text><span class="dual-range-input__text-val" data-dual-range-val></span> ₽</p>
+											<div class="dual-range-input__input-container" data-dual-range-track>
+												<input class="dual-range-input__input" data-dual-range-input type="range" min="10000" max="100000" step="2000" value="24000">
+												<input class="dual-range-input__input" data-dual-range-input type="range">
 											</div>
-											<p class="dual-range-input__text js_dual-range-text"><span class="dual-range-input__text-val js_dual-range-val"></span> ₽</p>
+											<p class="dual-range-input__text" data-dual-range-text><span class="dual-range-input__text-val" data-dual-range-val></span> ₽</p>
 										</div>
 									</div>
 								</div>
@@ -133,16 +133,16 @@
 							<div class="form__group">
 								<h3 class="form__group-title">Дополнительная информация</h3>
 								<div class="form__line">
-									<div class="form__field input file-input js_file">
-										<label class="file-input__label js_file-label" for="resume">Прикрепите резюме (pdf, jpg, png, docx)</label>
-										<input id="resume" class="file-input__input js_file-input sem-hide" type="file">
+									<div class="form__field input file-input" data-file>
+										<label class="file-input__label" data-file-label for="resume">Прикрепите резюме (pdf, jpg, png, docx)</label>
+										<input id="resume" class="file-input__input sem-hide" data-file-input type="file">
 									</div>
 									<span class="form__error"></span>
 								</div>
 								<div class="form__line">
-									<div class="toggler-checkbox _checkbox _checkbox--toggler">
+									<div class="toggler-checkbox" data-checkbox="toggler">
 										<label class="form__label" for="toggler">Доставить заказ по адресу</label>
-										<input class="toggler-checkbox__input _checkbox-input" data-switch="address" type="checkbox" id="toggler">
+										<input class="toggler-checkbox__input" data-checkbox-input data-switch="address" type="checkbox" id="toggler">
 									</div>
 								</div>
 								<div id="address" class="form__line form__line--row">
@@ -162,8 +162,8 @@
 								<div class="form__line">
 									<button class="form__button button" type="submit">Отправить</button>
 									<p class="form__policy">Нажимая «Отправить» вы соглашаетесь с <a class="link" href="">Политикой обработки персональных данных</a></p>
-									<div class="checkbox _checkbox">
-										<input class="checkbox__input _checkbox-input" type="checkbox" id="policy" checked>
+									<div class="checkbox" data-checkbox>
+										<input class="checkbox__input" data-checkbox-input type="checkbox" id="policy" checked>
 										<label class="form__policy checkbox__label" for="policy">Я соглашаюсь на обработку своих персональных данных в соответствии с <a class="link" href="">политикой</a></label>
 									</div>
 								</div>
@@ -176,16 +176,16 @@
 						<div class="custom-checkbox-section">
 							<h2 class="custom-checkbox-section__title title"><span>Пример кастомных чекбоксов</span></h2>
 							<form class="custom-checkbox-section__form">
-								<div class="custom-checkbox _checkbox">
-									<input class="custom-checkbox__input _checkbox-input" type="checkbox" name="custom-checkbox" id="custom-checkbox-1" checked>
+								<div class="custom-checkbox" data-checkbox>
+									<input class="custom-checkbox__input" data-checkbox-input type="checkbox" name="custom-checkbox" id="custom-checkbox-1" checked>
 									<label class="custom-checkbox__label button" for="custom-checkbox-1">По убыванию</label>
 								</div>
-								<div class="custom-checkbox _checkbox">
-									<input class="custom-checkbox__input _checkbox-input" type="checkbox" name="custom-checkbox" id="custom-checkbox-2">
+								<div class="custom-checkbox" data-checkbox>
+									<input class="custom-checkbox__input" data-checkbox-input type="checkbox" name="custom-checkbox" id="custom-checkbox-2">
 									<label class="custom-checkbox__label button" for="custom-checkbox-2">По возрастанию</label>
 								</div>
-								<div class="custom-checkbox _checkbox">
-									<input class="custom-checkbox__input _checkbox-input" type="checkbox" name="custom-checkbox" id="custom-checkbox-3">
+								<div class="custom-checkbox" data-checkbox>
+									<input class="custom-checkbox__input" data-checkbox-input type="checkbox" name="custom-checkbox" id="custom-checkbox-3">
 									<label class="custom-checkbox__label button" for="custom-checkbox-3">По барабану</label>
 								</div>
 							</form>
@@ -197,16 +197,16 @@
 						<div class="custom-checkbox-section">
 							<h2 class="custom-checkbox-section__title title"><span>Пример кастомных радио</span></h2>
 							<form class="custom-checkbox-section__form">
-								<div class="custom-checkbox _checkbox">
-									<input class="custom-checkbox__input _checkbox-input" type="radio" name="custom-radio" id="custom-radio-1">
+								<div class="custom-checkbox" data-checkbox>
+									<input class="custom-checkbox__input" data-checkbox-input type="radio" name="custom-radio" id="custom-radio-1">
 									<label class="custom-checkbox__label button" for="custom-radio-1">По убыванию</label>
 								</div>
-								<div class="custom-checkbox _checkbox">
-									<input class="custom-checkbox__input _checkbox-input" type="radio" name="custom-radio" id="custom-radio-2" checked>
+								<div class="custom-checkbox" data-checkbox>
+									<input class="custom-checkbox__input" data-checkbox-input type="radio" name="custom-radio" id="custom-radio-2" checked>
 									<label class="custom-checkbox__label button" for="custom-radio-2">По возрастанию</label>
 								</div>
-								<div class="custom-checkbox _checkbox">
-									<input class="custom-checkbox__input _checkbox-input" type="radio" name="custom-radio" id="custom-radio-3">
+								<div class="custom-checkbox" data-checkbox>
+									<input class="custom-checkbox__input" data-checkbox-input type="radio" name="custom-radio" id="custom-radio-3">
 									<label class="custom-checkbox__label button" for="custom-radio-3">По барабану</label>
 								</div>
 							</form>
@@ -217,18 +217,18 @@
 					<div class="container appear">
 						<h2 class="title"><span>Пример спойлеров/аккордеонов</span></h2>
 						<div class="spoiler-list">
-							<details class="spoiler-list__item js_spoiler-item" name="spoiler-example">
-								<summary class="spoiler-list__title js_spoiler-title">Заголовок спойлера</summary>
-								<div class="spoiler-list__content js_spoiler-content">
+							<details class="spoiler-list__item" data-spoiler name="spoiler-example">
+								<summary class="spoiler-list__title" data-spoiler-title>Заголовок спойлера</summary>
+								<div class="spoiler-list__content" data-spoiler-content>
 									<h1>Контент спойлера</h1>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, iste.</p>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consectetur temporibus non dolore delectus possimus!</p>
 									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit eveniet corrupti blanditiis voluptas quam optio consequatur laborum. Iste, exercitationem suscipit? Nobis non rem saepe voluptatibus cumque minima nemo odio porro.</p>
 								</div>
 							</details>
-							<details class="spoiler-list__item js_spoiler-item" name="spoiler-example">
-								<summary class="spoiler-list__title js_spoiler-title">Заголовок следующего спойлера</summary>
-								<div class="spoiler-list__content js_spoiler-content">
+							<details class="spoiler-list__item" data-spoiler name="spoiler-example">
+								<summary class="spoiler-list__title" data-spoiler-title>Заголовок следующего спойлера</summary>
+								<div class="spoiler-list__content" data-spoiler-content>
 									<h1>Контент следующего спойлера</h1>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia hic recusandae adipisci!</p>
 									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis commodi ullam fuga officiis, dicta odit minus!</p>
@@ -240,29 +240,29 @@
 				<section class="content__block">
 					<div class="container appear">
 						<h2 class="title"><span>Пример табов</span></h2>
-						<div class="tabs js_tab">
+						<div class="tabs" data-tabs>
 							<div class="tabs__link-list">
-								<button class="tabs__link button js_tab-link active">Ссылка таба 1</button>
-								<button class="tabs__link button js_tab-link">Ссылка таба 2</button>
-								<button class="tabs__link button js_tab-link">Ссылка таба 3</button>
+								<button class="tabs__link button active" data-tab-link>Ссылка таба 1</button>
+								<button class="tabs__link button" data-tab-link>Ссылка таба 2</button>
+								<button class="tabs__link button" data-tab-link>Ссылка таба 3</button>
 							</div>
-							<div class="tabs__content-list js_tab-content-container">
-								<div class="tabs__content js_tab-content active">
+							<div class="tabs__content-list" data-tab-panels>
+								<div class="tabs__content active" data-tab-panel>
 									<h1>Контент таба 1</h1>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, iste.</p>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consectetur temporibus non dolore delectus possimus!</p>
 									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit eveniet corrupti blanditiis voluptas quam optio consequatur laborum. Iste, exercitationem suscipit? Nobis non rem saepe voluptatibus cumque minima nemo odio porro.</p>
 								</div>
-								<div class="tabs__content js_tab-content">
+								<div class="tabs__content" data-tab-panel>
 									<h1>Контент таба 2</h1>
 									<p>Lorem ipsum dolor sit amet.</p>
 									<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam deleniti, velit ab nihil vel ipsam necessitatibus libero.</p>
 									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus.</p>
 								</div>
-								<div class="tabs__content js_tab-content">
+								<div class="tabs__content" data-tab-panel>
 									<h1>Контент таба 3</h1>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia hic recusandae adipisci!</p>
-									<button class="modal-link button" data-modal="order">Вызвать модал order</button>
+									<button class="modal-link button" data-modal-open="order">Вызвать модал order</button>
 									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis commodi ullam fuga officiis, dicta odit minus!</p>
 								</div>
 							</div>
@@ -273,8 +273,8 @@
 					<div class="container appear">
 						<h2 class="title"><span>Пример модалов</span></h2>
 						<div class="modal-list">
-							<button class="modal-link button" data-modal="callback">Вызвать модал callback</button>
-							<button class="modal-link button" data-modal="order">Вызвать модал order</button>
+							<button class="modal-link button" data-modal-open="callback">Вызвать модал callback</button>
+							<button class="modal-link button" data-modal-open="order">Вызвать модал order</button>
 						</div>
 					</div>
 				</section>
@@ -294,9 +294,9 @@
 							<div class="article__row">
 								<ul class="article__list">
 									<li class="article__list-item article__list-item--title"><a class="article__list-link">Оглавление</a></li>
-									<li class="article__list-item js_article-link"><a class="article__list-link">Ссылка-пример для оглавления</a></li>
+									<li class="article__list-item" data-article-link><a class="article__list-link">Ссылка-пример для оглавления</a></li>
 								</ul>
-								<div class="article__content text-content js_article-content">
+								<div class="article__content text-content" data-article>
 									<div>
 										<h2>Lorem ipsum dolor sit amet.</h2>
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime accusantium dolores esse dolorem ipsum ut optio, repudiandae, recusandae sapiente, exercitationem laboriosam eaque! Quibusdam possimus dolorem, dicta quos quis natus voluptates neque placeat aspernatur! Vel, officiis expedita enim laboriosam et unde. Ipsa earum autem cum alias rerum, aperiam, consequuntur a dicta odio minus quasi doloribus? Ipsum fugit mollitia provident dolores deserunt iusto magnam error doloremque consectetur, laborum deleniti aperiam commodi nemo veritatis culpa. Est minus totam repellendus qui! Voluptates molestias labore voluptas dolorum adipisci commodi consectetur veritatis quasi cupiditate suscipit. Iste earum, voluptatibus cumque voluptas delectus perspiciatis ipsam accusantium ipsum officiis!</p>
@@ -341,8 +341,8 @@
 									</button>
 								</div>
 							</div>
-							<div class="slider-block__slider js_slider js_gallery" data-swiper-id="example">
-								<div class="slider-block__slide js_slide">
+							<div class="slider-block__slider" data-slider="example" data-gallery>
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 1</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet pariatur dolore necessitatibus, accusantium quasi neque praesentium quod consectetur atque dignissimos.</p>
@@ -353,7 +353,7 @@
 										</picture>
 									</a>
 								</div>
-								<div class="slider-block__slide js_slide">
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 2</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>
@@ -364,7 +364,7 @@
 										</picture>
 									</a>
 								</div>
-								<div class="slider-block__slide js_slide">
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 3</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, fuga voluptas. Ipsam harum voluptas amet at?</p>
@@ -375,7 +375,7 @@
 										</picture>
 									</a>
 								</div>
-								<div class="slider-block__slide js_slide">
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 4</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, quod esse quas sint rerum suscipit assumenda voluptatem mollitia perferendis autem dolorem dignissimos facilis beatae illo iste.</p>
@@ -386,7 +386,7 @@
 										</picture>
 									</a>
 								</div>
-								<div class="slider-block__slide js_slide">
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 5</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet pariatur dolore necessitatibus, accusantium quasi neque praesentium quod consectetur atque dignissimos.</p>
@@ -397,7 +397,7 @@
 										</picture>
 									</a>
 								</div>
-								<div class="slider-block__slide js_slide">
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 6</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>
@@ -408,7 +408,7 @@
 										</picture>
 									</a>
 								</div>
-								<div class="slider-block__slide js_slide">
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 7</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. At, fuga voluptas. Ipsam harum voluptas amet at?</p>
@@ -419,7 +419,7 @@
 										</picture>
 									</a>
 								</div>
-								<div class="slider-block__slide js_slide">
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 8</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, quod esse quas sint rerum suscipit assumenda voluptatem mollitia perferendis autem dolorem dignissimos facilis beatae illo iste.</p>
@@ -430,7 +430,7 @@
 										</picture>
 									</a>
 								</div>
-								<div class="slider-block__slide js_slide">
+								<div class="slider-block__slide" data-slide>
 									<div class="slider-block__slide-title">Слайд 9</div>
 									<div class="slider-block__slide-text">
 										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo eum sunt, quam nemo libero perspiciatis adipisci commodi illum nisi blanditiis, maiores similique dolorum, laudantium debitis sed natus temporibus. Provident, nulla.</p>

@@ -7,9 +7,9 @@ const calculatePercentage = (value, min, max) =>
 
 // Логика ползунка [readme 3.4]
 export const init = (root = document) => {
-	initOnce(root, '.js_range', 'rangeInput', rangeBlock => {
+	initOnce(root, '[data-range]', 'rangeInput', rangeBlock => {
 		const rangeInput = requireChild(rangeBlock, 'input', 'rangeInput');
-		const rangeVal = requireChild(rangeBlock, '.js_range-val', 'rangeInput');
+		const rangeVal = requireChild(rangeBlock, '[data-range-val]', 'rangeInput');
 		if (!rangeInput || !rangeVal) return;
 
 		const rangeParent = rangeBlock.parentElement;

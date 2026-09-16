@@ -4,10 +4,10 @@ import { requireChild } from '../utils/devLog.js';
 
 // Логика числового поля ввода инпута [readme 3.3]
 export const init = (root = document) => {
-	initOnce(root, '.js_number', 'numberInput', numberInputBlock => {
-		const numberInput = requireChild(numberInputBlock, '.js_number-input', 'numberInput');
-		const numberButtonMinus = requireChild(numberInputBlock, '.js_number-button-minus', 'numberInput');
-		const numberButtonPlus = requireChild(numberInputBlock, '.js_number-button-plus', 'numberInput');
+	initOnce(root, '[data-number]', 'numberInput', numberInputBlock => {
+		const numberInput = requireChild(numberInputBlock, '[data-number-input]', 'numberInput');
+		const numberButtonMinus = requireChild(numberInputBlock, '[data-number-minus]', 'numberInput');
+		const numberButtonPlus = requireChild(numberInputBlock, '[data-number-plus]', 'numberInput');
 		if (!numberInput || !numberButtonMinus || !numberButtonPlus) return;
 
 		const numberInputMin = Number(numberInput.getAttribute('min')) || 0;
