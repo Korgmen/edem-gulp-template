@@ -31,6 +31,7 @@ const LAZY_MODULES = [
 	['.js_get-height', () => import('./func/getBlockHeight.js')],       // Получение высоты блоков [readme 2.1]
 	['.js_tab', () => import('./func/initTabs.js')],                    // Табы [readme 2.2]
 	['[data-modal]', () => import('./func/initModals.js')],             // Модальные окна [readme 2.7]
+	['[data-navigation]', () => import('./func/initNavigation.js')],    // Закрытие выпадающего меню [readme 2.18]
 	['.js_article-content', () => import('./func/initArticleLogic.js')],// Оглавление статьи [readme 2.8, 2.9]
 	['.js_notify', () => import('./func/initNotify.js')],               // Оповещения [readme 2.10]
 	['#cookie', () => import('./func/initCookie.js')],                  // Куки-оповещалка [readme 2.11]
