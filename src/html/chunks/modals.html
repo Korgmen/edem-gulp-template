@@ -1,8 +1,8 @@
 <!-- Боковое меню -->
 <dialog id="hide-menu" class="hide-menu" data-hide-menu>
 	<form class="hide-menu__close" method="dialog">
-		<button>
-			<svg class="hide-menu__close-icon icon" width="24" height="24"><use href="img/sprite.svg#close"></use></svg>
+		<button aria-label="Закрыть">
+			<svg aria-hidden="true" focusable="false" class="hide-menu__close-icon icon" width="24" height="24"><use href="img/sprite.svg#close"></use></svg>
 		</button>
 	</form>
 	<div class="hide-menu__content" data-hide-menu-content>
@@ -15,10 +15,10 @@
 </dialog>
 
 <!-- Куки-оповещение -->
-<div id="cookie" class="notify notify--maxw800 open" data-notify popover="manual">
+<div id="cookie" class="notify notify--maxw800" data-notify="open" popover="manual">
 	<div class="notify__content notify__content--line notify__content--center">
 		<p class="notify__text">Мы&nbsp;сохраняем файлы 🍪 cookie для быстрой и&nbsp;удобной работы сайта. Продолжая использовать сайт, вы&nbsp;предоставляете согласие на&nbsp;<a class="link" href="">обработку ваших персональных данных</a> с&nbsp;помощью сервисов веб-аналитики.</p>
-		<button class="notify__button button button--small" popovertarget="cookie" popovertargetaction="hide">Согласен</button>
+		<button type="button" class="notify__button button button--small" popovertarget="cookie" popovertargetaction="hide">Согласен</button>
 	</div>
 </div>
 
@@ -28,8 +28,8 @@
 -->
 <dialog id="callback" class="modal" data-modal>
 	<form class="modal__close" method="dialog">
-		<button>
-			<svg class="modal__close-icon icon" width="32" height="32"><use href="img/sprite.svg#close"></use></svg>
+		<button aria-label="Закрыть">
+			<svg aria-hidden="true" focusable="false" class="modal__close-icon icon" width="32" height="32"><use href="img/sprite.svg#close"></use></svg>
 		</button>
 	</form>
 	<div class="modal__content" data-modal-content>
@@ -39,8 +39,8 @@
 
 <dialog id="order" class="modal" data-modal>
 	<form class="modal__close" method="dialog">
-		<button>
-			<svg class="modal__close-icon icon" width="32" height="32"><use href="img/sprite.svg#close"></use></svg>
+		<button aria-label="Закрыть">
+			<svg aria-hidden="true" focusable="false" class="modal__close-icon icon" width="32" height="32"><use href="img/sprite.svg#close"></use></svg>
 		</button>
 	</form>
 	<div class="modal__content" data-modal-content>
@@ -54,8 +54,8 @@
 -->
 
 <div id="addToCart" class="notify" data-notify popover data-popover-time="1.5"> <!-- закроется через 1.5 секунды -->
-	<button class="notify__close" popovertarget="addToCart" popovertargetaction="hide">
-		<svg class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
+	<button type="button" class="notify__close" aria-label="Закрыть" popovertarget="addToCart" popovertargetaction="hide">
+		<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
 	</button>
 	<div class="notify__content">
 		<p class="notify__text">🛒 товар добавлен в корзину</p>
@@ -63,8 +63,8 @@
 </div>
 
 <div id="copyText" class="notify" data-notify popover data-popover-time>
-	<button class="notify__close" popovertarget="copyText" popovertargetaction="hide">
-		<svg class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
+	<button type="button" class="notify__close" aria-label="Закрыть" popovertarget="copyText" popovertargetaction="hide">
+		<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
 	</button>
 	<div class="notify__content">
 		<p class="notify__text">✅ промокод скопирован</p>
@@ -72,8 +72,8 @@
 </div>
 
 <div id="custom-notify" class="notify" data-notify popover data-popover-time>
-	<button class="notify__close" popovertarget="custom-notify" popovertargetaction="hide">
-		<svg class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
+	<button type="button" class="notify__close" aria-label="Закрыть" popovertarget="custom-notify" popovertargetaction="hide">
+		<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
 	</button>
 	<div class="notify__content">
 		<p class="notify__text" data-notify-content></p>
