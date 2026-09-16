@@ -3,7 +3,6 @@
 //Переменные - настройки==========
 $fontFamily: 'Manrope', sans-serif; // <----- Указываем имя шрифта
 $fontSize: 1rem; // <----- Указываем размер шрифта
-$minWidth: func.rem(375);
 $maxWidthContainer: func.rem(1440); // <----- Указываем размер контейнера
 $containerMargin: func.lineScale(32,16); // <----- Указываем отступ по краям контейнера
 $md1: calc($maxWidthContainer + $containerMargin * 2 - func.rem(0.02));

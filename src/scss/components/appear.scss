@@ -1,0 +1,10 @@
+@use 'abstracts' as *;
+
+@media (prefers-reduced-motion: no-preference) {
+	.appear {
+		animation: fade-in-bottom linear;
+		//ДОРАБОТКА: когда сафари и лиса дотянутся до scroll-timeline, поменять 250px на 38dvh и удалить полифил
+		animation-timeline: view(block);
+		animation-range: 0 250px;
+	}
+}
