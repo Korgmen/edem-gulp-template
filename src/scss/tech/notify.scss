@@ -1,30 +1,22 @@
 @use 'abstracts' as *;
 
 .js_notify {
-	$p: &;
-	display: block;
-	inset: initial;
-	height: initial;
-	overflow: hidden !important;
-
 	position: fixed;
-	bottom: 0;
-	left: rem(16);
-	translate: 0 calc(100% + rem(16));
+	inset: auto auto 0 rem(16);
+	margin: 0;
 	z-index: 4;
-	transition: translate $td $tf 0s;
-
-	@media (max-width:$md4) {
-		left: 0;
-		translate: 0 calc(100%);
-	}
+	overflow: hidden;
+	translate: 0 calc(100% + #{rem(16)});
+	transition:
+		translate $td $tf,
+		display $td allow-discrete,
+		overlay $td allow-discrete;
 
 	&:popover-open {
-		transition: translate $td $tf 0s;
 		translate: 0 rem(-16);
 
-		@media (max-width:$md4) {
-			translate: 0;
+		@starting-style {
+			translate: 0 calc(100% + #{rem(16)});
 		}
 	}
 
@@ -32,11 +24,16 @@
 		display: none;
 	}
 
-	&.open {
-		transition: all 1s ease 0s;
+	@media (max-width:$md4) {
+		inset: auto auto 0 0;
+		translate: 0 100%;
 
-		@starting-style {
-			translate: 0 100%;
+		&:popover-open {
+			translate: 0;
+
+			@starting-style {
+				translate: 0 100%;
+			}
 		}
 	}
 }

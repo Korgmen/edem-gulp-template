@@ -83,10 +83,14 @@ body.page {
 }
 
 .sem-hide {
-	visibility: hidden;
 	position: absolute;
-	top: -9999px;
-	left: -9999px;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
 }
 
 picture {

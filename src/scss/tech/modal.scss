@@ -7,22 +7,22 @@
 	height: fit-content;
 	max-height: 100%;
 	z-index: 10;
-	display: block;
+	opacity: 0;
 	transition:
-		opacity $td $tf 0s,
-		left 0s ease 0s;
+		opacity $td $tf,
+		display $td allow-discrete,
+		overlay $td allow-discrete;
 
 	&::backdrop {
 		cursor: pointer;
 	}
 
-	&:not([open]) {
-		opacity: 0;
-		pointer-events: none;
-		left: -9999px;
-		transition:
-			opacity $td $tf 0s,
-			left 0s ease $td;
+	&[open] {
+		opacity: 1;
+
+		@starting-style {
+			opacity: 0;
+		}
 	}
 
 	&-content {
