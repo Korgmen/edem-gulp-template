@@ -4,10 +4,7 @@
 	&-text {
 		flex: 0 0 var(--maxval-width);
 		white-space: nowrap;
-		-ms-user-select: none;
-		-moz-user-select: none;
-		-khtml-user-select: none;
-		-webkit-user-select: none;
+		user-select: none;
 	}
 
 	&-val {}

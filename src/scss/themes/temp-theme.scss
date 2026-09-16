@@ -886,10 +886,7 @@ body {
 		display: inline-block;
 		color: #757575;
 		white-space: nowrap;
-		-ms-user-select: none;
-		-moz-user-select: none;
-		-khtml-user-select: none;
-		-webkit-user-select: none;
+		user-select: none;
 		transition: all $td $tf 0s;
 
 		#{$p}.fill & {

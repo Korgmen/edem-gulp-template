@@ -40,6 +40,7 @@ body.page {
 	display: flex;
 	flex-direction: column;
 	min-height: 100%;
+	overflow-x: clip;
 }
 
 .content {
@@ -62,22 +63,12 @@ body.page {
 	}
 }
 
-[class*="__container"] {
+.container {
 	max-width: $md1;
 	margin: 0 auto;
 	padding: 0 $containerMargin;
-	overflow-x: clip;
-	
-	animation: fade-in-bottom linear;
-	animation-timeline: view(block);
-	//ДОРАБОТКА: когда сафари и лиса дотянутся до scroll-timeline поменять 250px на 38dvh, удалить полифил и important ниже
-	animation-range: 0 250px;
 
-	&[class*="--noanim"] {
-		animation: none !important;
-	}
-
-	&[class*="--2560"] {
+	&--wide {
 		max-width: rem(2560);
 	}
 }

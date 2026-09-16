@@ -9,20 +9,11 @@
 *,
 *:before,
 *:after {
-	-moz-box-sizing: inherit;
-	-webkit-box-sizing: inherit;
 	box-sizing: inherit;
 }
 :focus-visible {
 	outline: 2px solid currentColor;
 	outline-offset: 2px;
-}
-aside,
-nav,
-footer,
-header,
-section {
-	display: block;
 }
 html {
 	font-size: var.$fontSize;
@@ -37,63 +28,40 @@ html {
 html,
 body {
 	height: 100%;
-	min-width: var.$minWidth;
 	scrollbar-gutter: stable;
 }
 body {
 	line-height: 1;
 	font-family: var.$fontFamily;
-	//text-rendering: optimizeLegibility;
-	-ms-text-size-adjust: 100%;
-	-moz-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
-}
-@supports (font-variation-settings: normal) {
-	body {
-		font-family: var.$fontFamily;
-	}
+	text-size-adjust: 100%;
 }
 input,
 button,
 textarea {
 	font-family: var.$fontFamily;
 	appearance: none;
-	-webkit-appearance: none;
-}
-input::-ms-clear {
-	display: none;
 }
 input[type=number] {
-	-moz-appearance: textfield;
+	appearance: textfield;
 }
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
 	appearance: none;
-	-webkit-appearance: none;
 	margin: 0;
-}
-input[type=range] {
-	appearance: none;
-	-webkit-appearance: none;
 }
 input[type=range]::-webkit-slider-thumb {
 	appearance: none;
-	-webkit-appearance: none;
 }
 input[type=range]::-moz-range-thumb {
 	appearance: none;
-	-webkit-appearance: none;
 }
 button {
 	all: unset;
 	cursor: pointer;
 	background-color: inherit;
 }
-button::-moz-focus-inner {
-	all: unset;
-}
 a {
-    color: inherit;
+	color: inherit;
 }
 a[href^="http"]:empty::before {
 	content: attr(href);
@@ -133,5 +101,3 @@ dialog::backdrop {
 	inset: 0;
 	background: transparent;
 }
-//-webkit-overflow-scrolling: touch;
-//animation-play-state: paused !important;

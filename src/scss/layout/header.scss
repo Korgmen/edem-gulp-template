@@ -7,10 +7,6 @@
 
 	&__scroll-fix {}
 
-	&__container {
-		&--noanim {}
-	}
-
 	&__row {
 		transition: all $td $tf 0s;
 	}
