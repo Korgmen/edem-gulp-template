@@ -2,14 +2,14 @@
 
 .slider-scrollbar {
 	$p: &;
-	background-color: $c-main;
+	background-color: var(--c-main);
 	height: rem(3);
 	width: auto;
 	padding: rem(2) 0;
 	box-sizing: content-box;
 
 	&__drag {
-		background-color: $c-accent;
+		background-color: var(--c-accent);
 		height: 100%;
 		border-radius: 0;
 	}

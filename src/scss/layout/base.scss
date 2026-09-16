@@ -2,12 +2,8 @@
 
 body.page {
 	position: relative;
-	background-color: $c-accent;
-	color: $c-main;
-
-	&:has(input[name="theme"]:checked) {
-		// тут будет смена темы
-	}
+	background-color: var(--c-accent);
+	color: var(--c-main);
 
 	&::before {
 		content: '';
@@ -27,7 +23,7 @@ body.page {
 
 		&::before {
 			left: 0;
-			background-color: rgba($color: $c-main, $alpha: 0.2);
+			background-color: color-mix(in srgb, var(--c-main) 20%, transparent);
 			transition: background-color $td $tf 0s, backdrop-filter $td $tf 0s, left 0s ease 0s;
 			backdrop-filter: blur(rem(5));
 		}

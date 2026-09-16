@@ -13,7 +13,7 @@
 		max-width: rem(500);
 		margin: 0 auto;
 		padding: 0 $padding;
-		border: rem(1) solid $c-main;
+		border: rem(1) solid var(--c-main);
 		transition: padding $td $tf 0s;
 
 		&[open] {
@@ -44,7 +44,7 @@
 			flex-shrink: 0;
 			width: rem(16);
 			aspect-ratio: 1;
-			background-color: $c-main;
+			background-color: var(--c-main);
 			transition: all $td $tf 0s;
 
 			#{$p}__item[open] & {

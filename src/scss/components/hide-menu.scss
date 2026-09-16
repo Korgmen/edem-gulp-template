@@ -1,8 +1,8 @@
 @use 'abstracts' as *;
 
 .hide-menu {
-	background-color: $c-main;
-	color: $c-accent;
+	background-color: var(--c-main);
+	color: var(--c-accent);
 	width: rem(375);
 
 	&__close {
@@ -18,7 +18,7 @@
 	}
 
 	&__close-icon {
-		fill: $c-accent;
+		fill: var(--c-accent);
 		pointer-events: none;
 	}
 

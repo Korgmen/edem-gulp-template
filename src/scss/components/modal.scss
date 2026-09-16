@@ -20,7 +20,7 @@
 	&__close-icon {
 		width: rem(32);
 		height: rem(32);
-		fill: $c-main;
+		fill: var(--c-main);
 		pointer-events: none;
 	}
 

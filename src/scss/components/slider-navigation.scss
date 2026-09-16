@@ -9,7 +9,7 @@
 	&__link {
 		width: rem(48);
 		height: rem(48);
-		color: $c-main;
+		color: var(--c-main);
 		border: rem(1.5) solid currentColor;
 		display: flex;
 		justify-content: center;
@@ -20,7 +20,7 @@
 
 		@media (pointer: fine){
 			&:hover{
-				color: $c-45c95a;
+				color: var(--c-brand);
 			}
 		}
 
