@@ -61,7 +61,7 @@
 
 		tr {
 			th {
-				background-color: rgba($color: $c-main, $alpha: 0.05);
+				background-color: color-mix(in srgb, var(--c-main) 5%, transparent);
 				text-align: left;
 			}
 
@@ -69,7 +69,7 @@
 
 			th,
 			td {
-				border: rem(1) solid $c-main;
+				border: rem(1) solid var(--c-main);
 				border-style: none solid solid none;
 				padding: rem(8) rem(16);
 			}

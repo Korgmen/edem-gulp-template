@@ -9,7 +9,7 @@
 		display: block;
 		width: rem(24);
 		height: rem(24);
-		color: $c-main;
+		color: var(--c-main);
 		border: rem(1.5) solid currentColor;
 		border-radius: 0;
 		background-color: transparent;
@@ -19,13 +19,13 @@
 
 		@media (pointer: fine) {
 			#{$p}.clickable &:not(.active):hover {
-				color: $c-45c95a;
+				color: var(--c-brand);
 			}
 		}
 
 		&.active {
-			color: $c-main;
-			background-color: $c-main;
+			color: var(--c-main);
+			background-color: var(--c-main);
 		}
 	}
 }

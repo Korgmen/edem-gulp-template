@@ -43,7 +43,7 @@
 			aspect-ratio: 1;
 			border-radius: 50%;
 			border: rem(3) solid;
-			border-color: $c-main transparent;
+			border-color: var(--c-main) transparent;
 			animation: sending-form 1s infinite;
 			transition: all $td $tf 0s;
 
@@ -55,9 +55,9 @@
 		}
 
 		&.send {
-			background-color: $c-45c95a;
-			border-color: $c-45c95a;
-			color: $c-accent;
+			background-color: var(--c-brand);
+			border-color: var(--c-brand);
+			color: var(--c-accent);
 		}
 	}
 

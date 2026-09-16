@@ -1,8 +1,8 @@
 @use 'abstracts' as *;
 
 body {
-	color: $c-main;
-	background: $c-accent;
+	color: var(--c-main);
+	background: var(--c-accent);
 }
 
 .content {
@@ -38,8 +38,8 @@ body {
 .header {
 
 	&__scroll-fix {
-		background-color: $c-accent;
-		box-shadow: 0 0 rem(20) 0 rgba($color: $c-main, $alpha: 0.10);
+		background-color: var(--c-accent);
+		box-shadow: 0 0 rem(20) 0 color-mix(in srgb, var(--c-main) 10%, transparent);
 	}
 
 	&__container {}
@@ -97,8 +97,8 @@ body {
 
 .footer {
 	padding: rem(24) 0;
-	background: $c-main;
-	color: $c-accent;
+	background: var(--c-main);
+	color: var(--c-accent);
 
 	&__container {}
 
@@ -198,7 +198,7 @@ body {
 	&__slider {}
 
 	&__slide {
-		border: rem(1) solid $c-main;
+		border: rem(1) solid var(--c-main);
 		padding: rem(24) rem(32);
 		display: flex;
 		flex-direction: column;
@@ -222,7 +222,7 @@ body {
 	&__image-container {
 		width: 100%;
 		height: rem(250);
-		background-color: color-mix(in srgb, $c-main 20%, $c-accent 80%);
+		background-color: color-mix(in srgb, var(--c-main) 20%, var(--c-accent) 80%);
 	}
 
 	&__image {}
@@ -238,7 +238,7 @@ body {
 		font-size: rem(36);
 		font-weight: 550;
 		margin-bottom: rem(32);
-		border-bottom: rem(2) solid $c-main;
+		border-bottom: rem(2) solid var(--c-main);
 		padding-bottom: rem(16);
 	}
 
@@ -263,7 +263,7 @@ body {
 		font-size: rem(16);
 		font-weight: 500;
 		padding: rem(8) rem(16);
-		border-bottom: rem(1) solid $c-main;
+		border-bottom: rem(1) solid var(--c-main);
 		z-index: 0;
 
 		&::before {
@@ -278,7 +278,7 @@ body {
 			transition: all $td $tf 0s;
 
 			@at-root #{$p}__list-link:hover:before {
-				background-color: $c-main;
+				background-color: var(--c-main);
 			}
 		}
 	}
@@ -290,13 +290,13 @@ body {
 	flex-direction: column;
 	gap: rem(16) 0;
 	padding: rem(8);
-	border: rem(1) solid $c-main;
+	border: rem(1) solid var(--c-main);
 
 	&__group {
 		display: flex;
 		flex-direction: column;
 		gap: rem(16) 0;
-		border: rem(1) solid $c-main;
+		border: rem(1) solid var(--c-main);
 		padding: rem(16);
 	}
 
@@ -351,7 +351,7 @@ body {
 		}
 
 		&.send {
-			background-color: $c-45c95a;
+			background-color: var(--c-brand);
 		}
 	}
 
@@ -401,7 +401,7 @@ body {
 	}
 
 	&__item {
-		border: rem(1) solid $c-main;
+		border: rem(1) solid var(--c-main);
 		padding: rem(32) rem(24);
 		display: flex;
 		flex-direction: column;
@@ -418,7 +418,7 @@ body {
 
 		button {
 			height: rem(32);
-			border: rem(1) solid $c-main;
+			border: rem(1) solid var(--c-main);
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -431,8 +431,8 @@ body {
 
 			@media (pointer: fine) {
 				&:hover {
-					background-color: $c-main;
-					color: $c-accent;
+					background-color: var(--c-main);
+					color: var(--c-accent);
 				}
 			}
 		}
@@ -474,7 +474,7 @@ body {
 		transition: all $td $tf 0s;
 
 		@at-root #{$p}:not(:placeholder-shown)::after {
-			background-color: $c-main;
+			background-color: var(--c-main);
 		}
 	}
 }
@@ -488,7 +488,7 @@ body {
 	width: fit-content;
 	padding: rem(5) rem(16);
 	height: rem(36);
-	border: rem(1) solid $c-main;
+	border: rem(1) solid var(--c-main);
 	transition: all $td $tf 0s;
 
 	&--small {
@@ -534,11 +534,11 @@ body {
 		translate: 0 -100%;
 		top: rem(-4);
 		transition: all $td $tf 0s;
-		background-color: $c-main;
-		color: $c-accent;
+		background-color: var(--c-main);
+		color: var(--c-accent);
 		padding: rem(4) rem(12);
 		border-radius: rem(8);
-		box-shadow: 0 0 rem(20) 0 rgba($color: $c-main, $alpha: 0.10);
+		box-shadow: 0 0 rem(20) 0 color-mix(in srgb, var(--c-main) 10%, transparent);
 		text-align: center;
 		font-size: rem(12);
 		line-height: 150%;
@@ -599,18 +599,18 @@ body {
 	}
 
 	&__level-list {
-		background-color: $c-main;
+		background-color: var(--c-main);
 	}
 
 	&__level-list-item {
-		color: $c-accent;
+		color: var(--c-accent);
 		display: flex;
 		align-items: center;
 		transition: background-color $td $tf 0s;
 
 		@media (pointer: fine) {
 			&:hover {
-				background-color: color-mix(in srgb, $c-main 70%, $c-accent 30%);
+				background-color: color-mix(in srgb, var(--c-main) 70%, var(--c-accent) 30%);
 			}
 		}
 
@@ -672,8 +672,8 @@ body {
 
 	&.fill {
 		background-color: transparent;
-		border-color: $c-main;
-		color: $c-main;
+		border-color: var(--c-main);
+		color: var(--c-main);
 	}
 
 	&__input {
@@ -724,7 +724,7 @@ body {
 		transition: all $td $tf 0s;
 
 		#{$p}.fill & {
-			color: $c-main;
+			color: var(--c-main);
 		}
 	}
 
@@ -760,8 +760,8 @@ body {
 
 	&.fill {
 		background-color: transparent;
-		border-color: $c-main;
-		color: $c-main;
+		border-color: var(--c-main);
+		color: var(--c-main);
 	}
 
 	&__input {
@@ -830,8 +830,8 @@ body {
 
 	&.fill {
 		background-color: transparent;
-		border-color: $c-main;
-		color: $c-main;
+		border-color: var(--c-main);
+		color: var(--c-main);
 	}
 
 	&__input-container {
@@ -893,7 +893,7 @@ body {
 		transition: all $td $tf 0s;
 
 		#{$p}.fill & {
-			color: $c-main;
+			color: var(--c-main);
 		}
 	}
 
@@ -914,12 +914,12 @@ body {
 		&::before {
 			width: rem(40);
 			height: rem(20);
-			background-color: $c-accent;
-			border: rem(1) solid $c-main;
+			background-color: var(--c-accent);
+			border: rem(1) solid var(--c-main);
 			transition: all $td $tf 0s;
 
 			@at-root #{$p}__input:checked:before {
-				background-color: $c-main;
+				background-color: var(--c-main);
 			}
 		}
 
@@ -928,10 +928,10 @@ body {
 			width: calc(50% - $dotMargin * 2);
 			height: calc(100% - $dotMargin * 2);
 			margin: 0 $dotMargin;
-			background-color: $c-main;
+			background-color: var(--c-main);
 
 			@at-root #{$p}__input:checked:after {
-				background-color: $c-accent;
+				background-color: var(--c-accent);
 			}
 		}
 	}
@@ -950,14 +950,14 @@ body {
 			width: var(--width);
 			aspect-ratio: 1;
 			flex-shrink: 0;
-			border: rem(1) solid $c-main;
-			background: $c-accent;
+			border: rem(1) solid var(--c-main);
+			background: var(--c-accent);
 		}
 
 		&::after {
 			width: rem(8);
 			aspect-ratio: 1;
-			background: $c-main;
+			background: var(--c-main);
 		}
 	}
 
@@ -974,8 +974,8 @@ body {
 
 	&__label {
 		@at-root #{$p}__input:checked+& {
-			background-color: $c-main;
-			color: $c-accent;
+			background-color: var(--c-main);
+			color: var(--c-accent);
 		}
 	}
 }
@@ -994,23 +994,23 @@ body {
 	&:focus {
 		background-color: transparent;
 		border-color: #AAAAAA;
-		color: $c-main;
+		color: var(--c-main);
 	}
 
 	&.fill {
 		background-color: transparent;
-		border-color: $c-main;
-		color: $c-main;
+		border-color: var(--c-main);
+		color: var(--c-main);
 	}
 
 	@at-root input#{&}:not(:placeholder-shown) {
 		background-color: transparent;
-		border-color: $c-main;
-		color: $c-main;
+		border-color: var(--c-main);
+		color: var(--c-main);
 	}
 
 	&::placeholder {
-		color: color-mix(in srgb, $c-main 60%, $c-accent 40%);
+		color: color-mix(in srgb, var(--c-main) 60%, var(--c-accent) 40%);
 	}
 
 	&--textarea {
@@ -1033,8 +1033,8 @@ body {
 
 	&:valid {
 		background-color: transparent;
-		border-color: $c-main;
-		color: $c-main;
+		border-color: var(--c-main);
+		color: var(--c-main);
 	}
 }
 

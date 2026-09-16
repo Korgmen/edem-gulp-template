@@ -16,13 +16,13 @@
 		flex: 1 1;
 
 		&.active {
-			color: $c-accent;
-			background-color: $c-main;
+			color: var(--c-accent);
+			background-color: var(--c-main);
 		}
 	}
 
 	&__content-list {
-		border: rem(1) solid $c-main;
+		border: rem(1) solid var(--c-main);
 		padding: rem(15);
 		max-width: rem(500);
 	}

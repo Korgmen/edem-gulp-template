@@ -2,11 +2,11 @@
 
 .notify {
 	$p: &;
-	background-color: $c-accent;
-	color: $c-main;
+	background-color: var(--c-accent);
+	color: var(--c-main);
 	max-width: rem(400);
 	padding: lineScale(16,8) rem(32) lineScale(16,8) lineScale(16,8);
-	box-shadow: 0 0 rem(10) rgba($color: $c-main, $alpha: 0.15);
+	box-shadow: 0 0 rem(10) color-mix(in srgb, var(--c-main) 15%, transparent);
 
 	@media (max-width:$md4){
 		width: 100%;

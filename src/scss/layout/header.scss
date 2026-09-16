@@ -3,7 +3,7 @@
 .header {
 	--header-height: #{rem(100)};
 	--header-scroll-height: #{rem(80)};
-	--header-bgcolor: #{$c-accent};
+	--header-bgcolor: var(--c-accent);
 
 	&__scroll-fix {}
 
