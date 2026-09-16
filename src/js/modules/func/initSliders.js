@@ -1,32 +1,26 @@
+import initOnce from '../utils/initOnce.js';
 import toggleClass from '../utils/toggleClass.js';
+import { devWarn } from '../utils/devLog.js';
 
 // Слайдер [readme 2.3]
-export default () => {
-	try {
-		// Находим все слайдеры
-		const sliders = document.querySelectorAll('.js_slider');
-		if (!sliders.length) throw new Error('Слайдеры с классом "js_slider" не найдены.');
+// Готовит разметку под Swiper: сама библиотека подключается в modules/lib-control/sliders.js
+export const init = (root = document) => {
+	initOnce(root, '.js_slider', 'initSliders', slider => {
+		toggleClass(slider, 'swiper', true);
 
-		sliders.forEach(slider => {
-			// Добавляем класс для инициализации Swiper
-			toggleClass(slider, 'swiper', true);
+		// Слайды берутся только ближайшего уровня, чтобы не задеть вложенные слайдеры
+		const slides = slider.querySelectorAll(':scope > .js_slide');
+		if (!slides.length) {
+			devWarn('initSliders', 'в слайдере нет слайдов .js_slide', slider);
+			return;
+		}
 
-			// Находим слайды только ближайшего уровня, чтобы избежать проблем с вложенными друг в друга слайдерами
-			const slides = slider.querySelectorAll(':scope > .js_slide');
-			if (!slides.length) throw new Error('Слайды с классом "js_slide" не найдены для слайдера:', slider);
+		slides.forEach(slide => toggleClass(slide, 'swiper-slide', true));
 
-			// Добавляем класс для каждого слайда
-			slides.forEach(slide => toggleClass(slide, 'swiper-slide', true));
+		const sliderWrapper = document.createElement('div');
+		toggleClass(sliderWrapper, 'swiper-wrapper', true);
+		sliderWrapper.append(...slides);
 
-			// Создаём обёртку для слайдов
-			const sliderWrapper = document.createElement('div');
-			toggleClass(sliderWrapper, 'swiper-wrapper', true);
-			sliderWrapper.append(...slides);
-
-			// Вставляем обёртку в слайдер
-			slider.insertAdjacentElement('afterBegin', sliderWrapper);
-		});
-	} catch (err) {
-		console.error('Ошибка в модуле initSliders:', err.message, err.stack);
-	}
+		slider.insertAdjacentElement('afterBegin', sliderWrapper);
+	});
 };

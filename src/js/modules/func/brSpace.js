@@ -1,12 +1,6 @@
-// Пробелы после тега <br> [readme 1.2]
-export default () => {
-	try {
-		const brElements = document.querySelectorAll('br');
+import initOnce from '../utils/initOnce.js';
 
-		brElements.forEach(br => {
-			br.insertAdjacentHTML('afterend', ' ');
-		});
-	} catch (err) {
-		console.error('Ошибка при добавлении пробелов после <br>:', err.message, err.stack);
-	}
+// Пробелы после тега <br> [readme 2.4]
+export const init = (root = document) => {
+	initOnce(root, 'br', 'brSpace', br => br.insertAdjacentHTML('afterend', ' '));
 };

@@ -1,26 +1,24 @@
-import getElementOrThrow from '../utils/getElementOrThrow.js';
+import initOnce from '../utils/initOnce.js';
 import toggleClass from '../utils/toggleClass.js';
+import { devWarn } from '../utils/devLog.js';
 
 // Логика файлового поля ввода [readme 3.6]
-try {
-	const fileInputs = document.querySelectorAll('.js_file-input');
-
-	fileInputs.forEach(file => {
+export const init = (root = document) => {
+	initOnce(root, '.js_file-input', 'fileInput', file => {
 		const fileParent = file.closest('.js_file');
-		const fileLabel = getElementOrThrow(`[for="${file.id}"]`);
+		const fileLabel = file.id && document.querySelector(`[for="${file.id}"]`);
+
+		if (!fileLabel) {
+			devWarn('fileInput', 'не найден label для поля — имя файла не будет показано', file);
+			return;
+		}
+
 		const fileLabelText = fileLabel.textContent;
 
 		file.addEventListener('change', () => {
 			const fileValue = file.value;
-			if (fileValue) {
-				fileLabel.textContent = fileValue.split(/(\\|\/)/g).pop();
-				toggleClass(fileParent, 'fill', true);
-			} else {
-				fileLabel.textContent = fileLabelText;
-				toggleClass(fileParent, 'fill', false);
-			}
+			fileLabel.textContent = fileValue ? fileValue.split(/(\\|\/)/g).pop() : fileLabelText;
+			toggleClass(fileParent, 'fill', Boolean(fileValue));
 		});
 	});
-} catch (err) {
-	console.error('Ошибка в модуле fileInput:', err.message, err.stack);
-}
+};

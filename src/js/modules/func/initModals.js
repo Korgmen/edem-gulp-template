@@ -1,58 +1,48 @@
+import initOnce from '../utils/initOnce.js';
 import pageLock from '../tech/pageLock.js';
-import getElementOrThrow from '../utils/getElementOrThrow.js';
+import { devWarn } from '../utils/devLog.js';
 
 // Модальные окна [readme 2.7]
-export default () => {
-	try {
-		const modalLinks = document.querySelectorAll('[data-modal]');
-		const modals = document.querySelectorAll('dialog');
+export const init = (root = document) => {
+	initOnce(root, '[data-modal]', 'initModals', link => {
+		link.addEventListener('click', () => {
+			const modalID = link.dataset.modal;
+			const modal = document.getElementById(modalID);
 
-		if (!modalLinks.length || !modals.length) throw new Error('Модальные окна или ссылки для их открытия не найдены.');
+			if (!modal) {
+				devWarn('initModals', `не найдено модальное окно #${modalID}`, link);
+				return;
+			}
 
-		// Открытие модального окна
-		modalLinks.forEach(link => {
-			link.addEventListener('click', () => {
-				try {
-					const modalID = link.dataset.modal;
-					const modal = getElementOrThrow(`#${modalID}`);
+			pageLock('lock', true, modalID);
+			modal.showModal();
+			history.pushState({ modal: modalID }, '', `#${modalID}`);
+		});
+	});
 
-					pageLock('lock', true, modalID);
-					modal.showModal();
-					history.pushState({ modal: modalID }, '', `#${modalID}`);
-				} catch (err) {
-					console.error('Ошибка при открытии модального окна:', err.message, err.stack);
-				}
-			});
+	initOnce(root, 'dialog', 'initModals', modal => {
+		// Закрытие при клике вне модального окна
+		modal.addEventListener('click', (e) => {
+			if (e.target.nodeName === 'DIALOG') modal.close();
 		});
 
+		modal.addEventListener('close', () => {
+			if (!document.querySelector('dialog[open]')) pageLock('unlock');
+			if (history.state?.modal === modal.id) history.back();
+		});
+
+		// Сброс хэша при перезагрузке страницы
+		if (window.location.hash === `#${modal.id}`) {
+			history.replaceState(null, document.title, location.pathname + location.search);
+		}
+	});
+
+	// Слушатель истории один на страницу, независимо от числа окон
+	if (root === document) {
 		window.addEventListener('popstate', (e) => {
-			modals.forEach(modal => {
+			document.querySelectorAll('dialog').forEach(modal => {
 				if (modal.open && e.state?.modal !== modal.id) modal.close();
 			});
 		});
-
-		// Закрытие модального окна
-		modals.forEach(modal => {
-			// Закрытие при клике вне модального окна
-			modal.addEventListener('click', (e) => {
-				if (e.target.nodeName === 'DIALOG') modal.close();
-			});
-
-			modal.addEventListener('close', () => {
-				try {
-					if (!document.querySelector('dialog[open]')) pageLock('unlock');
-					if (history.state?.modal === modal.id) history.back();
-				} catch (err) {
-					console.error('Ошибка при закрытии модального окна:', err.message, err.stack);
-				}
-			});
-
-			// Сброс хэша при перезагрузке страницы
-			if (window.location.hash === `#${modal.id}`) {
-				history.replaceState(null, document.title, location.pathname + location.search);
-			}
-		});
-	} catch (err) {
-		console.error('Ошибка в модуле initModals:', err.message, err.stack);
 	}
 };

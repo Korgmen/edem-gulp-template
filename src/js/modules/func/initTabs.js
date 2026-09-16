@@ -1,43 +1,108 @@
+import initOnce from '../utils/initOnce.js';
 import toggleClass from '../utils/toggleClass.js';
+import { devWarn } from '../utils/devLog.js';
+
+let tabsGroup = 0;
 
 // Табы [readme 2.2]
-export default () => {
-	try {
-		const tabs = document.querySelectorAll('.js_tab');
-		if (!tabs.length) throw new Error('Блоки табов с классом "js_tab" не найдены.');
+export const init = (root = document) => {
+	initOnce(root, '.js_tab', 'initTabs', tab => {
+		const tabLinks = [...tab.querySelectorAll('.js_tab-link')];
+		const tabContents = [...tab.querySelectorAll('.js_tab-content')];
+		const tabContentContainer = tab.querySelector('.js_tab-content-container');
 
-		for (let tab of tabs) {
-			const tabLinks = tab.querySelectorAll('.js_tab-link');
-			const tabContentContainer = tab.querySelector('.js_tab-content-container');
-			const tabContent = tab.querySelectorAll('.js_tab-content');
-
-			if (!tabLinks.length || !tabContent.length) throw new Error('Элементы табов (js_tab-link или js_tab-content) не найдены в блоке:', tab);
-
-			window.addEventListener('load', () => {
-				tabLinks.forEach((tabLink, i) => {
-					if (tabContent[i].classList.contains('active')) {
-						tabContentContainer.style.setProperty('--max-height', `${tabContent[i].scrollHeight}px`);
-					}
-
-					tabContent[i].style.setProperty('--max-height', `${tabContent[i].scrollHeight}px`);
-
-					tabLink.addEventListener('click', () => {
-						tabContentContainer.style.setProperty('--max-height', `${tabContent[i].scrollHeight}px`);
-
-						if (!tabLink.classList.contains('active')) {
-							tabLinks.forEach((link, index) => {
-								toggleClass(link, 'active', false);
-								toggleClass(tabContent[index], 'active', false);
-							});
-						}
-
-						tabLink.classList.toggle('active');
-						tabContent[i].classList.toggle('active');
-					});
-				});
-			});
+		if (!tabLinks.length || !tabContents.length) {
+			devWarn('initTabs', 'нужны .js_tab-link и .js_tab-content — блок пропущен', tab);
+			return;
 		}
-	} catch (err) {
-		console.error('Ошибка в модуле initTabs:', err.message, err.stack);
-	}
+
+		// В "пустом режиме" активный таб можно свернуть повторным кликом
+		const isEmptyMode = tab.classList.contains('js_tab--empty');
+		const group = ++tabsGroup;
+
+		tabLinks[0].parentElement?.setAttribute('role', 'tablist');
+
+		tabLinks.forEach((link, i) => {
+			const content = tabContents[i];
+			if (!content) return;
+
+			link.id ||= `tab-${group}-${i}`;
+			content.id ||= `tabpanel-${group}-${i}`;
+
+			if (link.tagName === 'BUTTON') link.type = 'button';
+			link.setAttribute('role', 'tab');
+			link.setAttribute('aria-controls', content.id);
+			content.setAttribute('role', 'tabpanel');
+			content.setAttribute('aria-labelledby', link.id);
+		});
+
+		const syncAria = () => {
+			tabLinks.forEach((link, i) => {
+				const selected = link.classList.contains('active');
+				link.setAttribute('aria-selected', String(selected));
+				// В группе табов фокус получает только активный, остальные обходятся стрелками
+				link.tabIndex = selected ? 0 : -1;
+				tabContents[i]?.toggleAttribute('inert', !selected);
+			});
+		};
+
+		// На узкой ширине текст переносится и высота панели меняется
+		const updateHeights = () => {
+			tabContents.forEach(content => content.style.setProperty('--max-height', `${content.scrollHeight}px`));
+
+			const active = tabContents.find(content => content.classList.contains('active'));
+			tabContentContainer?.style.setProperty('--max-height', `${active ? active.scrollHeight : 0}px`);
+		};
+
+		const activate = (index) => {
+			const link = tabLinks[index];
+			const content = tabContents[index];
+			if (!link || !content) return;
+
+			const wasActive = link.classList.contains('active');
+
+			tabLinks.forEach((item, i) => {
+				toggleClass(item, 'active', false);
+				toggleClass(tabContents[i], 'active', false);
+			});
+
+			if (!(isEmptyMode && wasActive)) {
+				toggleClass(link, 'active', true);
+				toggleClass(content, 'active', true);
+			}
+
+			updateHeights();
+			syncAria();
+		};
+
+		tabLinks.forEach((link, i) => {
+			link.addEventListener('click', () => activate(i));
+
+			link.addEventListener('keydown', (e) => {
+				const step = { ArrowRight: 1, ArrowLeft: -1, Home: -Infinity, End: Infinity }[e.key];
+				if (step === undefined) return;
+
+				e.preventDefault();
+				const next = Number.isFinite(step)
+					? (i + step + tabLinks.length) % tabLinks.length
+					: (step < 0 ? 0 : tabLinks.length - 1);
+
+				tabLinks[next].focus();
+				activate(next);
+			});
+		});
+
+		updateHeights();
+		syncAria();
+
+		if (tabContentContainer) {
+			let lastWidth = tabContentContainer.clientWidth;
+			new ResizeObserver(() => {
+				// Переключение таба меняет высоту контейнера, пересчёт нужен только на смену ширины
+				if (tabContentContainer.clientWidth === lastWidth) return;
+				lastWidth = tabContentContainer.clientWidth;
+				updateHeights();
+			}).observe(tabContentContainer);
+		}
+	});
 };

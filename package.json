@@ -65,8 +65,8 @@
   },
   "dependencies": {
     "@caneara/iodine": "^8.5.0",
-    "@fancyapps/ui": "^6.1.6",
     "imask": "^7.6.1",
+    "photoswipe": "^5.4.4",
     "swiper": "^12.0.3"
   }
 }
