@@ -7,7 +7,6 @@
 
 	&__list-item {
 		position: relative;
-		cursor: pointer;
 	}
 
 	&__list-link {}
@@ -16,11 +15,17 @@
 		flex-shrink: 0;
 		aspect-ratio: 1;
 
-		#{$p}__list-item:hover>& {
+		#{$p}__list-item:focus-within > & {
 			rotate: -180deg;
 		}
 
-		#{$p}__level-list-item>& {
+		@media (hover: hover) {
+			#{$p}__list-item:hover > & {
+				rotate: -180deg;
+			}
+		}
+
+		#{$p}__level-list-item > & {
 			rotate: -90deg;
 		}
 	}
@@ -29,19 +34,25 @@
 		position: absolute;
 		top: 100%;
 		left: 0;
-		opacity: 0;
-		pointer-events: none;
 		z-index: 1;
-		transition: all $td $tf 0s;
+		opacity: 0;
+		visibility: hidden;
+		transition:
+			opacity $td $tf,
+			visibility $td $tf;
 
-		#{$p}__list-item:not(._on-click):hover>& {
+		#{$p}__list-item:focus-within > &,
+		#{$p}__level-list-item:focus-within > & {
 			opacity: 1;
-			pointer-events: initial;
+			visibility: visible;
 		}
 
-		#{$p}__level-list-item:not(._on-click):hover>& {
-			opacity: 1;
-			pointer-events: initial;
+		@media (hover: hover) {
+			#{$p}__list-item:hover > &,
+			#{$p}__level-list-item:hover > & {
+				opacity: 1;
+				visibility: visible;
+			}
 		}
 
 		&--inside {
@@ -60,10 +71,12 @@
 
 	&__level-list-item {
 		position: relative;
-		cursor: pointer;
 	}
 
 	&__level-list-link {
+		// Сброс button задаёт background-color: inherit — без явного transparent
+		// фон ссылки задваивается поверх анимированного фона строки при hover
+		background: transparent;
 		white-space: nowrap;
 	}
 }
