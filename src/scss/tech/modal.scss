@@ -1,6 +1,7 @@
 @use 'abstracts' as *;
 
 [data-modal] {
+	--modal-duration: #{$td};
 	position: fixed;
 	inset: 0;
 	margin: auto;
@@ -9,9 +10,9 @@
 	z-index: 10;
 	opacity: 0;
 	transition:
-		opacity $td $tf,
-		display $td allow-discrete,
-		overlay $td allow-discrete;
+		opacity var(--modal-duration) $tf,
+		display var(--modal-duration) allow-discrete,
+		overlay var(--modal-duration) allow-discrete;
 
 	&::backdrop {
 		cursor: pointer;

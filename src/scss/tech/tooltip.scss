@@ -1,6 +1,7 @@
 @use 'abstracts' as *;
 
 [data-tooltip] {
+	--tooltip-duration: #{$td};
 	position: relative;
 	width: fit-content;
 	display: inline-flex;
@@ -18,8 +19,8 @@
 	opacity: 0;
 	visibility: hidden;
 	transition:
-		opacity $td $tf,
-		visibility $td $tf;
+		opacity var(--tooltip-duration) $tf,
+		visibility var(--tooltip-duration) $tf;
 
 	// :focus-visible браузер ставит при вводе с клавиатуры, но не по клику мышью
 	[data-tooltip]:has([data-tooltip-button]:focus-visible) & {

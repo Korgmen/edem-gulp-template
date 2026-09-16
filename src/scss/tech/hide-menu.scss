@@ -1,7 +1,7 @@
 @use 'abstracts' as *;
 
 [data-hide-menu] {
-	$td: 0.8s;
+	--hide-menu-duration: 0.8s;
 	position: fixed;
 	inset: 0 0 auto auto;
 	margin: 0;
@@ -10,9 +10,9 @@
 	overflow-y: scroll;
 	translate: 100% 0;
 	transition:
-		translate $td $tf,
-		display $td allow-discrete,
-		overlay $td allow-discrete;
+		translate var(--hide-menu-duration) $tf,
+		display var(--hide-menu-duration) allow-discrete,
+		overlay var(--hide-menu-duration) allow-discrete;
 
 	@media (max-width:$md4) {
 		width: 100vw;

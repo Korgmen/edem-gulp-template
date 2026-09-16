@@ -5,6 +5,8 @@
 
 	&__list {}
 
+	--navigation-duration: #{$td};
+
 	&__list-item {
 		position: relative;
 	}
@@ -38,8 +40,8 @@
 		opacity: 0;
 		visibility: hidden;
 		transition:
-			opacity $td $tf,
-			visibility $td $tf;
+			opacity var(--navigation-duration) $tf,
+			visibility var(--navigation-duration) $tf;
 
 		#{$p}__list-item:focus-within > &,
 		#{$p}__level-list-item:focus-within > & {

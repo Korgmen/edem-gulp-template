@@ -1,22 +1,24 @@
 @use 'abstracts' as *;
 
 [data-notify] {
+	--notify-duration: #{$td};
+	--notify-offset: #{rem(16)};
 	position: fixed;
-	inset: auto auto 0 rem(16);
+	inset: auto auto 0 var(--notify-offset);
 	margin: 0;
 	z-index: 4;
 	overflow: hidden;
-	translate: 0 calc(100% + #{rem(16)});
+	translate: 0 calc(100% + var(--notify-offset));
 	transition:
-		translate $td $tf,
-		display $td allow-discrete,
-		overlay $td allow-discrete;
+		translate var(--notify-duration) $tf,
+		display var(--notify-duration) allow-discrete,
+		overlay var(--notify-duration) allow-discrete;
 
 	&:popover-open {
-		translate: 0 rem(-16);
+		translate: 0 calc(var(--notify-offset) * -1);
 
 		@starting-style {
-			translate: 0 calc(100% + #{rem(16)});
+			translate: 0 calc(100% + var(--notify-offset));
 		}
 	}
 
@@ -25,15 +27,6 @@
 	}
 
 	@media (max-width:$md4) {
-		inset: auto auto 0 0;
-		translate: 0 100%;
-
-		&:popover-open {
-			translate: 0;
-
-			@starting-style {
-				translate: 0 100%;
-			}
-		}
+		--notify-offset: 0px;
 	}
 }
