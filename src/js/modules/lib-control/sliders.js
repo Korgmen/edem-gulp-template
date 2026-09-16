@@ -1,7 +1,12 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Scrollbar, Mousewheel, Autoplay, EffectFade } from 'swiper/modules';
+import { init as prepareSliders } from '../func/initSliders.js';
 
-try {
+// Слайдеры [readme 4.1]
+export const init = (root = document) => {
+	// Swiper падает без готовой обёртки .swiper-wrapper, поэтому разметка строится до его вызова
+	prepareSliders(root);
+
 	const exampleSlider = new Swiper('[data-swiper-id="example"]', {
 		modules: [Navigation, Pagination, Autoplay, Scrollbar, Mousewheel, EffectFade],
 		slidesPerView: 3, // сколько слайдов будет показано за раз (можно использовать настройку 'auto')
@@ -76,4 +81,4 @@ try {
 		});
 	}
 	////Код для переключения активного пункта пагинации для кастомной пагинации==========
-} catch (err) { console.log(err) }
+};

@@ -1,29 +1,25 @@
+import initOnce from '../utils/initOnce.js';
 import { showCustomNotify } from './initNotify.js';
 
 // Копирование текста в буфер [readme 2.12]
-export default () => {
-	try {
-		const copyTexts = document.querySelectorAll('[data-copy]');
+export const init = (root = document) => {
+	initOnce(root, '[data-copy]', 'copyWithClick', element => {
+		element.addEventListener('click', async (e) => {
+			const textToCopy = element.dataset.copy;
 
-		copyTexts.forEach(text => {
-			text.addEventListener('click', (e) => {
-				try {
-					const textToCopy = text.dataset.copy;
-					if (!textToCopy) {
-						throw new Error('Атрибут data-copy отсутствует или пуст.');
-					}
+			if (!textToCopy) {
+				e.preventDefault();
+				showCustomNotify('⛔ Нечего копировать: атрибут data-copy пуст');
+				return;
+			}
 
-					navigator.clipboard.writeText(textToCopy)
-						.then(() => console.log(`Текст "${textToCopy}" успешно скопирован в буфер обмена.`))
-						.catch(err => console.error('Ошибка при копировании текста в буфер:', err.message));
-				} catch (err) {
-					e.preventDefault();
-					showCustomNotify('⛔ Ошибка при копировании текста в буфер обмена');
-					console.error('Ошибка при обработке клика для копирования:', err.message, err.stack);
-				}
-			});
+			try {
+				await navigator.clipboard.writeText(textToCopy);
+				showCustomNotify(element.dataset.copyMessage || '✅ Скопировано');
+			} catch {
+				e.preventDefault();
+				showCustomNotify('⛔ Ошибка при копировании текста в буфер обмена');
+			}
 		});
-	} catch (err) {
-		console.error('Ошибка в модуле copyWithClick:', err.message, err.stack);
-	}
+	});
 };

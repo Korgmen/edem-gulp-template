@@ -1,13 +1,28 @@
-import { Fancybox } from '@fancyapps/ui';
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import initOnce from '../utils/initOnce.js';
+import { devWarn } from '../utils/devLog.js';
 
-// самая удобная настройка для галерей, скрывает все элементы управления, кроме закрывашки и листалок
-Fancybox.bind('[data-fancybox]', {
-	hideScrollbar: false,
-	Toolbar: {
-		display: {
-			left: [],
-			middle: [],
-			right: ["close"],
-		},
-	}
-});
+// Галереи изображений [readme 4.2]
+// Ядро PhotoSwipe (около 50 КБ) подгружается только при первом открытии галереи
+export const init = (root = document) => {
+	initOnce(root, '.js_gallery', 'galleries', gallery => {
+		const links = gallery.querySelectorAll('a[href]');
+		if (!links.length) return;
+
+		if (__DEV__) {
+			links.forEach(link => {
+				if (!link.dataset.pswpWidth || !link.dataset.pswpHeight) {
+					devWarn('galleries', 'у ссылки нет data-pswp-width и data-pswp-height — изображение откроется в неверном масштабе', link);
+				}
+			});
+		}
+
+		const lightbox = new PhotoSwipeLightbox({
+			gallery,
+			children: 'a[href]',
+			pswpModule: () => import('photoswipe'),
+		});
+
+		lightbox.init();
+	});
+};

@@ -28,6 +28,8 @@ const options = {
 	target: getTargets(),
 	minify: app.isBuild,
 	sourcemap: app.isDev ? 'linked' : false,
+	// Флаг для веток диагностики в модулях: в прод-сборке esbuild вырезает их целиком
+	define: { __DEV__: String(app.isDev) },
 	logLevel: 'warning',
 	logOverride: { 'equals-negative-zero': 'silent' },
 };

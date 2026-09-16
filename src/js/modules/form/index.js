@@ -1,79 +1,16 @@
-import toggleClass from '../utils/toggleClass.js'
+import * as telInput from './telInput.js';
+import * as select from './select.js';
+import * as numberInput from './numberInput.js';
+import * as rangeInput from './rangeInput.js';
+import * as dualRangeInput from './dualRangeInput.js';
+import * as fileInput from './fileInput.js';
 
-import './telInput.js'
-import './select.js'
-import './numberInput.js'
-import './rangeInput.js'
-import './dualRangeInput.js'
-import './fileInput.js'
-
-//Сообщение об отправке формы (для MODX-расширения FetchIt)
-try {
-	const forms = document.querySelectorAll('form.form');
-	forms.forEach(form => {
-		const formButton = form.querySelector('.form__button');
-		if (!formButton) return;
-		const formButtonContent = formButton.innerHTML;
-
-		const handleSuccess = (e) => {
-			if (e.detail?.form !== form) return; // событие приходит на document от любой формы
-
-			form.querySelectorAll('.fill').forEach(el => toggleClass(el, 'fill', false));
-			toggleClass(formButton, 'send', true);
-			formButton.innerHTML = 'Отправлено';
-			setTimeout(() => {
-				toggleClass(formButton, 'send', false);
-				formButton.innerHTML = formButtonContent;
-			}, 3000);
-		};
-
-		document.addEventListener('fetchit:success', handleSuccess);
-	});
-} catch (err) {
-	console.error('Ошибка в логике сообщения об отправке формы:', err.message, err.stack);
-}
-
-//Работа библиотеки iodine (для MODX-расширения FetchIt)
-function validateForm(e, rules) {
-	const { formData, fetchit } = e.detail;
-	const fields = Object.fromEntries(formData.entries());
-	const validation = Iodine.assert(fields, rules);
-
-	if (validation.valid) {
-		return;
-	}
-
-	e.preventDefault();
-
-	for (const [name, field] of Object.entries(validation.fields)) {
-		if (field.valid) {
-			fetchit.clearError(name);
-			continue;
-		}
-		fetchit.setError(name, field.error);
-	}
-}
-
-document.addEventListener('fetchit:before', (e) => {
-	Iodine.setErrorMessages({
-		required: `Необходимо заполнить это поле`,
-		email: `Email адрес введен некорректно`,
-		minLength: `Имя должно быть длиннее двух символов`,
-		regexMatch: `Номер телефона введен некорректно`
-	});
-
-	const rules = {
-		name: ['required', 'minLength:2'],
-		phoneRussia: ['required', 'regexMatch:\\+7\\s\\(\\d{3}\\)\\s\\d{3}\\-\\d{2}\\-\\d{2}'],
-		phoneCanada: ['required', 'regexMatch:\\+1\\s\\d{3}\\-\\d{3}\\-\\d{4}'],
-		email: ['required', 'email']
-	};
-
-	if (e.detail.form.classList.contains('js_request-form')) {
-		validateForm(e, rules);
-	}
-
-	if (e.detail.form.classList.contains('js_next-form')) {
-		validateForm(e, rules);
-	}
-});
+// Модули полей формы [readme 3]
+export const init = (root = document) => {
+	telInput.init(root);
+	select.init(root);
+	numberInput.init(root);
+	rangeInput.init(root);
+	dualRangeInput.init(root);
+	fileInput.init(root);
+};

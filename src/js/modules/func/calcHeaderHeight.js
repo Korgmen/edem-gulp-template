@@ -1,13 +1,12 @@
-import getElementOrThrow from '../utils/getElementOrThrow.js';
+// Высота шапки [readme 2.13]
+// Переменная нужна на :root: scroll-padding-top стоит на html и переменные из body туда не наследуются
+export const init = () => {
+	const header = document.querySelector('header');
+	if (!header) return;
 
-// Высота шапки [readme 2.14]
-export default () => {
-	try {
-		const header = getElementOrThrow('header');
-		const headerHeight = header.clientHeight;
+	const setHeight = () => document.documentElement.style
+		.setProperty('--header-height', `${header.offsetHeight / 16}rem`);
 
-		document.body.style.setProperty('--headerHeight', `${headerHeight / 16}rem`);
-	} catch (err) {
-		console.error('Ошибка при вычислении высоты шапки:', err.message, err.stack);
-	}
+	setHeight();
+	new ResizeObserver(setHeight).observe(header);
 };

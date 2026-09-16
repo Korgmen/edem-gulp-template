@@ -1,43 +1,41 @@
-import toggleClass from '../utils/toggleClass.js'
-import getElementOrThrow from '../utils/getElementOrThrow.js'
+import initOnce from '../utils/initOnce.js';
+import toggleClass from '../utils/toggleClass.js';
+import { requireChild } from '../utils/devLog.js';
 
-function calculatePercentage(value, min, max) {
-	return ((Number(value) - Number(min)) / (Number(max) - Number(min))) * 100;
-}
+const calculatePercentage = (value, min, max) =>
+	((Number(value) - Number(min)) / (Number(max) - Number(min))) * 100;
 
 // Логика ползунка [readme 3.4]
-try {
-	const rangeBlocks = document.querySelectorAll('.js_range');
+export const init = (root = document) => {
+	initOnce(root, '.js_range', 'rangeInput', rangeBlock => {
+		const rangeInput = requireChild(rangeBlock, 'input', 'rangeInput');
+		const rangeVal = requireChild(rangeBlock, '.js_range-val', 'rangeInput');
+		if (!rangeInput || !rangeVal) return;
 
-	window.addEventListener('DOMContentLoaded', function () {
-		rangeBlocks.forEach(rangeBlock => {
-			const rangeParent = rangeBlock.parentElement;
-			const rangeInput = getElementOrThrow('input', rangeBlock);
-			const rangeInputMax = rangeInput?.getAttribute('max');
-			const rangeInputMin = rangeInput?.getAttribute('min');
-			const rangeVal = getElementOrThrow('.js_range-val', rangeBlock);
+		const rangeParent = rangeBlock.parentElement;
+		const rangeInputMin = rangeInput.getAttribute('min') ?? 0;
+		const rangeInputMax = rangeInput.getAttribute('max') ?? 100;
 
-			rangeInput.addEventListener('input', function () {
-				toggleClass(rangeBlock, 'fill', false);
-				toggleClass(rangeParent, 'fill', false);
-			});
-
-			rangeInput.addEventListener('change', function () {
-				toggleClass(rangeBlock, 'fill', true);
-				toggleClass(rangeParent, 'fill', true);
-			});
-
-			rangeVal.innerHTML = Number(rangeInputMax).toLocaleString();
-			rangeVal.parentNode.style.setProperty('--maxval-width', rangeVal.parentNode.scrollWidth + 'px');
-			rangeVal.innerHTML = Number(rangeInput.value).toLocaleString();
-			rangeInput.style.setProperty('--cur-perc', calculatePercentage(rangeInput.value, rangeInputMin, rangeInputMax) + '%');
-
-			rangeInput.addEventListener('input', function () {
-				rangeVal.innerHTML = Number(this.value).toLocaleString();
-				rangeInput.style.setProperty('--cur-perc', calculatePercentage(this.value, rangeInputMin, rangeInputMax) + '%');
-			});
+		rangeInput.addEventListener('input', () => {
+			toggleClass(rangeBlock, 'fill', false);
+			toggleClass(rangeParent, 'fill', false);
 		});
+
+		rangeInput.addEventListener('change', () => {
+			toggleClass(rangeBlock, 'fill', true);
+			toggleClass(rangeParent, 'fill', true);
+		});
+
+		// Ширина поля фиксируется по самому длинному значению, чтобы разметка не прыгала при перетаскивании
+		rangeVal.innerHTML = Number(rangeInputMax).toLocaleString();
+		rangeVal.parentNode.style.setProperty('--maxval-width', `${rangeVal.parentNode.scrollWidth}px`);
+
+		const update = () => {
+			rangeVal.innerHTML = Number(rangeInput.value).toLocaleString();
+			rangeInput.style.setProperty('--cur-perc', `${calculatePercentage(rangeInput.value, rangeInputMin, rangeInputMax)}%`);
+		};
+
+		update();
+		rangeInput.addEventListener('input', update);
 	});
-} catch (err) {
-	console.error('Ошибка в модуле rangeInput:', err.message, err.stack);
-}
+};

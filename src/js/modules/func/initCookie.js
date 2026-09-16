@@ -1,28 +1,20 @@
-import getElementOrThrow from '../utils/getElementOrThrow.js';
+import { requireChild } from '../utils/devLog.js';
 
 // Куки-оповещалка [readme 2.11]
-export default () => {
-	try {
-		const cookieWindow = getElementOrThrow('#cookie');
+export const init = (root = document) => {
+	const cookieWindow = (root === document ? document : root).querySelector('#cookie');
+	if (!cookieWindow) return;
 
-		if (localStorage.getItem('cookie-notify')) {
-			cookieWindow.remove();
-			return;
-		}
-
-		const cookieButton = getElementOrThrow('button', cookieWindow);
-
-		cookieButton.addEventListener('click', () => {
-			try {
-				localStorage.setItem('cookie-notify', '1');
-				setTimeout(() => {
-					cookieWindow.remove();
-				}, 1000);
-			} catch (err) {
-				console.error('Ошибка при сохранении состояния cookie-notify:', err.message, err.stack);
-			}
-		});
-	} catch (err) {
-		console.error('Ошибка в модуле initCookie:', err.message, err.stack);
+	if (localStorage.getItem('cookie-notify')) {
+		cookieWindow.remove();
+		return;
 	}
+
+	const cookieButton = requireChild(cookieWindow, 'button', 'initCookie');
+	if (!cookieButton) return;
+
+	cookieButton.addEventListener('click', () => {
+		localStorage.setItem('cookie-notify', '1');
+		setTimeout(() => cookieWindow.remove(), 1000);
+	}, { once: true });
 };

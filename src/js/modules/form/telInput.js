@@ -1,16 +1,9 @@
-// Логика поля ввода номера телефона [readme 3.1]
-try {
-	const telInputs = document.querySelectorAll('.js_tel-mask');
+import IMask from 'imask';
+import initOnce from '../utils/initOnce.js';
 
-	telInputs.forEach(telInput => {
-		try {
-			IMask(telInput, {
-				mask: '+{7} (000) 000-00-00',
-			});
-		} catch (err) {
-			console.error(`Ошибка при инициализации маски для элемента:`, telInput, err.message);
-		}
+// Логика поля ввода номера телефона [readme 3.1]
+export const init = (root = document) => {
+	initOnce(root, '.js_tel-mask', 'telInput', telInput => {
+		IMask(telInput, { mask: '+{7} (000) 000-00-00' });
 	});
-} catch (err) {
-	console.error('Ошибка в модуле telInput:', err.message, err.stack);
-}
+};
