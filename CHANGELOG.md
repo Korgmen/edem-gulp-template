@@ -3,6 +3,73 @@
 Все значимые изменения шаблона. Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 Форкам: смотрите разделы «Изменено» и «Исправлено», чтобы понять, что стоит перенести из шаблона в свой проект.
 
+## [1.4.0] — 16.09.2026
+
+**Форкам: этот выпуск меняет разметку.** Хуки `js_*` и технические классы `_*` заменены data-атрибутами, глобальные классы-состояния — ARIA-атрибутами и `data-state`. Таблицы соответствия — ниже, в разделе «Изменено».
+
+### Добавлено
+- Каскадные слои: `@layer base, vendors, tech, components, layout, theme`. Оформление компонента теперь всегда сильнее его механики независимо от специфичности селекторов и алфавитного порядка файлов. Порядок объявлен в `src/scss/main.scss`, содержимое слоёв подключается через `meta.load-css`. README — раздел «Каскадные слои».
+- Тёмная тема: цвета объявлены через `light-dark()`, схема следует системной настройке. Ручное переключение — атрибут `data-theme="light|dark"` на `<html>`. README — раздел «Темизация и работа с темами».
+- Настройки технических стилей вынесены в CSS-переменные: `--modal-duration`, `--hide-menu-duration`, `--burger-duration`, `--notify-duration`, `--notify-offset`, `--tabs-duration`, `--spoiler-duration`, `--tooltip-duration`, `--navigation-duration`. Переопределяются из стилей компонента, без переписывания самих переходов.
+- Компоненты `container` *(ширина, центрирование и боковые отступы)* и `appear` *(появление при прокрутке)*.
+- Утилита `setState(element, name, on)` для состояний в `data-state`.
+- README: разделы «Файлы index.scss», «Каскадные слои», «Подключение встроенных компонентов (data-атрибуты)», «Состояния компонентов», «Доступность разметки», «Настройки технических стилей» и описание компонента `navigation`.
+
+### Изменено
+- **Подключение компонентов — data-атрибуты вместо классов.** Один атрибут служит и точкой входа JS, и селектором технических стилей; классы отданы оформлению.
+
+  | Было | Стало |
+  | :--- | :--- |
+  | `js_tab`, `js_tab-link`, `js_tab-content-container`, `js_tab-content` | `data-tabs`, `data-tab-link`, `data-tab-panels`, `data-tab-panel` |
+  | `js_tab--slide`, `js_tab--noanim`, `js_tab--empty` | `data-tabs="slide"`, `data-tabs="noanim"`, `data-tabs="empty"` |
+  | `js_slider` + `data-swiper-id="имя"`, `js_slide` | `data-slider="имя"`, `data-slide` |
+  | `js_spoiler-item`, `js_spoiler-title`, `js_spoiler-content` | `data-spoiler`, `data-spoiler-title`, `data-spoiler-content` |
+  | `js_tooltip`, `js_tooltip-button`, `js_tooltip-body` | `data-tooltip`, `data-tooltip-button`, `data-tooltip-body` |
+  | `js_notify`, `js_notify-content` | `data-notify`, `data-notify-content` |
+  | `js_article-content`, `js_article-link`, `js_article-target` | `data-article`, `data-article-link`, `data-article-target` |
+  | `js_select`, `js_tel-mask`, `js_gallery`, `js_get-height`, `js_height-goal` | `data-select`, `data-tel-mask`, `data-gallery`, `data-get-height`, `data-height-goal` |
+  | `js_number`, `js_number-input`, `js_number-button-minus`, `js_number-button-plus` | `data-number`, `data-number-input`, `data-number-minus`, `data-number-plus` |
+  | `js_range`, `js_range-input`, `js_range-text`, `js_range-val` | `data-range`, `data-range-input`, `data-range-text`, `data-range-val` |
+  | `js_dual-range`, `js_dual-range-input-container`, `js_dual-range-input`, `js_dual-range-text`, `js_dual-range-val` | `data-dual-range`, `data-dual-range-track`, `data-dual-range-input`, `data-dual-range-text`, `data-dual-range-val` |
+  | `js_file`, `js_file-input`, `js_file-label` | `data-file`, `data-file-input`, `data-file-label` |
+  | `js_request-form`, `js_next-form` | `data-modx-form="request"`, `data-modx-form="next"` |
+  | `_modal`, `_modal-content` | `data-modal`, `data-modal-content` |
+  | `_hide-menu`, `_hide-menu-content` | `data-hide-menu`, `data-hide-menu-content` |
+  | `_burger-icon`, `_checkbox`, `_checkbox--toggler`, `_checkbox-input` | `data-burger`, `data-checkbox`, `data-checkbox="toggler"`, `data-checkbox-input` |
+  | `data-modal="id"` *(кнопка открытия)* | `data-modal-open="id"` |
+
+- **Состояния — нативные селекторы, ARIA и `data-state` вместо глобальных классов.**
+
+  | Было | Стало |
+  | :--- | :--- |
+  | `active` у ссылки таба | `aria-selected="true"` |
+  | `active` у таба | `data-state="active"` |
+  | `active` у ссылки оглавления | `aria-current="location"` |
+  | `_open` у бургера + `lock--hide-menu` у `body` | `aria-expanded="true"` у бургера |
+  | `open` у оповещения, показываемого сразу | `data-notify="open"` |
+  | `fill`, `focus`, `send` | `data-state="fill"`, `data-state="focus"`, `data-state="send"` |
+  | `lock`, `lock--clear`, `lock--имя` у `body` | `data-state="lock lock-clear lock-имя"` |
+  | `load-dom`, `load`, `scroll` у `body` | `data-state="load-dom load scroll"` |
+  | `current-slide`, `disable`, `hidden`, `clickable` *(Swiper)* | `slider-slide--current`, `slider-navigation__link--disabled`, `slider-navigation__link--hidden`, `slider-pagination--clickable` |
+
+- Цвета переведены с Sass-переменных `$c-*` на CSS-переменные `--c-*` в `src/scss/base/colors.scss`. Прозрачность задаётся через `color-mix`, а не `rgba()`. Сниппет `vc` вставляет `var(--c-…)`. Файл `src/scss/abstracts/colors.scss` удалён.
+- Контейнер задаётся классом `container` рядом с БЭМ-именем вместо селектора `[class*="__container"]`, который цеплял и `card__container-img`. Появление при прокрутке стало отдельным компонентом `appear`: оно больше не висит на каждом контейнере страницы, а модификатор `--noanim` не нужен. Анимация не подключается при `prefers-reduced-motion: reduce`.
+- Файлы `index.scss` в `components/` и `layout/` генерируются рекурсивно: подпапка без собственного индекса больше не роняет компиляцию. `src/scss/components/form/index.scss` теперь генерируемый и лежит в `.gitignore`.
+- Пункт меню, раскрывающий подменю, размечается тегом `<button>`: ссылка без `href` не получала фокус, и меню было недоступно с клавиатуры. Подменю открывается по `:focus-within`, а по наведению — только там, где указатель это умеет.
+- Кнопки в чанках и сниппетах получили `type` и `aria-label`, иконки спрайта — `aria-hidden="true" focusable="false"`.
+- Сниппет спойлеров приведён к нативному `<details>` с атрибутом `name`.
+
+### Исправлено
+- Закрытые модальные окна, боковое меню, оповещения и подменю получали фокус по `Tab` и читались скринридером: `display: block` перебивал `dialog:not([open])` и `[popover]:not(:popover-open)`, а элементы просто уезжали за экран. Появление анимируется через `display`/`overlay` с `allow-discrete` и `@starting-style`.
+- `.sem-hide` скрывал элемент и от скринридера (`visibility: hidden`) — заменён на стандартный visually-hidden.
+- `min-width: 375px` на `html` и `body` давал горизонтальный сдвиг на экранах уже 375px. Вёрстка резиновая до 320px, горизонтальную прокрутку страницы отсекает `overflow-x: clip` на `.wrapper`.
+- Миксин `font` подключал `.ttf`, которого нет в сборке, — каждый шрифт давал лишний 404.
+
+### Удалено
+- Sass-переменные цветов `$c-*` и переменная `$minWidth`.
+- Устаревшие префиксы в сбросе: `-khtml-`, `-ms-`, `-moz-box-sizing`, `input::-ms-clear`, `button::-moz-focus-inner`, дублирующий `@supports (font-variation-settings)` и HTML5-заглушка `display: block` для секционных тегов. Недостающие префиксы расставляет lightningcss по `browserslist`.
+- Заготовка `_on-click` в выпадающем меню и `will-change` в табах.
+
 ## [1.3.0] — 16.09.2026
 
 ### Добавлено
