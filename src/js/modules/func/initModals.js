@@ -2,6 +2,11 @@ import initOnce from '../utils/initOnce.js';
 import pageLock from '../tech/pageLock.js';
 import { devWarn } from '../utils/devLog.js';
 
+const syncOpeners = (modalID, expanded) => {
+	document.querySelectorAll(`[data-modal-open="${modalID}"][aria-expanded]`)
+		.forEach(opener => opener.setAttribute('aria-expanded', String(expanded)));
+};
+
 // Модальные окна [readme 2.7]
 export const init = (root = document) => {
 	initOnce(root, '[data-modal-open]', 'initModals', link => {
@@ -16,6 +21,7 @@ export const init = (root = document) => {
 
 			pageLock('lock', true, modalID);
 			modal.showModal();
+			syncOpeners(modalID, true);
 			history.pushState({ modal: modalID }, '', `#${modalID}`);
 		});
 	});
@@ -27,6 +33,7 @@ export const init = (root = document) => {
 		});
 
 		modal.addEventListener('close', () => {
+			syncOpeners(modal.id, false);
 			if (!document.querySelector('dialog[open]')) pageLock('unlock');
 			if (history.state?.modal === modal.id) history.back();
 		});

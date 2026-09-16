@@ -54,7 +54,7 @@
 			}
 		}
 
-		&.send {
+		&[data-state~="send"] {
 			background-color: var(--c-brand);
 			border-color: var(--c-brand);
 			color: var(--c-accent);

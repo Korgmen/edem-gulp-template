@@ -1,7 +1,6 @@
 @use 'abstracts' as *;
 
 [data-burger] {
-	$p: &;
 	$td: 0.8s;
 	position: relative;
 	display: block;
@@ -21,17 +20,17 @@
 			background-color: currentColor;
 			translate: 0 -50%;
 			transition: all $td $tf 0s;
+		}
 
-			@at-root body.lock--hide-menu #{$p}._open span {
-				opacity: 0;
-				rotate: 135deg;
-				translate: 0 0;
-			}
+		&[aria-expanded="true"] span {
+			opacity: 0;
+			rotate: 135deg;
+			translate: 0 0;
 		}
 	}
 
-	&:before,
-	&:after {
+	&::before,
+	&::after {
 		content: '';
 		position: absolute;
 		width: 100%;
@@ -43,22 +42,21 @@
 
 	&::before {
 		top: calc(($burgerWidth - $burgerHeight) / 2);
-
-		@at-root body.lock--hide-menu #{$p}._open:before {
-			rotate: 135deg;
-			top: 50%;
-			translate: 0 -50%;
-		}
 	}
 
 	&::after {
-		content: '';
 		bottom: calc(($burgerWidth - $burgerHeight) / 2);
+	}
 
-		@at-root body.lock--hide-menu #{$p}._open:after {
-			rotate: -135deg;
-			bottom: 50%;
-			translate: 0 50%;
-		}
+	&[aria-expanded="true"]::before {
+		rotate: 135deg;
+		top: 50%;
+		translate: 0 -50%;
+	}
+
+	&[aria-expanded="true"]::after {
+		rotate: -135deg;
+		bottom: 50%;
+		translate: 0 50%;
 	}
 }

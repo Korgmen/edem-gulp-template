@@ -28,12 +28,12 @@
 
 		&--next {}
 
-		&.disable {
+		&--disabled {
 			opacity: 0.3;
 			pointer-events: none;
 		}
 
-		&.hidden {
+		&--hidden {
 			opacity: 0;
 			pointer-events: none;
 		}

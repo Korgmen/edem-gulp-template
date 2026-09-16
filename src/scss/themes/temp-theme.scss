@@ -154,7 +154,7 @@ body {
 			display: block;
 		}
 
-		&.view {
+		&[aria-current] {
 			font-weight: 700;
 		}
 	}
@@ -350,7 +350,7 @@ body {
 			width: 100%;
 		}
 
-		&.send {
+		&[data-state~="send"] {
 			background-color: var(--c-brand);
 		}
 	}
@@ -670,7 +670,7 @@ body {
 		background-color $td $tf 0s,
 		border-color $td $tf 0s;
 
-	&.fill {
+	&[data-state~="fill"] {
 		background-color: transparent;
 		border-color: var(--c-main);
 		color: var(--c-main);
@@ -723,7 +723,7 @@ body {
 		color: #757575;
 		transition: all $td $tf 0s;
 
-		#{$p}.fill & {
+		#{$p}[data-state~="fill"] & {
 			color: var(--c-main);
 		}
 	}
@@ -758,7 +758,7 @@ body {
 		background-color $td $tf 0s,
 		border-color $td $tf 0s;
 
-	&.fill {
+	&[data-state~="fill"] {
 		background-color: transparent;
 		border-color: var(--c-main);
 		color: var(--c-main);
@@ -770,7 +770,7 @@ body {
 		background-color: $bgc;
 		color: currentColor;
 
-		#{$p}.fill & {
+		#{$p}[data-state~="fill"] & {
 			background-color: transparent;
 		}
 	}
@@ -828,7 +828,7 @@ body {
 		background-color $td $tf 0s,
 		border-color $td $tf 0s;
 
-	&.fill {
+	&[data-state~="fill"] {
 		background-color: transparent;
 		border-color: var(--c-main);
 		color: var(--c-main);
@@ -889,7 +889,7 @@ body {
 		user-select: none;
 		transition: all $td $tf 0s;
 
-		#{$p}.fill & {
+		#{$p}[data-state~="fill"] & {
 			color: var(--c-main);
 		}
 	}
@@ -994,7 +994,7 @@ body {
 		color: var(--c-main);
 	}
 
-	&.fill {
+	&[data-state~="fill"] {
 		background-color: transparent;
 		border-color: var(--c-main);
 		color: var(--c-main);

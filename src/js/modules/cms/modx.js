@@ -1,5 +1,5 @@
 import Iodine from '@caneara/iodine';
-import toggleClass from '../utils/toggleClass.js';
+import setState from '../utils/setState.js';
 
 // Интеграция с MODX-расширением FetchIt [readme 3.7]
 // Модуль нужен только на проектах под MODX: на остальных его можно не подключать
@@ -34,12 +34,12 @@ const initSuccessMessage = () => {
 
 		const formButtonContent = formButton.innerHTML;
 
-		form.querySelectorAll('.fill').forEach(el => toggleClass(el, 'fill', false));
-		toggleClass(formButton, 'send', true);
+		form.querySelectorAll('[data-state~="fill"]').forEach(el => setState(el, 'fill', false));
+		setState(formButton, 'send', true);
 		formButton.innerHTML = 'Отправлено';
 
 		setTimeout(() => {
-			toggleClass(formButton, 'send', false);
+			setState(formButton, 'send', false);
 			formButton.innerHTML = formButtonContent;
 		}, 3000);
 	});

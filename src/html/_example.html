@@ -50,13 +50,15 @@
 							<h2 class="example-section__title title"><span>Пример бургера</span></h2>
 							<script>
 								const toggleBurger = () => {
-									document.body.classList.toggle('lock--hide-menu');
+									document.querySelectorAll('[data-burger][aria-expanded]').forEach(burger => {
+										burger.setAttribute('aria-expanded', burger.getAttribute('aria-expanded') !== 'true');
+									});
 								}
 							</script>
-							<button class="example-section__button button" onclick="toggleBurger()">Переключить бургер</button>
+							<button type="button" class="example-section__button button" onclick="toggleBurger()">Переключить бургер</button>
 							<div class="example-section__row">
-								<button class="burger-icon _open" data-burger><span></span></button>
-								<button class="burger-icon _open" data-burger><span></span></button>
+								<button type="button" class="burger-icon" data-burger aria-expanded="false" aria-label="Открыть меню"><span></span></button>
+								<button type="button" class="burger-icon" data-burger aria-expanded="false" aria-label="Открыть меню"><span></span></button>
 							</div>
 						</div>
 					</div>
@@ -242,12 +244,12 @@
 						<h2 class="title"><span>Пример табов</span></h2>
 						<div class="tabs" data-tabs>
 							<div class="tabs__link-list">
-								<button class="tabs__link button active" data-tab-link>Ссылка таба 1</button>
-								<button class="tabs__link button" data-tab-link>Ссылка таба 2</button>
-								<button class="tabs__link button" data-tab-link>Ссылка таба 3</button>
+								<button type="button" class="tabs__link button" data-tab-link aria-selected="true">Ссылка таба 1</button>
+								<button type="button" class="tabs__link button" data-tab-link>Ссылка таба 2</button>
+								<button type="button" class="tabs__link button" data-tab-link>Ссылка таба 3</button>
 							</div>
 							<div class="tabs__content-list" data-tab-panels>
-								<div class="tabs__content active" data-tab-panel>
+								<div class="tabs__content" data-tab-panel data-state="active">
 									<h1>Контент таба 1</h1>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, iste.</p>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consectetur temporibus non dolore delectus possimus!</p>

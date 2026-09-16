@@ -35,16 +35,16 @@ export const init = (root = document) => {
 		navigation: { // добавляет навигацию
 			prevEl: '.content__block:has([data-slider="example"]) .slider-navigation__link--prev', // класс ссылки на предыдущий слайд (нужно добавить блок с этим классом в слайдер)
 			nextEl: '.content__block:has([data-slider="example"]) .slider-navigation__link--next', // класс ссылки на следующий слайд (нужно добавить блок с этим классом в слайдер)
-			disabledClass: 'disable',
-			hiddenClass: 'hidden'
+			disabledClass: 'slider-navigation__link--disabled',
+			hiddenClass: 'slider-navigation__link--hidden'
 		},
 		pagination: { // добавляет пагинацию
 			el: '.content__block:has([data-slider="example"]) .slider-pagination', // класс пагинации (нужно добавить блок с этим классом в слайдер)
 			clickable: true,
-			clickableClass: 'clickable',
+			clickableClass: 'slider-pagination--clickable',
 			bulletClass: 'slider-pagination__bullet',
-			bulletActiveClass: 'active',
-			lockClass: 'disable'
+			bulletActiveClass: 'slider-pagination__bullet--active',
+			lockClass: 'slider-pagination--disabled'
 		},
 		// pagination: { // добавляет нумерованную пагинацию
 		// 	el: '.content__block:has([data-slider="example"]) .slider-num', // класс нумерованной пагинации (нужно добавить блок с этим классом в слайдер)
@@ -54,30 +54,30 @@ export const init = (root = document) => {
 		// 	},
 		// 	currentClass: 'slider-num__current',
 		// 	totalClass: 'slider-num__total',
-		//	lockClass: 'disable'
+		//	lockClass: 'slider-num--disabled'
 		// },
 		// pagination: { // добавляет кастомную пагинацию (свои блоки в качестве пунктов пагинации)
 		// 	el: '.content__block:has([data-slider="example"]) .slider-pagination-custom',
 		// 	clickable: true,
 		// 	type: 'custom',
-		// 	clickableClass: 'clickable',
+		// 	clickableClass: 'slider-pagination-custom--clickable',
 		// 	bulletClass: 'slider-pagination-custom__bullet',
-		// 	lockClass: 'disable'
+		// 	lockClass: 'slider-pagination-custom--disabled'
 		// },
 		scrollbar: { // добавляет скроллбар
 			el: '.content__block:has([data-slider="example"]) .slider-scrollbar', // класс скроллбара (нужно добавить блок с этим классом в слайдер)
 			dragClass: 'slider-scrollbar__drag',
 			draggable: true
 		},
-		slideActiveClass: 'current-slide' // класс активного слайда
+		slideActiveClass: 'slider-slide--current' // класс активного слайда
 	});
 
 	//Код для переключения активного пункта пагинации для кастомной пагинации==========
 	const customBullets = document.querySelectorAll('.content__block:has([data-slider="example"]) .slider-pagination-custom__bullet');
 	if (customBullets.length) {
 		exampleSlider.on('slideChange', function () {
-			customBullets.forEach(el => el.classList.remove('active'));
-			customBullets[exampleSlider.realIndex]?.classList.add('active');
+			customBullets.forEach(el => el.classList.remove('slider-pagination-custom__bullet--active'));
+			customBullets[exampleSlider.realIndex]?.classList.add('slider-pagination-custom__bullet--active');
 		});
 	}
 	////Код для переключения активного пункта пагинации для кастомной пагинации==========

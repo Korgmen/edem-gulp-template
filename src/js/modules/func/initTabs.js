@@ -1,5 +1,5 @@
 import initOnce from '../utils/initOnce.js';
-import toggleClass from '../utils/toggleClass.js';
+import setState from '../utils/setState.js';
 import { devWarn } from '../utils/devLog.js';
 
 let tabsGroup = 0;
@@ -36,12 +36,15 @@ export const init = (root = document) => {
 			content.setAttribute('aria-labelledby', link.id);
 		});
 
-		const syncAria = () => {
+		const isSelected = (link) => link.getAttribute('aria-selected') === 'true';
+
+		const syncState = () => {
 			tabLinks.forEach((link, i) => {
-				const selected = link.classList.contains('active');
+				const selected = isSelected(link);
 				link.setAttribute('aria-selected', String(selected));
 				// В группе табов фокус получает только активный, остальные обходятся стрелками
 				link.tabIndex = selected ? 0 : -1;
+				setState(tabContents[i], 'active', selected);
 				tabContents[i]?.toggleAttribute('inert', !selected);
 			});
 		};
@@ -50,7 +53,7 @@ export const init = (root = document) => {
 		const updateHeights = () => {
 			tabContents.forEach(content => content.style.setProperty('--max-height', `${content.scrollHeight}px`));
 
-			const active = tabContents.find(content => content.classList.contains('active'));
+			const active = tabContents.find(content => content.matches('[data-state~="active"]'));
 			tabContentContainer?.style.setProperty('--max-height', `${active ? active.scrollHeight : 0}px`);
 		};
 
@@ -59,20 +62,13 @@ export const init = (root = document) => {
 			const content = tabContents[index];
 			if (!link || !content) return;
 
-			const wasActive = link.classList.contains('active');
+			const wasActive = isSelected(link);
 
-			tabLinks.forEach((item, i) => {
-				toggleClass(item, 'active', false);
-				toggleClass(tabContents[i], 'active', false);
-			});
+			tabLinks.forEach(item => item.setAttribute('aria-selected', 'false'));
+			if (!(isEmptyMode && wasActive)) link.setAttribute('aria-selected', 'true');
 
-			if (!(isEmptyMode && wasActive)) {
-				toggleClass(link, 'active', true);
-				toggleClass(content, 'active', true);
-			}
-
+			syncState();
 			updateHeights();
-			syncAria();
 		};
 
 		tabLinks.forEach((link, i) => {
@@ -92,8 +88,8 @@ export const init = (root = document) => {
 			});
 		});
 
+		syncState();
 		updateHeights();
-		syncAria();
 
 		if (tabContentContainer) {
 			let lastWidth = tabContentContainer.clientWidth;

@@ -3,7 +3,7 @@
 .dual-range-input {
 	$p: &;
 
-	&.fill {}
+	&[data-state~="fill"] {}
 
 	&__input-container {}
 
@@ -28,7 +28,7 @@
 
 	&__text {
 
-		#{$p}.fill & {}
+		#{$p}[data-state~="fill"] & {}
 	}
 
 	&__text-val {}

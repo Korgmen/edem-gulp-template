@@ -16,7 +16,7 @@
 	&__row {
 		height: var(--header-height);
 
-		@at-root body.scroll & {
+		@at-root body[data-state~="scroll"] & {
 			height: var(--header-scroll-height);
 		}
 	}

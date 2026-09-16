@@ -87,7 +87,7 @@
 			}
 		}
 
-		&.send {
+		&[data-state~="send"] {
 			pointer-events: none;
 		}
 	}
