@@ -76,7 +76,7 @@
 		"@caneara/iodine": "^8.5.0",
 		"imask": "^7.6.1",
 		"photoswipe": "^5.4.4",
-		"swiper": "^12.0.3"
+		"swiper": "^14.2.0"
 	},
 	"pnpm": {
 		"packageExtensions": {
