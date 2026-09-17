@@ -30,7 +30,7 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4
       browserslist:
-        specifier: ^4.28.9
+        specifier: ^4.29.0
         version: 4.29.0
       del:
         specifier: ^8.0.1
@@ -99,7 +99,7 @@ importers:
         specifier: ^3.9.7
         version: 3.9.7
       sass:
-        specifier: ^1.94.2
+        specifier: ^1.104.1
         version: 1.104.1
       ssh2-sftp-client:
         specifier: ^12.1.1

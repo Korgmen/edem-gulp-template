@@ -39,11 +39,11 @@
 	"browserslist": [
 		"defaults"
 	],
-	"packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247",
+	"packageManager": "pnpm@9.15.9",
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"browser-sync": "^3.0.4",
-		"browserslist": "^4.28.9",
+		"browserslist": "^4.29.0",
 		"del": "^8.0.1",
 		"esbuild": "^0.28.2",
 		"eslint": "^10.10.0",
@@ -66,7 +66,7 @@
 		"picomatch": "^4.0.7",
 		"plugin-error": "^2.0.1",
 		"prettier": "^3.9.7",
-		"sass": "^1.94.2",
+		"sass": "^1.104.1",
 		"ssh2-sftp-client": "^12.1.1",
 		"stylelint": "^17.15.0",
 		"stylelint-config-standard-scss": "^17.0.0",
