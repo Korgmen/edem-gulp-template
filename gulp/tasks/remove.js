@@ -44,9 +44,13 @@ const stripReferences = (content, name) => {
 		.replace(new RegExp(`^[\\t ]*@@include\\([^)]*${folder}[^)]*\\)[\\t ]*\\n`, 'gm'), '')
 		.replace(new RegExp(`@@include\\([^)]*${folder}[^)]*\\)[\\t ]*`, 'g'), '')
 		.replace(
-			new RegExp(`^(?:[\\t ]*//[^\\n]*==========\\n)?[^\\n]*meta\\.load-css\\('${folder}[^\\n]*\\n?`, 'gm'),
+			new RegExp(
+				`^(?:[\\t ]*//[^\\n]*==========\\n)?@layer ${name} \\{\\s*@include meta\\.load-css\\('${folder}[^']*'\\);\\s*\\}[\\t ]*\\n?`,
+				'gm',
+			),
 			'',
 		)
+		.replace(new RegExp(`^[\\t ]*@include meta\\.load-css\\('${folder}[^\\n]*\\n?`, 'gm'), '')
 		.replace(
 			/^@layer ([^;{]+);/gm,
 			(match, list) =>
