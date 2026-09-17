@@ -17,6 +17,13 @@
 			"options": {
 				"parser": "file-include-html"
 			}
+		},
+		{
+			"files": ["*.yml", "*.yaml"],
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
 		}
 	]
 }
