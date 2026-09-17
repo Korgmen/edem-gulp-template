@@ -15,6 +15,7 @@ import { font } from './gulp/tasks/font.js';
 import { img } from './gulp/tasks/img.js';
 import { root } from './gulp/tasks/root.js';
 import { deployCheck, deployWatch, deployAll } from './gulp/tasks/deploy.js';
+import { demoRemove, exampleRemove } from './gulp/tasks/remove.js';
 
 const removeFromBuild = (srcBase, destBase) => (filePath) => deleteAsync(path.join(destBase, path.relative(srcBase, filePath)));
 
@@ -53,3 +54,4 @@ export { js }
 export { font }
 export { img }
 export { root }
+export { demoRemove, exampleRemove }

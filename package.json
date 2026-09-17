@@ -11,7 +11,9 @@
     "font": "gulp font --no-experimental-require-module",
     "dev:deploy": "gulp --deploy --no-experimental-require-module",
     "deploy": "gulp deploy --build --no-experimental-require-module",
-    "deploy:stage": "gulp deploy --build --env=stage --no-experimental-require-module"
+    "deploy:stage": "gulp deploy --build --env=stage --no-experimental-require-module",
+    "demo:remove": "gulp demoRemove --no-experimental-require-module",
+    "example:remove": "gulp exampleRemove --no-experimental-require-module"
   },
   "repository": "korgmen/edem-gulp-template",
   "keywords": [
