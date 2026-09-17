@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+	@@include('../chunks/head.html', {title: 'Примеры: Навигация', example: true})
+
+	<body class="page">
+		<div class="wrapper">
+			@@include('../chunks/header.html')
+			<main class="content example">
+				<div class="container">
+					<a class="example__back link" href="example.html">← Все примеры</a>
+				</div>
+				<section class="content__block">
+					<div class="container appear">
+						<h2 class="example__title"><span>Пример навигации с выпадающими списками</span></h2>
+						@@include('../chunks/navigation.html', {mod: ''})
+					</div>
+				</section>
+			</main>
+			@@include('../chunks/footer.html')
+		</div>
+		@@include('../chunks/modals.html')
+		@@include('../chunks/scripts.html', {example: true})
+	</body>
+
+</html>

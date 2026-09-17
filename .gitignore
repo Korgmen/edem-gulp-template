@@ -6,6 +6,7 @@ _todo.md
 .DS_Store
 src/scss/components/**/index.scss
 src/scss/layout/**/index.scss
+src/scss/_example/**/index.scss
 .env
 .deploy-cache.json.tmp
 .deploy-cache.json

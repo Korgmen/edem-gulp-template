@@ -1,0 +1,54 @@
+@use 'abstracts' as *;
+
+.slider-block {
+	&__row {
+		display: flex;
+		justify-content: space-between;
+		gap: 0 rem(32);
+		align-items: center;
+		margin-bottom: rem(32);
+	}
+
+	&__control {
+		margin-left: auto;
+		width: fit-content;
+	}
+
+	&__pagination {}
+
+	&__scrollbar {
+		margin-top: rem(32);
+	}
+
+	&__slider {}
+
+	&__slide {
+		border: rem(1) solid var(--c-main);
+		padding: rem(24) rem(32);
+		display: flex;
+		flex-direction: column;
+		gap: rem(16) 0;
+		height: auto;
+		box-sizing: border-box;
+	}
+
+	&__slide-title {
+		font-size: rem(24);
+		font-weight: 700;
+	}
+
+	&__slide-text {
+		flex: 1 1 auto;
+		line-height: 150%;
+	}
+
+	&__image-link {}
+
+	&__image-container {
+		width: 100%;
+		height: rem(250);
+		background-color: color-mix(in srgb, var(--c-main) 20%, var(--c-accent) 80%);
+	}
+
+	&__image {}
+}

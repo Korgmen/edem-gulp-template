@@ -1,0 +1,85 @@
+@use 'abstracts' as *;
+
+.example {
+	$p: &;
+
+	&__title {
+		font-size: rem(24);
+		font-weight: 700;
+		margin-bottom: rem(24);
+		text-align: center;
+		overflow: clip;
+
+		span {
+			display: block;
+			text-transform: uppercase;
+			animation: fade-in-bottom linear;
+			animation-timeline: view(block);
+			animation-range: 0 250px;
+		}
+	}
+
+	&__back {
+		display: block;
+		width: fit-content;
+		margin-bottom: rem(24);
+		font-size: rem(14);
+	}
+
+	&__row {
+		display: flex;
+		justify-content: center;
+		gap: rem(12) rem(64);
+
+		&--dense {
+			gap: rem(12);
+		}
+
+		& .burger-icon {
+			margin: 0;
+
+			&:last-of-type span {
+				display: none;
+			}
+		}
+	}
+
+	&__button {
+		margin: 0 auto rem(16);
+	}
+
+	&__tooltip {
+		width: fit-content;
+		margin: rem(16) auto;
+	}
+
+	&__nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	&__nav-link {
+		position: relative;
+		display: block;
+		font-size: rem(16);
+		font-weight: 500;
+		padding: rem(8) rem(16);
+		border-bottom: rem(1) solid var(--c-main);
+
+		&::before {
+			content: '';
+			position: absolute;
+			height: rem(2);
+			width: 100%;
+			bottom: rem(-1);
+			left: 0;
+			background-color: transparent;
+			transition: background-color $td $tf 0s;
+		}
+
+		&:hover::before {
+			background-color: var(--c-main);
+		}
+	}
+}

@@ -1,0 +1,41 @@
+@use 'abstracts' as *;
+
+.input {
+	font-size: rem(16);
+	color: #757575;
+	background-color: #F1F1F1;
+	border: rem(1) solid transparent;
+	height: rem(42);
+	padding: 0 rem(10);
+	transition:
+		background-color $td $tf 0s,
+		border-color $td $tf 0s;
+
+	&:focus {
+		background-color: transparent;
+		border-color: #AAAAAA;
+		color: var(--c-main);
+	}
+
+	&[data-state~="fill"] {
+		background-color: transparent;
+		border-color: var(--c-main);
+		color: var(--c-main);
+	}
+
+	@at-root input#{&}:not(:placeholder-shown) {
+		background-color: transparent;
+		border-color: var(--c-main);
+		color: var(--c-main);
+	}
+
+	&::placeholder {
+		color: color-mix(in srgb, var(--c-main) 60%, var(--c-accent) 40%);
+	}
+
+	&--textarea {
+		min-height: rem(100);
+		max-height: rem(150);
+		padding: rem(10) rem(10);
+	}
+}

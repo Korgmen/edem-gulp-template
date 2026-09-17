@@ -31,14 +31,24 @@ const assetVersion = (file) => {
 	return `?v=${crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex').slice(0, 8)}`;
 };
 
+const exampleAssetVersion = (entry, file) => (!app.isProd && fs.existsSync(entry) ? assetVersion(file) : '');
+
 export const html = () => {
 	const context = {
 		env: app.env,
 		cssVersion: assetVersion(path.join(paths.scss.dest, 'style.css')),
 		jsVersion: assetVersion(path.join(paths.js.dest, 'main.js')),
+		exampleCssVersion: exampleAssetVersion(paths.example.scss, path.join(paths.scss.dest, 'example.css')),
+		exampleJsVersion: exampleAssetVersion(paths.example.js, path.join(paths.js.dest, 'example.js')),
 	};
 
-	return app.gulp.src([paths.html.src, `!${paths.html.chunks}`, ...(app.isBuild ? [`!${paths.html.drafts}`] : [])])
+	return app.gulp.src([
+		paths.html.src,
+		`!${paths.html.chunks}`,
+		`!${paths.demo.html}`,
+		...(app.isBuild ? [`!${paths.html.drafts}`] : []),
+		...(app.isProd ? [`!${paths.example.html}`] : []),
+	])
 		.pipe(handleErrors('HTML'))
 		.pipe(checkNameCollisions())
 		.pipe(fileInclude({ context }))

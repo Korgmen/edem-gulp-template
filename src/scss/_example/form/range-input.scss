@@ -1,0 +1,75 @@
+@use 'abstracts' as *;
+
+.range-input {
+	$p: &;
+	height: rem(40);
+	padding: 0 rem(10);
+	display: flex;
+	align-items: center;
+	gap: 0 rem(16);
+	border: rem(1) solid transparent;
+	background-color: #F1F1F1;
+	transition:
+		background-color $td $tf 0s,
+		border-color $td $tf 0s;
+
+	&[data-state~="fill"] {
+		background-color: transparent;
+		border-color: var(--c-main);
+		color: var(--c-main);
+	}
+
+	&__input {
+		position: relative;
+		width: 100%;
+		height: rem(8);
+		background: #ccc;
+		background-color: color-mix(in srgb, #ccc 70%, #fff);
+		transition: background-color $td $tf 0s;
+		color: color-mix(in srgb, #222 70%, #fff);
+
+		@media (any-hover: hover) {
+			#{$p}:hover & {
+				background-color: #ccc;
+				color: #222;
+			}
+		}
+
+		@mixin rangeThumb {
+			position: relative;
+			width: rem(16);
+			height: rem(16);
+			background: #fff;
+			border: rem(3) solid currentColor;
+			border-radius: 0;
+			cursor: pointer;
+			z-index: 2;
+			box-sizing: border-box;
+			transition: color $td $tf 0s;
+		}
+
+		&::-webkit-slider-thumb {
+			@include rangeThumb;
+		}
+
+		&::-moz-range-thumb {
+			@include rangeThumb;
+		}
+
+		&::before {
+			background-color: currentColor;
+			transition: color $td $tf 0s;
+		}
+	}
+
+	&__text {
+		color: #757575;
+		transition: all $td $tf 0s;
+
+		#{$p}[data-state~="fill"] & {
+			color: var(--c-main);
+		}
+	}
+
+	&__text-val {}
+}

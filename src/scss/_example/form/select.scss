@@ -1,0 +1,13 @@
+@use 'abstracts' as *;
+
+.select {
+	background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.5'%3E%3Cpath d='M8.875 9.25332L13.775 4.5L15 5.70955L8 12.5L1 5.70955L2.225 4.5L7.125 9.25332L8.06289 10.5332L8.875 9.25332Z' fill='black'/%3E%3C/g%3E%3C/svg%3E%0A");
+	background-repeat: no-repeat;
+	background-position: calc(100% - rem(10)) center;
+	padding: rem(10);
+	padding-right: calc(rem(10) + rem(16) + rem(8));
+
+	&__option {
+		&--title {}
+	}
+}

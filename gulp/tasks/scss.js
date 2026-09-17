@@ -1,3 +1,4 @@
+import fs from 'fs';
 import through from 'through2';
 import PluginError from 'plugin-error';
 import browserslist from 'browserslist';
@@ -31,12 +32,17 @@ const lightningcss = () => through.obj((file, enc, callback) => {
 	}
 });
 
+const entries = () => [
+	paths.scss.entry,
+	...(!app.isProd && fs.existsSync(paths.example.scss) ? [paths.example.scss] : []),
+];
+
 export const scss = () => {
-	return app.gulp.src(paths.scss.entry, { sourcemaps: app.isDev })
+	return app.gulp.src(entries(), { sourcemaps: app.isDev })
 		.pipe(handleErrors('SCSS'))
 		.pipe(sass({ outputStyle: 'expanded', loadPaths: ['node_modules'], silenceDeprecations: ['legacy-js-api'] }))
 		.pipe(lightningcss())
-		.pipe(app.plugins.rename('style.css'))
+		.pipe(app.plugins.rename(file => { if (file.basename === 'main') file.basename = 'style'; }))
 		.pipe(app.gulp.dest(paths.scss.dest, { sourcemaps: app.isDev ? '.' : false }))
 		.pipe(app.plugins.browserSync.stream({ match: '**/*.css' }))
 }

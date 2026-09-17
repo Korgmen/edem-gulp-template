@@ -1,0 +1,88 @@
+@use 'abstracts' as *;
+
+.form {
+	$p: &;
+	display: flex;
+	flex-direction: column;
+	gap: rem(16) 0;
+	padding: rem(8);
+	border: rem(1) solid var(--c-main);
+
+	&__group {
+		display: flex;
+		flex-direction: column;
+		gap: rem(16) 0;
+		border: rem(1) solid var(--c-main);
+		padding: rem(16);
+	}
+
+	&__group-title {
+		font-size: rem(18);
+		font-weight: 500;
+		margin-bottom: rem(8);
+	}
+
+	&__line {
+		gap: rem(3) rem(8);
+
+		&--row {
+			gap: rem(8);
+		}
+	}
+
+	&__field-container {
+		gap: rem(3) 0;
+	}
+
+	&__field {}
+
+	&__file {}
+
+	&__label-container {
+		display: flex;
+		flex-direction: column;
+		gap: rem(3) 0;
+		padding: 0 rem(5);
+	}
+
+	&__label {
+		font-size: rem(14);
+	}
+
+	&__sublabel {
+		font-size: rem(12);
+		color: #BBBBBB;
+	}
+
+	&__error {
+		font-size: rem(12);
+		color: red;
+	}
+
+	&__button {
+		width: min(rem(250), 100%);
+
+		@media (max-width:$md4) {
+			width: 100%;
+		}
+
+		&[data-state~="send"] {
+			background-color: var(--c-brand);
+		}
+	}
+
+	&__policy {
+		line-height: 150%;
+		font-size: rem(12);
+		color: #BBBBBB;
+		margin-top: rem(4);
+
+		@at-root p#{&} {
+			max-width: rem(250);
+		}
+
+		@at-root p#{&}+* {
+			margin-top: rem(5);
+		}
+	}
+}

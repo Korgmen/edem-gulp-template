@@ -1,0 +1,30 @@
+@use 'abstracts' as *;
+
+.breadcrumbs {
+	$p: &;
+
+	&__list {
+		display: flex;
+		gap: 0 rem(8);
+	}
+
+	&__item {
+		font-size: rem(12);
+		display: flex;
+		gap: 0 rem(8);
+
+		&:not(:last-child)::after {
+			content: '>';
+		}
+
+		&:first-child {
+			font-weight: 600;
+
+			&::after {
+				font-weight: 300;
+			}
+		}
+	}
+
+	&__link {}
+}

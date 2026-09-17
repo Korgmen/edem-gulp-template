@@ -1,3 +1,4 @@
+import fs from 'fs';
 import * as esbuild from 'esbuild';
 import browserslist from 'browserslist';
 import { app } from '../config/app.js';
@@ -18,8 +19,11 @@ const getTargets = () => {
 	return Object.entries(versions).map(([engine, version]) => `${engine}${version}`);
 };
 
-const options = {
-	entryPoints: [paths.js.entry],
+const options = () => ({
+	entryPoints: [
+		paths.js.entry,
+		...(!app.isProd && fs.existsSync(paths.example.js) ? [paths.example.js] : []),
+	],
 	outdir: paths.js.dest,
 	bundle: true,
 	format: 'esm',
@@ -32,11 +36,11 @@ const options = {
 	define: { __DEV__: String(app.isDev) },
 	logLevel: 'warning',
 	logOverride: { 'equals-negative-zero': 'silent' },
-};
+});
 
 export const js = async () => {
 	try {
-		await esbuild.build(options);
+		await esbuild.build(options());
 		app.plugins.browserSync.reload();
 	} catch (err) {
 		if (app.isBuild) throw err;

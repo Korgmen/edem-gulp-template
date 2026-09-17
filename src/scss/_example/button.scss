@@ -1,0 +1,20 @@
+@use 'abstracts' as *;
+
+.button {
+	font-size: rem(14);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	width: fit-content;
+	padding: rem(5) rem(16);
+	height: rem(36);
+	border: rem(1) solid var(--c-main);
+	transition: all $td $tf 0s;
+
+	&--small {
+		height: rem(24);
+		padding: rem(3) rem(8);
+		font-size: rem(12);
+	}
+}
