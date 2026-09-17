@@ -9,6 +9,10 @@
 	},
 	"packageRules": [
 		{
+			"matchDepTypes": ["packageManager"],
+			"enabled": false
+		},
+		{
 			"matchManagers": ["nvm"],
 			"rangeStrategy": "replace"
 		},
