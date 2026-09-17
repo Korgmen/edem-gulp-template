@@ -2,7 +2,7 @@
 
 .number-input {
 	$p: &;
-	$bgc: #F1F1F1;
+	$bgc: #f1f1f1;
 	display: inline-flex;
 	width: fit-content;
 	align-items: stretch;
@@ -15,7 +15,7 @@
 		background-color $td $tf 0s,
 		border-color $td $tf 0s;
 
-	&[data-state~="fill"] {
+	&[data-state~='fill'] {
 		background-color: transparent;
 		border-color: var(--c-main);
 		color: var(--c-main);
@@ -27,7 +27,7 @@
 		background-color: $bgc;
 		color: currentColor;
 
-		#{$p}[data-state~="fill"] & {
+		#{$p}[data-state~='fill'] & {
 			background-color: transparent;
 		}
 	}
@@ -60,13 +60,13 @@
 
 		&--minus {
 			&::before {
-				mask-image: url("../img/sprite.svg#minus");
+				mask-image: url('../img/sprite.svg#minus');
 			}
 		}
 
 		&--plus {
 			&::before {
-				mask-image: url("../img/sprite.svg#plus");
+				mask-image: url('../img/sprite.svg#plus');
 			}
 		}
 	}

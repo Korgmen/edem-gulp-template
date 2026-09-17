@@ -34,7 +34,7 @@ const initSuccessMessage = () => {
 
 		const formButtonContent = formButton.innerHTML;
 
-		form.querySelectorAll('[data-state~="fill"]').forEach(el => setState(el, 'fill', false));
+		form.querySelectorAll('[data-state~="fill"]').forEach((el) => setState(el, 'fill', false));
 		setState(formButton, 'send', true);
 		formButton.innerHTML = 'Отправлено';
 
@@ -52,14 +52,14 @@ const initValidation = () => {
 			required: 'Необходимо заполнить это поле',
 			email: 'Email адрес введен некорректно',
 			minLength: 'Имя должно быть длиннее двух символов',
-			regexMatch: 'Номер телефона введен некорректно'
+			regexMatch: 'Номер телефона введен некорректно',
 		});
 
 		const rules = {
 			name: ['required', 'minLength:2'],
 			phoneRussia: ['required', 'regexMatch:\\+7\\s\\(\\d{3}\\)\\s\\d{3}\\-\\d{2}\\-\\d{2}'],
 			phoneCanada: ['required', 'regexMatch:\\+1\\s\\d{3}\\-\\d{3}\\-\\d{4}'],
-			email: ['required', 'email']
+			email: ['required', 'email'],
 		};
 
 		const form = e.detail.form;

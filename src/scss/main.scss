@@ -35,4 +35,6 @@
 }
 
 //Оформление стартовой страницы шаблона, удаляется командой demo:remove==========
-@layer demo { @include meta.load-css('_demo/demo'); }
+@layer demo {
+	@include meta.load-css('_demo/demo');
+}

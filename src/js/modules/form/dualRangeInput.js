@@ -2,18 +2,21 @@ import initOnce from '../utils/initOnce.js';
 import setState from '../utils/setState.js';
 import { devWarn } from '../utils/devLog.js';
 
-const calculatePercentage = (value, min, max) =>
-	((Number(value) - Number(min)) / (Number(max) - Number(min))) * 100;
+const calculatePercentage = (value, min, max) => ((Number(value) - Number(min)) / (Number(max) - Number(min))) * 100;
 
 // Логика двойного ползунка [readme 3.5]
 // Ползунков на странице может быть сколько угодно, поэтому в селекторах только классы блока
 export const init = (root = document) => {
-	initOnce(root, '[data-dual-range]', 'dualRangeInput', dualRange => {
+	initOnce(root, '[data-dual-range]', 'dualRangeInput', (dualRange) => {
 		const [inputFirst, inputLast] = dualRange.querySelectorAll('[data-dual-range-input]');
 		const [rangeValFirst, rangeValLast] = dualRange.querySelectorAll('[data-dual-range-val]');
 
 		if (!inputFirst || !inputLast || !rangeValFirst || !rangeValLast) {
-			devWarn('dualRangeInput', 'нужны два [data-dual-range-input] и два [data-dual-range-val] — блок пропущен', dualRange);
+			devWarn(
+				'dualRangeInput',
+				'нужны два [data-dual-range-input] и два [data-dual-range-val] — блок пропущен',
+				dualRange,
+			);
 			return;
 		}
 
@@ -33,7 +36,7 @@ export const init = (root = document) => {
 			dualRange.style.setProperty(propertyName, `${calculatePercentage(input.value, rangeMin, rangeMax)}%`);
 		};
 
-		[inputFirst, inputLast].forEach(inputRange => {
+		[inputFirst, inputLast].forEach((inputRange) => {
 			inputRange.addEventListener('input', () => {
 				setState(dualRange, 'fill', false);
 				setState(rangeParent, 'fill', false);

@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-
 	@@include('../chunks/head.html', {title: 'Примеры: Бургер', example: true})
 
 	<body class="page">
@@ -15,15 +14,36 @@
 						<h2 class="example__title"><span>Пример бургера</span></h2>
 						<script>
 							const toggleBurger = () => {
-								document.querySelectorAll('[data-burger][aria-expanded]').forEach(burger => {
-									burger.setAttribute('aria-expanded', burger.getAttribute('aria-expanded') !== 'true');
+								document.querySelectorAll('[data-burger][aria-expanded]').forEach((burger) => {
+									burger.setAttribute(
+										'aria-expanded',
+										burger.getAttribute('aria-expanded') !== 'true',
+									);
 								});
-							}
+							};
 						</script>
-						<button type="button" class="example__button button" onclick="toggleBurger()">Переключить бургер</button>
+						<button type="button" class="example__button button" onclick="toggleBurger()">
+							Переключить бургер
+						</button>
 						<div class="example__row">
-							<button type="button" class="burger-icon" data-burger aria-expanded="false" aria-label="Открыть меню"><span></span></button>
-							<button type="button" class="burger-icon" data-burger aria-expanded="false" aria-label="Открыть меню"><span></span></button>
+							<button
+								type="button"
+								class="burger-icon"
+								data-burger
+								aria-expanded="false"
+								aria-label="Открыть меню"
+							>
+								<span></span>
+							</button>
+							<button
+								type="button"
+								class="burger-icon"
+								data-burger
+								aria-expanded="false"
+								aria-label="Открыть меню"
+							>
+								<span></span>
+							</button>
 						</div>
 					</div>
 				</section>
@@ -33,5 +53,4 @@
 		@@include('../chunks/modals.html')
 		@@include('../chunks/scripts.html', {example: true})
 	</body>
-
 </html>

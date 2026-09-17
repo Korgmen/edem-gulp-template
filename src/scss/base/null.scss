@@ -41,18 +41,18 @@ textarea {
 	font-family: var.$fontFamily;
 	appearance: none;
 }
-input[type="number"] {
+input[type='number'] {
 	appearance: textfield;
 }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
 	appearance: none;
 	margin: 0;
 }
-input[type="range"]::-webkit-slider-thumb {
+input[type='range']::-webkit-slider-thumb {
 	appearance: none;
 }
-input[type="range"]::-moz-range-thumb {
+input[type='range']::-moz-range-thumb {
 	appearance: none;
 }
 button {
@@ -63,7 +63,7 @@ button {
 a {
 	color: inherit;
 }
-a[href^="http"]:empty::before {
+a[href^='http']:empty::before {
 	content: attr(href);
 }
 a,

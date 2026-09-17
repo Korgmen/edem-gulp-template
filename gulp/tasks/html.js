@@ -16,7 +16,12 @@ const checkNameCollisions = () => {
 		const name = path.basename(file.path);
 		const relative = path.relative(file.cwd, file.path);
 		if (pages.has(name)) {
-			callback(new PluginError('html', `Страницы ${pages.get(name)} и ${relative} попадут в build под одним именем ${name} — переименуйте одну из них`));
+			callback(
+				new PluginError(
+					'html',
+					`Страницы ${pages.get(name)} и ${relative} попадут в build под одним именем ${name} — переименуйте одну из них`,
+				),
+			);
 			return;
 		}
 		pages.set(name, relative);
@@ -42,18 +47,23 @@ export const html = () => {
 		exampleJsVersion: exampleAssetVersion(paths.example.js, path.join(paths.js.dest, 'example.js')),
 	};
 
-	return app.gulp.src([
-		paths.html.src,
-		`!${paths.html.chunks}`,
-		`!${paths.demo.html}`,
-		...(app.isBuild ? [`!${paths.html.drafts}`] : []),
-		...(app.isProd ? [`!${paths.example.html}`] : []),
-	])
+	return app.gulp
+		.src([
+			paths.html.src,
+			`!${paths.html.chunks}`,
+			`!${paths.demo.html}`,
+			...(app.isBuild ? [`!${paths.html.drafts}`] : []),
+			...(app.isProd ? [`!${paths.example.html}`] : []),
+		])
 		.pipe(handleErrors('HTML'))
 		.pipe(checkNameCollisions())
 		.pipe(fileInclude({ context }))
-		.pipe(app.plugins.rename(path => { path.dirname = "" }))
+		.pipe(
+			app.plugins.rename((path) => {
+				path.dirname = '';
+			}),
+		)
 		.pipe(app.plugins.if(app.isBuild, htmlMin({ collapseWhitespace: true, conservativeCollapse: true })))
 		.pipe(app.gulp.dest(paths.html.dest))
-		.pipe(app.plugins.browserSync.stream())
-}
+		.pipe(app.plugins.browserSync.stream());
+};

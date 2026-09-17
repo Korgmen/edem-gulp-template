@@ -48,7 +48,8 @@
 		}
 	}
 
-	&__field {}
+	&__field {
+	}
 
 	&__label {
 		&:has(+ :not(#{$p}__sublabel)) {
@@ -86,7 +87,7 @@
 			}
 		}
 
-		&[data-state~="send"] {
+		&[data-state~='send'] {
 			pointer-events: none;
 		}
 	}

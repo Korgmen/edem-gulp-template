@@ -20,32 +20,32 @@ import * as calcHeaderHeight from './func/calcHeaderHeight.js';
 
 // Работают без собственной разметки, поэтому проверять селектор нечего
 const ALWAYS = [
-	detectPageLoad,      // Детектор загрузки страницы [readme 2.15]
-	detectPageScroll,    // Детектор прокрутки страницы [readme 2.16]
-	calcScrollbarWidth,  // Ширина полосы прокрутки [readme 2.14]
-	calcHeaderHeight,    // Высота шапки [readme 2.13]
+	detectPageLoad, // Детектор загрузки страницы [readme 2.15]
+	detectPageScroll, // Детектор прокрутки страницы [readme 2.16]
+	calcScrollbarWidth, // Ширина полосы прокрутки [readme 2.14]
+	calcHeaderHeight, // Высота шапки [readme 2.13]
 ];
 
 const LAZY_MODULES = [
-	['br', () => import('./func/brSpace.js')],                          // Пробелы после тега <br> [readme 2.4]
-	['[data-get-height]', () => import('./func/getBlockHeight.js')],       // Получение высоты блоков [readme 2.1]
-	['[data-tabs]', () => import('./func/initTabs.js')],                    // Табы [readme 2.2]
-	['[data-modal-open]', () => import('./func/initModals.js')],        // Модальные окна [readme 2.7]
-	['[data-navigation]', () => import('./func/initNavigation.js')],    // Закрытие выпадающего меню [readme 2.18]
-	['[data-article]', () => import('./func/initArticleLogic.js')],// Оглавление статьи [readme 2.8, 2.9]
-	['[data-notify]', () => import('./func/initNotify.js')],               // Оповещения [readme 2.10]
-	['#cookie', () => import('./func/initCookie.js')],                  // Куки-оповещалка [readme 2.11]
-	['[data-copy]', () => import('./func/copyWithClick.js')],           // Копирование текста в буфер [readme 2.12]
+	['br', () => import('./func/brSpace.js')], // Пробелы после тега <br> [readme 2.4]
+	['[data-get-height]', () => import('./func/getBlockHeight.js')], // Получение высоты блоков [readme 2.1]
+	['[data-tabs]', () => import('./func/initTabs.js')], // Табы [readme 2.2]
+	['[data-modal-open]', () => import('./func/initModals.js')], // Модальные окна [readme 2.7]
+	['[data-navigation]', () => import('./func/initNavigation.js')], // Закрытие выпадающего меню [readme 2.18]
+	['[data-article]', () => import('./func/initArticleLogic.js')], // Оглавление статьи [readme 2.8, 2.9]
+	['[data-notify]', () => import('./func/initNotify.js')], // Оповещения [readme 2.10]
+	['#cookie', () => import('./func/initCookie.js')], // Куки-оповещалка [readme 2.11]
+	['[data-copy]', () => import('./func/copyWithClick.js')], // Копирование текста в буфер [readme 2.12]
 
-	['[data-slider]', () => import('./lib-control/sliders.js')],           // Слайдеры: разметка и Swiper [readme 2.3, 4.1]
-	['[data-gallery]', () => import('./lib-control/galleries.js')],        // Галереи, PhotoSwipe [readme 4.2]
+	['[data-slider]', () => import('./lib-control/sliders.js')], // Слайдеры: разметка и Swiper [readme 2.3, 4.1]
+	['[data-gallery]', () => import('./lib-control/galleries.js')], // Галереи, PhotoSwipe [readme 4.2]
 
-	['[data-tel-mask]', () => import('./form/telInput.js')],               // Поле ввода телефона, IMask [readme 3.1]
-	['[data-select]', () => import('./form/select.js')],                   // Выпадающий список [readme 3.2]
-	['[data-number]', () => import('./form/numberInput.js')],              // Числовое поле [readme 3.3]
-	['[data-range]', () => import('./form/rangeInput.js')],                // Ползунок [readme 3.4]
-	['[data-dual-range]', () => import('./form/dualRangeInput.js')],       // Двойной ползунок [readme 3.5]
-	['[data-file-input]', () => import('./form/fileInput.js')],            // Файловое поле [readme 3.6]
+	['[data-tel-mask]', () => import('./form/telInput.js')], // Поле ввода телефона, IMask [readme 3.1]
+	['[data-select]', () => import('./form/select.js')], // Выпадающий список [readme 3.2]
+	['[data-number]', () => import('./form/numberInput.js')], // Числовое поле [readme 3.3]
+	['[data-range]', () => import('./form/rangeInput.js')], // Ползунок [readme 3.4]
+	['[data-dual-range]', () => import('./form/dualRangeInput.js')], // Двойной ползунок [readme 3.5]
+	['[data-file-input]', () => import('./form/fileInput.js')], // Файловое поле [readme 3.6]
 
 	// ['form.form', () => import('./cms/modx.js')],                    // Интеграция с MODX FetchIt [readme 3.7]
 ];
@@ -55,20 +55,23 @@ const loadPolyfills = async () => {
 	if (!CSS.supports('animation-timeline: view()')) await import('../libs/scroll-timeline.js');
 };
 
-const hasMarkup = (root, selector) => root instanceof Element
-	? root.matches(selector) || Boolean(root.querySelector(selector))
-	: Boolean(root.querySelector(selector));
+const hasMarkup = (root, selector) =>
+	root instanceof Element
+		? root.matches(selector) || Boolean(root.querySelector(selector))
+		: Boolean(root.querySelector(selector));
 
 export const initModules = (root = document) => {
 	if (root === document) {
-		ALWAYS.forEach(module => module.init());
+		ALWAYS.forEach((module) => module.init());
 		loadPolyfills();
 	}
 
-	return Promise.all(LAZY_MODULES.map(async ([selector, load]) => {
-		if (!hasMarkup(root, selector)) return;
+	return Promise.all(
+		LAZY_MODULES.map(async ([selector, load]) => {
+			if (!hasMarkup(root, selector)) return;
 
-		const module = await load();
-		module.init(root);
-	}));
+			const module = await load();
+			module.init(root);
+		}),
+	);
 };

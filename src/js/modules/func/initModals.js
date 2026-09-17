@@ -3,13 +3,14 @@ import pageLock from '../tech/pageLock.js';
 import { devWarn } from '../utils/devLog.js';
 
 const syncOpeners = (modalID, expanded) => {
-	document.querySelectorAll(`[data-modal-open="${modalID}"][aria-expanded]`)
-		.forEach(opener => opener.setAttribute('aria-expanded', String(expanded)));
+	document
+		.querySelectorAll(`[data-modal-open="${modalID}"][aria-expanded]`)
+		.forEach((opener) => opener.setAttribute('aria-expanded', String(expanded)));
 };
 
 // Модальные окна [readme 2.7]
 export const init = (root = document) => {
-	initOnce(root, '[data-modal-open]', 'initModals', link => {
+	initOnce(root, '[data-modal-open]', 'initModals', (link) => {
 		link.addEventListener('click', () => {
 			const modalID = link.dataset.modalOpen;
 			const modal = document.getElementById(modalID);
@@ -26,7 +27,7 @@ export const init = (root = document) => {
 		});
 	});
 
-	initOnce(root, 'dialog', 'initModals', modal => {
+	initOnce(root, 'dialog', 'initModals', (modal) => {
 		// Закрытие при клике вне модального окна
 		modal.addEventListener('click', (e) => {
 			if (e.target.nodeName === 'DIALOG') modal.close();
@@ -47,7 +48,7 @@ export const init = (root = document) => {
 	// Слушатель истории один на страницу, независимо от числа окон
 	if (root === document) {
 		window.addEventListener('popstate', (e) => {
-			document.querySelectorAll('dialog').forEach(modal => {
+			document.querySelectorAll('dialog').forEach((modal) => {
 				if (modal.open && e.state?.modal !== modal.id) modal.close();
 			});
 		});

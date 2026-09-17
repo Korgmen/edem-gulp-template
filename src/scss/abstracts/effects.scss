@@ -2,13 +2,13 @@
 
 //? Тут представлены примеры подключения эффектов. Для их вызова, воспользуйтесь сниппетом ef
 @mixin ef-hard-shadow {
-	box-shadow: func.rem(8) func.rem(8) 0 rgb(0 0 0 / 100%)
+	box-shadow: func.rem(8) func.rem(8) 0 rgb(0 0 0 / 100%);
 }
 
 @mixin ef-simple-shadow {
-	box-shadow: 0 func.rem(32) func.rem(50) rgb(0 0 0 / 30%)
+	box-shadow: 0 func.rem(32) func.rem(50) rgb(0 0 0 / 30%);
 }
 
 @mixin ef-light-shadow {
-	box-shadow: 0 0 func.rem(25) rgb(168 255 233 / 30%)
+	box-shadow: 0 0 func.rem(25) rgb(168 255 233 / 30%);
 }

@@ -9,7 +9,7 @@
 [data-tab-link] {
 	cursor: pointer;
 
-	[data-tabs]:not([data-tabs~="empty"]) &[aria-selected="true"] {
+	[data-tabs]:not([data-tabs~='empty']) &[aria-selected='true'] {
 		pointer-events: none;
 	}
 }
@@ -17,7 +17,7 @@
 [data-tab-panels] {
 	box-sizing: content-box;
 
-	[data-tabs]:not([data-tabs~="slide"], [data-tabs~="noanim"], [data-tabs~="empty"]) & {
+	[data-tabs]:not([data-tabs~='slide'], [data-tabs~='noanim'], [data-tabs~='empty']) & {
 		height: var(--max-height);
 		transition: height var(--tabs-duration) ease math.div($td, 2);
 	}
@@ -26,28 +26,32 @@
 [data-tab-panel] {
 	overflow: hidden;
 	max-height: var(--max-height);
-	transition: opacity var(--tabs-duration) ease $td, max-height 0s ease $td;
+	transition:
+		opacity var(--tabs-duration) ease $td,
+		max-height 0s ease $td;
 
-	[data-tabs~="slide"] &,
-	[data-tabs~="empty"] & {
+	[data-tabs~='slide'] &,
+	[data-tabs~='empty'] & {
 		transition: all var(--tabs-duration) ease 0s;
 	}
 
-	[data-tabs~="noanim"] & {
+	[data-tabs~='noanim'] & {
 		transition: initial;
 	}
 
-	&:not([data-state~="active"]) {
+	&:not([data-state~='active']) {
 		max-height: 0;
 		opacity: 0;
-		transition: opacity var(--tabs-duration) ease 0s, max-height 0s ease $td;
+		transition:
+			opacity var(--tabs-duration) ease 0s,
+			max-height 0s ease $td;
 
-		[data-tabs~="slide"] &,
-		[data-tabs~="empty"] & {
+		[data-tabs~='slide'] &,
+		[data-tabs~='empty'] & {
 			transition: all var(--tabs-duration) ease 0s;
 		}
 
-		[data-tabs~="noanim"] & {
+		[data-tabs~='noanim'] & {
 			transition: initial;
 		}
 	}

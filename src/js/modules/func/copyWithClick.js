@@ -3,7 +3,7 @@ import { showCustomNotify } from './initNotify.js';
 
 // Копирование текста в буфер [readme 2.12]
 export const init = (root = document) => {
-	initOnce(root, '[data-copy]', 'copyWithClick', element => {
+	initOnce(root, '[data-copy]', 'copyWithClick', (element) => {
 		element.addEventListener('click', async (e) => {
 			const textToCopy = element.dataset.copy;
 

@@ -10,13 +10,13 @@ body {
 }
 
 .header {
-
 	&__scroll-fix {
 		background-color: var(--c-accent);
 		box-shadow: 0 0 rem(20) 0 color-mix(in srgb, var(--c-main) 10%, transparent);
 	}
 
-	&__container {}
+	&__container {
+	}
 
 	&__row {
 		display: flex;
@@ -49,7 +49,8 @@ body {
 	background: var(--c-main);
 	color: var(--c-accent);
 
-	&__container {}
+	&__container {
+	}
 
 	&__copy {
 		font-size: rem(14);
@@ -60,7 +61,8 @@ body {
 .temp-main {
 	$p: &;
 
-	&__container {}
+	&__container {
+	}
 
 	&__title {
 		width: fit-content;
@@ -87,7 +89,8 @@ body {
 		margin-top: rem(32);
 	}
 
-	&__list-item {}
+	&__list-item {
+	}
 
 	&__list-link {
 		position: relative;
@@ -123,7 +126,7 @@ body {
 		justify-content: center;
 		gap: rem(10) rem(15);
 
-		@media (max-width:$md4) {
+		@media (max-width: $md4) {
 			flex-direction: column;
 			align-items: center;
 			text-align: center;
@@ -136,12 +139,13 @@ body {
 		gap: 0 rem(8);
 	}
 
-	&__list-link {}
+	&__list-link {
+	}
 
 	&__level-icon {
 		transition: rotate $td $tf 0s;
 
-		#{$p}__list-item>& {
+		#{$p}__list-item > & {
 			translate: 0 rem(1);
 		}
 	}

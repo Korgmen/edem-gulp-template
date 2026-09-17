@@ -8,12 +8,12 @@
 	align-items: center;
 	gap: 0 rem(16);
 	border: rem(1) solid transparent;
-	background-color: #F1F1F1;
+	background-color: #f1f1f1;
 	transition:
 		background-color $td $tf 0s,
 		border-color $td $tf 0s;
 
-	&[data-state~="fill"] {
+	&[data-state~='fill'] {
 		background-color: transparent;
 		border-color: var(--c-main);
 		color: var(--c-main);
@@ -66,10 +66,11 @@
 		color: #757575;
 		transition: all $td $tf 0s;
 
-		#{$p}[data-state~="fill"] & {
+		#{$p}[data-state~='fill'] & {
 			color: var(--c-main);
 		}
 	}
 
-	&__text-val {}
+	&__text-val {
+	}
 }

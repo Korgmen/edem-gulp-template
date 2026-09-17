@@ -11,7 +11,7 @@ const argv = process.argv;
 const isBuild = argv.includes('--build');
 
 const ENVS = ['stage', 'prod'];
-const env = argv.find(arg => arg.startsWith('--env='))?.split('=')[1] ?? (isBuild ? 'prod' : 'stage');
+const env = argv.find((arg) => arg.startsWith('--env='))?.split('=')[1] ?? (isBuild ? 'prod' : 'stage');
 if (!ENVS.includes(env)) throw new Error(`Неизвестное окружение --env=${env}, допустимо: ${ENVS.join(', ')}`);
 
 export const app = {
@@ -28,5 +28,5 @@ export const app = {
 		yes: argv.includes('--yes'),
 	},
 	gulp: gulp,
-	plugins: plugins
+	plugins: plugins,
 };
