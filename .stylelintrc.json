@@ -10,13 +10,24 @@
 		"scss/at-mixin-pattern": null,
 		"scss/at-function-pattern": null,
 		"scss/load-no-partial-leading-underscore": null,
-		"function-name-case": ["lower", { "ignoreFunctions": ["/^[a-z]+[A-Z]/"] }],
-		"value-keyword-case": ["lower", { "ignoreKeywords": ["currentColor"] }],
+		"function-name-case": [
+			"lower",
+			{
+				"ignoreFunctions": ["/^[a-z]+[A-Z]/"]
+			}
+		],
+		"value-keyword-case": [
+			"lower",
+			{
+				"ignoreKeywords": ["currentColor"]
+			}
+		],
 		"rule-empty-line-before": null,
 		"declaration-empty-line-before": null,
 		"at-rule-empty-line-before": null,
 		"comment-empty-line-before": null,
 		"scss/double-slash-comment-empty-line-before": null,
-		"scss/double-slash-comment-whitespace-inside": null
+		"scss/double-slash-comment-whitespace-inside": null,
+		"scss/dollar-variable-empty-line-before": null
 	}
 }
