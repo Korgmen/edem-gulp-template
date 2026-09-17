@@ -10,11 +10,22 @@ const SAMPLES = {
 	},
 	example: {
 		title: 'справочник компонентов',
-		targets: ['src/html/_example', 'src/scss/_example', 'src/js/_example', 'src/img/_example', paths.example.scss, paths.example.js],
+		targets: [
+			'src/html/_example',
+			'src/scss/_example',
+			'src/js/_example',
+			'src/img/_example',
+			paths.example.scss,
+			paths.example.js,
+		],
 	},
 };
 
-const exists = (target) => fs.access(target).then(() => true, () => false);
+const exists = (target) =>
+	fs.access(target).then(
+		() => true,
+		() => false,
+	);
 
 const listFiles = async (dir, ext) => {
 	const entries = await fs.readdir(dir, { withFileTypes: true, recursive: true }).catch(() => []);
@@ -30,9 +41,21 @@ const stripReferences = (content, name) => {
 	const folder = escape(`_${name}/`);
 	const next = content
 		.replace(new RegExp(`^[\\t ]*@@if \\(context\\.${name}\\) \\{\\n[\\s\\S]*?^[\\t ]*\\}\\n?`, 'gm'), '')
-		.replace(new RegExp(`^[\\t ]*@@include\\([^)]*${folder}[^)]*\\)[^\\n]*\\n?`, 'gm'), '')
-		.replace(new RegExp(`^(?:[\\t ]*//[^\\n]*==========\\n)?[^\\n]*meta\\.load-css\\('${folder}[^\\n]*\\n?`, 'gm'), '')
-		.replace(/^@layer ([^;{]+);/gm, (match, list) => `@layer ${list.split(',').map((layer) => layer.trim()).filter((layer) => layer !== name).join(', ')};`)
+		.replace(new RegExp(`^[\\t ]*@@include\\([^)]*${folder}[^)]*\\)[\\t ]*\\n`, 'gm'), '')
+		.replace(new RegExp(`@@include\\([^)]*${folder}[^)]*\\)[\\t ]*`, 'g'), '')
+		.replace(
+			new RegExp(`^(?:[\\t ]*//[^\\n]*==========\\n)?[^\\n]*meta\\.load-css\\('${folder}[^\\n]*\\n?`, 'gm'),
+			'',
+		)
+		.replace(
+			/^@layer ([^;{]+);/gm,
+			(match, list) =>
+				`@layer ${list
+					.split(',')
+					.map((layer) => layer.trim())
+					.filter((layer) => layer !== name)
+					.join(', ')};`,
+		)
 		.replace(/\n{3,}/g, '\n\n');
 	return content.endsWith('\n') ? next.trimEnd() + '\n' : next.trimEnd();
 };
@@ -51,7 +74,9 @@ const confirm = async (question) => {
 
 const removeSample = (name) => async () => {
 	const { title, targets } = SAMPLES[name];
-	const found = (await Promise.all(targets.map(async (target) => ((await exists(target)) ? target : null)))).filter(Boolean);
+	const found = (await Promise.all(targets.map(async (target) => ((await exists(target)) ? target : null)))).filter(
+		Boolean,
+	);
 
 	const candidates = [...(await listFiles('src/html', '.html')), paths.scss.entry];
 	const edits = [];
