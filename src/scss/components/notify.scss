@@ -5,15 +5,15 @@
 	background-color: var(--c-accent);
 	color: var(--c-main);
 	max-width: rem(400);
-	padding: lineScale(16,8) rem(32) lineScale(16,8) lineScale(16,8);
+	padding: lineScale(16, 8) rem(32) lineScale(16, 8) lineScale(16, 8);
 	box-shadow: 0 0 rem(10) color-mix(in srgb, var(--c-main) 15%, transparent);
 
-	@media (max-width:$md4){
+	@media (max-width: $md4) {
 		width: 100%;
 	}
 
 	&:not(:has(#{$p}__close)) {
-		padding: lineScale(16,8);
+		padding: lineScale(16, 8);
 	}
 
 	&--maxw800 {
@@ -40,7 +40,6 @@
 		}
 
 		@keyframes shake {
-
 			0%,
 			100% {
 				transform: rotate(0deg);
@@ -59,16 +58,16 @@
 	&__content {
 		display: flex;
 		flex-direction: column;
-		gap: lineScale(8,4);
+		gap: lineScale(8, 4);
 
 		&--line {
-			@media (min-width:$md3) {
+			@media (min-width: $md3) {
 				flex-direction: row;
 			}
 		}
 
 		&--center {
-			@media (min-width:$md3) {
+			@media (min-width: $md3) {
 				align-items: center;
 			}
 		}
@@ -78,13 +77,13 @@
 		font-size: rem(14);
 		line-height: 150%;
 
-		@media (max-width:$md4){
+		@media (max-width: $md4) {
 			text-align: justify;
 		}
 	}
 
 	&__button {
-		@media (max-width:$md4){
+		@media (max-width: $md4) {
 			margin-left: auto;
 		}
 	}

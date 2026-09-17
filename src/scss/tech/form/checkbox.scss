@@ -10,7 +10,7 @@
 	align-items: center;
 	justify-content: center;
 
-	[data-checkbox~="toggler"] & {
+	[data-checkbox~='toggler'] & {
 		justify-content: flex-start;
 	}
 
@@ -35,12 +35,12 @@
 		opacity: 1;
 	}
 
-	[data-checkbox~="toggler"] &::after {
+	[data-checkbox~='toggler'] &::after {
 		left: 0;
 		opacity: 1;
 	}
 
-	[data-checkbox~="toggler"] &:checked::after {
+	[data-checkbox~='toggler'] &:checked::after {
 		left: 50%;
 	}
 }

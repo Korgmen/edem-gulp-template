@@ -3,7 +3,7 @@ import { devWarn } from '../utils/devLog.js';
 
 // Оповещения [readme 2.10]
 export const init = (root = document) => {
-	initOnce(root, '[data-notify]:not([data-notify~="open"])', 'initNotify', el => {
+	initOnce(root, '[data-notify]:not([data-notify~="open"])', 'initNotify', (el) => {
 		if (!el.hasAttribute('data-popover-time')) return;
 
 		const notifyCall = document.querySelector(`[popovertarget="${el.id}"]`);
@@ -23,7 +23,7 @@ export const init = (root = document) => {
 		});
 	});
 
-	initOnce(root, '[data-notify~="open"]', 'initNotify', el => el.showPopover());
+	initOnce(root, '[data-notify~="open"]', 'initNotify', (el) => el.showPopover());
 };
 
 // Функция для показа уведомления [readme 2.10]

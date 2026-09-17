@@ -6,37 +6,47 @@
 .form {
 	$p: &;
 
-	&:has(#{$p}__group) {}
+	&:has(#{$p}__group) {
+	}
 
-	&__group {}
+	&__group {
+	}
 
-	&__group-title {}
+	&__group-title {
+	}
 
 	&__line {
+		&--row {
+		}
 
-		&--row {}
-
-		&:not(.form__line--row):has(#{$p}__policy) {}
+		&:not(.form__line--row):has(#{$p}__policy) {
+		}
 	}
 
 	&__field-container {
-		&:has(#{$p}__policy) {}
+		&:has(#{$p}__policy) {
+		}
 	}
 
-	&__field {}
+	&__field {
+	}
 
-	&__number {}
+	&__number {
+	}
 
-	&__label-container {}
+	&__label-container {
+	}
 
-	&__label {}
+	&__label {
+	}
 
-	&__sublabel {}
+	&__sublabel {
+	}
 
-	&__error {}
+	&__error {
+	}
 
 	&__button {
-
 		// псевдоэлемент процесса отправки формы "крутилка" (активируется, если на кнопку вешается disabled атрибут)
 		&::after {
 			height: 70%;
@@ -49,17 +59,18 @@
 
 			@keyframes sending-form {
 				to {
-					transform: rotate(.5turn)
+					transform: rotate(0.5turn);
 				}
 			}
 		}
 
-		&[data-state~="send"] {
+		&[data-state~='send'] {
 			background-color: var(--c-brand);
 			border-color: var(--c-brand);
 			color: var(--c-accent);
 		}
 	}
 
-	&__policy {}
+	&__policy {
+	}
 }

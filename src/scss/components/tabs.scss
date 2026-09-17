@@ -15,7 +15,7 @@
 	&__link {
 		flex: 1 1;
 
-		&[aria-selected="true"] {
+		&[aria-selected='true'] {
 			color: var(--c-accent);
 			background-color: var(--c-main);
 		}

@@ -4,7 +4,7 @@
 $fontFamily: 'Manrope', sans-serif; // <----- Указываем имя шрифта
 $fontSize: 1rem; // <----- Указываем размер шрифта
 $maxWidthContainer: func.rem(1440); // <----- Указываем размер контейнера
-$containerMargin: func.lineScale(32,16); // <----- Указываем отступ по краям контейнера
+$containerMargin: func.lineScale(32, 16); // <----- Указываем отступ по краям контейнера
 $md1: calc($maxWidthContainer + $containerMargin * 2 - func.rem(0.02));
 $md2: func.rem(991.98);
 $md3: func.rem(767.98);

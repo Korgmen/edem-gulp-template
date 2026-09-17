@@ -6,7 +6,7 @@ let tabsGroup = 0;
 
 // Табы [readme 2.2]
 export const init = (root = document) => {
-	initOnce(root, '[data-tabs]', 'initTabs', tab => {
+	initOnce(root, '[data-tabs]', 'initTabs', (tab) => {
 		const tabLinks = [...tab.querySelectorAll('[data-tab-link]')];
 		const tabContents = [...tab.querySelectorAll('[data-tab-panel]')];
 		const tabContentContainer = tab.querySelector('[data-tab-panels]');
@@ -51,9 +51,9 @@ export const init = (root = document) => {
 
 		// На узкой ширине текст переносится и высота панели меняется
 		const updateHeights = () => {
-			tabContents.forEach(content => content.style.setProperty('--max-height', `${content.scrollHeight}px`));
+			tabContents.forEach((content) => content.style.setProperty('--max-height', `${content.scrollHeight}px`));
 
-			const active = tabContents.find(content => content.matches('[data-state~="active"]'));
+			const active = tabContents.find((content) => content.matches('[data-state~="active"]'));
 			tabContentContainer?.style.setProperty('--max-height', `${active ? active.scrollHeight : 0}px`);
 		};
 
@@ -64,7 +64,7 @@ export const init = (root = document) => {
 
 			const wasActive = isSelected(link);
 
-			tabLinks.forEach(item => item.setAttribute('aria-selected', 'false'));
+			tabLinks.forEach((item) => item.setAttribute('aria-selected', 'false'));
 			if (!(isEmptyMode && wasActive)) link.setAttribute('aria-selected', 'true');
 
 			syncState();
@@ -81,7 +81,9 @@ export const init = (root = document) => {
 				e.preventDefault();
 				const next = Number.isFinite(step)
 					? (i + step + tabLinks.length) % tabLinks.length
-					: (step < 0 ? 0 : tabLinks.length - 1);
+					: step < 0
+						? 0
+						: tabLinks.length - 1;
 
 				tabLinks[next].focus();
 				activate(next);

@@ -14,7 +14,7 @@
 		display var(--hide-menu-duration) allow-discrete,
 		overlay var(--hide-menu-duration) allow-discrete;
 
-	@media (max-width:$md4) {
+	@media (max-width: $md4) {
 		width: 100vw;
 	}
 

@@ -9,9 +9,10 @@ export default (condition, base, object) => {
 		if (object) setState(body, `lock-${object}`, true);
 		if (base == false) setState(body, 'lock-clear', true);
 	} else if (condition == 'unlock') {
-		(body.dataset.state || '').split(/\s+/)
-			.filter(name => name === 'lock' || name.startsWith('lock-'))
-			.forEach(name => setState(body, name, false));
+		(body.dataset.state || '')
+			.split(/\s+/)
+			.filter((name) => name === 'lock' || name.startsWith('lock-'))
+			.forEach((name) => setState(body, name, false));
 	}
-}
+};
 ////Блокировка страницы [readme 1.1]==========

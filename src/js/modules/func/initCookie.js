@@ -13,8 +13,12 @@ export const init = (root = document) => {
 	const cookieButton = requireChild(cookieWindow, 'button', 'initCookie');
 	if (!cookieButton) return;
 
-	cookieButton.addEventListener('click', () => {
-		localStorage.setItem('cookie-notify', '1');
-		setTimeout(() => cookieWindow.remove(), 1000);
-	}, { once: true });
+	cookieButton.addEventListener(
+		'click',
+		() => {
+			localStorage.setItem('cookie-notify', '1');
+			setTimeout(() => cookieWindow.remove(), 1000);
+		},
+		{ once: true },
+	);
 };

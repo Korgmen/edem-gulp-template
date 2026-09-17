@@ -3,11 +3,14 @@
 .select {
 	$p: &;
 
-	&[data-state~="fill"] {}
+	&[data-state~='fill'] {
+	}
 
-	&::placeholder {}
+	&::placeholder {
+	}
 
 	&__option {
-		&--title {}
+		&--title {
+		}
 	}
 }

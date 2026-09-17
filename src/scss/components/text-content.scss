@@ -15,9 +15,11 @@
 		gap: rem(16) 0;
 	}
 
-	h2 {}
+	h2 {
+	}
 
-	p {}
+	p {
+	}
 
 	ul,
 	ol {
@@ -38,7 +40,7 @@
 		}
 	}
 
-	div:has(>table) {
+	div:has(> table) {
 		width: 100%;
 		overflow-x: auto;
 	}
@@ -65,7 +67,8 @@
 				text-align: left;
 			}
 
-			td {}
+			td {
+			}
 
 			th,
 			td {

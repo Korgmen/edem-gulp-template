@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-
 	@@include('../chunks/head.html', {title: 'Примеры: Оповещения', example: true})
 
 	<body class="page">
@@ -14,8 +13,18 @@
 					<div class="container appear">
 						<h2 class="example__title"><span>Пример оповещений</span></h2>
 						<div class="example__row example__row--dense">
-							<button type="button" class="button" popovertarget="addToCart" popovertargetaction="show">Добавить в корзину</button>
-							<button type="button" class="button" data-copy="F3l0C1G5r" popovertarget="copyText" popovertargetaction="show">Скопировать промокод</button>
+							<button type="button" class="button" popovertarget="addToCart" popovertargetaction="show">
+								Добавить в корзину
+							</button>
+							<button
+								type="button"
+								class="button"
+								data-copy="F3l0C1G5r"
+								popovertarget="copyText"
+								popovertargetaction="show"
+							>
+								Скопировать промокод
+							</button>
 						</div>
 					</div>
 				</section>
@@ -23,9 +32,18 @@
 			@@include('../chunks/footer.html')
 		</div>
 		@@include('../chunks/modals.html')
-		<div id="addToCart" class="notify" data-notify popover data-popover-time="1.5"> <!-- закроется через 1.5 секунды -->
-			<button type="button" class="notify__close" aria-label="Закрыть" popovertarget="addToCart" popovertargetaction="hide">
-				<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
+		<div id="addToCart" class="notify" data-notify popover data-popover-time="1.5">
+			<!-- закроется через 1.5 секунды -->
+			<button
+				type="button"
+				class="notify__close"
+				aria-label="Закрыть"
+				popovertarget="addToCart"
+				popovertargetaction="hide"
+			>
+				<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15">
+					<use href="img/sprite.svg#close"></use>
+				</svg>
 			</button>
 			<div class="notify__content">
 				<p class="notify__text">🛒 товар добавлен в корзину</p>
@@ -33,8 +51,16 @@
 		</div>
 
 		<div id="copyText" class="notify" data-notify popover data-popover-time>
-			<button type="button" class="notify__close" aria-label="Закрыть" popovertarget="copyText" popovertargetaction="hide">
-				<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
+			<button
+				type="button"
+				class="notify__close"
+				aria-label="Закрыть"
+				popovertarget="copyText"
+				popovertargetaction="hide"
+			>
+				<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15">
+					<use href="img/sprite.svg#close"></use>
+				</svg>
 			</button>
 			<div class="notify__content">
 				<p class="notify__text">✅ промокод скопирован</p>
@@ -42,5 +68,4 @@
 		</div>
 		@@include('../chunks/scripts.html', {example: true})
 	</body>
-
 </html>

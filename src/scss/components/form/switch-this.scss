@@ -3,11 +3,11 @@
 @mixin switchThis($element) {
 	##{$element} {
 		transition: opacity $td $tf 0s;
-	
-		@at-root body:has([data-switch="#{$element}"]:not(:checked)) & {
+
+		@at-root body:has([data-switch='#{$element}']:not(:checked)) & {
 			opacity: 0.3;
 			cursor: not-allowed;
-	
+
 			& * {
 				pointer-events: none;
 				user-select: none;

@@ -3,27 +3,31 @@
 .number-input {
 	$p: &;
 
-	&[data-state~="fill"] {}
+	&[data-state~='fill'] {
+	}
 
 	&__input {
-
-		#{$p}[data-state~="fill"] & {}
+		#{$p}[data-state~='fill'] & {
+		}
 	}
 
 	&__button {
-
 		@media (any-hover: hover) {
-			&:hover {}
+			&:hover {
+			}
 		}
 
-		&::before {}
+		&::before {
+		}
 
 		&--minus {
-			&::before {}
+			&::before {
+			}
 		}
 
 		&--plus {
-			&::before {}
+			&::before {
+			}
 		}
 	}
 }

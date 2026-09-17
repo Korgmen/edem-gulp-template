@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-
 	@@include('../chunks/head.html', {title: 'Примеры: Формы', example: true})
 
 	<body class="page">
@@ -18,13 +17,19 @@
 								<h3 class="form__group-title">Основная информация</h3>
 								<div class="form__line">
 									<label class="form__label" for="name">Ваше имя</label>
-									<input id="name" class="form__field input" type="text" placeholder="Имя">
+									<input id="name" class="form__field input" type="text" placeholder="Имя" />
 									<span class="form__error"></span>
 								</div>
 								<div class="form__line form__line--row">
 									<div class="form__field-container">
 										<label class="form__label" for="phone">Ваш телефон</label>
-										<input id="phone" class="form__field input" data-tel-mask type="tel" placeholder="+7 (___) ___-__-__">
+										<input
+											id="phone"
+											class="form__field input"
+											data-tel-mask
+											type="tel"
+											placeholder="+7 (___) ___-__-__"
+										/>
 										<span class="form__error">Неправильно указан телефон</span>
 									</div>
 									<div class="form__field-container">
@@ -32,7 +37,7 @@
 											<p class="form__label">Ваша почта</p>
 											<p class="form__sublabel">Укажите почту в домене .com</p>
 										</label>
-										<input id="email" class="form__field input" type="email" placeholder="Почта">
+										<input id="email" class="form__field input" type="email" placeholder="Почта" />
 										<span class="form__error"></span>
 									</div>
 									<div class="form__field-container">
@@ -40,28 +45,56 @@
 											<p class="form__label">Бюджет проекта</p>
 										</label>
 										<div class="range-input" data-range>
-											<p class="range-input__text" data-range-text><span class="range-input__text-val" data-range-val></span> ₽</p>
-											<input class="range-input__input" data-range-input id="range-input" type="range" min="10000" max="100000" step="2000" value="24000">
+											<p class="range-input__text" data-range-text>
+												<span class="range-input__text-val" data-range-val></span> ₽
+											</p>
+											<input
+												class="range-input__input"
+												data-range-input
+												id="range-input"
+												type="range"
+												min="10000"
+												max="100000"
+												step="2000"
+												value="24000"
+											/>
 										</div>
 									</div>
 								</div>
 								<div class="form__line form__line--row">
-									<div class="form__field-container" style="flex: 0 1 33.333%;">
+									<div class="form__field-container" style="flex: 0 1 33.333%">
 										<label class="form__label" for="gender">Ваш пол</label>
 										<select class="form__field input select" data-select id="gender" name="gender">
-											<option class="select__option select__option--title" value="" selected>Укажите ваш пол</option>
+											<option class="select__option select__option--title" value="" selected>
+												Укажите ваш пол
+											</option>
 											<option class="select__option" value="Мужской">Мужской</option>
 											<option class="select__option" value="Женский">Женский</option>
 										</select>
 									</div>
-									<div class="form__field-container" style="flex: 0 1;">
+									<div class="form__field-container" style="flex: 0 1">
 										<label class="form__label-container" for="form-number">
 											<p class="form__label">Ваш возраст</p>
 										</label>
 										<div class="form__number number-input" data-number>
-											<span class="number-input__button number-input__button--minus" data-number-minus></span>
-											<input class="number-input__input" data-number-input id="number-input" type="number" min="18" max="120" step="1" value="">
-											<span class="number-input__button number-input__button--plus" data-number-plus></span>
+											<span
+												class="number-input__button number-input__button--minus"
+												data-number-minus
+											></span>
+											<input
+												class="number-input__input"
+												data-number-input
+												id="number-input"
+												type="number"
+												min="18"
+												max="120"
+												step="1"
+												value=""
+											/>
+											<span
+												class="number-input__button number-input__button--plus"
+												data-number-plus
+											></span>
 										</div>
 									</div>
 									<div class="form__field-container">
@@ -69,12 +102,28 @@
 											<p class="form__label">Бюджет проекта (v2)</p>
 										</label>
 										<div class="dual-range-input" data-dual-range>
-											<p class="dual-range-input__text" data-dual-range-text><span class="dual-range-input__text-val" data-dual-range-val></span> ₽</p>
+											<p class="dual-range-input__text" data-dual-range-text>
+												<span class="dual-range-input__text-val" data-dual-range-val></span> ₽
+											</p>
 											<div class="dual-range-input__input-container" data-dual-range-track>
-												<input class="dual-range-input__input" data-dual-range-input type="range" min="10000" max="100000" step="2000" value="24000">
-												<input class="dual-range-input__input" data-dual-range-input type="range">
+												<input
+													class="dual-range-input__input"
+													data-dual-range-input
+													type="range"
+													min="10000"
+													max="100000"
+													step="2000"
+													value="24000"
+												/>
+												<input
+													class="dual-range-input__input"
+													data-dual-range-input
+													type="range"
+												/>
 											</div>
-											<p class="dual-range-input__text" data-dual-range-text><span class="dual-range-input__text-val" data-dual-range-val></span> ₽</p>
+											<p class="dual-range-input__text" data-dual-range-text>
+												<span class="dual-range-input__text-val" data-dual-range-val></span> ₽
+											</p>
 										</div>
 									</div>
 								</div>
@@ -83,37 +132,71 @@
 								<h3 class="form__group-title">Дополнительная информация</h3>
 								<div class="form__line">
 									<div class="form__field input file-input" data-file>
-										<label class="file-input__label" data-file-label for="resume">Прикрепите резюме (pdf, jpg, png, docx)</label>
-										<input id="resume" class="file-input__input sem-hide" data-file-input type="file">
+										<label class="file-input__label" data-file-label for="resume"
+											>Прикрепите резюме (pdf, jpg, png, docx)</label
+										>
+										<input
+											id="resume"
+											class="file-input__input sem-hide"
+											data-file-input
+											type="file"
+										/>
 									</div>
 									<span class="form__error"></span>
 								</div>
 								<div class="form__line">
 									<div class="toggler-checkbox" data-checkbox="toggler">
 										<label class="form__label" for="toggler">Доставить заказ по адресу</label>
-										<input class="toggler-checkbox__input" data-checkbox-input data-switch="address" type="checkbox" id="toggler">
+										<input
+											class="toggler-checkbox__input"
+											data-checkbox-input
+											data-switch="address"
+											type="checkbox"
+											id="toggler"
+										/>
 									</div>
 								</div>
 								<div id="address" class="form__line form__line--row">
 									<div class="form__field-container">
-										<input class="form__field input" type="text" placeholder="Адрес">
+										<input class="form__field input" type="text" placeholder="Адрес" />
 										<span class="form__error">Неправильно указан адрес</span>
 									</div>
 									<div class="form__field-container">
-										<input class="form__field date-input" type="date" placeholder="Дата доставки" required>
+										<input
+											class="form__field date-input"
+											type="date"
+											placeholder="Дата доставки"
+											required
+										/>
 										<span class="form__error"></span>
 									</div>
 								</div>
 								<div class="form__line">
-									<textarea class="form__field input input--textarea" type="text" placeholder="О себе"></textarea>
+									<textarea
+										class="form__field input input--textarea"
+										type="text"
+										placeholder="О себе"
+									></textarea>
 									<span class="form__error"></span>
 								</div>
 								<div class="form__line">
 									<button type="button" class="form__button button" type="submit">Отправить</button>
-									<p class="form__policy">Нажимая «Отправить» вы соглашаетесь с <a class="link" href="">Политикой обработки персональных данных</a></p>
+									<p class="form__policy">
+										Нажимая «Отправить» вы соглашаетесь с
+										<a class="link" href="">Политикой обработки персональных данных</a>
+									</p>
 									<div class="checkbox" data-checkbox>
-										<input class="checkbox__input" data-checkbox-input type="checkbox" id="policy" checked>
-										<label class="form__policy checkbox__label" for="policy">Я соглашаюсь на обработку своих персональных данных в соответствии с <a class="link" href="">политикой</a></label>
+										<input
+											class="checkbox__input"
+											data-checkbox-input
+											type="checkbox"
+											id="policy"
+											checked
+										/>
+										<label class="form__policy checkbox__label" for="policy"
+											>Я соглашаюсь на обработку своих персональных данных в соответствии с
+											<a class="link" href="">политикой</a></label
+										>
 									</div>
 								</div>
 							</div>
@@ -125,15 +208,36 @@
 						<h2 class="example__title"><span>Пример кастомных чекбоксов</span></h2>
 						<form class="example__row example__row--dense">
 							<div class="custom-checkbox" data-checkbox>
-								<input class="custom-checkbox__input" data-checkbox-input type="checkbox" name="custom-checkbox" id="custom-checkbox-1" checked>
+								<input
+									class="custom-checkbox__input"
+									data-checkbox-input
+									type="checkbox"
+									name="custom-checkbox"
+									id="custom-checkbox-1"
+									checked
+								/>
 								<label class="custom-checkbox__label button" for="custom-checkbox-1">По убыванию</label>
 							</div>
 							<div class="custom-checkbox" data-checkbox>
-								<input class="custom-checkbox__input" data-checkbox-input type="checkbox" name="custom-checkbox" id="custom-checkbox-2">
-								<label class="custom-checkbox__label button" for="custom-checkbox-2">По возрастанию</label>
+								<input
+									class="custom-checkbox__input"
+									data-checkbox-input
+									type="checkbox"
+									name="custom-checkbox"
+									id="custom-checkbox-2"
+								/>
+								<label class="custom-checkbox__label button" for="custom-checkbox-2"
+									>По возрастанию</label
+								>
 							</div>
 							<div class="custom-checkbox" data-checkbox>
-								<input class="custom-checkbox__input" data-checkbox-input type="checkbox" name="custom-checkbox" id="custom-checkbox-3">
+								<input
+									class="custom-checkbox__input"
+									data-checkbox-input
+									type="checkbox"
+									name="custom-checkbox"
+									id="custom-checkbox-3"
+								/>
 								<label class="custom-checkbox__label button" for="custom-checkbox-3">По барабану</label>
 							</div>
 						</form>
@@ -144,15 +248,34 @@
 						<h2 class="example__title"><span>Пример кастомных радио</span></h2>
 						<form class="example__row example__row--dense">
 							<div class="custom-checkbox" data-checkbox>
-								<input class="custom-checkbox__input" data-checkbox-input type="radio" name="custom-radio" id="custom-radio-1">
+								<input
+									class="custom-checkbox__input"
+									data-checkbox-input
+									type="radio"
+									name="custom-radio"
+									id="custom-radio-1"
+								/>
 								<label class="custom-checkbox__label button" for="custom-radio-1">По убыванию</label>
 							</div>
 							<div class="custom-checkbox" data-checkbox>
-								<input class="custom-checkbox__input" data-checkbox-input type="radio" name="custom-radio" id="custom-radio-2" checked>
+								<input
+									class="custom-checkbox__input"
+									data-checkbox-input
+									type="radio"
+									name="custom-radio"
+									id="custom-radio-2"
+									checked
+								/>
 								<label class="custom-checkbox__label button" for="custom-radio-2">По возрастанию</label>
 							</div>
 							<div class="custom-checkbox" data-checkbox>
-								<input class="custom-checkbox__input" data-checkbox-input type="radio" name="custom-radio" id="custom-radio-3">
+								<input
+									class="custom-checkbox__input"
+									data-checkbox-input
+									type="radio"
+									name="custom-radio"
+									id="custom-radio-3"
+								/>
 								<label class="custom-checkbox__label button" for="custom-radio-3">По барабану</label>
 							</div>
 						</form>
@@ -164,5 +287,4 @@
 		@@include('../chunks/modals.html')
 		@@include('../chunks/scripts.html', {example: true})
 	</body>
-
 </html>

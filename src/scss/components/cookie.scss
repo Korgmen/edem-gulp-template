@@ -3,7 +3,7 @@
 #cookie {
 	left: initial;
 
-	@media (min-width:$md4) {
+	@media (min-width: $md4) {
 		right: rem(16);
 	}
 }

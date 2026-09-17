@@ -13,14 +13,20 @@ const generateFolderIndex = async (folder) => {
 	if (!entries) return;
 
 	// Подпапка форвардится по имени, поэтому свой index.scss нужен и ей
-	await Promise.all(entries
-		.filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
-		.map((entry) => generateFolderIndex(path.join(folder, entry.name))));
+	await Promise.all(
+		entries
+			.filter((entry) => entry.isDirectory() && !entry.name.startsWith('.'))
+			.map((entry) => generateFolderIndex(path.join(folder, entry.name))),
+	);
 
 	// Сортировка — чтобы порядок @forward (а значит и порядок правил в CSS) не менялся от запуска к запуску
 	const modules = entries
 		.filter((entry) => !entry.name.startsWith('.'))
-		.filter((entry) => entry.isDirectory() || (entry.isFile() && path.extname(entry.name) === '.scss' && entry.name !== 'index.scss'))
+		.filter(
+			(entry) =>
+				entry.isDirectory() ||
+				(entry.isFile() && path.extname(entry.name) === '.scss' && entry.name !== 'index.scss'),
+		)
 		.map((entry) => (entry.isDirectory() ? entry.name : path.basename(entry.name, '.scss')))
 		.sort((a, b) => a.localeCompare(b));
 

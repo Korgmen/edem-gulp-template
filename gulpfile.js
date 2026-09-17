@@ -17,17 +17,23 @@ import { root } from './gulp/tasks/root.js';
 import { deployCheck, deployWatch, deployAll } from './gulp/tasks/deploy.js';
 import { demoRemove, exampleRemove } from './gulp/tasks/remove.js';
 
-const removeFromBuild = (srcBase, destBase) => (filePath) => deleteAsync(path.join(destBase, path.relative(srcBase, filePath)));
+const removeFromBuild = (srcBase, destBase) => (filePath) =>
+	deleteAsync(path.join(destBase, path.relative(srcBase, filePath)));
 
 function watcher(done) {
 	gulp.watch(paths.html.src, html);
 	// Исключаются только автогенерируемые индексы: их перезапись в generateIndexSCSS не должна повторно запускать компиляцию
-	gulp.watch([paths.scss.watch, ...paths.scss.generatedIndexDirs.map(dir => `!${dir}/index.scss`)], styles);
+	gulp.watch([paths.scss.watch, ...paths.scss.generatedIndexDirs.map((dir) => `!${dir}/index.scss`)], styles);
 	gulp.watch(paths.js.watch, js);
 	gulp.watch(paths.svg.src, svg);
-	gulp.watch([paths.img.src, `!${paths.img.icons}`], img).on('unlink', removeFromBuild(paths.img.base, paths.img.dest));
+	gulp.watch([paths.img.src, `!${paths.img.icons}`], img).on(
+		'unlink',
+		removeFromBuild(paths.img.base, paths.img.dest),
+	);
 	gulp.watch(paths.root.src, root).on('unlink', removeFromBuild(paths.root.base, paths.root.dest));
-	gulp.watch(paths.fonts.watch, font).on('unlink', filePath => deleteAsync(path.join(paths.fonts.dest, path.basename(filePath).replace(/\.ttf$/, '.woff2'))));
+	gulp.watch(paths.fonts.watch, font).on('unlink', (filePath) =>
+		deleteAsync(path.join(paths.fonts.dest, path.basename(filePath).replace(/\.ttf$/, '.woff2'))),
+	);
 	done();
 }
 
@@ -44,14 +50,14 @@ export default devTasks;
 const build = gulp.series(reset, buildTasks);
 const deploy = gulp.series(deployCheck, reset, buildTasks, deployAll);
 
-export { build }
-export { deploy }
-export { generateIndexSCSS }
-export { svg }
-export { html }
-export { styles as scss }
-export { js }
-export { font }
-export { img }
-export { root }
-export { demoRemove, exampleRemove }
+export { build };
+export { deploy };
+export { generateIndexSCSS };
+export { svg };
+export { html };
+export { styles as scss };
+export { js };
+export { font };
+export { img };
+export { root };
+export { demoRemove, exampleRemove };

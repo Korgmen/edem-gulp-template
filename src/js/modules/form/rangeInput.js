@@ -2,12 +2,11 @@ import initOnce from '../utils/initOnce.js';
 import setState from '../utils/setState.js';
 import { requireChild } from '../utils/devLog.js';
 
-const calculatePercentage = (value, min, max) =>
-	((Number(value) - Number(min)) / (Number(max) - Number(min))) * 100;
+const calculatePercentage = (value, min, max) => ((Number(value) - Number(min)) / (Number(max) - Number(min))) * 100;
 
 // Логика ползунка [readme 3.4]
 export const init = (root = document) => {
-	initOnce(root, '[data-range]', 'rangeInput', rangeBlock => {
+	initOnce(root, '[data-range]', 'rangeInput', (rangeBlock) => {
 		const rangeInput = requireChild(rangeBlock, 'input', 'rangeInput');
 		const rangeVal = requireChild(rangeBlock, '[data-range-val]', 'rangeInput');
 		if (!rangeInput || !rangeVal) return;
@@ -32,7 +31,10 @@ export const init = (root = document) => {
 
 		const update = () => {
 			rangeVal.innerHTML = Number(rangeInput.value).toLocaleString();
-			rangeInput.style.setProperty('--cur-perc', `${calculatePercentage(rangeInput.value, rangeInputMin, rangeInputMax)}%`);
+			rangeInput.style.setProperty(
+				'--cur-perc',
+				`${calculatePercentage(rangeInput.value, rangeInputMin, rangeInputMax)}%`,
+			);
 		};
 
 		update();

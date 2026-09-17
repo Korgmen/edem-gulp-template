@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-
 	@@include('../chunks/head.html', {title: 'Примеры: Модальные окна', example: true})
 
 	<body class="page">
@@ -14,7 +13,9 @@
 					<div class="container appear">
 						<h2 class="example__title"><span>Пример модалов</span></h2>
 						<div class="example__row example__row--dense">
-							<button type="button" class="modal-link button" data-modal-open="callback">Вызвать модал callback</button>
+							<button type="button" class="modal-link button" data-modal-open="callback">
+								Вызвать модал callback
+							</button>
 						</div>
 					</div>
 				</section>
@@ -25,14 +26,13 @@
 		<dialog id="callback" class="modal" data-modal>
 			<form class="modal__close" method="dialog">
 				<button aria-label="Закрыть">
-					<svg aria-hidden="true" focusable="false" class="modal__close-icon icon" width="32" height="32"><use href="img/sprite.svg#close"></use></svg>
+					<svg aria-hidden="true" focusable="false" class="modal__close-icon icon" width="32" height="32">
+						<use href="img/sprite.svg#close"></use>
+					</svg>
 				</button>
 			</form>
-			<div class="modal__content" data-modal-content>
-				Модальное окно "callback"
-			</div>
+			<div class="modal__content" data-modal-content>Модальное окно "callback"</div>
 		</dialog>
 		@@include('../chunks/scripts.html', {example: true})
 	</body>
-
 </html>

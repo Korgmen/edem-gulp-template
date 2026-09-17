@@ -4,11 +4,14 @@
 	$p: &;
 
 	// стили для поля в фокусе
-	&:focus {}
+	&:focus {
+	}
 
 	// стили для поля с заполненным значением
-	&:not(:placeholder-shown) {}
+	&:not(:placeholder-shown) {
+	}
 
 	// стили для поля плейсхолдера поля
-	&::placeholder {}
+	&::placeholder {
+	}
 }

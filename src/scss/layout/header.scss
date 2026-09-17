@@ -5,7 +5,8 @@
 	--header-scroll-height: #{rem(80)};
 	--header-bgcolor: var(--c-accent);
 
-	&__scroll-fix {}
+	&__scroll-fix {
+	}
 
 	&__row {
 		transition: all $td $tf 0s;

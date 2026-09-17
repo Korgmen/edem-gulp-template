@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-
 	@@include('../chunks/head.html', {title: 'Примеры: Тултипы', example: true})
 
 	<body class="page">
@@ -17,9 +16,7 @@
 							<span>Наведи на иконку -></span>
 							<div class="tooltip" data-tooltip>
 								<button type="button" class="tooltip__button" data-tooltip-button>⚠️</button>
-								<div class="tooltip__body" data-tooltip-body>
-									Обычный тултип
-								</div>
+								<div class="tooltip__body" data-tooltip-body>Обычный тултип</div>
 							</div>
 						</div>
 						<div class="example__tooltip">
@@ -27,14 +24,18 @@
 							<div class="tooltip" data-tooltip>
 								<button type="button" class="tooltip__button" data-tooltip-button>ℹ️</button>
 								<div class="tooltip__body" data-tooltip-body>
-									Тултип где много текста. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad quo at facilis facere exercitationem accusamus quibusdam in minus modi perspiciatis.
+									Тултип где много текста. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+									Ad quo at facilis facere exercitationem accusamus quibusdam in minus modi
+									perspiciatis.
 								</div>
 							</div>
 						</div>
 						<div class="example__tooltip">
 							<span>Наведи на иконку -></span>
 							<div class="tooltip" data-tooltip>
-								<button type="button" class="tooltip__button" data-tooltip-button><i>📫</i><i>📬</i></button>
+								<button type="button" class="tooltip__button" data-tooltip-button>
+									<i>📫</i><i>📬</i>
+								</button>
 								<div class="tooltip__body" data-tooltip-body>
 									<h2>Тултип с параграфами и форматированием</h2>
 									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -50,5 +51,4 @@
 		@@include('../chunks/modals.html')
 		@@include('../chunks/scripts.html', {example: true})
 	</body>
-
 </html>

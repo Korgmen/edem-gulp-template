@@ -2,7 +2,9 @@
 <dialog id="hide-menu" class="hide-menu" data-hide-menu>
 	<form class="hide-menu__close" method="dialog">
 		<button aria-label="Закрыть">
-			<svg aria-hidden="true" focusable="false" class="hide-menu__close-icon icon" width="24" height="24"><use href="img/sprite.svg#close"></use></svg>
+			<svg aria-hidden="true" focusable="false" class="hide-menu__close-icon icon" width="24" height="24">
+				<use href="img/sprite.svg#close"></use>
+			</svg>
 		</button>
 	</form>
 	<div class="hide-menu__content" data-hide-menu-content>
@@ -17,14 +19,33 @@
 <!-- Куки-оповещение -->
 <div id="cookie" class="notify notify--maxw800" data-notify="open" popover="manual">
 	<div class="notify__content notify__content--line notify__content--center">
-		<p class="notify__text">Мы&nbsp;сохраняем файлы 🍪 cookie для быстрой и&nbsp;удобной работы сайта. Продолжая использовать сайт, вы&nbsp;предоставляете согласие на&nbsp;<a class="link" href="">обработку ваших персональных данных</a> с&nbsp;помощью сервисов веб-аналитики.</p>
-		<button type="button" class="notify__button button button--small" popovertarget="cookie" popovertargetaction="hide">Согласен</button>
+		<p class="notify__text">
+			Мы&nbsp;сохраняем файлы 🍪 cookie для быстрой и&nbsp;удобной работы сайта. Продолжая использовать сайт,
+			вы&nbsp;предоставляете согласие на&nbsp;<a class="link" href="">обработку ваших персональных данных</a>
+			с&nbsp;помощью сервисов веб-аналитики.
+		</p>
+		<button
+			type="button"
+			class="notify__button button button--small"
+			popovertarget="cookie"
+			popovertargetaction="hide"
+		>
+			Согласен
+		</button>
 	</div>
 </div>
 
 <div id="custom-notify" class="notify" data-notify popover data-popover-time>
-	<button type="button" class="notify__close" aria-label="Закрыть" popovertarget="custom-notify" popovertargetaction="hide">
-		<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15"><use href="img/sprite.svg#close"></use></svg>
+	<button
+		type="button"
+		class="notify__close"
+		aria-label="Закрыть"
+		popovertarget="custom-notify"
+		popovertargetaction="hide"
+	>
+		<svg aria-hidden="true" focusable="false" class="notify__close-icon icon" width="15" height="15">
+			<use href="img/sprite.svg#close"></use>
+		</svg>
 	</button>
 	<div class="notify__content">
 		<p class="notify__text" data-notify-content></p>

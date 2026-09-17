@@ -3,17 +3,22 @@
 .file-input {
 	$p: &;
 
-	&:not(:placeholder-shown) {}
+	&:not(:placeholder-shown) {
+	}
 
 	&::after {
-		@at-root #{$p}:not(:placeholder-shown)::after {}
+		@at-root #{$p}:not(:placeholder-shown)::after {
+		}
 	}
 
 	.form {
-		&__field {}
+		&__field {
+		}
 	}
 
-	&__label {}
+	&__label {
+	}
 
-	&__input {}
+	&__input {
+	}
 }

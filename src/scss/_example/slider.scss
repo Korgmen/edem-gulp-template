@@ -14,13 +14,15 @@
 		width: fit-content;
 	}
 
-	&__pagination {}
+	&__pagination {
+	}
 
 	&__scrollbar {
 		margin-top: rem(32);
 	}
 
-	&__slider {}
+	&__slider {
+	}
 
 	&__slide {
 		border: rem(1) solid var(--c-main);
@@ -42,7 +44,8 @@
 		line-height: 150%;
 	}
 
-	&__image-link {}
+	&__image-link {
+	}
 
 	&__image-container {
 		width: 100%;
@@ -50,5 +53,6 @@
 		background-color: color-mix(in srgb, var(--c-main) 20%, var(--c-accent) 80%);
 	}
 
-	&__image {}
+	&__image {
+	}
 }

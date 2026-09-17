@@ -15,21 +15,27 @@ body.page {
 		height: 100vh;
 		z-index: 6;
 		background-color: transparent;
-		transition: background-color $td $tf 0s, backdrop-filter $td $tf 0s, left 0s ease $td;
+		transition:
+			background-color $td $tf 0s,
+			backdrop-filter $td $tf 0s,
+			left 0s ease $td;
 	}
 
-	&[data-state~="lock"] {
+	&[data-state~='lock'] {
 		overflow: hidden;
 
 		&::before {
 			left: 0;
 			background-color: color-mix(in srgb, var(--c-main) 20%, transparent);
-			transition: background-color $td $tf 0s, backdrop-filter $td $tf 0s, left 0s ease 0s;
+			transition:
+				background-color $td $tf 0s,
+				backdrop-filter $td $tf 0s,
+				left 0s ease 0s;
 			backdrop-filter: blur(rem(5));
 		}
 	}
 
-	&[data-state~="lock-clear"]::before {
+	&[data-state~='lock-clear']::before {
 		display: none;
 	}
 }

@@ -4,8 +4,8 @@ export const init = () => {
 	const header = document.querySelector('header');
 	if (!header) return;
 
-	const setHeight = () => document.documentElement.style
-		.setProperty('--header-height', `${header.offsetHeight / 16}rem`);
+	const setHeight = () =>
+		document.documentElement.style.setProperty('--header-height', `${header.offsetHeight / 16}rem`);
 
 	setHeight();
 	new ResizeObserver(setHeight).observe(header);

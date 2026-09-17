@@ -3,7 +3,7 @@
 .input {
 	font-size: rem(16);
 	color: #757575;
-	background-color: #F1F1F1;
+	background-color: #f1f1f1;
 	border: rem(1) solid transparent;
 	height: rem(42);
 	padding: 0 rem(10);
@@ -13,11 +13,11 @@
 
 	&:focus {
 		background-color: transparent;
-		border-color: #AAA;
+		border-color: #aaa;
 		color: var(--c-main);
 	}
 
-	&[data-state~="fill"] {
+	&[data-state~='fill'] {
 		background-color: transparent;
 		border-color: var(--c-main);
 		color: var(--c-main);

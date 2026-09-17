@@ -4,11 +4,13 @@
 	$p: &;
 
 	&__input {
+		&::before {
+		}
 
-		&::before {}
-
-		&::after {}
+		&::after {
+		}
 	}
 
-	&__label {}
+	&__label {
+	}
 }

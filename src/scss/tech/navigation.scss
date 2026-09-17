@@ -3,7 +3,8 @@
 .navigation {
 	$p: &;
 
-	&__list {}
+	&__list {
+	}
 
 	--navigation-duration: #{$td};
 
@@ -11,7 +12,8 @@
 		position: relative;
 	}
 
-	&__list-link {}
+	&__list-link {
+	}
 
 	&__level-icon {
 		flex-shrink: 0;
@@ -61,7 +63,7 @@
 			top: 0;
 			left: 100%;
 
-			@media (max-width:$md4) {
+			@media (max-width: $md4) {
 				left: 0;
 				bottom: 0;
 				translate: 0 100%;
@@ -69,7 +71,8 @@
 		}
 	}
 
-	&__level-list {}
+	&__level-list {
+	}
 
 	&__level-list-item {
 		position: relative;

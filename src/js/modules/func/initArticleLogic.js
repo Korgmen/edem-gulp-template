@@ -2,17 +2,48 @@ import initOnce from '../utils/initOnce.js';
 import { devWarn } from '../utils/devLog.js';
 
 const TRANSLIT = {
-	а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'e', ж: 'zh', з: 'z', и: 'i', й: 'i',
-	к: 'k', л: 'l', м: 'm', н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f',
-	х: 'h', ц: 'c', ч: 'ch', ш: 'sh', щ: 'sch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu', я: 'ya',
+	а: 'a',
+	б: 'b',
+	в: 'v',
+	г: 'g',
+	д: 'd',
+	е: 'e',
+	ё: 'e',
+	ж: 'zh',
+	з: 'z',
+	и: 'i',
+	й: 'i',
+	к: 'k',
+	л: 'l',
+	м: 'm',
+	н: 'n',
+	о: 'o',
+	п: 'p',
+	р: 'r',
+	с: 's',
+	т: 't',
+	у: 'u',
+	ф: 'f',
+	х: 'h',
+	ц: 'c',
+	ч: 'ch',
+	ш: 'sh',
+	щ: 'sch',
+	ъ: '',
+	ы: 'y',
+	ь: '',
+	э: 'e',
+	ю: 'yu',
+	я: 'ya',
 };
 
-const slugify = (text) => text
-	.toLowerCase()
-	.replace(/[а-яё]/g, char => TRANSLIT[char] ?? '')
-	.replace(/[^a-z0-9]+/g, '-')
-	.replace(/^-+|-+$/g, '')
-	.slice(0, 60);
+const slugify = (text) =>
+	text
+		.toLowerCase()
+		.replace(/[а-яё]/g, (char) => TRANSLIT[char] ?? '')
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '')
+		.slice(0, 60);
 
 // Заготовка ссылки лежит рядом с контентом статьи, а не внутри него
 const findLinkTemplate = (content) => {
@@ -25,10 +56,14 @@ const findLinkTemplate = (content) => {
 
 // Генерация оглавления [readme 2.8]
 export const buildArticleList = (root = document) => {
-	initOnce(root, '[data-article]', 'initArticleLogic', content => {
+	initOnce(root, '[data-article]', 'initArticleLogic', (content) => {
 		const linkTemplate = findLinkTemplate(content);
 		if (!linkTemplate) {
-			devWarn('initArticleLogic', 'не найдена заготовка ссылки [data-article-link] — оглавление не собрано', content);
+			devWarn(
+				'initArticleLogic',
+				'не найдена заготовка ссылки [data-article-link] — оглавление не собрано',
+				content,
+			);
 			return;
 		}
 
@@ -62,12 +97,13 @@ export const buildArticleList = (root = document) => {
 
 // Отслеживание активного пункта оглавления [readme 2.9]
 export const trackArticleHeader = (root = document) => {
-	initOnce(root, '[data-article]', 'trackArticleHeader', content => {
+	initOnce(root, '[data-article]', 'trackArticleHeader', (content) => {
 		const targets = content.querySelectorAll('[data-article-target]');
 		if (!targets.length) return;
 
-		const list = findLinkTemplate(content)?.parentElement
-			?? content.parentElement?.querySelector('[data-article-link]')?.parentElement;
+		const list =
+			findLinkTemplate(content)?.parentElement ??
+			content.parentElement?.querySelector('[data-article-link]')?.parentElement;
 		const links = list?.querySelectorAll('[data-article-link]');
 		if (!links?.length) return;
 
@@ -76,21 +112,24 @@ export const trackArticleHeader = (root = document) => {
 
 		const visible = new Set();
 
-		const observer = new IntersectionObserver(entries => {
-			for (const entry of entries) {
-				if (entry.isIntersecting) visible.add(entry.target);
-				else visible.delete(entry.target);
-			}
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) visible.add(entry.target);
+					else visible.delete(entry.target);
+				}
 
-			// Активным считается верхний из видимых заголовков
-			const current = [...targets].find(target => visible.has(target));
-			if (!current) return;
+				// Активным считается верхний из видимых заголовков
+				const current = [...targets].find((target) => visible.has(target));
+				if (!current) return;
 
-			links.forEach(link => link.removeAttribute('aria-current'));
-			linkByTarget.get(current)?.setAttribute('aria-current', 'location');
-		}, { rootMargin: '0px 0px -80% 0px' });
+				links.forEach((link) => link.removeAttribute('aria-current'));
+				linkByTarget.get(current)?.setAttribute('aria-current', 'location');
+			},
+			{ rootMargin: '0px 0px -80% 0px' },
+		);
 
-		targets.forEach(target => observer.observe(target));
+		targets.forEach((target) => observer.observe(target));
 	});
 };
 

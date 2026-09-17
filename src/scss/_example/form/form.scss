@@ -34,9 +34,11 @@
 		gap: rem(3) 0;
 	}
 
-	&__field {}
+	&__field {
+	}
 
-	&__file {}
+	&__file {
+	}
 
 	&__label-container {
 		display: flex;
@@ -51,7 +53,7 @@
 
 	&__sublabel {
 		font-size: rem(12);
-		color: #BBB;
+		color: #bbb;
 	}
 
 	&__error {
@@ -62,11 +64,11 @@
 	&__button {
 		width: min(rem(250), 100%);
 
-		@media (max-width:$md4) {
+		@media (max-width: $md4) {
 			width: 100%;
 		}
 
-		&[data-state~="send"] {
+		&[data-state~='send'] {
 			background-color: var(--c-brand);
 		}
 	}
@@ -74,14 +76,14 @@
 	&__policy {
 		line-height: 150%;
 		font-size: rem(12);
-		color: #BBB;
+		color: #bbb;
 		margin-top: rem(4);
 
 		@at-root p#{&} {
 			max-width: rem(250);
 		}
 
-		@at-root p#{&}+* {
+		@at-root p#{&} + * {
 			margin-top: rem(5);
 		}
 	}

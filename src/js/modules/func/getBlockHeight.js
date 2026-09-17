@@ -2,7 +2,7 @@ import initOnce from '../utils/initOnce.js';
 
 // Получение высоты блоков [readme 2.1]
 export const init = (root = document) => {
-	initOnce(root, '[data-get-height]', 'getBlockHeight', call => {
+	initOnce(root, '[data-get-height]', 'getBlockHeight', (call) => {
 		call.style.height = 'auto';
 
 		const targetElement = call.closest('[data-height-goal]') || call.closest('.content__block');

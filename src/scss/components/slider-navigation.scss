@@ -18,15 +18,17 @@
 		pointer-events: initial;
 		transition: all $td $tf 0s;
 
-		@media (pointer: fine){
-			&:hover{
+		@media (pointer: fine) {
+			&:hover {
 				color: var(--c-brand);
 			}
 		}
 
-		&--prev {}
+		&--prev {
+		}
 
-		&--next {}
+		&--next {
+		}
 
 		&--disabled {
 			opacity: 0.3;

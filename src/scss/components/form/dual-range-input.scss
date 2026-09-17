@@ -3,17 +3,20 @@
 .dual-range-input {
 	$p: &;
 
-	&[data-state~="fill"] {}
+	&[data-state~='fill'] {
+	}
 
-	&__input-container {}
+	&__input-container {
+	}
 
 	&__input {
-
 		@media (any-hover: hover) {
-			#{$p}:hover & {}
+			#{$p}:hover & {
+			}
 		}
 
-		@mixin rangeThumb {}
+		@mixin rangeThumb {
+		}
 
 		&::-webkit-slider-thumb {
 			@include rangeThumb;
@@ -23,13 +26,15 @@
 			@include rangeThumb;
 		}
 
-		&::before {}
+		&::before {
+		}
 	}
 
 	&__text {
-
-		#{$p}[data-state~="fill"] & {}
+		#{$p}[data-state~='fill'] & {
+		}
 	}
 
-	&__text-val {}
+	&__text-val {
+	}
 }

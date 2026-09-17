@@ -3,11 +3,14 @@
 .breadcrumbs {
 	$p: &;
 
-	&__list {}
-
-	&__item {
-		&:not(:last-child)::after {}
+	&__list {
 	}
 
-	&__link {}
+	&__item {
+		&:not(:last-child)::after {
+		}
+	}
+
+	&__link {
+	}
 }

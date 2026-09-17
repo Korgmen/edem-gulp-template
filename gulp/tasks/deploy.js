@@ -19,23 +19,29 @@ const log = (message) => console.log(`[${time()}] [deploy] ${message}`);
 const logError = (message) => console.error(`\x1b[31m[${time()}] [deploy] ${message}\x1b[0m`);
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const expandHome = (filePath) => filePath.replace(/^~(?=$|[\\/])/, os.homedir());
-const normalizeFingerprint = (value) => value.trim().replace(/^SHA256:/, '').replace(/=+$/, '');
+const normalizeFingerprint = (value) =>
+	value
+		.trim()
+		.replace(/^SHA256:/, '')
+		.replace(/=+$/, '');
 const hash = (content) => crypto.createHash('sha1').update(content).digest('hex');
 
-class FatalError extends Error { }
+class FatalError extends Error {}
 
 const readSettings = () => {
 	try {
 		process.loadEnvFile('.env');
 	} catch (err) {
-		if (err.code === 'ENOENT') throw new FatalError('Не найден файл .env — скопируйте .env.example в .env и заполните доступы');
+		if (err.code === 'ENOENT')
+			throw new FatalError('Не найден файл .env — скопируйте .env.example в .env и заполните доступы');
 		throw err;
 	}
 
 	const env = process.env;
 	const missing = ['DEPLOY_HOST', 'DEPLOY_USERNAME'].filter((key) => !env[key]);
 	if (missing.length) throw new FatalError(`В .env не заполнено: ${missing.join(', ')}`);
-	if (!env.DEPLOY_PRIVATE_KEY && !env.DEPLOY_PASSWORD) throw new FatalError('В .env нужно указать DEPLOY_PRIVATE_KEY или DEPLOY_PASSWORD');
+	if (!env.DEPLOY_PRIVATE_KEY && !env.DEPLOY_PASSWORD)
+		throw new FatalError('В .env нужно указать DEPLOY_PRIVATE_KEY или DEPLOY_PASSWORD');
 
 	let privateKey;
 	if (env.DEPLOY_PRIVATE_KEY) {
@@ -70,8 +76,12 @@ const createCache = (key, { reset = false } = {}) => {
 
 	return {
 		isUploaded: (remote, contentHash) => entries[remote] === contentHash,
-		set: (remote, contentHash) => { entries[remote] = contentHash; },
-		remove: (remote) => { delete entries[remote]; },
+		set: (remote, contentHash) => {
+			entries[remote] = contentHash;
+		},
+		remove: (remote) => {
+			delete entries[remote];
+		},
 		save: () => {
 			const all = readAll();
 			all[key] = entries;
@@ -116,11 +126,15 @@ const createConnection = (settings) => {
 					hostVerifier: (key) => {
 						const received = crypto.createHash('sha256').update(key).digest('base64').replace(/=+$/, '');
 						if (!settings.fingerprint) {
-							hostError = new FatalError(`Отпечаток ключа сервера: SHA256:${received}\nСверьте его (ssh-keyscan -p ${settings.port} ${settings.host} | ssh-keygen -lf -) и впишите в DEPLOY_HOST_FINGERPRINT в .env`);
+							hostError = new FatalError(
+								`Отпечаток ключа сервера: SHA256:${received}\nСверьте его (ssh-keyscan -p ${settings.port} ${settings.host} | ssh-keygen -lf -) и впишите в DEPLOY_HOST_FINGERPRINT в .env`,
+							);
 							return false;
 						}
 						if (received !== settings.fingerprint) {
-							hostError = new FatalError(`Отпечаток ключа сервера не совпадает с DEPLOY_HOST_FINGERPRINT (получен SHA256:${received}). Возможна подмена сервера — выгрузка остановлена`);
+							hostError = new FatalError(
+								`Отпечаток ключа сервера не совпадает с DEPLOY_HOST_FINGERPRINT (получен SHA256:${received}). Возможна подмена сервера — выгрузка остановлена`,
+							);
 							return false;
 						}
 						return true;
@@ -128,7 +142,8 @@ const createConnection = (settings) => {
 				});
 			} catch (err) {
 				if (hostError) fatal = hostError;
-				else if (/authentication/i.test(err.message)) fatal = new FatalError('Ошибка авторизации на сервере — проверьте логин, ключ или пароль в .env');
+				else if (/authentication/i.test(err.message))
+					fatal = new FatalError('Ошибка авторизации на сервере — проверьте логин, ключ или пароль в .env');
 				throw fatal || err;
 			}
 
@@ -176,7 +191,10 @@ const createConnection = (settings) => {
 				return;
 			} catch (err) {
 				if (!/does not support/i.test(err.message)) throw err;
-				if (atomicRename) log('сервер не поддерживает posix-rename — файлы заменяются удалением и переименованием (не атомарно)');
+				if (atomicRename)
+					log(
+						'сервер не поддерживает posix-rename — файлы заменяются удалением и переименованием (не атомарно)',
+					);
 				atomicRename = false;
 			}
 		}
@@ -194,7 +212,7 @@ const createConnection = (settings) => {
 			await sftp.put(content, tempPath);
 			await replaceFile(sftp, tempPath, remotePath);
 		} catch (err) {
-			await sftp.delete(tempPath, true).catch(() => { });
+			await sftp.delete(tempPath, true).catch(() => {});
 			throw err;
 		}
 	};
@@ -226,10 +244,20 @@ const createConnection = (settings) => {
 		client = null;
 		try {
 			await current?.end();
-		} catch { }
+		} catch {}
 	};
 
-	return { connect, upload, listFiles, remove, resolveRemote, getHomeDir: () => homeDir, reset, close: reset, isFatal: () => Boolean(fatal) };
+	return {
+		connect,
+		upload,
+		listFiles,
+		remove,
+		resolveRemote,
+		getHomeDir: () => homeDir,
+		reset,
+		close: reset,
+		isFatal: () => Boolean(fatal),
+	};
 };
 
 const isRetryable = (err) => !(err instanceof FatalError) && !/permission denied|bad path/i.test(err.message);
@@ -243,7 +271,8 @@ const withRetry = (connection) => {
 				return { ok: true, value: await action() };
 			} catch (err) {
 				if (err instanceof FatalError) {
-					if (!fatalReported) logError(`${err.message}\nВыгрузка остановлена — исправьте .env и перезапустите задачу`);
+					if (!fatalReported)
+						logError(`${err.message}\nВыгрузка остановлена — исправьте .env и перезапустите задачу`);
 					fatalReported = true;
 					return { ok: false };
 				}
@@ -286,12 +315,13 @@ const runPool = async (items, limit, worker) => {
 	await Promise.all(workers);
 };
 
-const getTargets = () => deployConfig.targets.map((target) => ({
-	...target,
-	localPath: path.resolve(target.local),
-	globs: [...target.files, ...(target.ignore ?? []).map((glob) => `!${glob}`)],
-	isDeployable: picomatch(target.files, { ignore: target.ignore ?? [] }),
-}));
+const getTargets = () =>
+	deployConfig.targets.map((target) => ({
+		...target,
+		localPath: path.resolve(target.local),
+		globs: [...target.files, ...(target.ignore ?? []).map((glob) => `!${glob}`)],
+		isDeployable: picomatch(target.files, { ignore: target.ignore ?? [] }),
+	}));
 
 const createJob = (target, filePath) => {
 	const local = path.resolve(target.localPath, filePath);
@@ -300,15 +330,17 @@ const createJob = (target, filePath) => {
 	return { local, remote: path.posix.join(target.remote, relative), label: `${target.local}/${relative}` };
 };
 
-const listFiles = (target) => new Promise((resolve, reject) => {
-	const files = [];
-	app.gulp.src(target.globs, { cwd: target.localPath, read: false, allowEmpty: true })
-		.on('data', (file) => {
-			if (!file.stat?.isDirectory()) files.push(file.path);
-		})
-		.on('end', () => resolve(files))
-		.on('error', reject);
-});
+const listFiles = (target) =>
+	new Promise((resolve, reject) => {
+		const files = [];
+		app.gulp
+			.src(target.globs, { cwd: target.localPath, read: false, allowEmpty: true })
+			.on('data', (file) => {
+				if (!file.stat?.isDirectory()) files.push(file.path);
+			})
+			.on('end', () => resolve(files))
+			.on('error', reject);
+	});
 
 const collectJobs = async (targets) => {
 	const jobs = [];
@@ -330,7 +362,9 @@ const findOrphans = async (connection, targets, jobs) => {
 	for (const target of targets) {
 		const { root, files } = await connection.listFiles(target.remote);
 		if (root === '/' || root === connection.getHomeDir()) {
-			throw new FatalError(`--delete не выполняется для корня сервера или домашней папки (${target.local} → ${target.remote}) — укажите в deploy.config.js папку сайта`);
+			throw new FatalError(
+				`--delete не выполняется для корня сервера или домашней папки (${target.local} → ${target.remote}) — укажите в deploy.config.js папку сайта`,
+			);
 		}
 		files.forEach((remotePath) => {
 			const relative = path.posix.relative(root, remotePath);
@@ -371,106 +405,119 @@ const start = async (task) => {
 };
 
 // Проверка .env до сборки, чтобы не ждать её окончания ради ошибки в настройках
-export const deployCheck = () => start(() => {
-	readSettings();
-});
-
-// Выгрузка изменённых файлов при каждом изменении (pnpm dev:deploy)
-export const deployWatch = () => start(async () => {
-	const settings = readSettings();
-	const connection = createConnection(settings);
-	const cache = createCache(settings.cacheKey, { reset: app.deployFlags.force });
-	const uploadJob = createUploader(connection, cache);
-	const targets = getTargets();
-	const pending = new Map();
-	let timer = null;
-	let running = false;
-
-	const flush = async () => {
-		if (running) return;
-		running = true;
-		while (pending.size) {
-			const jobs = [...pending.values()];
-			pending.clear();
-			await runPool(jobs, CONCURRENCY, uploadJob);
-			cache.save();
-		}
-		running = false;
-	};
-
-	targets.forEach((target) => {
-		const onChange = (filePath) => {
-			if (connection.isFatal()) return;
-			const job = createJob(target, filePath);
-			if (!job) return;
-			pending.set(job.remote, job);
-			clearTimeout(timer);
-			timer = setTimeout(flush, DEBOUNCE_MS);
-		};
-		app.gulp.watch(target.globs, { cwd: target.localPath, awaitWriteFinish: { stabilityThreshold: 150, pollInterval: 50 } }).on('change', onChange).on('add', onChange);
+export const deployCheck = () =>
+	start(() => {
+		readSettings();
 	});
 
-	log(`автовыгрузка включена: ${targets.map((target) => `${target.local} → ${target.remote}`).join(', ')}`);
-
-	const changed = (await collectJobs(targets)).filter((job) => !cache.isUploaded(job.remote, hash(fs.readFileSync(job.local))));
-	if (changed.length) {
-		log(`выгрузка файлов, изменённых с прошлой выгрузки: ${changed.length}`);
-		changed.forEach((job) => pending.set(job.remote, job));
-		await flush();
-	}
-});
-
-// Выгрузка всех изменённых файлов из deploy.config.js (pnpm run deploy)
-export const deployAll = () => start(async () => {
-	const { dryRun, force, remove } = app.deployFlags;
-	const settings = readSettings();
-	const connection = createConnection(settings);
-	const cache = createCache(settings.cacheKey, { reset: force });
-	const targets = getTargets();
-	const jobs = await collectJobs(targets);
-	const uploads = jobs.filter((job) => !cache.isUploaded(job.remote, hash(fs.readFileSync(job.local))));
-
-	try {
-		const orphans = remove ? await findOrphans(connection, targets, jobs) : [];
-
-		log(`файлов: ${jobs.length}, к выгрузке: ${uploads.length}${force ? ' (--force)' : ''}${remove ? `, к удалению на сервере: ${orphans.length}` : ''}`);
-
-		if (dryRun) {
-			printList('будут выгружены', uploads);
-			printList('будут удалены на сервере', orphans);
-			log('--dry-run: на сервере ничего не изменено');
-			return;
-		}
-
-		if (orphans.length) {
-			printList('будут удалены на сервере', orphans);
-			if (!(await confirm(`Удалить на сервере файлов: ${orphans.length}?`))) {
-				throw new Error('выгрузка отменена — ничего не изменено');
-			}
-		}
-
-		let failed = 0;
+// Выгрузка изменённых файлов при каждом изменении (pnpm dev:deploy)
+export const deployWatch = () =>
+	start(async () => {
+		const settings = readSettings();
+		const connection = createConnection(settings);
+		const cache = createCache(settings.cacheKey, { reset: app.deployFlags.force });
 		const uploadJob = createUploader(connection, cache);
-		await runPool(uploads, CONCURRENCY, async (job) => {
-			if (!(await uploadJob(job))) failed++;
+		const targets = getTargets();
+		const pending = new Map();
+		let timer = null;
+		let running = false;
+
+		const flush = async () => {
+			if (running) return;
+			running = true;
+			while (pending.size) {
+				const jobs = [...pending.values()];
+				pending.clear();
+				await runPool(jobs, CONCURRENCY, uploadJob);
+				cache.save();
+			}
+			running = false;
+		};
+
+		targets.forEach((target) => {
+			const onChange = (filePath) => {
+				if (connection.isFatal()) return;
+				const job = createJob(target, filePath);
+				if (!job) return;
+				pending.set(job.remote, job);
+				clearTimeout(timer);
+				timer = setTimeout(flush, DEBOUNCE_MS);
+			};
+			app.gulp
+				.watch(target.globs, {
+					cwd: target.localPath,
+					awaitWriteFinish: { stabilityThreshold: 150, pollInterval: 50 },
+				})
+				.on('change', onChange)
+				.on('add', onChange);
 		});
 
-		const retry = withRetry(connection);
-		for (const orphan of orphans) {
-			const { ok } = await retry(`удалить ${orphan.label}`, () => connection.remove(orphan.remote));
-			if (!ok) {
-				failed++;
-				continue;
-			}
-			cache.remove(path.posix.relative(connection.getHomeDir(), orphan.remote));
-			cache.remove(orphan.remote);
-			log(`✕ ${orphan.label}`);
-		}
+		log(`автовыгрузка включена: ${targets.map((target) => `${target.local} → ${target.remote}`).join(', ')}`);
 
-		cache.save();
-		if (failed) throw new Error(`не выполнено операций: ${failed}`);
-		log('выгрузка завершена');
-	} finally {
-		await connection.close();
-	}
-});
+		const changed = (await collectJobs(targets)).filter(
+			(job) => !cache.isUploaded(job.remote, hash(fs.readFileSync(job.local))),
+		);
+		if (changed.length) {
+			log(`выгрузка файлов, изменённых с прошлой выгрузки: ${changed.length}`);
+			changed.forEach((job) => pending.set(job.remote, job));
+			await flush();
+		}
+	});
+
+// Выгрузка всех изменённых файлов из deploy.config.js (pnpm run deploy)
+export const deployAll = () =>
+	start(async () => {
+		const { dryRun, force, remove } = app.deployFlags;
+		const settings = readSettings();
+		const connection = createConnection(settings);
+		const cache = createCache(settings.cacheKey, { reset: force });
+		const targets = getTargets();
+		const jobs = await collectJobs(targets);
+		const uploads = jobs.filter((job) => !cache.isUploaded(job.remote, hash(fs.readFileSync(job.local))));
+
+		try {
+			const orphans = remove ? await findOrphans(connection, targets, jobs) : [];
+
+			log(
+				`файлов: ${jobs.length}, к выгрузке: ${uploads.length}${force ? ' (--force)' : ''}${remove ? `, к удалению на сервере: ${orphans.length}` : ''}`,
+			);
+
+			if (dryRun) {
+				printList('будут выгружены', uploads);
+				printList('будут удалены на сервере', orphans);
+				log('--dry-run: на сервере ничего не изменено');
+				return;
+			}
+
+			if (orphans.length) {
+				printList('будут удалены на сервере', orphans);
+				if (!(await confirm(`Удалить на сервере файлов: ${orphans.length}?`))) {
+					throw new Error('выгрузка отменена — ничего не изменено');
+				}
+			}
+
+			let failed = 0;
+			const uploadJob = createUploader(connection, cache);
+			await runPool(uploads, CONCURRENCY, async (job) => {
+				if (!(await uploadJob(job))) failed++;
+			});
+
+			const retry = withRetry(connection);
+			for (const orphan of orphans) {
+				const { ok } = await retry(`удалить ${orphan.label}`, () => connection.remove(orphan.remote));
+				if (!ok) {
+					failed++;
+					continue;
+				}
+				cache.remove(path.posix.relative(connection.getHomeDir(), orphan.remote));
+				cache.remove(orphan.remote);
+				log(`✕ ${orphan.label}`);
+			}
+
+			cache.save();
+			if (failed) throw new Error(`не выполнено операций: ${failed}`);
+			log('выгрузка завершена');
+		} finally {
+			await connection.close();
+		}
+	});
