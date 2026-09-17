@@ -318,7 +318,7 @@ CI проверяет каждый такой pull request, поэтому зе�
 Ниже представлена базовая структура шаблона.  
 Для удобства все ключевые директории/файлы подписаны прямо в структуре.
 
-	edemtmp/
+	edem-gulp-template/
 	├── .vscode/
 	│   ├── edem.code-snippets ---> сниппеты шаблона
 	│   ├── EdemGulpTemplateProfile_MacOS.code-profile ---> профиль с сочетаниями клавиш для MacOS
@@ -413,10 +413,18 @@ CI проверяет каждый такой pull request, поэтому зе�
 	│       │   └── ...
 	│       ├── example.scss ---> точка входа стилей примеров
 	│       └── main.scss
+	├── .github/workflows/ci.yml ---> проверка и сборка на GitHub Actions
+	├── .editorconfig ---> отступы и переносы строк для любого редактора
 	├── .gitignore
+	├── .prettierrc.json ---> настройки Prettier
+	├── .stylelintrc.json ---> настройки Stylelint
+	├── CHANGELOG.md ---> история изменений шаблона по версиям
+	├── deploy.config.js ---> что и куда выгружать на сервер
+	├── eslint.config.js ---> настройки ESLint
 	├── gulpfile.js ---> файл с настройками сборки
 	├── package.json
-	└── README.md
+	├── README.md
+	└── renovate.json ---> настройки обновления зависимостей
 
 ### Назначение основных директорий
 
