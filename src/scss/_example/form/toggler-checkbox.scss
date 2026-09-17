@@ -1,0 +1,38 @@
+@use 'abstracts' as *;
+
+.toggler-checkbox {
+	$p: &;
+	display: flex;
+	align-items: center;
+	gap: 0 rem(10);
+
+	& label[class*="label"] {
+		padding: 0;
+	}
+
+	&__input {
+		&::before {
+			width: rem(40);
+			height: rem(20);
+			background-color: var(--c-accent);
+			border: rem(1) solid var(--c-main);
+			transition: all $td $tf 0s;
+
+			@at-root #{$p}__input:checked:before {
+				background-color: var(--c-main);
+			}
+		}
+
+		&::after {
+			$dotMargin: rem(4);
+			width: calc(50% - $dotMargin * 2);
+			height: calc(100% - $dotMargin * 2);
+			margin: 0 $dotMargin;
+			background-color: var(--c-main);
+
+			@at-root #{$p}__input:checked:after {
+				background-color: var(--c-accent);
+			}
+		}
+	}
+}

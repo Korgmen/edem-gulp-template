@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+	@@include('../chunks/head.html', {title: 'Примеры: Табы', example: true})
+
+	<body class="page">
+		<div class="wrapper">
+			@@include('../chunks/header.html')
+			<main class="content example">
+				<div class="container">
+					<a class="example__back link" href="example.html">← Все примеры</a>
+				</div>
+				<section class="content__block">
+					<div class="container appear">
+						<h2 class="example__title"><span>Пример табов</span></h2>
+						<div class="tabs" data-tabs>
+							<div class="tabs__link-list">
+								<button type="button" class="tabs__link button" data-tab-link aria-selected="true">Ссылка таба 1</button>
+								<button type="button" class="tabs__link button" data-tab-link>Ссылка таба 2</button>
+								<button type="button" class="tabs__link button" data-tab-link>Ссылка таба 3</button>
+							</div>
+							<div class="tabs__content-list" data-tab-panels>
+								<div class="tabs__content" data-tab-panel data-state="active">
+									<h1>Контент таба 1</h1>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, iste.</p>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt consectetur temporibus non dolore delectus possimus!</p>
+									<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit eveniet corrupti blanditiis voluptas quam optio consequatur laborum. Iste, exercitationem suscipit? Nobis non rem saepe voluptatibus cumque minima nemo odio porro.</p>
+								</div>
+								<div class="tabs__content" data-tab-panel>
+									<h1>Контент таба 2</h1>
+									<p>Lorem ipsum dolor sit amet.</p>
+									<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa numquam deleniti, velit ab nihil vel ipsam necessitatibus libero.</p>
+									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus.</p>
+								</div>
+								<div class="tabs__content" data-tab-panel>
+									<h1>Контент таба 3</h1>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia hic recusandae adipisci!</p>
+									<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis commodi ullam fuga officiis, dicta odit minus!</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+			@@include('../chunks/footer.html')
+		</div>
+		@@include('../chunks/modals.html')
+		@@include('../chunks/scripts.html', {example: true})
+	</body>
+
+</html>

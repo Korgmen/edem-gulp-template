@@ -11,7 +11,7 @@ const optimize = () => imagemin([
 ], { silent: true });
 
 export const img = () => {
-	return app.gulp.src([paths.img.src, `!${paths.img.icons}`], { encoding: false })
+	return app.gulp.src([paths.img.src, `!${paths.img.icons}`, ...(app.isProd ? [`!${paths.example.img}`] : [])], { encoding: false })
 		.pipe(handleErrors('IMAGE'))
 		.pipe(app.plugins.newer(paths.img.dest))
 		.pipe(app.plugins.if(app.isBuild, optimize()))

@@ -1,0 +1,19 @@
+@use 'abstracts' as *;
+
+.date-input {
+	font-size: rem(16);
+	color: #757575;
+	background-color: #F1F1F1;
+	border: rem(1) solid transparent;
+	height: rem(42);
+	padding: 0 rem(10);
+	transition:
+		background-color $td $tf 0s,
+		border-color $td $tf 0s;
+
+	&:valid {
+		background-color: transparent;
+		border-color: var(--c-main);
+		color: var(--c-main);
+	}
+}

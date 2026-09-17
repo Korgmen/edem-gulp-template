@@ -9,7 +9,7 @@ export const paths = {
 	scss: {
 		entry: 'src/scss/main.scss',
 		watch: 'src/scss/**/*.scss',
-		generatedIndexDirs: ['src/scss/components', 'src/scss/layout'],
+		generatedIndexDirs: ['src/scss/components', 'src/scss/layout', 'src/scss/_example'],
 		dest: 'build/css',
 	},
 	js: {
@@ -39,5 +39,14 @@ export const paths = {
 		base: 'src/root',
 		src: 'src/root/**/*.*',
 		dest: 'build',
+	},
+	demo: {
+		html: 'src/html/_demo/**',
+	},
+	example: {
+		html: 'src/html/_example/**',
+		scss: 'src/scss/example.scss',
+		js: 'src/js/example.js',
+		img: 'src/img/_example/**',
 	},
 };

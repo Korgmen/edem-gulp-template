@@ -5,7 +5,12 @@ import { paths } from '../config/paths.js';
 const scssFolders = paths.scss.generatedIndexDirs;
 
 const generateFolderIndex = async (folder) => {
-	const entries = await fs.readdir(folder, { withFileTypes: true });
+	// Папки примеров может не быть: её удаляет example:remove
+	const entries = await fs.readdir(folder, { withFileTypes: true }).catch((err) => {
+		if (err.code === 'ENOENT') return null;
+		throw err;
+	});
+	if (!entries) return;
 
 	// Подпапка форвардится по имени, поэтому свой index.scss нужен и ей
 	await Promise.all(entries

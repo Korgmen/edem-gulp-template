@@ -1,0 +1,28 @@
+@use 'abstracts' as *;
+
+.file-input {
+	$p: &;
+	gap: 0 rem(32);
+	width: fit-content;
+	background-color: #F1F1F1;
+	border: rem(1) solid transparent;
+	padding: rem(10);
+	font-size: rem(16);
+	transition:
+		background-color $td $tf 0s,
+		border-color $td $tf 0s;
+	cursor: pointer;
+
+	&:not(:placeholder-shown) {}
+
+	&::after {
+		// размер и цвет иконки файла
+		width: rem(16);
+		background-color: #757575;
+		transition: all $td $tf 0s;
+
+		@at-root #{$p}:not(:placeholder-shown)::after {
+			background-color: var(--c-main);
+		}
+	}
+}

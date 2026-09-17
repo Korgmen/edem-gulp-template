@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+	@@include('../chunks/head.html', {title: 'Примеры компонентов', example: true})
+
+	<body class="page">
+		<div class="wrapper">
+			@@include('../chunks/header.html')
+			<main class="content example">
+				@@include('../chunks/breadcrumbs.html')
+				<section class="content__block">
+					<div class="container">
+						<h1 class="example__title"><span>Примеры компонентов</span></h1>
+						<ul class="example__nav">
+							<li><a class="example__nav-link" href="example-tooltip.html">Тултипы</a></li>
+							<li><a class="example__nav-link" href="example-burger.html">Бургер</a></li>
+							<li><a class="example__nav-link" href="example-form.html">Формы</a></li>
+							<li><a class="example__nav-link" href="example-spoiler.html">Спойлеры</a></li>
+							<li><a class="example__nav-link" href="example-tabs.html">Табы</a></li>
+							<li><a class="example__nav-link" href="example-navigation.html">Навигация</a></li>
+							<li><a class="example__nav-link" href="example-hide-menu.html">Боковое меню</a></li>
+							<li><a class="example__nav-link" href="example-modal.html">Модальные окна</a></li>
+							<li><a class="example__nav-link" href="example-notify.html">Оповещения</a></li>
+							<li><a class="example__nav-link" href="example-article.html">Оглавление статьи</a></li>
+							<li><a class="example__nav-link" href="example-slider.html">Слайдер</a></li>
+							<li><a class="example__nav-link" href="example-text-content.html">Текстовый блок</a></li>
+						</ul>
+					</div>
+				</section>
+			</main>
+			@@include('../chunks/footer.html')
+		</div>
+		@@include('../chunks/modals.html')
+		@@include('../chunks/scripts.html', {example: true})
+	</body>
+
+</html>

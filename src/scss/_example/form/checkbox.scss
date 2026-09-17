@@ -1,0 +1,31 @@
+@use 'abstracts' as *;
+
+.checkbox {
+	$p: &;
+	display: flex;
+	align-items: center;
+
+	&__input {
+		--width: #{rem(20)};
+		width: var(--width);
+
+		&::before {
+			width: var(--width);
+			aspect-ratio: 1;
+			flex-shrink: 0;
+			border: rem(1) solid var(--c-main);
+			background: var(--c-accent);
+		}
+
+		&::after {
+			width: rem(8);
+			aspect-ratio: 1;
+			background: var(--c-main);
+		}
+	}
+
+	&__label {
+		padding: 0 rem(10);
+		cursor: pointer;
+	}
+}

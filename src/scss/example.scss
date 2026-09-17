@@ -1,0 +1,6 @@
+@use 'sass:meta';
+
+// Порядок слоя example задан в main.scss: этот файл собирается отдельно и подключается после style.css
+@layer example {
+	@include meta.load-css('_example');
+}

@@ -1,0 +1,62 @@
+@use 'abstracts' as *;
+
+.tooltip {
+	$p: &;
+
+	&__button {
+		&:has(i) {
+			position: relative;
+
+			i {
+				font-style: normal;
+				transition: opacity $td $tf 0s;
+
+				&:nth-child(1) {
+					@at-root #{$p}:hover & {
+						opacity: 0;
+					}
+				}
+
+				&:nth-child(2) {
+					position: absolute;
+					left: 0;
+					top: 0;
+					z-index: 1;
+					opacity: 0;
+
+					@at-root #{$p}:hover & {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+
+	&__body {
+		translate: 0 -100%;
+		top: rem(-4);
+		transition: all $td $tf 0s;
+		background-color: var(--c-main);
+		color: var(--c-accent);
+		padding: rem(4) rem(12);
+		border-radius: rem(8);
+		box-shadow: 0 0 rem(20) 0 color-mix(in srgb, var(--c-main) 10%, transparent);
+		text-align: center;
+		font-size: rem(12);
+		line-height: 150%;
+		width: max-content;
+		max-width: rem(200);
+
+		&:has(p) {
+			display: flex;
+			flex-direction: column;
+			gap: rem(8) rem(0);
+			text-align: left;
+
+			h2 {
+				font-weight: bold;
+				font-size: em(14, 12);
+			}
+		}
+	}
+}

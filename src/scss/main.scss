@@ -5,7 +5,7 @@
 ? Специфичность селекторов и порядок файлов сравниваются только внутри одного слоя.
 ? Стиль вне слоя сильнее любого слоя, поэтому весь CSS шаблона подключается ниже через слои.
 */
-@layer base, vendors, tech, components, layout, theme;
+@layer base, vendors, tech, example, components, layout, demo;
 
 //Сброс, шрифты и общие анимации==========
 @layer base {
@@ -34,7 +34,5 @@
 	@include meta.load-css('layout');
 }
 
-//? Подключение стилей стартовой страницы шаблона (удалить перед использованием шаблона)
-@layer theme {
-	@include meta.load-css('themes/temp-theme');
-}
+//Оформление стартовой страницы шаблона, удаляется командой demo:remove==========
+@layer demo { @include meta.load-css('_demo/demo'); }

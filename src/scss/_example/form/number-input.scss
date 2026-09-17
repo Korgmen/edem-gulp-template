@@ -1,0 +1,73 @@
+@use 'abstracts' as *;
+
+.number-input {
+	$p: &;
+	$bgc: #F1F1F1;
+	display: inline-flex;
+	width: fit-content;
+	align-items: stretch;
+	height: rem(40);
+	color: #757575;
+	background-color: $bgc;
+	border: rem(1) solid transparent;
+	padding: 0 rem(10);
+	transition:
+		background-color $td $tf 0s,
+		border-color $td $tf 0s;
+
+	&[data-state~="fill"] {
+		background-color: transparent;
+		border-color: var(--c-main);
+		color: var(--c-main);
+	}
+
+	&__input {
+		text-align: center;
+		font-size: rem(14);
+		background-color: $bgc;
+		color: currentColor;
+
+		#{$p}[data-state~="fill"] & {
+			background-color: transparent;
+		}
+	}
+
+	&__button {
+		width: rem(40);
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all $td $tf 0s;
+
+		@media (any-hover: hover) {
+			&:hover {
+				scale: 1.2;
+			}
+		}
+
+		&::before {
+			content: '';
+			display: block;
+			mask-size: cover;
+			mask-repeat: no-repeat;
+			mask-position: center;
+			flex-shrink: 0;
+			width: rem(32);
+			aspect-ratio: 1;
+			background-color: currentColor;
+		}
+
+		&--minus {
+			&::before {
+				mask-image: url(../img/sprite.svg#minus);
+			}
+		}
+
+		&--plus {
+			&::before {
+				mask-image: url(../img/sprite.svg#plus);
+			}
+		}
+	}
+}

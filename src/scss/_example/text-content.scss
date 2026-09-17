@@ -1,0 +1,10 @@
+@use 'abstracts' as *;
+
+.text-content {
+	line-height: 150%;
+
+	h2 {
+		font-weight: 700;
+		font-size: em(18,16);
+	}
+}
