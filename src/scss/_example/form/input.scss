@@ -13,7 +13,7 @@
 
 	&:focus {
 		background-color: transparent;
-		border-color: #AAAAAA;
+		border-color: #AAA;
 		color: var(--c-main);
 	}
 
@@ -36,6 +36,6 @@
 	&--textarea {
 		min-height: rem(100);
 		max-height: rem(150);
-		padding: rem(10) rem(10);
+		padding: rem(10);
 	}
 }

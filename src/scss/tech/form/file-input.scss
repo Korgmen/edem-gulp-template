@@ -10,7 +10,7 @@
 	&::after {
 		content: '';
 		display: block;
-		mask-image: url(../img/sprite.svg#file);
+		mask-image: url("../img/sprite.svg#file");
 		mask-size: cover;
 		mask-repeat: no-repeat;
 		mask-position: center;

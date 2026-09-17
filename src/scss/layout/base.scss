@@ -45,7 +45,7 @@ body.page {
 	flex: 1 1 auto;
 
 	&__block {
-		padding: lineScale(64, 32) 0 lineScale(96, 48) 0;
+		padding: lineScale(64, 32) 0 lineScale(96, 48);
 
 		&--nop {
 			padding: 0;

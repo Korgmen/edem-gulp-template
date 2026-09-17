@@ -51,7 +51,7 @@
 
 	&__sublabel {
 		font-size: rem(12);
-		color: #BBBBBB;
+		color: #BBB;
 	}
 
 	&__error {
@@ -74,7 +74,7 @@
 	&__policy {
 		line-height: 150%;
 		font-size: rem(12);
-		color: #BBBBBB;
+		color: #BBB;
 		margin-top: rem(4);
 
 		@at-root p#{&} {

@@ -1,0 +1,21 @@
+{
+	"useTabs": true,
+	"tabWidth": 4,
+	"printWidth": 120,
+	"singleQuote": true,
+	"plugins": ["./gulp/plugins/prettier-file-include/index.js"],
+	"overrides": [
+		{
+			"files": ["*.json", "*.jsonc", "*.code-snippets", "*.code-profile"],
+			"options": {
+				"singleQuote": false
+			}
+		},
+		{
+			"files": ["src/html/**/*.html"],
+			"options": {
+				"parser": "file-include-html"
+			}
+		}
+	]
+}
