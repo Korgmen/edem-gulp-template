@@ -1,0 +1,35 @@
+{
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_",
+	"files.associations": {
+		"*.tpl": "html"
+	},
+	"html.format.wrapLineLength": 0,
+	"html.format.indentInnerHtml": true,
+	"npm.packageManager": "pnpm",
+	"cSpell.language": "en,ru",
+	"ecsstractor_port.modifier_separator": "--",
+	"ecsstractor_port.bem_nesting": true,
+	"ecsstractor_port.brackets_newline_after": false,
+	"ecsstractor_port.empty_line_before_nested_selector": false,
+	"ecsstractor_port.add_comment": false,
+	"bemHelper.newLineAfterInsert": false,
+	"bemHelper.blockSelectionMode": "first-parent",
+	"CSSNavigation.activeCSSFileExtensions": ["scss", "less"],
+	"colorize.colorized_variables": ["SASS", "CSS"],
+	"sequence.replaceSelection": true,
+	"todo-tree.highlights.enabled": false,
+	"todo-tree.general.showActivityBarBadge": true,
+	"todo-tree.general.tags": ["ЗАДАЧА", "ДОРАБОТКА", "СРОЧНО", "КОСТЫЛЬ", "БАГ", "TODO", "[ ]", "[x]"],
+	"todohighlight.keywords": [
+		{ "text": "ЗАДАЧА", "color": "#fff", "backgroundColor": "#FFBD2A", "overviewRulerColor": "rgba(255,189,42,0.8)" },
+		{ "text": "ДОРАБОТКА", "color": "#fff", "backgroundColor": "#2ABFFF", "overviewRulerColor": "rgba(255,189,42,0.8)" },
+		{ "text": "СРОЧНО", "color": "#fff", "backgroundColor": "#FF2A2A", "overviewRulerColor": "rgba(255,189,42,0.8)" },
+		{ "text": "КОСТЫЛЬ", "color": "#fff", "backgroundColor": "#B2653A", "overviewRulerColor": "rgba(255,189,42,0.8)" },
+		{ "text": "БАГ", "color": "#fff", "backgroundColor": "#FF6161", "overviewRulerColor": "rgba(255,189,42,0.8)" },
+		{ "text": "TODO", "color": "#fff", "backgroundColor": "#838383", "overviewRulerColor": "rgba(255,189,42,0.8)" },
+		{ "text": "[ ]", "color": "#fff", "backgroundColor": "#F06292", "overviewRulerColor": "rgba(240,98,146,0.8)" },
+		{ "text": "[x]", "color": "#fff", "backgroundColor": "#29D4AB", "overviewRulerColor": "rgba(240,98,146,0.8)" }
+	]
+}

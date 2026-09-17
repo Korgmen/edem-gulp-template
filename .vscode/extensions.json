@@ -1,0 +1,20 @@
+{
+	"recommendations": [
+		"sleistner.vscode-fileutils",
+		"diz.ecsstractor-port",
+		"box-of-hats.bemhelper",
+		"tomoki1207.vscode-input-sequence",
+		"gruntfuggly.todo-tree",
+		"jgclark.vscode-todo-highlight",
+		"natizyskunk.sftp",
+		"aaron-bond.better-comments",
+		"svetlanakost.typograf",
+		"kamikillerto.vscode-colorize",
+		"pucelle.vscode-css-navigation",
+		"kisstkondoros.vscode-gutter-preview",
+		"ionutvmi.path-autocomplete",
+		"mrmlnc.vscode-scss",
+		"streetsidesoftware.code-spell-checker",
+		"streetsidesoftware.code-spell-checker-russian"
+	]
+}
