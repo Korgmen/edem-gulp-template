@@ -3,6 +3,40 @@
 Все значимые изменения шаблона. Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 Форкам: смотрите разделы «Изменено» и «Исправлено», чтобы понять, что стоит перенести из шаблона в свой проект.
 
+## [1.5.0] — 16.09.2026
+
+**Форкам:** стартовая страница и примеры компонентов разнесены по папкам `_demo` и `_example`, файлы `src/html/_example.html`, `src/scss/themes/temp-theme.scss` и `src/img/temp/` удалены. Настройки редактора и сниппеты переехали из профиля в `.vscode/`, задачи VSCode убраны — сборка запускается командами `pnpm`.
+
+### Добавлено
+- Команды `pnpm run demo:remove` и `pnpm run example:remove`: удаляют стартовую страницу или примеры компонентов вместе с подключениями в чанках и `main.scss`. Перед удалением выводят список и спрашивают подтверждение, без терминала нужен флаг `--yes`. README — раздел «Стартовая страница и примеры компонентов».
+- Проверка кода: ESLint (`eslint.config.js`), Stylelint (`.stylelintrc.json` на основе `stylelint-config-standard-scss`), Prettier (`.prettierrc.json`) и `.editorconfig`. Команды `pnpm lint`, `pnpm lint:js`, `pnpm lint:scss`, `pnpm format`, `pnpm format:check`. В `.vscode/settings.json` Prettier назначен форматтером по умолчанию: `Format Document` форматирует так же, как `pnpm format`.
+- CI на GitHub Actions (`.github/workflows/ci.yml`): при push в `main` и в pull request — установка по lock-файлу, `pnpm lint`, сборка в окружениях `prod` и `stage` и сборка после `demo:remove` и `example:remove`.
+- `renovate.json`: pull request с обновлениями зависимостей и GitHub Actions по понедельникам, минорные и патч-обновления одним pull request.
+- Git-теги релизов `v1.0.0`–`v1.5.0`. README — раздел «Версии шаблона и обновление форка».
+- Файлы редактора в `.vscode/`: `settings.json` с настройками для работы с шаблоном, `extensions.json` с рекомендованными расширениями и `edem.code-snippets`.
+
+### Изменено
+- Стартовая страница вынесена в `src/html/_demo/` и `src/scss/_demo/`, её оформление подключается слоем `demo` вместо `theme`. Заголовок шапки «Edem Template» и копирайт подвала — чанки `_demo/header-title.html` и `_demo/footer-copy.html`, после `demo:remove` в шапке остаются навигация и бургер.
+- `_example.html` разделён на страницы по компонентам в `src/html/_example/` с оглавлением `example.html`, добавлены страницы навигации с выпадающими списками и бокового меню, оформление из `temp-theme.scss` — на файлы по компонентам в `src/scss/_example/`. Стили и скрипты примеров собираются в отдельные `css/example.css` и `js/example.js`, подключаются параметром `example: true` в чанках `head.html` и `scripts.html` и не попадают в окружение `prod`. Слой `example` стоит ниже `components`, поэтому стили проекта перекрывают оформление примеров. Порядок слоёв: `@layer base, vendors, tech, example, components, layout, demo`.
+- Классы оформления страниц примеров собраны в блок `example`: `title` → `example__title`, `example-section__row` → `example__row`, `tooltip-parent` → `example__tooltip`, `modal-list` и `custom-checkbox-section__form` → `example__row example__row--dense`.
+- Пример слайдера с разобранными настройками Swiper перенесён из `src/js/modules/lib-control/sliders.js` в `src/js/_example/slider.js`, в `sliders.js` осталась подготовка разметки.
+- `index.scss` генерируется и в `src/scss/_example/`.
+- Демонстрационное модальное окно `callback` и оповещения `addToCart`, `copyText` перенесены из чанка `modals.html` на страницы примеров. В чанке остались боковое меню, cookie-оповещение и `#custom-notify`.
+- Сниппеты: у каждого есть описание; разметка `cmp|*` сверена со страницами примеров (тултип на `<button>`, поле файла и двойной ползунок без лишних `id` и `for`); `c`, `bgc` и `cm` вставляют цвета палитры `var(--c-*)`; фреймы разработчика `bf` обёрнуты в `@@if (env !== 'prod')`; заглушка `pc` ведёт на placehold.co вместо закрытого via.placeholder.com; `nosel` и `breakword` без устаревших префиксов. Дубли `robot` и `meta|robots`, `custom-checkbox` объединены, сниппет `f|old` удалён. Добавлены `vid` (зацикленное видео), `ht` (ссылка на фрагмент текста), `cl` (`console.log`) и `modx|admin` (блок только для администратора). README — таблица «Самые важные сниппеты».
+- Профиль `EdemGulpTemplateProfile_MacOS.code-profile` содержит только сочетания клавиш, настройку `"keyboard.dispatch": "keyCode"` для работы сочетаний в русской раскладке и рекомендованные расширения — без истории интерфейса и личных настроек.
+- SCSS по правилам Stylelint: `rgb()` в современной записи, `:not(a, b)`, сокращённые свойства, кавычки в `url()` и селекторах атрибутов, `sans-serif` в миксинах шрифтов.
+- JS, SCSS, HTML и JSON отформатированы Prettier. Для HTML подключён плагин `gulp/plugins/prettier-file-include`: без него Prettier склеивает соседние директивы `@@include` и `@@if` в одну строку.
+- `package.json`: `"private": true`; `ordered-read-streams`, которую `ternary-stream` использует без объявления, подключена через `pnpm.packageExtensions` вместо прямой зависимости.
+- Картинка примеров — `src/img/_example/placeholder.jpg` на 74 КБ вместо `src/img/temp/temp-image.jpg` на 1,4 МБ.
+
+### Удалено
+- Задачи VSCode и описание их сочетаний клавиш в README: сборка запускается `pnpm dev` и `pnpm build`.
+- Профиль для Windows: сочетаний клавиш в нём не было, настройки и сниппеты перенесены в `.vscode/`.
+- Неиспользуемые шрифты Montserrat, Mulish, Raleway и видео `src/root/ConfusedTravolta.mp4`.
+- Поля `main` и `peerDependencies` в `package.json`.
+- Неиспользуемые стили `.spoiler` стартовой страницы.
+- Демонстрационное модальное окно `order` и кнопки его вызова в примерах.
+
 ## [1.4.0] — 16.09.2026
 
 **Форкам: этот выпуск меняет разметку.** Хуки `js_*` и технические классы `_*` заменены data-атрибутами, глобальные классы-состояния — ARIA-атрибутами и `data-state`. Таблицы соответствия — ниже, в разделе «Изменено».
