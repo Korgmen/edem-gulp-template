@@ -70,7 +70,7 @@
 		"ssh2-sftp-client": "^12.1.1",
 		"stylelint": "^17.15.0",
 		"stylelint-config-standard-scss": "^17.0.0",
-		"through2": "^4.0.2"
+		"through2": "^5.0.11"
 	},
 	"dependencies": {
 		"@caneara/iodine": "^8.5.0",
