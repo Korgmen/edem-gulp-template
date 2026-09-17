@@ -8,7 +8,8 @@
 		{
 			"files": ["*.json", "*.jsonc", "*.code-snippets", "*.code-profile"],
 			"options": {
-				"singleQuote": false
+				"singleQuote": false,
+				"trailingComma": "none"
 			}
 		},
 		{
