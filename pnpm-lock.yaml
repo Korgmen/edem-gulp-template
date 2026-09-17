@@ -20,8 +20,8 @@ importers:
         specifier: ^5.4.4
         version: 5.4.4
       swiper:
-        specifier: ^12.0.3
-        version: 12.0.3
+        specifier: ^14.2.0
+        version: 14.2.0
     devDependencies:
       '@eslint/js':
         specifier: ^10.0.1
@@ -3640,8 +3640,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  swiper@12.0.3:
-    resolution: {integrity: sha512-BHd6U1VPEIksrXlyXjMmRWO0onmdNPaTAFduzqR3pgjvi7KfmUCAm/0cj49u2D7B0zNjMw02TSeXfinC1hDCXg==}
+  swiper@14.2.0:
+    resolution: {integrity: sha512-GsL4M9Fq7Sg22OyL3SjdNj/0bxTfIxPJJHHW394Li0u5vYtExi0a09iBUc8CuLafJi5pAlH2AHUe1PocxHl45g==}
     engines: {node: '>= 4.7.0'}
 
   table@6.9.0:
@@ -7796,7 +7796,7 @@ snapshots:
       picocolors: 1.1.1
       stable: 0.1.8
 
-  swiper@12.0.3: {}
+  swiper@14.2.0: {}
 
   table@6.9.0:
     dependencies:
