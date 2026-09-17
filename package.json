@@ -1,8 +1,8 @@
 {
   "name": "edem-gulp-template",
   "version": "1.4.0",
+  "private": true,
   "description": "Edem Template on ESM",
-  "main": "gulpfile.js",
   "type": "module",
   "scripts": {
     "dev": "gulp --no-experimental-require-module",
@@ -53,20 +53,25 @@
     "gulp-svgmin": "^4.1.0",
     "gulp-ttf2woff2": "^5.0.0",
     "lightningcss": "^1.33.0",
-    "ordered-read-streams": "^2.0.0",
     "picomatch": "^4.0.7",
     "plugin-error": "^2.0.1",
     "sass": "^1.94.2",
     "ssh2-sftp-client": "^12.1.1",
     "through2": "^4.0.2"
   },
-  "peerDependencies": {
-    "ordered-read-streams": "^2.0.0"
-  },
   "dependencies": {
     "@caneara/iodine": "^8.5.0",
     "imask": "^7.6.1",
     "photoswipe": "^5.4.4",
     "swiper": "^12.0.3"
+  },
+  "pnpm": {
+    "packageExtensions": {
+      "ternary-stream@3": {
+        "dependencies": {
+          "ordered-read-streams": "^2.0.0"
+        }
+      }
+    }
   }
 }
