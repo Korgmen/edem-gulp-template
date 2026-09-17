@@ -54,8 +54,8 @@ importers:
         specifier: ^0.3.0
         version: 0.3.0
       gulp-html-minifier-terser:
-        specifier: ^7.1.0
-        version: 7.1.0
+        specifier: ^8.0.0
+        version: 8.0.0
       gulp-if:
         specifier: ^3.0.0
         version: 3.0.0
@@ -703,11 +703,6 @@ packages:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-
-  acorn@8.15.0:
-    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
 
   acorn@8.18.0:
     resolution: {integrity: sha512-lGq+9yr1/GuAWaVYIHRjvvySG5/4VfKIvC8EWxStPdcDh/Ka7FG3twP6v4d5BkravUilhIAsG4Qj83t02LWUPQ==}
@@ -1933,9 +1928,9 @@ packages:
   gulp-fonter@0.3.0:
     resolution: {integrity: sha512-eaMw8yexRfe9X1UmMOLFF+2Lp/FUUrkdvRTxBm35tkdj3QM2KJc1EcKELrlj9qoHrECm/yun9KCjIyls3Qh2Jw==}
 
-  gulp-html-minifier-terser@7.1.0:
-    resolution: {integrity: sha512-5aZUMmF2NhQ+eBxfK3YNhYXcqgdbAQfrIe9Nq4BbI5p4AO9zbk3Kz7teZTyyvNizWRI8eA22Q25H4yE+a+3B+g==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+  gulp-html-minifier-terser@8.0.0:
+    resolution: {integrity: sha512-KRUL4I+UVczM4YwcPrZGF6PgZMjn+fEYmbMmniSLlx1zt+JOqpqNb9w6C9ffFbyCDGV/gTeHYF3bjWqs+e/EYA==}
+    engines: {node: '>=24.0.0'}
 
   gulp-if@3.0.0:
     resolution: {integrity: sha512-fCUEngzNiEZEK2YuPm+sdMpO6ukb8+/qzbGfJBXyNOXz85bCG7yBI+pPSl+N90d7gnLvMsarthsAImx0qy7BAw==}
@@ -4430,8 +4425,6 @@ snapshots:
     dependencies:
       acorn: 8.18.0
 
-  acorn@8.15.0: {}
-
   acorn@8.18.0: {}
 
   agent-base@7.1.4: {}
@@ -5968,11 +5961,10 @@ snapshots:
     dependencies:
       fonteditor-core: 1.0.5
 
-  gulp-html-minifier-terser@7.1.0:
+  gulp-html-minifier-terser@8.0.0:
     dependencies:
       html-minifier-terser: 7.2.0
       plugin-error: 2.0.1
-      through2: 4.0.2
 
   gulp-if@3.0.0:
     dependencies:
@@ -7819,7 +7811,7 @@ snapshots:
   terser@5.44.1:
     dependencies:
       '@jridgewell/source-map': 0.3.11
-      acorn: 8.15.0
+      acorn: 8.18.0
       commander: 2.20.3
       source-map-support: 0.5.21
 
