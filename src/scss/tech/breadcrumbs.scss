@@ -2,8 +2,7 @@
 
 .breadcrumbs {
 	$p: &;
-	overflow-x: auto;
-	overflow-y: hidden;
+	overflow: auto hidden;
 	max-width: 100%;
 
 	&__list {

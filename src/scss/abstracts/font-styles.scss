@@ -9,7 +9,7 @@
 
 @mixin f-inter-semi-42 {
 	font-size: func.lineScale(42, reductFont(42));
-	font-family: Inter;
+	font-family: Inter, sans-serif;
 	font-weight: 600;
 	letter-spacing: 0;
 	line-height: 114%;
@@ -17,7 +17,7 @@
 
 @mixin f-inter-semi-32 {
 	font-size: func.lineScale(32, reductFont(32));
-	font-family: Inter;
+	font-family: Inter, sans-serif;
 	font-weight: 600;
 	letter-spacing: 0;
 	line-height: 120%;
@@ -25,16 +25,16 @@
 
 @mixin f-inter-reg-22 {
 	font-size: func.rem(22);
-	font-family: Inter;
+	font-family: Inter, sans-serif;
 	font-weight: 400;
-	letter-spacing: 0em;
+	letter-spacing: 0;
 	line-height: 125%;
 }
 
 @mixin f-manrope-reg-16 {
 	font-size: func.lineScale(16, reductFont(16));
-	font-family: Manrope;
+	font-family: Manrope, sans-serif;
 	font-weight: 400;
-	letter-spacing: 0em;
+	letter-spacing: 0;
 	line-height: 145%;
 }

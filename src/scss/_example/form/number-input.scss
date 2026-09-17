@@ -60,13 +60,13 @@
 
 		&--minus {
 			&::before {
-				mask-image: url(../img/sprite.svg#minus);
+				mask-image: url("../img/sprite.svg#minus");
 			}
 		}
 
 		&--plus {
 			&::before {
-				mask-image: url(../img/sprite.svg#plus);
+				mask-image: url("../img/sprite.svg#plus");
 			}
 		}
 	}

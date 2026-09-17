@@ -13,8 +13,7 @@
 		flex-direction: column;
 
 		&--row {
-			flex-direction: row;
-			flex-wrap: wrap;
+			flex-flow: row wrap;
 		}
 
 		&--nowrap {
@@ -53,7 +52,7 @@
 
 	&__label {
 		&:has(+ :not(#{$p}__sublabel)) {
-			padding: 0 0; // <----- Укажите свое значение
+			padding: 0; // <----- Укажите свое значение
 		}
 	}
 

@@ -1,0 +1,22 @@
+{
+	"extends": "stylelint-config-standard-scss",
+	"ignoreFiles": ["build/**", "node_modules/**"],
+	"rules": {
+		"block-no-empty": null,
+		"no-empty-source": null,
+		"no-descending-specificity": null,
+		"selector-class-pattern": null,
+		"scss/dollar-variable-pattern": null,
+		"scss/at-mixin-pattern": null,
+		"scss/at-function-pattern": null,
+		"scss/load-no-partial-leading-underscore": null,
+		"function-name-case": ["lower", { "ignoreFunctions": ["/^[a-z]+[A-Z]/"] }],
+		"value-keyword-case": ["lower", { "ignoreKeywords": ["currentColor"] }],
+		"rule-empty-line-before": null,
+		"declaration-empty-line-before": null,
+		"at-rule-empty-line-before": null,
+		"comment-empty-line-before": null,
+		"scss/double-slash-comment-empty-line-before": null,
+		"scss/double-slash-comment-whitespace-inside": null
+	}
+}

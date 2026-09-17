@@ -11,7 +11,7 @@
 	cursor: pointer;
 	transition: height var(--burger-duration) $tf 0s;
 
-	@if $burgerLineCount ==3 {
+	@if $burgerLineCount == 3 {
 		span {
 			position: absolute;
 			width: 100%;
