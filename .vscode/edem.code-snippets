@@ -1,0 +1,664 @@
+// Сниппеты Edem Template. Префиксы с | группируют сниппеты: com| — комментарии, cmp| — разметка компонентов, modx| — MODX/Fenom
+{
+	//<БЛОК "Комментарии">==================================================
+	"Комментарий-блок": {
+		"scope": "scss,javascript",
+		"prefix": "com",
+		"body": "//${1:Подблок}==========\n$0\n////${1:Подблок}==========",
+		"description": "Открывающий и закрывающий комментарий вокруг блока кода — в стиле файлов шаблона"
+	},
+	"Комментарий-указатель": {
+		"scope": "scss,javascript",
+		"prefix": "com|arrow",
+		"body": "// <----- $0",
+		"description": "Пометка справа от строки: на что обратить внимание"
+	},
+	"Комментарий-указатель (HTML)": {
+		"scope": "html",
+		"prefix": "com|arrow",
+		"body": "<!-- <----- $0 -->",
+		"description": "Пометка справа от строки: на что обратить внимание"
+	},
+	"Маркер задачи": {
+		"scope": "scss,javascript",
+		"prefix": "com|todo",
+		"body": "//${1|ЗАДАЧА: ,ДОРАБОТКА: ,СРОЧНО: ,КОСТЫЛЬ: ,БАГ: ,TODO: ,[ ]: ,[x]: |}$0",
+		"description": "Комментарий с маркером задачи — попадает в дерево Todo Tree (раздел «Система маркеров задач»)"
+	},
+	"Маркер задачи (HTML)": {
+		"scope": "html",
+		"prefix": "com|todo",
+		"body": "<!-- ${1|ЗАДАЧА: ,ДОРАБОТКА: ,СРОЧНО: ,КОСТЫЛЬ: ,БАГ: ,TODO: ,[ ]: ,[x]: |}$0 -->",
+		"description": "Комментарий с маркером задачи — попадает в дерево Todo Tree (раздел «Система маркеров задач»)"
+	},
+	////<БЛОК "Комментарии">==================================================
+	//<БЛОК "Отступы">==================================================
+	"margin: вертикаль горизонталь": {
+		"scope": "css,scss",
+		"prefix": "mm",
+		"body": "margin: rem(${1:0}) rem(${2:0});",
+		"description": "Внешний отступ двумя значениями в rem"
+	},
+	"margin: четыре стороны": {
+		"scope": "css,scss",
+		"prefix": "mmm",
+		"body": "margin: rem(${1:0}) rem(${2:0}) rem(${3:0}) rem(${4:0});",
+		"description": "Внешний отступ четырьмя значениями в rem"
+	},
+	"margin сверху": {
+		"scope": "css,scss",
+		"prefix": "mmt",
+		"body": "margin: rem($1) 0 0 0;",
+		"description": "Внешний отступ только сверху"
+	},
+	"margin снизу": {
+		"scope": "css,scss",
+		"prefix": "mmb",
+		"body": "margin: 0 0 rem($1) 0;",
+		"description": "Внешний отступ только снизу"
+	},
+	"margin слева": {
+		"scope": "css,scss",
+		"prefix": "mml",
+		"body": "margin: 0 0 0 rem($1);",
+		"description": "Внешний отступ только слева"
+	},
+	"margin справа": {
+		"scope": "css,scss",
+		"prefix": "mmr",
+		"body": "margin: 0 rem($1) 0 0;",
+		"description": "Внешний отступ только справа"
+	},
+	"margin: по центру": {
+		"scope": "css,scss",
+		"prefix": "mmu",
+		"body": "margin: rem(${1:0}) auto;",
+		"description": "Выравнивание блока по центру по горизонтали"
+	},
+	"padding: вертикаль горизонталь": {
+		"scope": "css,scss",
+		"prefix": "pp",
+		"body": "padding: rem(${1:0}) rem(${2:0});",
+		"description": "Внутренний отступ двумя значениями в rem"
+	},
+	"padding: четыре стороны": {
+		"scope": "css,scss",
+		"prefix": "ppp",
+		"body": "padding: rem(${1:0}) rem(${2:0}) rem(${3:0}) rem(${4:0});",
+		"description": "Внутренний отступ четырьмя значениями в rem"
+	},
+	"padding сверху": {
+		"scope": "css,scss",
+		"prefix": "ppt",
+		"body": "padding: rem($1) 0 0 0;",
+		"description": "Внутренний отступ только сверху"
+	},
+	"padding снизу": {
+		"scope": "css,scss",
+		"prefix": "ppb",
+		"body": "padding: 0 0 rem($1) 0;",
+		"description": "Внутренний отступ только снизу"
+	},
+	"padding слева": {
+		"scope": "css,scss",
+		"prefix": "ppl",
+		"body": "padding: 0 0 0 rem($1);",
+		"description": "Внутренний отступ только слева"
+	},
+	"padding справа": {
+		"scope": "css,scss",
+		"prefix": "ppr",
+		"body": "padding: 0 rem($1) 0 0;",
+		"description": "Внутренний отступ только справа"
+	},
+	"gap: одно значение": {
+		"scope": "css,scss",
+		"prefix": "g",
+		"body": "gap: rem($1);",
+		"description": "Расстояние между элементами flex/grid"
+	},
+	"gap: строки колонки": {
+		"scope": "css,scss",
+		"prefix": "gg",
+		"body": "gap: rem(${1:0}) rem(${2:0});",
+		"description": "Расстояние между строками и между колонками flex/grid"
+	},
+	////<БЛОК "Отступы">==================================================
+	//<БЛОК "Медиа-запросы">==================================================
+	"Медиа: max-width произвольный": {
+		"scope": "css,scss",
+		"prefix": "md",
+		"body": "@media (max-width: rem($1)) {\n\t$0\n}",
+		"description": "Стили для экранов уже указанной ширины в px (переводится в rem)"
+	},
+	"Медиа: max-width $md1": {
+		"scope": "css,scss",
+		"prefix": "md1",
+		"body": "@media (max-width: \\$md1) {\n\t$0\n}",
+		"description": "Экран уже контейнера с боковыми отступами ($md1 из variables.scss)"
+	},
+	"Медиа: max-width $md2": {
+		"scope": "css,scss",
+		"prefix": "md2",
+		"body": "@media (max-width: \\$md2) {\n\t$0\n}",
+		"description": "Экран до 992px ($md2)"
+	},
+	"Медиа: max-width $md3": {
+		"scope": "css,scss",
+		"prefix": "md3",
+		"body": "@media (max-width: \\$md3) {\n\t$0\n}",
+		"description": "Экран до 768px ($md3)"
+	},
+	"Медиа: max-width $md4": {
+		"scope": "css,scss",
+		"prefix": "md4",
+		"body": "@media (max-width: \\$md4) {\n\t$0\n}",
+		"description": "Экран до 480px ($md4)"
+	},
+	"Медиа: min-width произвольный": {
+		"scope": "css,scss",
+		"prefix": "mmd",
+		"body": "@media (min-width: rem($1)) {\n\t$0\n}",
+		"description": "Стили для экранов шире указанной ширины в px (переводится в rem)"
+	},
+	"Медиа: min-width $md1": {
+		"scope": "css,scss",
+		"prefix": "mmd1",
+		"body": "@media (min-width: \\$md1) {\n\t$0\n}",
+		"description": "Экран шире контейнера с боковыми отступами ($md1)"
+	},
+	"Медиа: min-width $md2": {
+		"scope": "css,scss",
+		"prefix": "mmd2",
+		"body": "@media (min-width: \\$md2) {\n\t$0\n}",
+		"description": "Экран от 992px ($md2)"
+	},
+	"Медиа: min-width $md3": {
+		"scope": "css,scss",
+		"prefix": "mmd3",
+		"body": "@media (min-width: \\$md3) {\n\t$0\n}",
+		"description": "Экран от 768px ($md3)"
+	},
+	"Медиа: min-width $md4": {
+		"scope": "css,scss",
+		"prefix": "mmd4",
+		"body": "@media (min-width: \\$md4) {\n\t$0\n}",
+		"description": "Экран от 480px ($md4)"
+	},
+	"Hover только для мыши": {
+		"scope": "css,scss",
+		"prefix": "hv",
+		"body": "@media (pointer: fine) {\n\t&:hover {\n\t\t$0\n\t}\n}",
+		"description": "Состояние :hover, которое не залипает на сенсорных экранах"
+	},
+	"Медиа: только для мыши": {
+		"scope": "css,scss",
+		"prefix": "hhv",
+		"body": "@media (pointer: fine) {\n\t$0\n}",
+		"description": "Обёртка для любых стилей, которые нужны только при управлении мышью"
+	},
+	////<БЛОК "Медиа-запросы">==================================================
+	//<БЛОК "Функции и миксины шаблона">==================================================
+	"Подключение абстракций": {
+		"scope": "scss",
+		"prefix": "as",
+		"body": "@use 'abstracts' as *;",
+		"description": "Первая строка каждого нового файла в components/, layout/ и _example/: переменные, функции и миксины шаблона"
+	},
+	"rem()": {
+		"scope": "css,scss",
+		"prefix": "rem",
+		"body": "rem($0)",
+		"description": "Функция перевода px в rem"
+	},
+	"em()": {
+		"scope": "css,scss",
+		"prefix": "em",
+		"body": "em(${1:px}, ${2:px-родителя})",
+		"description": "Функция перевода px в em относительно размера шрифта родителя"
+	},
+	"lineScale()": {
+		"scope": "css,scss",
+		"prefix": "ls",
+		"body": "lineScale(${1:max}, ${2:min}, ${3:480}, ${4:1440})",
+		"description": "Значение, которое плавно меняется от max на широком экране до min на узком (раздел «lineScale»)"
+	},
+	"Миксин шрифта f-*": {
+		"scope": "css,scss",
+		"prefix": "f",
+		"body": "@include f-$0;",
+		"description": "Заготовка стиля текста из abstracts/font-styles.scss"
+	},
+	"Миксин эффекта ef-*": {
+		"scope": "css,scss",
+		"prefix": "ef",
+		"body": "@include ef-$0;",
+		"description": "Эффект из abstracts/effects.scss"
+	},
+	"Миксин lineClamp": {
+		"scope": "css,scss",
+		"prefix": "mix|lineClamp",
+		"body": "@include lineClamp(${1:2});",
+		"description": "Обрезать текст до указанного числа строк с многоточием"
+	},
+	"Переменная цвета": {
+		"scope": "css,scss",
+		"prefix": "vc",
+		"body": "var(--c-$0)",
+		"description": "Цвет из base/colors.scss (раздел «Вызов цветов»)"
+	},
+	"Ссылка на блок в БЭМ-модификаторе": {
+		"scope": "scss",
+		"prefix": "cc",
+		"body": "#{\\$p}$0",
+		"description": "Селектор родительского блока внутри вложенного правила, например #{$p}--active &"
+	},
+	"Сохранить селектор блока": {
+		"scope": "scss",
+		"prefix": "ccc",
+		"body": "\\$p: &;",
+		"description": "Первая строка блока: запоминает его селектор для сниппета cc"
+	},
+	////<БЛОК "Функции и миксины шаблона">==================================================
+	//<БЛОК "Свойства">==================================================
+	"width: fit-content": {
+		"scope": "css,scss",
+		"prefix": "wfc",
+		"body": "width: fit-content;",
+		"description": "Ширина по содержимому"
+	},
+	"::before": {
+		"scope": "css,scss",
+		"prefix": "b",
+		"body": "&::before {\n\tcontent: '';\n\t$0\n}",
+		"description": "Псевдоэлемент ::before"
+	},
+	"::after": {
+		"scope": "css,scss",
+		"prefix": "a",
+		"body": "&::after {\n\tcontent: '';\n\t$0\n}",
+		"description": "Псевдоэлемент ::after"
+	},
+	"CSS-счётчик": {
+		"scope": "css,scss",
+		"prefix": "count",
+		"body": "counter-reset: ${1:item};\ncounter-increment: ${1:item};\ncontent: counter(${1:item});",
+		"description": "Нумерация через counter: counter-reset ставится на список, остальное — на ::before пункта"
+	},
+	"transition": {
+		"scope": "css,scss",
+		"prefix": "ta",
+		"body": "transition: ${1:all} ${2:\\$td} ${3:\\$tf} 0s;",
+		"description": "Переход со стандартными длительностью $td и функцией $tf из variables.scss"
+	},
+	"rotate": {
+		"scope": "css,scss",
+		"prefix": "tr",
+		"body": "rotate: ${1:-180}deg;",
+		"description": "Поворот элемента"
+	},
+	"scale": {
+		"scope": "css,scss",
+		"prefix": "ts",
+		"body": "scale: ${1:1};",
+		"description": "Масштаб элемента"
+	},
+	"translate": {
+		"scope": "css,scss",
+		"prefix": "tt",
+		"body": "translate: rem(${1:0}) rem(${2:0});",
+		"description": "Сдвиг элемента"
+	},
+	"color": {
+		"scope": "css,scss",
+		"prefix": "c",
+		"body": "color: var(--c-${1:main});",
+		"description": "Цвет текста из палитры"
+	},
+	"background-color": {
+		"scope": "css,scss",
+		"prefix": "bgc",
+		"body": "background-color: var(--c-${1:accent});",
+		"description": "Цвет фона из палитры"
+	},
+	"color-mix()": {
+		"scope": "css,scss",
+		"prefix": "cm",
+		"body": "color-mix(in srgb, ${1:var(--c-main)} ${2:20}%, ${3:transparent})",
+		"description": "Смешение цветов: с transparent — полупрозрачный цвет палитры"
+	},
+	"background-position": {
+		"scope": "css,scss",
+		"prefix": "bgpc",
+		"body": "background-position: ${1:center};",
+		"description": "Положение фонового изображения"
+	},
+	"border-radius: 50%": {
+		"scope": "css,scss",
+		"prefix": "br5",
+		"body": "border-radius: 50%;",
+		"description": "Круглый элемент"
+	},
+	"pointer-events": {
+		"scope": "css,scss",
+		"prefix": "poi",
+		"body": "pointer-events: ${1:none};",
+		"description": "Отключить реакцию элемента на мышь"
+	},
+	"user-select: none": {
+		"scope": "css,scss",
+		"prefix": "nosel",
+		"body": "user-select: none;",
+		"description": "Запретить выделение текста (префиксы расставит сборка)"
+	},
+	"Перенос длинных слов": {
+		"scope": "css,scss",
+		"prefix": "breakword",
+		"body": "overflow-wrap: break-word;\nhyphens: auto;",
+		"description": "Перенос слов, которые не помещаются в строку, с расстановкой дефисов"
+	},
+	"text-wrap: balance": {
+		"scope": "css,scss",
+		"prefix": "twb",
+		"body": "text-wrap: balance;",
+		"description": "Выравнивание длины строк в заголовках"
+	},
+	"Скрыть полосу прокрутки": {
+		"scope": "css,scss",
+		"prefix": "noscroll",
+		"body": "scrollbar-width: none;\n\n&::-webkit-scrollbar {\n\tdisplay: none;\n}",
+		"description": "Прокрутка работает, полоса не видна"
+	},
+	////<БЛОК "Свойства">==================================================
+	//<БЛОК "HTML">==================================================
+	"noindex, nofollow": {
+		"scope": "html",
+		"prefix": ["meta|robots", "robot"],
+		"body": "<meta name=\"robots\" content=\"noindex, nofollow\">",
+		"description": "Запрет индексации. В head.html уже выводится вне prod-окружения"
+	},
+	"Иконка из спрайта": {
+		"scope": "html",
+		"prefix": "svg",
+		"body": "<svg aria-hidden=\"true\" focusable=\"false\" class=\"$3 icon\" width=\"${2:24}\" height=\"${2:24}\"><use href=\"img/sprite.svg#$1\"></use></svg>",
+		"description": "Иконка из img/sprite.svg: имя файла иконки, размер, класс"
+	},
+	"picture": {
+		"scope": "html",
+		"prefix": "pic",
+		"body": "<picture class=\"$1__image-container\">\n\t<img class=\"$1__image\" src=\"${2:img/_example/placeholder.jpg}\" ${3|width,height|}=\"$4\" alt=\"$5\">\n</picture>",
+		"description": "Картинка в обёртке picture: img растягивается на всю обёртку"
+	},
+	"Картинка-заглушка": {
+		"scope": "html,css,scss",
+		"prefix": "pc",
+		"body": "https://placehold.co/${1:600}x${2:400}",
+		"description": "Адрес картинки-заглушки заданного размера с placehold.co"
+	},
+	"Видео-фон": {
+		"scope": "html",
+		"prefix": "vid",
+		"body": "<video class=\"$1\" autoplay loop muted playsinline>\n\t<source src=\"${2:video.mp4}\" type=\"video/mp4\">\n</video>",
+		"description": "Зацикленное видео без звука: autoplay в браузерах работает только вместе с muted, playsinline не даёт iOS открыть видео на весь экран"
+	},
+	"Ссылка на фрагмент текста": {
+		"scope": "html",
+		"prefix": "ht",
+		"body": "#:~:text=${1:Выделяемый текст}",
+		"description": "Дописывается к href: браузер прокрутит страницу к указанному тексту и подсветит его"
+	},
+	"Фреймы разработчика": {
+		"scope": "html",
+		"prefix": "bf",
+		"body": [
+			"@@if (env !== 'prod') {",
+			"<iframe src=\"//test-id.ru/developer.html\" height=\"62\" scrolling=\"yes\" frameborder=\"0\"></iframe>",
+			"<iframe src=\"//test-id.ru/attention.html\" height=\"140\" scrolling=\"yes\" frameborder=\"0\"></iframe>",
+			"}"
+		],
+		"description": "Предупреждение о тестовом сайте и лейбл разработчика — только вне prod-окружения"
+	},
+	////<БЛОК "HTML">==================================================
+	//<БЛОК "JS">==================================================
+	"try...catch": {
+		"scope": "javascript",
+		"prefix": "trycatch",
+		"body": "try {\n\t$1\n} catch (err) {\n\t$0\n}",
+		"description": "Блок try...catch"
+	},
+	"console.log": {
+		"scope": "javascript",
+		"prefix": "cl",
+		"body": "console.log($0);",
+		"description": "Вывод в консоль для отладки. Диагностику, которая не должна попасть в прод, пишите через devWarn из utils/devLog.js"
+	},
+	////<БЛОК "JS">==================================================
+	//<БЛОК "Разметка компонентов">==================================================
+	"Табы": {
+		"scope": "html",
+		"prefix": "cmp|tab",
+		"body": [
+			"<div class=\"tabs\" data-tabs>",
+			"\t<div class=\"tabs__link-list\">",
+			"\t\t<button type=\"button\" class=\"tabs__link\" data-tab-link aria-selected=\"true\">Ссылка таба 1</button>",
+			"\t\t<button type=\"button\" class=\"tabs__link\" data-tab-link>Ссылка таба 2</button>",
+			"\t</div>",
+			"\t<div class=\"tabs__content-list\" data-tab-panels>",
+			"\t\t<div class=\"tabs__content\" data-tab-panel data-state=\"active\">",
+			"\t\t\t$0",
+			"\t\t</div>",
+			"\t\t<div class=\"tabs__content\" data-tab-panel>",
+			"\t\t</div>",
+			"\t</div>",
+			"</div>"
+		],
+		"description": "Блок табов: первая ссылка (aria-selected) и первая панель (data-state=\"active\") открыты сразу"
+	},
+	"Спойлеры": {
+		"scope": "html",
+		"prefix": "cmp|spoiler",
+		"body": [
+			"<div class=\"spoiler-list\">",
+			"\t<details class=\"spoiler-list__item\" data-spoiler name=\"${1:spoiler-group}\">",
+			"\t\t<summary class=\"spoiler-list__title\" data-spoiler-title>${2:Заголовок спойлера}</summary>",
+			"\t\t<div class=\"spoiler-list__content\" data-spoiler-content>",
+			"\t\t\t$0",
+			"\t\t</div>",
+			"\t</details>",
+			"</div>"
+		],
+		"description": "Спойлер на details: спойлеры с общим name закрывают друг друга, без name открываются независимо"
+	},
+	"Оглавление статьи": {
+		"scope": "html",
+		"prefix": "cmp|content-title",
+		"body": [
+			"<ul class=\"article__list\">",
+			"\t<li class=\"article__list-item\" data-article-link><a class=\"article__list-link\">Ссылка-заготовка</a></li>",
+			"</ul>",
+			"<div class=\"article__content text-content\" data-article>",
+			"\t<div>",
+			"\t\t<h2>${1:Заголовок раздела}</h2>",
+			"\t\t<p>$0</p>",
+			"\t</div>",
+			"</div>"
+		],
+		"description": "Оглавление собирается из h2 блока data-article, пункт data-article-link служит шаблоном ссылки"
+	},
+	"Навигация слайдера": {
+		"scope": "html",
+		"prefix": "cmp|swiper-navigation",
+		"body": [
+			"<div class=\"slider-navigation\">",
+			"\t<button type=\"button\" class=\"slider-navigation__link slider-navigation__link--prev\" aria-label=\"Предыдущий слайд\">",
+			"\t\t<svg aria-hidden=\"true\" focusable=\"false\" class=\"slider-navigation__icon icon\" width=\"24\" height=\"24\"><use href=\"img/sprite.svg#arrow\"></use></svg>",
+			"\t</button>",
+			"\t<button type=\"button\" class=\"slider-navigation__link slider-navigation__link--next\" aria-label=\"Следующий слайд\">",
+			"\t\t<svg aria-hidden=\"true\" focusable=\"false\" class=\"slider-navigation__icon icon\" width=\"24\" height=\"24\"><use href=\"img/sprite.svg#arrow\"></use></svg>",
+			"\t</button>",
+			"</div>"
+		],
+		"description": "Стрелки слайдера: подключаются в настройке navigation (src/js/_example/slider.js)"
+	},
+	"Кастомная пагинация слайдера": {
+		"scope": "html",
+		"prefix": "cmp|swiper-custom-pagination",
+		"body": [
+			"<div class=\"slider-pagination-custom\">",
+			"\t<div class=\"slider-pagination-custom__bullet\">${1:1}</div>",
+			"</div>"
+		],
+		"description": "Пагинация из своих блоков: подключается настройкой pagination с type: 'custom' (src/js/_example/slider.js)"
+	},
+	"Чекбокс": {
+		"scope": "html",
+		"prefix": "cmp|checkbox",
+		"body": [
+			"<div class=\"checkbox\" data-checkbox>",
+			"\t<input class=\"checkbox__input\" data-checkbox-input type=\"${1|checkbox,radio|}\" id=\"${2:policy}\">",
+			"\t<label class=\"checkbox__label\" for=\"${2:policy}\">${0:Я соглашаюсь с <a class=\"link\" href=\"\">политикой конфиденциальности</a>}</label>",
+			"</div>"
+		],
+		"description": "Чекбокс или радио с подписью"
+	},
+	"Чекбокс-переключатель": {
+		"scope": "html",
+		"prefix": "cmp|toggle-checkbox",
+		"body": [
+			"<div class=\"toggler-checkbox\" data-checkbox=\"toggler\">",
+			"\t<label class=\"form__label\" for=\"${1:toggler}\">${2:Подпись переключателя}</label>",
+			"\t<input class=\"toggler-checkbox__input\" data-checkbox-input type=\"checkbox\" id=\"${1:toggler}\">",
+			"</div>"
+		],
+		"description": "Переключатель (switch). Блок, который он включает, связывается атрибутом data-switch=\"id\" и миксином switchThis в components/form/switch-this.scss"
+	},
+	"Кастомный чекбокс": {
+		"scope": "html",
+		"prefix": "cmp|custom-checkbox",
+		"body": [
+			"<div class=\"custom-checkbox\" data-checkbox>",
+			"\t<input class=\"custom-checkbox__input\" data-checkbox-input type=\"checkbox\" name=\"${1:custom-checkbox}\" id=\"${2:custom-checkbox-1}\">",
+			"\t<label class=\"custom-checkbox__label button\" for=\"${2:custom-checkbox-1}\">${0:Подпись}</label>",
+			"</div>"
+		],
+		"description": "Чекбокс в виде кнопки или текста: выбранное состояние оформляется через :checked"
+	},
+	"Кастомное радио": {
+		"scope": "html",
+		"prefix": "cmp|custom-radio",
+		"body": [
+			"<div class=\"custom-checkbox\" data-checkbox>",
+			"\t<input class=\"custom-checkbox__input\" data-checkbox-input type=\"radio\" name=\"${1:custom-radio}\" id=\"${2:custom-radio-1}\">",
+			"\t<label class=\"custom-checkbox__label button\" for=\"${2:custom-radio-1}\">${0:Подпись}</label>",
+			"</div>"
+		],
+		"description": "Радиокнопка в виде кнопки или текста: радио одной группы получают общий name"
+	},
+	"Числовое поле": {
+		"scope": "html",
+		"prefix": "cmp|number-input",
+		"body": [
+			"<div class=\"number-input\" data-number>",
+			"\t<span class=\"number-input__button number-input__button--minus\" data-number-minus></span>",
+			"\t<input class=\"number-input__input\" data-number-input id=\"${1:number-input}\" type=\"number\" min=\"${2:1}\" max=\"${3:100}\" step=\"${4:1}\" value=\"\">",
+			"\t<span class=\"number-input__button number-input__button--plus\" data-number-plus></span>",
+			"</div>"
+		],
+		"description": "Поле для числа с кнопками − и +"
+	},
+	"Ползунок": {
+		"scope": "html",
+		"prefix": "cmp|range-input",
+		"body": [
+			"<div class=\"range-input\" data-range>",
+			"\t<p class=\"range-input__text\" data-range-text><span class=\"range-input__text-val\" data-range-val></span> ${5:₽}</p>",
+			"\t<input class=\"range-input__input\" data-range-input id=\"${1:range-input}\" type=\"range\" min=\"${2:0}\" max=\"${3:100000}\" step=\"${4:1000}\" value=\"${2:0}\">",
+			"</div>"
+		],
+		"description": "Ползунок с выводом текущего значения"
+	},
+	"Двойной ползунок": {
+		"scope": "html",
+		"prefix": "cmp|dual-range-input",
+		"body": [
+			"<div class=\"dual-range-input\" data-dual-range>",
+			"\t<p class=\"dual-range-input__text\" data-dual-range-text><span class=\"dual-range-input__text-val\" data-dual-range-val></span> ${4:₽}</p>",
+			"\t<div class=\"dual-range-input__input-container\" data-dual-range-track>",
+			"\t\t<input class=\"dual-range-input__input\" data-dual-range-input type=\"range\" min=\"${1:0}\" max=\"${2:100000}\" step=\"${3:1000}\" value=\"${1:0}\">",
+			"\t\t<input class=\"dual-range-input__input\" data-dual-range-input type=\"range\">",
+			"\t</div>",
+			"\t<p class=\"dual-range-input__text\" data-dual-range-text><span class=\"dual-range-input__text-val\" data-dual-range-val></span> ${4:₽}</p>",
+			"</div>"
+		],
+		"description": "Диапазон «от и до»: второй ползунок берёт min, max и step у первого"
+	},
+	"Поле загрузки файла": {
+		"scope": "html",
+		"prefix": "cmp|file-input",
+		"body": [
+			"<div class=\"form__field input file-input\" data-file>",
+			"\t<label class=\"file-input__label\" data-file-label for=\"${1:file}\">${2:Прикрепите файл}</label>",
+			"\t<input id=\"${1:file}\" class=\"file-input__input sem-hide\" data-file-input type=\"file\">",
+			"</div>"
+		],
+		"description": "Поле загрузки файла: после выбора подпись заменяется именем файла"
+	},
+	"Выпадающий список": {
+		"scope": "html",
+		"prefix": "cmp|select",
+		"body": [
+			"<select class=\"form__field input select\" data-select id=\"${1:select}\" name=\"${1:select}\">",
+			"\t<option class=\"select__option select__option--title\" value=\"\" selected>${2:Выберите вариант}</option>",
+			"\t<option class=\"select__option\" value=\"$3\">$3</option>",
+			"</select>"
+		],
+		"description": "Выпадающий список: первый пункт с пустым value служит подсказкой"
+	},
+	"Тултип": {
+		"scope": "html",
+		"prefix": "cmp|tooltip",
+		"body": [
+			"<div class=\"tooltip\" data-tooltip>",
+			"\t<button type=\"button\" class=\"tooltip__button\" data-tooltip-button>${1:ℹ️}</button>",
+			"\t<div class=\"tooltip__body\" data-tooltip-body>",
+			"\t\t$0",
+			"\t</div>",
+			"</div>"
+		],
+		"description": "Подсказка: открывается наведением и фокусом на кнопке"
+	},
+	////<БЛОК "Разметка компонентов">==================================================
+	//<БЛОК "MODX">==================================================
+	"MODX: поле ресурса": {
+		"scope": "html",
+		"prefix": "modx|res",
+		"body": "{\\$_modx->resource.$1}",
+		"description": "Fenom: значение поля текущего ресурса"
+	},
+	"MODX: системная настройка": {
+		"scope": "html",
+		"prefix": "modx|conf",
+		"body": "{\\$_modx->config.$1}",
+		"description": "Fenom: значение системной настройки"
+	},
+	"MODX: все плейсхолдеры": {
+		"scope": "html",
+		"prefix": "modx|prnt",
+		"body": "{\\$_modx->getPlaceholders() | print}",
+		"description": "Fenom: вывести все плейсхолдеры страницы для отладки"
+	},
+	"MODX: только для администратора": {
+		"scope": "html",
+		"prefix": "modx|admin",
+		"body": "{if \\$_modx->isMember('Administrator')}\n\t$0\n{/if}",
+		"description": "Fenom: вывести блок только авторизованному администратору"
+	},
+	////<БЛОК "MODX">==================================================
+	//<БЛОК "Git">==================================================
+	"Обновление из шаблона": {
+		"prefix": "gpf",
+		"body": "git pull --tags edem-gulp-template main --allow-unrelated-histories",
+		"description": "Подтянуть изменения шаблона в форк: remote шаблона должен называться edem-gulp-template"
+	}
+	////<БЛОК "Git">==================================================
+}
