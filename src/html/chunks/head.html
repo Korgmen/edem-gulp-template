@@ -1,14 +1,24 @@
 <head>
 	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	@@if (env !== 'prod') {
 	<meta name="robots" content="noindex, nofollow" />
 	}
+	<title>@@title</title>
+	@@if (context.description) {
+	<meta name="description" content="@@description" />
+	<meta property="og:description" content="@@description" />
+	}
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="@@title" />
+	<meta property="og:locale" content="ru_RU" />
+	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f9f7" />
+	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1d201f" />
+	<link rel="icon" href="favicon.svg" type="image/svg+xml" />
+	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+	<link rel="preload" href="fonts/Manrope-Variable.woff2" as="font" type="font/woff2" crossorigin />
 	<link rel="stylesheet" href="css/style.css@@cssVersion" />
 	@@if (context.example) {
 	<link rel="stylesheet" href="css/example.css@@exampleCssVersion" />
 	}
-	<link rel="icon" href="favicon.svg" />
-	<title>@@title</title>
 </head>
