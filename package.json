@@ -14,11 +14,12 @@
 		"deploy:stage": "gulp deploy --build --env=stage",
 		"demo:remove": "gulp demoRemove",
 		"example:remove": "gulp exampleRemove",
-		"lint": "pnpm lint:js && pnpm lint:scss && pnpm format:check",
+		"lint": "pnpm lint:js && pnpm lint:scss && pnpm format:check && pnpm docs:check",
 		"lint:js": "eslint .",
 		"lint:scss": "stylelint \"src/scss/**/*.scss\"",
 		"format": "prettier --write .",
-		"format:check": "prettier --check ."
+		"format:check": "prettier --check .",
+		"docs:check": "node gulp/scripts/checkDocs.js"
 	},
 	"repository": "korgmen/edem-gulp-template",
 	"keywords": [

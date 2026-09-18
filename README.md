@@ -39,7 +39,7 @@ Gulp-шаблон для вёрстки: SCSS с каскадными слоям
 | `pnpm dev:deploy` | dev-сервер и выгрузка изменённых файлов на сервер |
 | `pnpm run deploy` | продакшн-сборка и выгрузка на сервер |
 | `pnpm deploy:stage` | сборка `stage` и выгрузка на тестовый сервер |
-| `pnpm lint` | ESLint, Stylelint и проверка форматирования |
+| `pnpm lint` | ESLint, Stylelint, проверка форматирования и документации |
 | `pnpm format` | форматирование Prettier |
 | `pnpm run demo:remove` | удаление стартовой страницы |
 | `pnpm run example:remove` | удаление справочника компонентов |
