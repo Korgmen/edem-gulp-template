@@ -1,6 +1,6 @@
 {
 	"name": "edem-gulp-template",
-	"version": "1.7.0",
+	"version": "1.7.1",
 	"private": true,
 	"description": "Edem Template on ESM",
 	"type": "module",
