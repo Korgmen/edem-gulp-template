@@ -44,11 +44,11 @@
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"browser-sync": "^3.0.4",
-		"browserslist": "^4.29.0",
+		"browserslist": "^4.29.5",
 		"del": "^8.0.1",
 		"esbuild": "^0.28.2",
-		"eslint": "^10.10.0",
-		"globals": "^17.12.0",
+		"eslint": "^10.14.0",
+		"globals": "^17.13.0",
 		"gulp": "^5.0.1",
 		"gulp-file-include": "^2.3.0",
 		"gulp-fonter": "^0.3.0",
@@ -66,18 +66,18 @@
 		"lightningcss": "^1.33.0",
 		"picomatch": "^4.0.7",
 		"plugin-error": "^2.0.1",
-		"prettier": "^3.9.7",
-		"sass": "^1.104.1",
+		"prettier": "^3.9.10",
+		"sass": "^1.107.1",
 		"ssh2-sftp-client": "^12.1.1",
-		"stylelint": "^17.15.0",
+		"stylelint": "^17.16.0",
 		"stylelint-config-standard-scss": "^17.0.0",
-		"through2": "^5.0.11"
+		"through2": "^5.0.12"
 	},
 	"dependencies": {
 		"@caneara/iodine": "^8.5.0",
 		"imask": "^7.6.1",
 		"photoswipe": "^5.4.4",
-		"swiper": "^14.2.0"
+		"swiper": "^14.4.0"
 	},
 	"pnpm": {
 		"packageExtensions": {
